@@ -1,0 +1,241 @@
+{%- comment -%}
+  "Descubre la gama completa" product grid for the UNDER page. Once real
+  UNDER products exist in this collection, it renders them exactly like
+  Horizon's native product-list section (same _product-card block, so it
+  stays theme-editor customizable). Until then — the connected store
+  currently has no products at all — it falls back to four temporary cards
+  built from the official Montibello UNDER product photography, so the page
+  doesn't show Horizon's generic apparel placeholder cards.
+{%- endcomment -%}
+
+{% liquid
+  assign has_real_products = false
+  if collection != blank and collection.products.size > 0
+    assign has_real_products = true
+  endif
+%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-product-range spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="montibello-product-range__header">
+    {% content_for 'block', type: 'text', id: 'heading' %}
+  </div>
+
+  {% if has_real_products %}
+    <div class="montibello-product-range__grid">
+      {% for product in collection.products limit: 8 %}
+        <div class="montibello-product-range__real-card">
+          {% content_for 'block',
+            type: '_product-card',
+            id: 'static-product-card',
+            closest.product: product,
+            product_view_context: 'collection'
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="montibello-product-range__grid montibello-product-range__grid--placeholder">
+      <div class="montibello-product-range__card">
+        <div class="montibello-product-range__image-wrap">
+          <img
+            src="{{ 'montibello-under-product-colorant.webp' | asset_url }}"
+            alt="Under — coloración permanente"
+            loading="lazy"
+            class="montibello-product-range__image"
+            width="1855"
+            height="2560"
+          >
+        </div>
+        <p class="montibello-product-range__name">Under</p>
+        <p class="montibello-product-range__type">Coloración permanente de alta cobertura</p>
+      </div>
+      <div class="montibello-product-range__card">
+        <div class="montibello-product-range__image-wrap">
+          <img
+            src="{{ 'montibello-under-activating-cream-15vol.jpg' | asset_url }}"
+            alt="Under Activating Cream 4,5% (15 vol)"
+            loading="lazy"
+            class="montibello-product-range__image"
+            width="1855"
+            height="2560"
+          >
+        </div>
+        <p class="montibello-product-range__name">Under Activating Cream 4,5% (15 vol)</p>
+        <p class="montibello-product-range__type">Crema activadora</p>
+      </div>
+      <div class="montibello-product-range__card">
+        <div class="montibello-product-range__image-wrap">
+          <img
+            src="{{ 'montibello-under-activating-cream-25vol.jpg' | asset_url }}"
+            alt="Under Activating Cream 7,5% (25 vol)"
+            loading="lazy"
+            class="montibello-product-range__image"
+            width="1855"
+            height="2560"
+          >
+        </div>
+        <p class="montibello-product-range__name">Under Activating Cream 7,5% (25 vol)</p>
+        <p class="montibello-product-range__type">Crema activadora</p>
+      </div>
+      <div class="montibello-product-range__card">
+        <div class="montibello-product-range__image-wrap">
+          <img
+            src="{{ 'montibello-under-activating-cream-35vol.jpg' | asset_url }}"
+            alt="Under Activating Cream 10,5% (35 vol)"
+            loading="lazy"
+            class="montibello-product-range__image"
+            width="1855"
+            height="2560"
+          >
+        </div>
+        <p class="montibello-product-range__name">Under Activating Cream 10,5% (35 vol)</p>
+        <p class="montibello-product-range__type">Crema activadora</p>
+      </div>
+    </div>
+    <p class="montibello-product-range__note">{{ section.settings.placeholder_note }}</p>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .montibello-product-range__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .montibello-product-range__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem 1.5rem;
+    }
+  }
+
+  .montibello-product-range__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .montibello-product-range__image-wrap {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--color-background-secondary, #ece7dc);
+  }
+
+  .montibello-product-range__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .montibello-product-range__name {
+    font: var(--font-heading--style) var(--font-heading--weight) var(--font-size--sm) / 1.3 var(--font-heading--family);
+    margin: 0;
+  }
+
+  .montibello-product-range__type {
+    font-size: var(--font-size--xs);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .montibello-product-range__note {
+    text-align: center;
+    font-size: var(--font-size--xs);
+    opacity: 0.6;
+    margin-top: 2rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Gama de productos",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "text" },
+    { "type": "_product-card" }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_note",
+      "label": "Nota bajo la cuadrícula temporal",
+      "default": "Catálogo completo disponible próximamente en Montibello Perú."
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gama de productos",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Descubre la gama completa</h2>",
+            "type_preset": "h2",
+            "alignment": "center",
+            "width": "100%"
+          }
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": { "product_card_gap": 4 },
+          "blocks": {
+            "product_card_gallery": {
+              "type": "_product-card-gallery",
+              "settings": { "image_ratio": "adapt" }
+            },
+            "product_title": {
+              "type": "product-title",
+              "settings": { "type_preset": "rte", "padding-block-start": 4 }
+            },
+            "price": {
+              "type": "price",
+              "settings": { "type_preset": "h6" }
+            }
+          },
+          "block_order": ["product_card_gallery", "product_title", "price"]
+        }
+      },
+      "block_order": ["heading"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,473 @@
+{%- comment -%}
+  Editorial image banner for Montibello Perú campaign content (hero / split
+  editorial layouts). Horizon's stock media sections (hero, slideshow,
+  media-with-content) all source images through `image_picker`, which only
+  resolves once a file has been uploaded to the Shopify admin's Files
+  library — until then they render a generic placeholder icon. This section
+  ships pre-approved official Montibello campaign photography as theme
+  assets so the homepage renders with real imagery immediately, while still
+  letting a merchant override it with an admin-uploaded image at any time.
+{%- endcomment -%}
+
+{% liquid
+  assign bundled_image = section.settings.bundled_image
+  assign custom_image = section.settings.custom_image
+  assign has_custom_image = false
+  if custom_image != blank
+    assign has_custom_image = true
+  endif
+
+  assign has_bundled_image = false
+  if bundled_image != blank and bundled_image != 'none'
+    assign has_bundled_image = true
+  endif
+
+  assign bundled_image_mobile = section.settings.bundled_image_mobile
+  assign custom_image_mobile = section.settings.custom_image_mobile
+  assign has_custom_image_mobile = false
+  if custom_image_mobile != blank
+    assign has_custom_image_mobile = true
+  endif
+
+  assign has_bundled_image_mobile = false
+  if bundled_image_mobile != blank and bundled_image_mobile != 'none'
+    assign has_bundled_image_mobile = true
+  endif
+
+  assign layout_class = 'montibello-banner--' | append: section.settings.layout
+  assign position_class = 'montibello-banner--media-' | append: section.settings.media_position
+
+  # Native pixel dimensions of each bundled Montibello asset, used only to
+  # satisfy the img width/height attributes (the visible box size is
+  # controlled by CSS on .montibello-banner__media, not by these).
+  assign bundled_width = 1600
+  assign bundled_height = 1200
+  case bundled_image
+    when 'montibello-under-hero-desktop.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 960
+    when 'montibello-under-editorial-elevated-warmth.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 1708
+    when 'montibello-under-glucamine-tech.jpg'
+      assign bundled_width = 1350
+      assign bundled_height = 1080
+    when 'montibello-hcare-hop-editorial.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 1183
+    when 'montibello-professional-salon-editorial.jpg'
+      assign bundled_width = 1391
+      assign bundled_height = 2086
+    when 'montibello-under-stats-editorial.jpg'
+      assign bundled_width = 1707
+      assign bundled_height = 1766
+  endcase
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+<div
+  class="
+    section section--{{ section.settings.section_width }} montibello-banner spacing-style
+    {{ layout_class }}
+    {% if section.settings.layout == 'split' %}{{ position_class }}{% endif %}
+    {% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="montibello-banner__media">
+    {% if has_custom_image %}
+      <picture>
+        {% if has_custom_image_mobile %}
+          <source media="(max-width: 749px)" srcset="{{ custom_image_mobile | image_url: width: 1500 }}">
+        {% elsif has_bundled_image_mobile %}
+          <source media="(max-width: 749px)" srcset="{{ bundled_image_mobile | asset_url }}">
+        {% endif %}
+        {{
+          custom_image
+          | image_url: width: 3000
+          | image_tag:
+            loading: 'lazy',
+            sizes: '100vw',
+            widths: '750,1100,1500,2000,3000',
+            alt: section.settings.image_alt | default: custom_image.alt,
+            class: 'montibello-banner__image'
+        }}
+      </picture>
+    {% elsif has_bundled_image %}
+      <picture>
+        {% if has_custom_image_mobile %}
+          <source media="(max-width: 749px)" srcset="{{ custom_image_mobile | image_url: width: 1500 }}">
+        {% elsif has_bundled_image_mobile %}
+          <source media="(max-width: 749px)" srcset="{{ bundled_image_mobile | asset_url }}">
+        {% endif %}
+        <img
+          src="{{ bundled_image | asset_url }}"
+          alt="{{ section.settings.image_alt | escape }}"
+          loading="lazy"
+          class="montibello-banner__image"
+          width="{{ bundled_width }}"
+          height="{{ bundled_height }}"
+        >
+      </picture>
+    {% else %}
+      <div class="montibello-banner__image montibello-banner__image--placeholder">
+        {{ 'hero-apparel-3' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.layout == 'full' and section.settings.toggle_overlay %}
+      <div
+        class="montibello-banner__overlay"
+        style="background: {{ section.settings.overlay_color }};"
+      ></div>
+    {% endif %}
+  </div>
+
+  <div
+    class="montibello-banner__content{% if section.settings.layout == 'full' %} montibello-banner__content--on-media{% endif %}"
+    data-montibello-reveal
+  >
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+<script src="{{ 'montibello-scroll-reveal.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .montibello-banner {
+    display: grid;
+    gap: 0;
+    position: relative;
+  }
+
+  .montibello-banner--split {
+    grid-template-columns: 1fr;
+
+    /* The reference keeps these editorial split sections boxed (~1400px,
+       ~30px side gutters) even though the rest of the page can run wider —
+       matched explicitly here rather than relying on the theme's global
+       page-width setting, which may not carry the same value. */
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-banner--split.montibello-banner--media-right {
+    @media screen and (min-width: 750px) {
+      & .montibello-banner__media {
+        order: 2;
+      }
+
+      & .montibello-banner__content {
+        order: 1;
+      }
+    }
+  }
+
+  .montibello-banner--full {
+    grid-template-columns: 1fr;
+  }
+
+  .montibello-banner__media {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-background-secondary, #ece7dc);
+    min-height: 50svh;
+  }
+
+  .montibello-banner--split .montibello-banner__media {
+    min-height: 42svh;
+
+    @media screen and (min-width: 750px) {
+      min-height: 480px;
+    }
+  }
+
+  .montibello-banner--full .montibello-banner__media {
+    /* Matches the official Under hero, measured at ~59% of a 900px-tall
+       desktop viewport (≈530-600px) — a shorter opening than a typical
+       full-screen Shopify hero. */
+    min-height: 48svh;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-banner--full .montibello-banner__media {
+      min-height: 60svh;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (min-height: 900px) {
+    /* Cap hero height on tall/large desktop monitors so the 2560x960
+       source campaign photo (the highest resolution Montibello publishes
+       for this banner) isn't upscaled past its native pixel density. */
+    .montibello-banner--full .montibello-banner__media {
+      min-height: 540px;
+      max-height: 60svh;
+    }
+  }
+
+  .montibello-banner__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    inset: 0;
+  }
+
+  .montibello-banner__image--placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 40%;
+      height: 40%;
+      opacity: 0.35;
+    }
+  }
+
+  .montibello-banner__overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .montibello-banner__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2.5rem 1.5rem;
+
+    @media screen and (min-width: 750px) {
+      padding: 3rem 4rem;
+    }
+  }
+
+  .montibello-banner__content--on-media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    justify-content: flex-end;
+    color: #fff;
+    padding: 2rem 1.5rem;
+
+    @media screen and (min-width: 750px) {
+      padding: 4rem 5rem;
+    }
+  }
+
+  /* Reference headings run bold/tight (≈700 weight, line-height 1) —
+     scoped to these banners only, not a sitewide typography change. */
+  .montibello-banner__content :is(h1, h2, h3) {
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  [data-montibello-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  [data-montibello-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-montibello-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Banner Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "text" },
+    { "type": "button" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "select",
+      "id": "bundled_image",
+      "label": "Imagen oficial Montibello incluida",
+      "info": "Fotografía de campaña oficial de Montibello, descargada localmente. Se usa como respaldo si no seleccionas una imagen personalizada abajo.",
+      "options": [
+        { "value": "none", "label": "Ninguna" },
+        { "value": "montibello-under-hero-desktop.jpg", "label": "Under — Elevated Warmth (campaña)" },
+        { "value": "montibello-under-editorial-elevated-warmth.jpg", "label": "Under — Editorial de línea" },
+        { "value": "montibello-under-glucamine-tech.jpg", "label": "Under — Glucamine Nature Tech" },
+        { "value": "montibello-hcare-hop-editorial.jpg", "label": "HCare — Editorial de cuidado capilar" },
+        { "value": "montibello-professional-salon-editorial.jpg", "label": "Profesional — Editorial de salón" },
+        { "value": "montibello-under-stats-editorial.jpg", "label": "Under — Editorial (alta definición)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Imagen personalizada (opcional)",
+      "info": "Si seleccionas una imagen aquí, reemplaza a la imagen oficial incluida."
+    },
+    {
+      "type": "header",
+      "content": "Imagen para móvil (opcional)"
+    },
+    {
+      "type": "select",
+      "id": "bundled_image_mobile",
+      "label": "Imagen oficial Montibello (recorte móvil)",
+      "info": "Se usa solo en pantallas angostas (menos de 750px). Si se deja en Ninguna, se reutiliza la imagen de escritorio.",
+      "options": [
+        { "value": "none", "label": "Ninguna (usar la imagen de escritorio)" },
+        { "value": "montibello-under-hero-mobile.jpg", "label": "Under — Elevated Warmth (recorte móvil)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image_mobile",
+      "label": "Imagen personalizada para móvil (opcional)",
+      "info": "Si seleccionas una imagen aquí, reemplaza al recorte móvil oficial incluido."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Texto alternativo de la imagen"
+    },
+    {
+      "type": "header",
+      "content": "Disposición"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Estilo",
+      "options": [
+        { "value": "split", "label": "Imagen + contenido (editorial)" },
+        { "value": "full", "label": "Imagen a pantalla completa (hero)" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Posición de la imagen",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.layout == 'split' }}"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "Superposición (solo hero)"
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle_overlay",
+      "label": "Mostrar superposición sobre la imagen",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Color de superposición",
+      "alpha": true,
+      "default": "#12121266"
+    },
+    {
+      "type": "header",
+      "content": "Apariencia"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "placeholder": "Predeterminado"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Montibello",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Montibello Perú</h2>",
+            "type_preset": "h2"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Descubrir",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": ["heading", "button"]
+    }
+  ]
+}
+{% endschema %}

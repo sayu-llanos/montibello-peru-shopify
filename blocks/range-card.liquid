@@ -1,0 +1,132 @@
+{%- comment -%}
+  One "gama" card: portrait image (hover zoom), category label, title,
+  paragraph — matches the official homepage's range-card format exactly.
+{%- endcomment -%}
+
+{% liquid
+  assign bundled_image = block.settings.bundled_image
+  assign custom_image = block.settings.custom_image
+  assign has_custom_image = false
+  if custom_image != blank
+    assign has_custom_image = true
+  endif
+
+  assign link = block.settings.link
+  assign has_link = false
+  if link != blank
+    assign has_link = true
+  endif
+%}
+
+{% capture card_inner %}
+  <div class="montibello-range-card__media">
+    {% if has_custom_image %}
+      {{
+        custom_image
+        | image_url: width: 1000
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(min-width: 750px) 417px, 283px',
+          widths: '283,417,600,834',
+          alt: block.settings.image_alt | default: custom_image.alt,
+          class: 'montibello-range-card__image'
+      }}
+    {% elsif bundled_image != blank %}
+      {% liquid
+        case bundled_image
+          when 'montibello-under-card-portrait.jpg'
+            assign image_width = 1600
+            assign image_height = 2265
+          when 'montibello-hcare-hop-editorial.jpg'
+            assign image_width = 2560
+            assign image_height = 1183
+          else
+            assign image_width = 1000
+            assign image_height = 1000
+        endcase
+      %}
+      <img
+        src="{{ bundled_image | asset_url }}"
+        alt="{{ block.settings.image_alt | escape }}"
+        loading="lazy"
+        class="montibello-range-card__image"
+        width="{{ image_width }}"
+        height="{{ image_height }}"
+      >
+    {% endif %}
+  </div>
+
+  {% if block.settings.category != blank %}
+    <div class="montibello-range-card__meta">{{ block.settings.category }}</div>
+  {% endif %}
+
+  {% if block.settings.title != blank %}
+    <h2 class="montibello-range-card__title">{{ block.settings.title }}</h2>
+  {% endif %}
+
+  {% if block.settings.text != blank %}
+    <div class="montibello-range-card__text">{{ block.settings.text | newline_to_br }}</div>
+  {% endif %}
+{% endcapture %}
+
+{% if has_link %}
+  <a href="{{ link }}" class="montibello-range-card" {{ block.shopify_attributes }}>{{ card_inner }}</a>
+{% else %}
+  <div class="montibello-range-card" {{ block.shopify_attributes }}>{{ card_inner }}</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Tarjeta de gama",
+  "settings": [
+    {
+      "type": "select",
+      "id": "bundled_image",
+      "label": "Imagen oficial incluida",
+      "options": [
+        { "value": "montibello-under-card-portrait.jpg", "label": "Under — Editorial" },
+        { "value": "montibello-hcare-hop-editorial.jpg", "label": "HCare — Editorial" }
+      ],
+      "default": "montibello-under-card-portrait.jpg"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Imagen personalizada (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Texto alternativo de la imagen"
+    },
+    {
+      "type": "text",
+      "id": "category",
+      "label": "Categoría",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Under"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "La coloración con cobertura de alta definición y tecnología híbrida que potencia la realidad y naturalidad de un color sin límites."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Enlace"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tarjeta de gama"
+    }
+  ]
+}
+{% endschema %}

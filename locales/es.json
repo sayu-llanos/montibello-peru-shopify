@@ -193,7 +193,7 @@
     "recently_viewed_products": "Visto recientemente",
     "unavailable": "No disponible",
     "collection_placeholder": "Título de la colección",
-    "product_card_placeholder": "Nombre del producto",
+    "product_card_placeholder": "Montibello — próximamente",
     "product_count": "Recuento de productos",
     "item_count": {
       "one": "{{ count }} artículo",
@@ -310,7 +310,7 @@
   "placeholders": {
     "password": "Contraseña",
     "search": "Buscar",
-    "product_title": "Nombre del producto",
+    "product_title": "Montibello — próximamente",
     "collection_title": "Título de la colección",
     "blog_posts": "Artículos del blog",
     "blog_post_title": "Nombre",

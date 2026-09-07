@@ -43,8 +43,23 @@
   {{ block.shopify_attributes }}
 >
   {% liquid
-    assign logo_width = settings.logo_height | times: settings.logo.aspect_ratio | ceil
-    assign logo_width_mobile = settings.logo_height_mobile | times: settings.logo.aspect_ratio | ceil
+    assign has_shop_logo = false
+    if settings.logo != blank
+      assign has_shop_logo = true
+    endif
+
+    # Native aspect ratio (151x26) of the bundled assets/montibello-logo.svg,
+    # used only when no logo has been uploaded in Theme Settings yet.
+    assign bundled_logo_ratio = 5.81
+
+    if has_shop_logo
+      assign logo_width = settings.logo_height | times: settings.logo.aspect_ratio | ceil
+      assign logo_width_mobile = settings.logo_height_mobile | times: settings.logo.aspect_ratio | ceil
+    else
+      assign logo_width = settings.logo_height | times: bundled_logo_ratio | ceil
+      assign logo_width_mobile = settings.logo_height_mobile | times: bundled_logo_ratio | ceil
+    endif
+
     assign inverse_logo_width = settings.logo_height | times: inverse_logo.aspect_ratio | ceil
     assign inverse_logo_width_mobile = settings.logo_height_mobile | times: inverse_logo.aspect_ratio | ceil
     assign logo_style = '--header-logo-image-width: ' | append: logo_width | append: 'px;' | append: '--header-logo-image-width-mobile: ' | append: logo_width_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
@@ -57,14 +72,31 @@
     {% endif %}
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    {% if has_shop_logo %}
+      {% render 'image',
+        image: settings.logo,
+        class: 'header-logo__image',
+        height: settings.logo_height,
+        alt_text_fallback: alt_text_fallback,
+        style: logo_style
+      %}
+    {% else %}
+      {% comment %}
+        No logo has been uploaded to Theme Settings yet (image_picker settings
+        can only reference files already uploaded to the Shopify admin's
+        Files library). Until that upload happens, render the official,
+        locally-stored Montibello wordmark directly from theme assets so the
+        header never falls back to the shop's display name.
+      {% endcomment %}
+      <img
+        src="{{ 'montibello-logo.svg' | asset_url }}"
+        alt="{{ alt_text_fallback }}"
+        class="header-logo__image"
+        style="{{ logo_style }}"
+        width="{{ logo_width }}"
+        height="{{ settings.logo_height }}"
+      >
+    {% endif %}
   </span>
 
   {% if use_inverse_logo %}

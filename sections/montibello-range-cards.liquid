@@ -1,0 +1,183 @@
+{%- comment -%}
+  Reproduces the official homepage's "gamas" card row: a portrait campaign
+  image with hover zoom, an uppercase category label, a large tight-leading
+  title, and a short paragraph — one card per commercial line. Peru only
+  sells two lines (Under, HCare), so this renders as a static two-up row
+  using the reference's exact card proportions rather than the reference's
+  full multi-item slider (which only appears once cards overflow the
+  container).
+{%- endcomment -%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-ranges spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}background-color:{{ section.settings.background_color | default: '#FFFFFF' }};"
+>
+  <div class="montibello-ranges__list">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-ranges__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    max-width: 1300px;
+    margin-inline: auto;
+    padding-inline: 30px;
+  }
+
+  .montibello-range-card {
+    display: block;
+    flex: 0 1 417px;
+    width: 283px;
+    max-width: 100%;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .montibello-range-card:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 6px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-range-card {
+      width: 417px;
+    }
+  }
+
+  .montibello-range-card__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    aspect-ratio: 822 / 938;
+  }
+
+  .montibello-range-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .montibello-range-card:hover .montibello-range-card__image {
+    transform: scale(1.08);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .montibello-range-card__image {
+      transition: none;
+    }
+  }
+
+  .montibello-range-card__meta {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.26;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .montibello-range-card__title {
+    margin: 20px 0 0;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-range-card__text {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.23;
+  }
+
+  .montibello-range-card__text p {
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Gamas Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "range-card" }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gamas Montibello",
+      "blocks": [
+        {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-under-card-portrait.jpg",
+            "category": "Color",
+            "title": "Under",
+            "text": "La coloración con cobertura de alta definición y tecnología híbrida que potencia la realidad y naturalidad de un color sin límites.",
+            "link": "shopify://collections/under"
+          }
+        },
+        {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-hcare-hop-editorial.jpg",
+            "category": "Cuidado capilar",
+            "title": "HCare",
+            "text": "Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas.",
+            "link": "/pages/hcare"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

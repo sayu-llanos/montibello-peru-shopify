@@ -8,90 +8,104 @@
  * ------------------------------------------------------------
  */{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "hero_montibello": {
+      "type": "montibello-image-banner",
       "blocks": {
-        "text_YLPk4p": {
+        "caption": {
+          "type": "text",
+          "name": "t:names.caption",
+          "settings": {
+            "text": "<p>Distribuidor oficial Montibello en Perú</p>",
+            "type_preset": "h6",
+            "font": "var(--font-accent--family)",
+            "case": "uppercase",
+            "letter_spacing": "loose",
+            "text_color": "#FFFFFF",
+            "padding-block-end": 4
+          }
+        },
+        "heading": {
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "text_color": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text": "<h1>Descubre Elevated Warmth</h1>",
+            "type_preset": "h1",
+            "text_color": "#FFFFFF",
+            "max_width": "narrow"
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "text": {
+          "type": "text",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
+            "text": "<p>7 nuevos tonos cálidos elevados. La coloración Under, con cobertura de alta definición y tecnología híbrida Glucamine Nature Tech.</p>",
+            "type_preset": "rte",
+            "text_color": "#FFFFFF",
+            "max_width": "narrow",
+            "padding-block-end": 12
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Descubrir Under",
+            "link": "shopify://collections/under",
             "style_class": "button-custom",
-            "custom_button_background": "rgba(0,0,0,0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "custom_button_background": "#FFFFFF",
+            "custom_button_text": "#171412",
+            "custom_button_border": "#FFFFFF"
+          }
         }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+      "block_order": ["caption", "heading", "text", "button"],
+      "name": "Banner Montibello",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "background_color": "rgba(0,0,0,0)",
+        "layout": "full",
+        "section_width": "full-width",
+        "bundled_image": "montibello-under-hero-desktop.jpg",
+        "bundled_image_mobile": "montibello-under-hero-mobile.jpg",
+        "image_alt": "Campaña Montibello Under Elevated Warmth",
         "toggle_overlay": true,
         "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
-    "product_list_fa6P9H": {
+    "ranges_montibello": {
+      "type": "montibello-range-cards",
+      "blocks": {
+        "under": {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-under-card-portrait.jpg",
+            "image_alt": "Montibello Under — coloración con cobertura de alta definición",
+            "category": "Color",
+            "title": "Under",
+            "text": "La coloración con cobertura de alta definición y tecnología híbrida que potencia la realidad y naturalidad de un color sin límites.",
+            "link": "shopify://collections/under"
+          }
+        },
+        "hcare": {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-hcare-hop-editorial.jpg",
+            "image_alt": "Montibello HCare — cuidado capilar profesional",
+            "category": "Cuidado capilar",
+            "title": "HCare",
+            "text": "Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas.",
+            "link": "/pages/hcare"
+          }
+        }
+      },
+      "block_order": ["under", "hcare"],
+      "name": "Gamas Montibello",
+      "settings": {
+        "section_width": "full-width",
+        "background_color": "#FFFFFF",
+        "padding-block-start": 50,
+        "padding-block-end": 50
+      }
+    },
+    "product_list_bestsellers": {
       "type": "product-list",
       "blocks": {
         "static-header": {
@@ -104,182 +118,202 @@
             "horizontal_alignment": "space-between",
             "vertical_alignment": "flex-end",
             "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_list_text_YFtzcL": {
+            "product_list_text": {
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
+                "text": "<h3>Los más vendidos</h3>",
                 "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+                "alignment": "left"
+              }
             },
-            "product_list_button_MWeP9V": {
+            "product_list_button": {
               "type": "_product-list-button",
               "name": "t:names.product_list_button",
               "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
+                "label": "Ver todo",
+                "style_class": "link"
+              }
             }
           },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+          "block_order": ["product_list_text", "product_list_button"]
         },
         "static-product-card": {
           "type": "_product-card",
           "name": "t:names.product_card",
           "static": true,
           "settings": {
-            "product_card_gap": 4,
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "product_card_gap": 4
           },
           "blocks": {
-            "product_card_gallery_677WP3": {
+            "product_card_gallery": {
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+              "settings": { "image_ratio": "adapt" }
             },
-            "product_title_YXxMTj": {
+            "product_title": {
               "type": "product-title",
               "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+              "settings": { "type_preset": "rte", "padding-block-start": 4 }
             },
-            "price_JQzVV4": {
+            "price": {
               "type": "price",
               "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+              "settings": { "type_preset": "h6" }
             }
           },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+          "block_order": ["product_card_gallery", "product_title", "price"]
         }
       },
       "name": "t:names.product_list",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
+        "carousel_on_mobile": true,
         "max_products": 8,
         "columns": 4,
         "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
+        "mobile_card_size": "70cqw",
         "columns_gap": 8,
         "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
         "gap": 28,
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "banner_professional": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "caption": {
+          "type": "text",
+          "name": "t:names.caption",
+          "settings": {
+            "text": "<p>Para profesionales</p>",
+            "type_preset": "h6",
+            "font": "var(--font-accent--family)",
+            "case": "uppercase",
+            "letter_spacing": "loose"
+          }
+        },
+        "heading": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Distribución oficial Montibello en Perú</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 8
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Somos distribuidor autorizado de Montibello en Perú, llevando color y cuidado capilar profesional de alto desempeño a salones y estilistas en todo el país.</p>",
+            "type_preset": "rte",
+            "max_width": "narrow",
+            "padding-block-end": 16
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Conoce más",
+            "link": "/pages/nosotros",
+            "style_class": "button"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text", "button"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "left",
+        "section_width": "page-width",
+        "bundled_image": "montibello-professional-salon-editorial.jpg",
+        "image_alt": "Editorial de profesional Montibello",
+        "toggle_overlay": false,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "section_contact_cta": {
+      "type": "section",
+      "blocks": {
+        "group_cta": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 20,
+            "width": "fill",
+            "height": "fit",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>¿Eres estilista profesional?</h2>",
+                "type_preset": "h2",
+                "alignment": "center",
+                "width": "100%"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Solicita asesoría profesional, conoce nuestra cartera de distribución o consulta disponibilidad de producto para tu salón.</p>",
+                "type_preset": "rte",
+                "alignment": "center",
+                "max_width": "narrow",
+                "width": "100%"
+              }
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Contáctanos",
+                "link": "/pages/contacto",
+                "style_class": "button"
+              }
+            }
+          },
+          "block_order": ["heading", "text", "button"]
+        }
+      },
+      "block_order": ["group_cta"],
+      "name": "t:names.section",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.color2 }}",
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "hero_montibello",
+    "ranges_montibello",
+    "product_list_bestsellers",
+    "banner_professional",
+    "section_contact_cta"
   ]
 }

@@ -1,0 +1,358 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "hero_under": {
+      "type": "montibello-image-banner",
+      "blocks": {},
+      "block_order": [],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "full",
+        "section_width": "full-width",
+        "bundled_image": "montibello-under-hero-desktop.jpg",
+        "bundled_image_mobile": "montibello-under-hero-mobile.jpg",
+        "image_alt": "Montibello Under — coloración con cobertura de alta definición",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "hero_intro_under": {
+      "type": "section",
+      "blocks": {
+        "intro_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>Under</h1>",
+                "type_preset": "h1",
+                "max_width": "none"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>La coloración con cobertura de alta definición y tecnología híbrida que potencia la realidad y naturalidad de un color sin límites.</p>",
+                "type_preset": "rte",
+                "max_width": "none"
+              }
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Ver vídeo",
+                "link": "#shopify-section-video_under",
+                "style_class": "button-secondary"
+              }
+            }
+          },
+          "block_order": ["heading", "text", "button"]
+        }
+      },
+      "block_order": ["intro_group"],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "video_under": {
+      "type": "section",
+      "blocks": {
+        "video_block": {
+          "type": "video",
+          "settings": {
+            "source": "url",
+            "video_url": "https://vimeo.com/1153294336",
+            "video_autoplay": false,
+            "video_loop": false,
+            "alt": "Vídeo oficial Montibello Under",
+            "custom_width": 100
+          }
+        }
+      },
+      "block_order": ["video_block"],
+      "name": "Sección",
+      "settings": {
+        "section_width": "full-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "stats_carta_under": {
+      "type": "montibello-stats-panel",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Llega la alta definición del color a la coloración de alta cobertura</h2>",
+            "type_preset": "h2",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading"],
+      "name": "Panel de datos Under",
+      "settings": {
+        "bundled_image": "montibello-under-stats-editorial.jpg",
+        "image_alt": "Montibello Under — editorial de alta definición de color",
+        "media_position": "left",
+        "toggle_label": "Ver datos",
+        "stat_1_number": "100%",
+        "stat_1_label": "cobertura de canas *",
+        "stat_2_number": "95%",
+        "stat_2_label": "relleno de color *",
+        "stat_3_number": "95%",
+        "stat_3_label": "intensidad de matiz *",
+        "stat_4_number": "96%",
+        "stat_4_label": "color luminoso *",
+        "footnote": "* Evaluación profesional de 512 aplicaciones sobre voluntarias.",
+        "bundled_file": "montibello-under-carta-color.pdf",
+        "file_label": "Carta de Color",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "glucamine_under": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Glucamine Nature Tech, la nueva tecnología híbrida de alta eficacia.</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>INNOVADORA TECNOLOGÍA HÍBRIDA: Una fórmula innovadora con la tecnología híbrida Glucamine Nature Tech, para la máxima cobertura y la mayor realidad de color.</p><p>DOBLE PODER DE PIGMENTACIÓN: Mayor relleno y nitidez de color gracias a una nueva evolución en el sistema de liberación de pigmentos.</p><p>COLÁGENO VEGANO: Un novedoso complejo de origen biotecnológico para aportar resiliencia y protección al cuero cabelludo y al cabello.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "left",
+        "section_width": "full-width",
+        "bundled_image": "montibello-under-glucamine-tech.jpg",
+        "image_alt": "Glucamine Nature Tech — tecnología híbrida Montibello Under",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "elevated_warmth_under": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Descubre Elevated Warmth: 7 nuevos tonos cálidos elevados</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Una nueva expresión del color de los tonos en tendencia: castaños profundos, rubios beige equilibrados, cobrizos, rojos y púrpuras vibrantes. Máxima cobertura con la máxima intensidad sin necesidad de mezclar con base con tono natural. Cromaticidad, luminosidad y nitidez absoluta. Tonos cálidos y profundos que potencian el brillo, con una intensidad de color equilibrada y natural.</p>",
+            "type_preset": "rte",
+            "max_width": "narrow",
+            "padding-block-end": 16
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Más información",
+            "link": "shopify://collections/under",
+            "style_class": "button"
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "section_width": "full-width",
+        "bundled_image": "montibello-under-editorial-elevated-warmth.jpg",
+        "image_alt": "Montibello Under Elevated Warmth — 7 nuevos tonos cálidos elevados",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_range_under": {
+      "type": "montibello-product-range",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Descubre la gama completa</h2>",
+            "type_preset": "h2",
+            "alignment": "center",
+            "width": "100%"
+          }
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": { "product_card_gap": 4 },
+          "blocks": {
+            "product_card_gallery": {
+              "type": "_product-card-gallery",
+              "settings": { "image_ratio": "adapt" }
+            },
+            "product_title": {
+              "type": "product-title",
+              "settings": { "type_preset": "rte", "padding-block-start": 4 }
+            },
+            "price": {
+              "type": "price",
+              "settings": { "type_preset": "h6" }
+            }
+          },
+          "block_order": ["product_card_gallery", "product_title", "price"]
+        }
+      },
+      "name": "Gama de productos Montibello",
+      "settings": {
+        "section_width": "page-width",
+        "placeholder_note": "Catálogo completo disponible próximamente en Montibello Perú.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "cta_professional_under": {
+      "type": "section",
+      "blocks": {
+        "group_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "gap": 32
+          },
+          "blocks": {
+            "group_professional": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Contacta con un comercial",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": ["heading", "button"]
+            },
+            "group_locator": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Encuentra",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": ["text", "button"]
+            }
+          },
+          "block_order": ["group_professional", "group_locator"]
+        }
+      },
+      "block_order": ["group_row"],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "#000000",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "hero_under",
+    "hero_intro_under",
+    "video_under",
+    "stats_carta_under",
+    "glucamine_under",
+    "elevated_warmth_under",
+    "product_range_under",
+    "cta_professional_under"
+  ]
+}
