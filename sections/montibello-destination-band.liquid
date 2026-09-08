@@ -1,0 +1,224 @@
+{%- comment -%}
+  Reproduces the official homepage's salon-locator/destination CTA: a
+  shallow, image-led band with centered copy and a high-contrast button —
+  not a 50/50 range-style editorial split. Peru has no reliable salon
+  locator yet, so the CTA routes to commercial/contact assistance instead
+  of claiming a locator that does not exist.
+{%- endcomment -%}
+
+{% liquid
+  assign bundled_image = section.settings.bundled_image
+  assign bundled_width = 1391
+  assign bundled_height = 2086
+  case bundled_image
+    when 'montibello-professional-salon-editorial.jpg'
+      assign bundled_width = 1391
+      assign bundled_height = 2086
+    when 'montibello-under-hero-desktop.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 960
+  endcase
+%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-destination spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="montibello-destination__media">
+    {% if bundled_image != blank %}
+      <img
+        src="{{ bundled_image | asset_url }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        loading="lazy"
+        class="montibello-destination__image"
+        width="{{ bundled_width }}"
+        height="{{ bundled_height }}"
+      >
+    {% endif %}
+    <div class="montibello-destination__overlay"></div>
+  </div>
+
+  <div class="montibello-destination__content">
+    {% if section.settings.heading != blank %}
+      <h2 class="montibello-destination__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <p class="montibello-destination__text">{{ section.settings.text }}</p>
+    {% endif %}
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link | default: '#' }}" class="montibello-destination__button">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-destination {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    min-height: 320px;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-destination {
+      min-height: 440px;
+    }
+  }
+
+  .montibello-destination__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .montibello-destination__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .montibello-destination__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(46, 45, 44, 0.8) 0%, rgba(46, 45, 44, 0.3) 45%, rgba(46, 45, 44, 0) 75%);
+  }
+
+  .montibello-destination__content {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0;
+    padding: 30px;
+    text-align: left;
+    color: #FFFFFF;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-destination__content {
+      padding: 50px 60px;
+    }
+  }
+
+  .montibello-destination__heading {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-destination__heading {
+      font-size: 32px;
+    }
+  }
+
+  .montibello-destination__text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+    opacity: 0.9;
+  }
+
+  .montibello-destination__button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: #2E2D2C;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  .montibello-destination__button:hover {
+    background: #000000;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Destino Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "select",
+      "id": "bundled_image",
+      "label": "Imagen",
+      "options": [
+        { "value": "montibello-professional-salon-editorial.jpg", "label": "Profesional — Editorial de salón" },
+        { "value": "montibello-under-hero-desktop.jpg", "label": "Under — Elevated Warmth (campaña)" }
+      ],
+      "default": "montibello-professional-salon-editorial.jpg"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Texto alternativo de la imagen"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Distribución oficial Montibello en Perú"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "Solicita asesoría comercial y conoce nuestra cartera de distribución para tu salón."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Contáctanos"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Destino Montibello"
+    }
+  ]
+}
+{% endschema %}

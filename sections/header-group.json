@@ -11,6 +11,28 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
+    "montibello_utility_bar": {
+      "type": "montibello-utility-bar",
+      "blocks": {
+        "link_professional": {
+          "type": "link",
+          "settings": {
+            "label": "¿Eres profesional?",
+            "link": "/pages/nosotros"
+          }
+        },
+        "link_contact": {
+          "type": "link",
+          "settings": {
+            "label": "Contacto",
+            "link": "/pages/contacto"
+          }
+        }
+      },
+      "block_order": ["link_professional", "link_contact"],
+      "name": "Barra de utilidades",
+      "settings": {}
+    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -29,7 +51,7 @@
           "static": true,
           "settings": {
             "menu": "main-menu",
-            "type_font_primary_size": "1rem",
+            "type_font_primary_size": "1.125rem",
             "menu_font_style": "inverse",
             "type_font_primary_link": "accent",
             "type_case_primary_link": "uppercase",
@@ -74,6 +96,7 @@
     }
   },
   "order": [
+    "montibello_utility_bar",
     "header_section"
   ]
 }

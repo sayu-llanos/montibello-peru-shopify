@@ -12,19 +12,84 @@
   class="section section--{{ section.settings.section_width }} montibello-ranges spacing-style"
   style="{% render 'spacing-style', settings: section.settings %}background-color:{{ section.settings.background_color | default: '#FFFFFF' }};"
 >
-  <div class="montibello-ranges__list">
-    {% content_for 'blocks' %}
+  <div class="montibello-ranges__viewport">
+    <button
+      type="button"
+      class="montibello-ranges__arrow montibello-ranges__arrow--prev"
+      aria-label="Anterior"
+      data-montibello-ranges-prev
+    >
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <div class="montibello-ranges__list" data-montibello-ranges-list>
+      {% content_for 'blocks' %}
+    </div>
+
+    <button
+      type="button"
+      class="montibello-ranges__arrow montibello-ranges__arrow--next"
+      aria-label="Siguiente"
+      data-montibello-ranges-next
+    >
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
   </div>
+
+  <script>
+    (function () {
+      var section = document.currentScript.closest('.montibello-ranges');
+      if (!section) return;
+      var list = section.querySelector('[data-montibello-ranges-list]');
+      var prev = section.querySelector('[data-montibello-ranges-prev]');
+      var next = section.querySelector('[data-montibello-ranges-next]');
+      if (!list || !prev || !next) return;
+
+      function step() {
+        var card = list.querySelector('.montibello-range-card');
+        return card ? card.getBoundingClientRect().width + 25 : list.clientWidth * 0.8;
+      }
+
+      prev.addEventListener('click', function () {
+        list.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', function () {
+        list.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      function updateArrows() {
+        var maxScroll = list.scrollWidth - list.clientWidth;
+        prev.disabled = list.scrollLeft <= 1;
+        next.disabled = list.scrollLeft >= maxScroll - 1;
+      }
+
+      list.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+    })();
+  </script>
 </div>
 
 {% stylesheet %}
+  .montibello-ranges__viewport {
+    position: relative;
+    max-width: 1300px;
+    width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+    padding-inline: 30px;
+  }
+
   .montibello-ranges__list {
     display: flex;
     flex-wrap: nowrap;
     gap: 25px;
-    max-width: 1300px;
-    margin-inline: auto;
-    padding-inline: 30px;
+    max-width: 100%;
+    min-width: 0;
     overflow-x: auto;
     scroll-snap-type: x proximity;
     scrollbar-width: thin;
@@ -32,6 +97,47 @@
 
   .montibello-ranges__list > * {
     scroll-snap-align: start;
+  }
+
+  .montibello-ranges__arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.32);
+    color: #FFFFFF;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .montibello-ranges__arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .montibello-ranges__arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .montibello-ranges__arrow--prev {
+    left: 46px;
+  }
+
+  .montibello-ranges__arrow--next {
+    right: 46px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-ranges__arrow {
+      display: flex;
+    }
   }
 
   .montibello-range-card {
@@ -50,8 +156,8 @@
 
   @media screen and (min-width: 750px) {
     .montibello-range-card {
-      flex-basis: 417px;
-      width: 417px;
+      flex-basis: 385px;
+      width: 385px;
     }
   }
 
@@ -75,50 +181,37 @@
   }
 
   .montibello-range-card--coming-soon {
-    flex: 0 0 160px;
-    width: 160px;
-    align-self: flex-end;
     cursor: default;
-  }
-
-  @media screen and (min-width: 750px) {
-    .montibello-range-card--coming-soon {
-      flex-basis: 220px;
-      width: 220px;
-    }
   }
 
   .montibello-range-card--coming-soon .montibello-range-card__image {
     filter: grayscale(1);
-    opacity: 0.55;
+    opacity: 0.75;
   }
 
   .montibello-range-card--coming-soon:hover .montibello-range-card__image {
     transform: none;
   }
 
-  .montibello-range-card--coming-soon .montibello-range-card__title {
-    font-size: 24px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .montibello-range-card--coming-soon .montibello-range-card__title {
-      font-size: 28px;
-    }
+  .montibello-range-card--coming-soon .montibello-range-card__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(46, 45, 44, 0.35);
   }
 
   .montibello-range-card__badge {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 20px;
+    left: 20px;
     z-index: 1;
     background: #FFFFFF;
     color: #2E2D2C;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 5px 10px;
+    padding: 8px 16px;
     border-radius: 100px;
   }
 

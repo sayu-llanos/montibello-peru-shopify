@@ -47,12 +47,9 @@
         "button": {
           "type": "button",
           "settings": {
-            "label": "Descubrir Under",
+            "label": "Descubrir Under →",
             "link": "shopify://collections/under",
-            "style_class": "button-custom",
-            "custom_button_background": "#FFFFFF",
-            "custom_button_text": "#171412",
-            "custom_button_border": "#FFFFFF"
+            "style_class": "button-unstyled"
           }
         }
       },
@@ -68,6 +65,17 @@
         "overlay_color": "#12121266",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "editorial_statement": {
+      "type": "montibello-editorial-statement",
+      "name": "Declaración editorial",
+      "settings": {
+        "statement": "Transforma tu salón con nosotros. Vive un antes y un después en tu historia.",
+        "section_width": "full-width",
+        "background_color": "#FFFFFF",
+        "padding-block-start": 50,
+        "padding-block-end": 50
       }
     },
     "ranges_montibello": {
@@ -128,149 +136,114 @@
       }
     },
     "product_list_bestsellers": {
-      "type": "product-list",
+      "type": "montibello-product-teaser",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "under": {
+          "type": "product-teaser-card",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>Los más vendidos</h3>",
-                "type_preset": "h4",
-                "alignment": "left"
-              }
-            },
-            "product_list_button": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "Ver todo",
-                "style_class": "link"
-              }
-            }
-          },
-          "block_order": ["product_list_text", "product_list_button"]
+            "bundled_image": "montibello-under-product-colorant.webp",
+            "title": "Under",
+            "text": "Coloración de alta definición",
+            "link": "shopify://collections/under"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "hop": {
+          "type": "product-teaser-card",
           "settings": {
-            "product_card_gap": 4
-          },
-          "blocks": {
-            "product_card_gallery": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": { "image_ratio": "adapt" }
-            },
-            "product_title": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": { "type_preset": "rte", "padding-block-start": 4 }
-            },
-            "price": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": { "type_preset": "h6" }
-            }
-          },
-          "block_order": ["product_card_gallery", "product_title", "price"]
+            "bundled_image": "montibello-hcare-hop-editorial.jpg",
+            "title": "HOP",
+            "text": "Cuidado capilar profesional",
+            "link": "/pages/hop"
+          }
+        },
+        "luxlight": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-luxlight-card-portrait.jpg",
+            "title": "Luxlight",
+            "text": "Decoloración de alto rendimiento",
+            "link": "/pages/luxlight"
+          }
         }
       },
-      "name": "t:names.product_list",
+      "block_order": ["under", "hop", "luxlight"],
+      "name": "Vitrina de productos",
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": true,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "70cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "section_width": "page-width",
-        "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
+        "heading": "Nuestros productos",
+        "section_width": "full-width",
+        "background_color": "#F6F6F3",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "editorial_magazine": {
+      "type": "montibello-magazine",
+      "blocks": {
+        "under": {
+          "type": "magazine-card",
+          "settings": {
+            "bundled_image": "montibello-under-editorial-elevated-warmth.jpg",
+            "title": "Color de alta definición",
+            "text": "Under",
+            "link": "shopify://collections/under"
+          }
+        },
+        "hop": {
+          "type": "magazine-card",
+          "settings": {
+            "bundled_image": "montibello-hcare-hop-editorial.jpg",
+            "title": "Cuidado capilar profesional",
+            "text": "HOP",
+            "link": "/pages/hop"
+          }
+        },
+        "luxlight": {
+          "type": "magazine-card",
+          "settings": {
+            "bundled_image": "montibello-luxlight-card-portrait.jpg",
+            "title": "Decoloración de alto rendimiento",
+            "text": "Luxlight",
+            "link": "/pages/luxlight"
+          }
+        }
+      },
+      "block_order": ["under", "hop", "luxlight"],
+      "name": "Magazine Montibello",
+      "settings": {
+        "eyebrow": "Para profesionales",
+        "heading": "Educación y tendencias para tu salón",
+        "text": "Contenido profesional Montibello sobre color, cuidado capilar y técnicas de salón.",
+        "button_label": "Conocer más",
+        "button_link": "/pages/nosotros",
+        "section_width": "full-width",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "social_community": {
+      "type": "montibello-community",
+      "name": "Comunidad Montibello",
+      "settings": {
+        "heading": "La comunidad Montibello",
+        "section_width": "full-width",
+        "background_color": "#F6F6F3",
         "padding-block-start": 72,
         "padding-block-end": 72
       }
     },
     "banner_professional": {
-      "type": "montibello-image-banner",
-      "blocks": {
-        "caption": {
-          "type": "text",
-          "name": "t:names.caption",
-          "settings": {
-            "text": "<p>Para profesionales</p>",
-            "type_preset": "h6",
-            "font": "var(--font-accent--family)",
-            "case": "uppercase",
-            "letter_spacing": "loose"
-          }
-        },
-        "heading": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<h2>Distribución oficial Montibello en Perú</h2>",
-            "type_preset": "h2",
-            "max_width": "normal",
-            "padding-block-end": 8
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Somos distribuidor autorizado de Montibello en Perú, llevando color y cuidado capilar profesional de alto desempeño a salones y estilistas en todo el país.</p>",
-            "type_preset": "rte",
-            "max_width": "narrow",
-            "padding-block-end": 16
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "label": "Conoce más",
-            "link": "/pages/nosotros",
-            "style_class": "button"
-          }
-        }
-      },
-      "block_order": ["caption", "heading", "text", "button"],
-      "name": "Banner Montibello",
+      "type": "montibello-destination-band",
+      "name": "Destino Montibello",
       "settings": {
-        "layout": "split",
-        "media_position": "left",
-        "section_width": "page-width",
         "bundled_image": "montibello-professional-salon-editorial.jpg",
         "image_alt": "Editorial de profesional Montibello",
-        "toggle_overlay": false,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "heading": "Distribución oficial Montibello en Perú",
+        "text": "Somos distribuidor autorizado de Montibello en Perú, llevando color y cuidado capilar profesional de alto desempeño a salones y estilistas en todo el país.",
+        "button_label": "Conoce más",
+        "button_link": "/pages/nosotros",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "section_contact_cta": {
@@ -279,62 +252,88 @@
         "group_cta": {
           "type": "group",
           "settings": {
-            "content_direction": "column",
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 20,
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "gap": 24,
             "width": "fill",
+            "width_mobile": "fill",
             "height": "fit",
-            "padding-block-start": 0,
-            "padding-block-end": 0
+            "background_color": "#2E2D2C",
+            "border_radius": 4,
+            "padding-block-start": 36,
+            "padding-block-end": 36,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
           },
           "blocks": {
-            "heading": {
-              "type": "text",
-              "name": "t:names.heading",
+            "group_copy": {
+              "type": "group",
               "settings": {
-                "text": "<h2>¿Eres estilista profesional?</h2>",
-                "type_preset": "h2",
-                "alignment": "center",
-                "width": "100%"
-              }
-            },
-            "text": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Solicita asesoría profesional, conoce nuestra cartera de distribución o consulta disponibilidad de producto para tu salón.</p>",
-                "type_preset": "rte",
-                "alignment": "center",
-                "max_width": "narrow",
-                "width": "100%"
-              }
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 6,
+                "width": "fit-content",
+                "width_mobile": "fill",
+                "height": "fit"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<h2>¿Eres estilista profesional?</h2>",
+                    "type_preset": "h4",
+                    "text_color": "#FFFFFF",
+                    "alignment": "left"
+                  }
+                },
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Solicita asesoría profesional, conoce nuestra cartera de distribución o consulta disponibilidad de producto para tu salón.</p>",
+                    "type_preset": "rte",
+                    "text_color": "#FFFFFF",
+                    "alignment": "left"
+                  }
+                }
+              },
+              "block_order": ["heading", "text"]
             },
             "button": {
               "type": "button",
               "settings": {
-                "label": "Contáctanos",
+                "label": "Contactar",
                 "link": "/pages/contacto",
-                "style_class": "button"
+                "style_class": "button-custom",
+                "custom_button_background": "#FFFFFF",
+                "custom_button_text": "#2E2D2C",
+                "custom_button_border": "#FFFFFF"
               }
             }
           },
-          "block_order": ["heading", "text", "button"]
+          "block_order": ["group_copy", "button"]
         }
       },
       "block_order": ["group_cta"],
       "name": "t:names.section",
       "settings": {
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
     }
   },
   "order": [
     "hero_montibello",
+    "editorial_statement",
     "ranges_montibello",
     "product_list_bestsellers",
+    "editorial_magazine",
+    "social_community",
     "banner_professional",
     "section_contact_cta"
   ]

@@ -1,0 +1,240 @@
+{%- comment -%}
+  Reproduces the official homepage's "Ínspirate con nosotros @montibellopro"
+  module as a horizontal media rail with edge arrows, rather than a static
+  grid, without claiming a Peru Instagram handle that has not been
+  confirmed. Uses approved Peru campaign imagery already selected for the
+  storefront rather than fabricating a live social feed.
+{%- endcomment -%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-community spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}background-color:{{ section.settings.background_color | default: '#F6F6F3' }};"
+>
+  {% if section.settings.heading != blank %}
+    <h2 class="montibello-community__heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="montibello-community__viewport">
+    <button type="button" class="montibello-community__arrow montibello-community__arrow--prev" aria-label="Anterior" data-montibello-community-prev>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <div class="montibello-community__rail" data-montibello-community-rail>
+      <img src="{{ 'montibello-under-card-portrait.jpg' | asset_url }}" alt="Montibello Under" loading="lazy" class="montibello-community__image" width="1600" height="2265">
+      <img src="{{ 'montibello-hop-card-portrait.jpg' | asset_url }}" alt="Montibello HOP" loading="lazy" class="montibello-community__image" width="933" height="1400">
+      <img src="{{ 'montibello-luxlight-card-portrait.jpg' | asset_url }}" alt="Montibello Luxlight" loading="lazy" class="montibello-community__image" width="934" height="1400">
+      <img src="{{ 'montibello-under-editorial-elevated-warmth.jpg' | asset_url }}" alt="Campaña Montibello Under" loading="lazy" class="montibello-community__image" width="2560" height="1708">
+      <img src="{{ 'montibello-professional-salon-editorial.jpg' | asset_url }}" alt="Montibello Perú profesional" loading="lazy" class="montibello-community__image" width="1391" height="2086">
+    </div>
+
+    <button type="button" class="montibello-community__arrow montibello-community__arrow--next" aria-label="Siguiente" data-montibello-community-next>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var section = document.currentScript.closest('.montibello-community');
+      if (!section) return;
+      var rail = section.querySelector('[data-montibello-community-rail]');
+      var prev = section.querySelector('[data-montibello-community-prev]');
+      var next = section.querySelector('[data-montibello-community-next]');
+      if (!rail || !prev || !next) return;
+
+      function step() {
+        var item = rail.querySelector('.montibello-community__image');
+        return item ? item.getBoundingClientRect().width + 20 : rail.clientWidth * 0.8;
+      }
+
+      prev.addEventListener('click', function () {
+        rail.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', function () {
+        rail.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      function updateArrows() {
+        var maxScroll = rail.scrollWidth - rail.clientWidth;
+        prev.disabled = rail.scrollLeft <= 1;
+        next.disabled = rail.scrollLeft >= maxScroll - 1;
+      }
+
+      rail.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+    })();
+  </script>
+</div>
+
+{% stylesheet %}
+  .montibello-community__heading {
+    max-width: 750px;
+    margin: 0 auto 30px;
+    padding-inline: 30px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-community__heading {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-community__viewport {
+    position: relative;
+    max-width: 1300px;
+    width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+    padding-inline: 30px;
+  }
+
+  .montibello-community__rail {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .montibello-community__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .montibello-community__image {
+    display: block;
+    flex: 0 0 240px;
+    width: 240px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 5px;
+    scroll-snap-align: start;
+    transition: transform 0.5s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-community__image {
+      flex-basis: 320px;
+      width: 320px;
+      height: 440px;
+    }
+  }
+
+  .montibello-community__image:hover {
+    transform: scale(1.03);
+  }
+
+  .montibello-community__arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.32);
+    color: #FFFFFF;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .montibello-community__arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .montibello-community__arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .montibello-community__arrow--prev {
+    left: -4px;
+  }
+
+  .montibello-community__arrow--next {
+    right: -4px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-community__arrow {
+      display: flex;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .montibello-community__image {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Comunidad Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "La comunidad Montibello"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#F6F6F3"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comunidad Montibello"
+    }
+  ]
+}
+{% endschema %}

@@ -193,14 +193,19 @@
   }
 
   .montibello-banner--full .montibello-banner__media {
-    /* Matches the official Under hero, measured at ~59% of a 900px-tall
-       desktop viewport (≈530-600px) — a shorter opening than a typical
-       full-screen Shopify hero. */
-    min-height: 48svh;
+    /* Reference mobile hero is a dedicated 375x469 portrait crop (≈0.8
+       aspect ratio) followed by a separate copy panel below it, not an
+       overlaid full-bleed image. */
+    aspect-ratio: 375 / 469;
+    min-height: 0;
   }
 
   @media screen and (min-width: 750px) {
     .montibello-banner--full .montibello-banner__media {
+      /* Matches the official Under hero, measured at ~59% of a 900px-tall
+         desktop viewport (≈530-600px) — a shorter opening than a typical
+         full-screen Shopify hero. */
+      aspect-ratio: auto;
       min-height: 60svh;
     }
   }
@@ -257,15 +262,21 @@
     }
   }
 
-  .montibello-banner__content--on-media {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    justify-content: flex-end;
-    color: #fff;
-    padding: 2rem 1.5rem;
+  .montibello-banner--full .montibello-banner__content--on-media {
+    /* Reference mobile composition: the copy sits in its own off-white
+       panel below the hero image, not overlaid on top of it. Desktop keeps
+       the classic overlay-on-image treatment. */
+    position: static;
+    color: var(--color-foreground, #2E2D2C);
+    background: #F6F6F3;
+    padding: 1.75rem 1.5rem;
 
     @media screen and (min-width: 750px) {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      color: #fff;
+      background: transparent;
       padding: 4rem 5rem;
     }
   }
@@ -275,6 +286,27 @@
   .montibello-banner__content :is(h1, h2, h3) {
     font-weight: 700;
     line-height: 1;
+  }
+
+  /* Block settings hardcode white text for the desktop overlay treatment;
+     the mobile off-white copy panel needs dark text instead. !important is
+     required here because the block renders its color as an inline style. */
+  @media screen and (max-width: 749px) {
+    .montibello-banner--full .montibello-banner__content--on-media :is(h1, h2, h3, p) {
+      color: var(--color-foreground, #2E2D2C) !important;
+    }
+  }
+
+  .montibello-banner__content .button-unstyled {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-banner--full .montibello-banner__content--on-media .button-unstyled {
+      font-size: 1.4375rem;
+      color: #fff;
+    }
   }
 
   [data-montibello-reveal] {

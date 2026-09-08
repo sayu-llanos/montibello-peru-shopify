@@ -68,7 +68,7 @@
     {% endif %}
   </div>
 
-  {% if block.settings.category != blank %}
+  {% if block.settings.category != blank and block.settings.coming_soon != true %}
     <div class="montibello-range-card__meta">{{ block.settings.category }}</div>
   {% endif %}
 

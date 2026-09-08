@@ -14,140 +14,138 @@
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
-        "group_columns": {
+        "group_about": {
           "type": "group",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-start",
-            "align_baseline": false,
-            "gap": 40,
+            "content_direction": "column",
+            "gap": 12,
             "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
             "height": "fit",
             "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-end": 0
           },
           "blocks": {
-            "group_about": {
-              "type": "group",
+            "heading": {
+              "type": "text",
               "settings": {
-                "content_direction": "column",
-                "gap": 12,
-                "width": "custom",
-                "custom_width": 40,
-                "width_mobile": "fill",
-                "height": "fit",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h4>Montibello Perú</h4>",
-                    "type_preset": "h6",
-                    "font": "var(--font-accent--family)",
-                    "case": "uppercase",
-                    "letter_spacing": "loose",
-                    "padding-block-end": 4
-                  }
-                },
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Distribuidor oficial de Montibello en Perú. Color y cuidado capilar profesional de alta gama para salones y estilistas.</p>",
-                    "type_preset": "rte",
-                    "max_width": "normal"
-                  }
-                }
-              },
-              "block_order": ["heading", "text"]
+                "text": "<h4>Montibello Perú</h4>",
+                "type_preset": "h6",
+                "case": "none",
+                "padding-block-end": 4
+              }
             },
-            "group_info": {
-              "type": "group",
+            "text": {
+              "type": "text",
               "settings": {
-                "content_direction": "column",
-                "gap": 12,
-                "width": "custom",
-                "custom_width": 25,
-                "width_mobile": "fill",
-                "height": "fit",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h4>Información</h4>",
-                    "type_preset": "h6",
-                    "font": "var(--font-accent--family)",
-                    "case": "uppercase",
-                    "letter_spacing": "loose",
-                    "padding-block-end": 4
-                  }
-                },
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p><a href=\"/pages/contacto\">Contacto</a></p><p><a href=\"/pages/nosotros\">Sobre nosotros</a></p>",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": ["heading", "text"]
-            },
-            "group_professional": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "gap": 12,
-                "width": "custom",
-                "custom_width": 25,
-                "width_mobile": "fill",
-                "height": "fit",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h4>Para profesionales</h4>",
-                    "type_preset": "h6",
-                    "font": "var(--font-accent--family)",
-                    "case": "uppercase",
-                    "letter_spacing": "loose",
-                    "padding-block-end": 4
-                  }
-                },
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p><a href=\"/pages/contacto\">Solicita asesoría</a></p>",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": ["heading", "text"]
+                "text": "<p>Distribuidor oficial de Montibello en Perú. Color y cuidado capilar profesional de alta gama para salones y estilistas.</p>",
+                "type_preset": "rte",
+                "max_width": "normal"
+              }
             }
           },
-          "block_order": ["group_about", "group_info", "group_professional"]
+          "block_order": ["heading", "text"]
+        },
+        "group_ranges": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "height": "fit",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h4>Nuestras gamas</h4>",
+                "type_preset": "h6",
+                "case": "none",
+                "padding-block-end": 4
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"shopify://collections/under\">Under</a></p><p><a href=\"/pages/hop\">HOP</a></p><p><a href=\"/pages/luxlight\">Luxlight</a></p><p>HOP Keratin (próximamente)</p>",
+                "type_preset": "rte"
+              }
+            }
+          },
+          "block_order": ["heading", "text"]
+        },
+        "group_info": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "height": "fit",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h4>Información y soporte</h4>",
+                "type_preset": "h6",
+                "case": "none",
+                "padding-block-end": 4
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"/pages/contacto\">Contacto</a></p><p><a href=\"/pages/nosotros\">Sobre nosotros</a></p><p><a href=\"/pages/contacto\">Solicita asesoría profesional</a></p>",
+                "type_preset": "rte"
+              }
+            }
+          },
+          "block_order": ["heading", "text"]
+        },
+        "group_social": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "height": "fit",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h4>Síguenos</h4>",
+                "type_preset": "h6",
+                "case": "none",
+                "padding-block-end": 4
+              }
+            },
+            "social_links": {
+              "type": "social-links",
+              "settings": {
+                "facebook_url": "https://www.facebook.com/",
+                "instagram_url": "https://www.instagram.com/"
+              }
+            }
+          },
+          "block_order": ["heading", "social_links"]
         }
       },
       "block_order": [
-        "group_columns"
+        "group_about",
+        "group_ranges",
+        "group_info",
+        "group_social"
       ],
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
-        "gap": 20,
+        "gap": 40,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 64,
         "padding-block-end": 48
@@ -159,7 +157,7 @@
         "footer_copyright_jweRK8": {
           "type": "footer-copyright",
           "settings": {
-            "show_powered_by": true,
+            "show_powered_by": false,
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -172,23 +170,11 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "social_links_Ew63Kq": {
-          "type": "social-links",
-          "settings": {
-            "facebook_url": "https://www.facebook.com/",
-            "instagram_url": "https://www.instagram.com/",
-            "youtube_url": "https://www.youtube.com/",
-            "tiktok_url": "https://www.tiktok.com/",
-            "twitter_url": "https://x.com/"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "footer_copyright_jweRK8",
-        "footer_policy_list_VCdnpa",
-        "social_links_Ew63Kq"
+        "footer_policy_list_VCdnpa"
       ],
       "name": "t:names.utilities",
       "settings": {

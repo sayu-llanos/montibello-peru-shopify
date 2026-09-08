@@ -49,10 +49,26 @@
       --last-row-count: {{ last_row_count }};
       --tablet-last-row-count: {{ tablet_last_row_count }};
     "
+    data-montibello-accordion
   >
     {% content_for 'blocks' %}
   </div>
 </div>
+
+<script>
+  (function () {
+    var content = document.currentScript.previousElementSibling.querySelector('[data-montibello-accordion]');
+    if (!content) return;
+    Array.from(content.children).forEach(function (column) {
+      column.dataset.open = 'false';
+      var inner = column.querySelector('.group-block-content');
+      if (!inner) return;
+      inner.addEventListener('click', function () {
+        column.dataset.open = column.dataset.open === 'true' ? 'false' : 'true';
+      });
+    });
+  })();
+</script>
 
 {% stylesheet %}
   .footer-content {
@@ -95,6 +111,48 @@
 
     .footer-content--isolated-grid-item-desktop > :last-child {
       grid-column: 1 / -1;
+    }
+  }
+
+  /* Montibello pixel-fidelity: reference mobile footer uses ruled accordion
+     rows (heading + toggle arrow, content collapses/expands) rather than
+     always-open columns. Horizon's footer renders each column as a generic
+     `group` block with no built-in accordion, so this is added here as a
+     progressive-enhancement layer on top of the existing markup — collapsed
+     by default only below the same 750px breakpoint Horizon itself uses for
+     mobile footer layout, and inert (does nothing) if JS fails to load. */
+  @media screen and (max-width: 749px) {
+    .footer-content[data-montibello-accordion] > .group-block {
+      border-block-end: 1px solid var(--color-border);
+      padding-block: 16px;
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block > .group-block-content {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block > .group-block-content::after {
+      content: '+';
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block[data-open='true'] > .group-block-content::after {
+      content: '\2212';
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block > .group-block-content > :not(:first-child) {
+      display: none;
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block[data-open='true'] > .group-block-content > :not(:first-child) {
+      display: block;
+      margin-top: 12px;
     }
   }
 {% endstylesheet %}

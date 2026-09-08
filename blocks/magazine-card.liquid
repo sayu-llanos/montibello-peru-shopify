@@ -1,0 +1,119 @@
+{%- comment -%}
+  Editorial-themed card for the Magazine rail: image + topic title + short
+  line, linking to the real range page it covers — not a fabricated blog
+  article with an invented author/date.
+{%- endcomment -%}
+
+<a href="{{ block.settings.link | default: '#' }}" class="montibello-magazine-card" {{ block.shopify_attributes }}>
+  <div class="montibello-magazine-card__media">
+    {% if block.settings.bundled_image != blank %}
+      <img
+        src="{{ block.settings.bundled_image | asset_url }}"
+        alt="{{ block.settings.title | escape }}"
+        loading="lazy"
+        class="montibello-magazine-card__image"
+        width="800"
+        height="1000"
+      >
+    {% endif %}
+    <div class="montibello-magazine-card__scrim"></div>
+    <div class="montibello-magazine-card__caption">
+      {% if block.settings.title != blank %}
+        <div class="montibello-magazine-card__title">{{ block.settings.title }}</div>
+      {% endif %}
+      {% if block.settings.text != blank %}
+        <div class="montibello-magazine-card__text">{{ block.settings.text }}</div>
+      {% endif %}
+    </div>
+  </div>
+</a>
+
+{% stylesheet %}
+  .montibello-magazine-card {
+    display: block;
+    flex: 0 0 300px;
+    width: 300px;
+    text-decoration: none;
+  }
+
+  .montibello-magazine-card__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .montibello-magazine-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .montibello-magazine-card:hover .montibello-magazine-card__image {
+    transform: scale(1.06);
+  }
+
+  .montibello-magazine-card__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
+  }
+
+  .montibello-magazine-card__caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 18px 20px;
+    color: #FFFFFF;
+  }
+
+  .montibello-magazine-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .montibello-magazine-card__text {
+    margin-top: 4px;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tarjeta de Magazine",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bundled_image",
+      "label": "Nombre de archivo en /assets",
+      "default": "montibello-under-editorial-elevated-warmth.jpg"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Under"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto breve"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Enlace"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tarjeta de Magazine"
+    }
+  ]
+}
+{% endschema %}

@@ -1246,6 +1246,59 @@
   .header .menu-list__link-title {
     padding-inline: 16px;
   }
+
+  /* Reference desktop icon language is search + locale + cart only — no
+     distinct account icon (login lives in the utility bar instead, which
+     Peru does not reproduce since there is no customer login portal here). */
+  @media screen and (min-width: 750px) {
+    .header .account-button {
+      display: none;
+    }
+  }
+
+  /* Montibello pixel-fidelity — mobile header (reference: 56px tall, logo
+     left at x=15, cart near x=290, hamburger near x=334; only 3 controls).
+     Horizon's stock mobile header centers the logo across a 5-zone bookend
+     grid (leftA/leftB/center/rightA/rightB) sized for 4 icon slots, built
+     from `grid-template-columns: var(--header-template-columns)`. Peru's
+     header only needs the logo, cart, and menu toggle. Horizon declares its
+     own per-element `grid-area` rules (`.header-logo`, `.search-action`,
+     etc.) as CSS nested INSIDE `.header__columns { @media {...} }`, which
+     compiles to the compound selector `.header__columns .header-logo` —
+     higher specificity than a bare `.header-logo` rule. Every selector
+     below is scoped under `.header__columns` to match that specificity so
+     it reliably wins by source order instead of losing silently. */
+  @media screen and (max-width: 749px) {
+    .header__columns {
+      --header-template-columns: auto 1fr 44px 44px;
+      grid-template-areas: 'logo logo cart menu';
+      min-height: 56px;
+    }
+
+    #header-component[data-menu-style='drawer'] .header__columns {
+      --header-template-columns: auto 1fr 44px 44px;
+      grid-template-areas: 'logo logo cart menu';
+    }
+
+    .header__columns .header-logo {
+      grid-area: logo;
+      justify-self: start;
+    }
+
+    .header__columns .search-action,
+    .header__columns .account-button {
+      display: none;
+    }
+
+    .header__columns header-actions {
+      grid-area: cart;
+    }
+
+    .header__columns .header__icon--menu {
+      grid-area: menu;
+      justify-content: flex-end;
+    }
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}

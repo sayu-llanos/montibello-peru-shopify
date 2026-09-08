@@ -1,0 +1,127 @@
+{%- comment -%}
+  Production-safe stand-in for the reference "Los más vendidos" product
+  rail. The Peru Shopify catalog is being prepared separately (OpenCode), so
+  this renders confirmed range imagery with no price/SKU data instead of
+  showing placeholder demo products with invented prices. Preserves the
+  reference rail's geometry (heading + horizontal card row) so it can later
+  be swapped for a real `product-list` section bound to actual products.
+{%- endcomment -%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-product-teaser spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}background-color:{{ section.settings.background_color | default: '#F6F6F3' }};"
+>
+  <div class="montibello-product-teaser__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="montibello-product-teaser__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="montibello-product-teaser__list">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-product-teaser__inner {
+    max-width: 1300px;
+    width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+    padding-inline: 30px;
+  }
+
+  .montibello-product-teaser__heading {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 30px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-product-teaser__heading {
+      font-size: 35px;
+    }
+  }
+
+  .montibello-product-teaser__list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .montibello-product-teaser__list > * {
+    scroll-snap-align: start;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Vitrina de productos",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "product-teaser-card" }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Nuestros productos"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#F6F6F3"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitrina de productos",
+      "blocks": [
+        { "type": "product-teaser-card", "settings": { "bundled_image": "montibello-under-product-colorant.webp", "title": "Under", "text": "Coloración de alta definición", "link": "shopify://collections/under" } },
+        { "type": "product-teaser-card", "settings": { "bundled_image": "montibello-hcare-hop-editorial.jpg", "title": "HOP", "text": "Cuidado capilar profesional", "link": "/pages/hop" } },
+        { "type": "product-teaser-card", "settings": { "bundled_image": "montibello-luxlight-card-portrait.jpg", "title": "Luxlight", "text": "Decoloración de alto rendimiento", "link": "/pages/luxlight" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
