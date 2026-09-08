@@ -84,19 +84,41 @@
             "link": "shopify://collections/under"
           }
         },
-        "hcare": {
+        "hop": {
           "type": "range-card",
           "settings": {
-            "bundled_image": "montibello-hcare-hop-editorial.jpg",
-            "image_alt": "Montibello HCare — cuidado capilar profesional",
+            "bundled_image": "montibello-hop-card-portrait.jpg",
+            "image_alt": "Montibello HOP — cuidado capilar profesional",
             "category": "Cuidado capilar",
-            "title": "HCare",
+            "title": "HOP",
             "text": "Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas.",
-            "link": "/pages/hcare"
+            "link": "/pages/hop"
+          }
+        },
+        "luxlight": {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-luxlight-card-portrait.jpg",
+            "image_alt": "Montibello Luxlight — decoloración profesional",
+            "category": "Decoloración",
+            "title": "Luxlight",
+            "text": "Sistema de decoloración de alto rendimiento con máximo cuidado y control del resultado en cada aclarado.",
+            "link": "/pages/luxlight"
+          }
+        },
+        "hop_keratin": {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-hop-keratin-teaser.jpg",
+            "image_alt": "Montibello HOP Keratin — próximamente",
+            "category": "Próximamente",
+            "title": "HOP Keratin",
+            "text": "Nueva gama en desarrollo.",
+            "coming_soon": true
           }
         }
       },
-      "block_order": ["under", "hcare"],
+      "block_order": ["under", "hop", "luxlight", "hop_keratin"],
       "name": "Gamas Montibello",
       "settings": {
         "section_width": "full-width",

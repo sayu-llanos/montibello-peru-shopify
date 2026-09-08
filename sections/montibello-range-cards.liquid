@@ -1,11 +1,11 @@
 {%- comment -%}
   Reproduces the official homepage's "gamas" card row: a portrait campaign
   image with hover zoom, an uppercase category label, a large tight-leading
-  title, and a short paragraph — one card per commercial line. Peru only
-  sells two lines (Under, HCare), so this renders as a static two-up row
-  using the reference's exact card proportions rather than the reference's
-  full multi-item slider (which only appears once cards overflow the
-  container).
+  title, and a short paragraph — one card per commercial line (Under, HOP,
+  Luxlight), plus an optional smaller/muted "coming soon" teaser card (HOP
+  Keratin) with no purchase link. Renders as a static row using the
+  reference's exact card proportions rather than the reference's full
+  multi-item slider (which only appears once cards overflow the container).
 {%- endcomment -%}
 
 <div
@@ -20,18 +20,24 @@
 {% stylesheet %}
   .montibello-ranges__list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 25px;
     max-width: 1300px;
     margin-inline: auto;
     padding-inline: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .montibello-ranges__list > * {
+    scroll-snap-align: start;
   }
 
   .montibello-range-card {
     display: block;
-    flex: 0 1 417px;
+    flex: 0 0 283px;
     width: 283px;
-    max-width: 100%;
     color: inherit;
     text-decoration: none;
     border-radius: 5px;
@@ -44,6 +50,7 @@
 
   @media screen and (min-width: 750px) {
     .montibello-range-card {
+      flex-basis: 417px;
       width: 417px;
     }
   }
@@ -65,6 +72,54 @@
 
   .montibello-range-card:hover .montibello-range-card__image {
     transform: scale(1.08);
+  }
+
+  .montibello-range-card--coming-soon {
+    flex: 0 0 160px;
+    width: 160px;
+    align-self: flex-end;
+    cursor: default;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-range-card--coming-soon {
+      flex-basis: 220px;
+      width: 220px;
+    }
+  }
+
+  .montibello-range-card--coming-soon .montibello-range-card__image {
+    filter: grayscale(1);
+    opacity: 0.55;
+  }
+
+  .montibello-range-card--coming-soon:hover .montibello-range-card__image {
+    transform: none;
+  }
+
+  .montibello-range-card--coming-soon .montibello-range-card__title {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-range-card--coming-soon .montibello-range-card__title {
+      font-size: 28px;
+    }
+  }
+
+  .montibello-range-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    background: #FFFFFF;
+    color: #2E2D2C;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 100px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -169,11 +224,31 @@
         {
           "type": "range-card",
           "settings": {
-            "bundled_image": "montibello-hcare-hop-editorial.jpg",
+            "bundled_image": "montibello-hop-card-portrait.jpg",
             "category": "Cuidado capilar",
-            "title": "HCare",
+            "title": "HOP",
             "text": "Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas.",
-            "link": "/pages/hcare"
+            "link": "/pages/hop"
+          }
+        },
+        {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-luxlight-card-portrait.jpg",
+            "category": "Decoloración",
+            "title": "Luxlight",
+            "text": "Sistema de decoloración de alto rendimiento con máximo cuidado y control del resultado en cada aclarado.",
+            "link": "/pages/luxlight"
+          }
+        },
+        {
+          "type": "range-card",
+          "settings": {
+            "bundled_image": "montibello-hop-keratin-teaser.jpg",
+            "category": "Próximamente",
+            "title": "HOP Keratin",
+            "text": "Nueva gama en desarrollo.",
+            "coming_soon": true
           }
         }
       ]

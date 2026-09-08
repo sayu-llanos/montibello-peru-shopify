@@ -13,13 +13,16 @@
 
   assign link = block.settings.link
   assign has_link = false
-  if link != blank
+  if link != blank and block.settings.coming_soon != true
     assign has_link = true
   endif
 %}
 
 {% capture card_inner %}
   <div class="montibello-range-card__media">
+    {% if block.settings.coming_soon %}
+      <span class="montibello-range-card__badge">Próximamente</span>
+    {% endif %}
     {% if has_custom_image %}
       {{
         custom_image
@@ -40,6 +43,15 @@
           when 'montibello-hcare-hop-editorial.jpg'
             assign image_width = 2560
             assign image_height = 1183
+          when 'montibello-hop-card-portrait.jpg'
+            assign image_width = 933
+            assign image_height = 1400
+          when 'montibello-luxlight-card-portrait.jpg'
+            assign image_width = 934
+            assign image_height = 1400
+          when 'montibello-hop-keratin-teaser.jpg'
+            assign image_width = 1000
+            assign image_height = 1000
           else
             assign image_width = 1000
             assign image_height = 1000
@@ -72,7 +84,10 @@
 {% if has_link %}
   <a href="{{ link }}" class="montibello-range-card" {{ block.shopify_attributes }}>{{ card_inner }}</a>
 {% else %}
-  <div class="montibello-range-card" {{ block.shopify_attributes }}>{{ card_inner }}</div>
+  <div
+    class="montibello-range-card{% if block.settings.coming_soon %} montibello-range-card--coming-soon{% endif %}"
+    {{ block.shopify_attributes }}
+  >{{ card_inner }}</div>
 {% endif %}
 
 {% schema %}
@@ -85,7 +100,10 @@
       "label": "Imagen oficial incluida",
       "options": [
         { "value": "montibello-under-card-portrait.jpg", "label": "Under — Editorial" },
-        { "value": "montibello-hcare-hop-editorial.jpg", "label": "HCare — Editorial" }
+        { "value": "montibello-hop-card-portrait.jpg", "label": "HOP — Editorial" },
+        { "value": "montibello-luxlight-card-portrait.jpg", "label": "Luxlight — Editorial" },
+        { "value": "montibello-hop-keratin-teaser.jpg", "label": "HOP Keratin — Próximamente" },
+        { "value": "montibello-hcare-hop-editorial.jpg", "label": "HCare — Editorial (obsoleto)" }
       ],
       "default": "montibello-under-card-portrait.jpg"
     },
@@ -121,6 +139,13 @@
       "type": "url",
       "id": "link",
       "label": "Enlace"
+    },
+    {
+      "type": "checkbox",
+      "id": "coming_soon",
+      "label": "Próximamente (no disponible para la venta)",
+      "info": "Muestra la tarjeta más pequeña, atenuada y sin enlace de compra.",
+      "default": false
     }
   ],
   "presets": [

@@ -1232,6 +1232,20 @@
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
   }
+
+  /* Montibello pixel-fidelity: official reference header measures 80px tall,
+     a 32px horizontal nav gap, and 16px/500-weight nav labels
+     (hair.montibello.com header.tm-header, .uk-navbar-nav / .uk-navbar-nav >
+     li > a — measured via live DOM inspection). Row height here is capped by
+     the 44px icon buttons (not the 26px logo), so padding is solved against
+     that: 17px top/bottom + 44px icons + 1px border ≈ 80px. */
+  .header:not(.header--compact) {
+    --header-padding: 17px;
+  }
+
+  .header .menu-list__link-title {
+    padding-inline: 16px;
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}
