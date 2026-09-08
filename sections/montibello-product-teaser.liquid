@@ -11,19 +11,82 @@
   class="section section--{{ section.settings.section_width }} montibello-product-teaser spacing-style"
   style="{% render 'spacing-style', settings: section.settings %}background-color:{{ section.settings.background_color | default: '#F6F6F3' }};"
 >
-  <div class="montibello-product-teaser__inner">
-    {% if section.settings.heading != blank %}
-      <h2 class="montibello-product-teaser__heading">{{ section.settings.heading }}</h2>
-    {% endif %}
+  {% if section.settings.heading != blank %}
+    <h2 class="montibello-product-teaser__heading">{{ section.settings.heading }}</h2>
+  {% endif %}
 
-    <div class="montibello-product-teaser__list">
+  <div class="montibello-product-teaser__viewport">
+    <button type="button" class="montibello-product-teaser__arrow montibello-product-teaser__arrow--prev" aria-label="Anterior" data-montibello-product-teaser-prev>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <div class="montibello-product-teaser__list" data-montibello-product-teaser-list>
       {% content_for 'blocks' %}
     </div>
+
+    <button type="button" class="montibello-product-teaser__arrow montibello-product-teaser__arrow--next" aria-label="Siguiente" data-montibello-product-teaser-next>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
   </div>
+
+  <script>
+    (function () {
+      var section = document.currentScript.closest('.montibello-product-teaser');
+      if (!section) return;
+      var list = section.querySelector('[data-montibello-product-teaser-list]');
+      var prev = section.querySelector('[data-montibello-product-teaser-prev]');
+      var next = section.querySelector('[data-montibello-product-teaser-next]');
+      if (!list || !prev || !next) return;
+
+      function step() {
+        var card = list.querySelector('.montibello-product-teaser-card');
+        return card ? card.getBoundingClientRect().width + 20 : list.clientWidth * 0.8;
+      }
+
+      prev.addEventListener('click', function () {
+        list.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', function () {
+        list.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      function updateArrows() {
+        var maxScroll = list.scrollWidth - list.clientWidth;
+        prev.disabled = list.scrollLeft <= 1;
+        next.disabled = list.scrollLeft >= maxScroll - 1;
+      }
+
+      list.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+    })();
+  </script>
 </div>
 
 {% stylesheet %}
-  .montibello-product-teaser__inner {
+  .montibello-product-teaser__heading {
+    max-width: 750px;
+    margin: 0 auto 30px;
+    padding-inline: 30px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-product-teaser__heading {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-product-teaser__viewport {
+    position: relative;
     max-width: 1300px;
     width: 100%;
     min-width: 0;
@@ -31,33 +94,63 @@
     padding-inline: 30px;
   }
 
-  .montibello-product-teaser__heading {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 0 0 30px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .montibello-product-teaser__heading {
-      font-size: 35px;
-    }
-  }
-
   .montibello-product-teaser__list {
     display: flex;
     flex-wrap: nowrap;
-    gap: 20px;
+    gap: 25px;
     max-width: 100%;
     min-width: 0;
     overflow-x: auto;
     scroll-snap-type: x proximity;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+  }
+
+  .montibello-product-teaser__list::-webkit-scrollbar {
+    display: none;
   }
 
   .montibello-product-teaser__list > * {
     scroll-snap-align: start;
+  }
+
+  .montibello-product-teaser__arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.32);
+    color: #FFFFFF;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .montibello-product-teaser__arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .montibello-product-teaser__arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .montibello-product-teaser__arrow--prev {
+    left: -4px;
+  }
+
+  .montibello-product-teaser__arrow--next {
+    right: -4px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-product-teaser__arrow {
+      display: flex;
+    }
   }
 {% endstylesheet %}
 

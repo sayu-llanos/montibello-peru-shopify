@@ -202,21 +202,14 @@
 
   @media screen and (min-width: 750px) {
     .montibello-banner--full .montibello-banner__media {
-      /* Matches the official Under hero, measured at ~59% of a 900px-tall
-         desktop viewport (≈530-600px) — a shorter opening than a typical
-         full-screen Shopify hero. */
-      aspect-ratio: auto;
-      min-height: 60svh;
-    }
-  }
-
-  @media screen and (min-width: 750px) and (min-height: 900px) {
-    /* Cap hero height on tall/large desktop monitors so the 2560x960
-       source campaign photo (the highest resolution Montibello publishes
-       for this banner) isn't upscaled past its native pixel density. */
-    .montibello-banner--full .montibello-banner__media {
-      min-height: 540px;
-      max-height: 60svh;
+      /* Reference hero scales with viewport width at a fixed ~2.667:1
+         ratio (1265×474 at 1280px, 1425×534 at 1440px — both ≈2.667),
+         matching the 2560×960 source campaign photo. A viewport-height
+         based clamp (e.g. 60svh) produces a fixed height regardless of
+         width, which is what caused the previous 540px-at-every-desktop-
+         width bug; aspect-ratio scales correctly with width instead. */
+      aspect-ratio: 2560 / 960;
+      min-height: 0;
     }
   }
 

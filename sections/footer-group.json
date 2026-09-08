@@ -68,7 +68,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"shopify://collections/under\">Under</a></p><p><a href=\"/pages/hop\">HOP</a></p><p><a href=\"/pages/luxlight\">Luxlight</a></p><p>HOP Keratin (próximamente)</p>",
+                "text": "<p><a href=\"/collections/under\">Under</a></p><p><a href=\"/pages/hop\">HOP</a></p><p><a href=\"/pages/luxlight\">Luxlight</a></p><p>HOP Keratin (próximamente)</p>",
                 "type_preset": "rte"
               }
             }
@@ -105,6 +105,36 @@
           },
           "block_order": ["heading", "text"]
         },
+        "group_compliance": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "height": "fit",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h4>Compliance</h4>",
+                "type_preset": "h6",
+                "case": "none",
+                "padding-block-end": 4
+              }
+            },
+            "policy_list": {
+              "type": "footer-policy-list",
+              "settings": {
+                "font_size": "1rem",
+                "case": "none"
+              }
+            }
+          },
+          "block_order": ["heading", "policy_list"]
+        },
         "group_social": {
           "type": "group",
           "settings": {
@@ -140,6 +170,7 @@
         "group_about",
         "group_ranges",
         "group_info",
+        "group_compliance",
         "group_social"
       ],
       "name": "t:names.footer",

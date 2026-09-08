@@ -29,8 +29,14 @@
 
   @media screen and (min-width: 750px) {
     .montibello-editorial__statement {
-      max-width: 750px;
+      /* Montserrat Bold is wider per-glyph than the reference's TT Commons
+         at the same 40px size, so the exact reference copy wraps to 3
+         lines instead of 2 at a 750px box. Widening the box and tightening
+         tracking slightly (both explicitly allowed instead of shrinking
+         the 40px scale) restores the reference's 2-line composition. */
+      max-width: 820px;
       font-size: 40px;
+      letter-spacing: -0.02em;
     }
   }
 {% endstylesheet %}

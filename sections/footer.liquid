@@ -16,18 +16,24 @@
     assign total_blocks = section.blocks.size
 
     # Grid layout calculations
-    assign grid_columns = total_blocks | at_most: 4
+    # Montibello pixel-fidelity: the reference desktop footer reads as
+    # brand + 4 structured columns (5 visual columns total). Horizon's
+    # stock cap of 4 desktop columns treats a 5th block as an "orphan"
+    # that wraps to its own full-width row, which looks broken for a
+    # short Compliance/legal column — so the cap is raised to 5 here and
+    # the orphan-row logic only engages beyond that (6+ blocks).
+    assign grid_columns = total_blocks | at_most: 5
 
     # Calculate last row counts using modulo arithmetic
     # last_row_count = (total_blocks - 1) % N + 1
-    assign last_row_count = total_blocks | minus: 1 | modulo: 4 | plus: 1
+    assign last_row_count = total_blocks | minus: 1 | modulo: 5 | plus: 1
     assign tablet_last_row_count = total_blocks | minus: 1 | modulo: 2 | plus: 1
 
     # Check if there are orphaned elements (single item in last row)
     assign has_isolated_grid_item_desktop = false
     assign has_isolated_grid_item_tablet = false
 
-    if total_blocks > 4 and last_row_count == 1
+    if total_blocks > 5 and last_row_count == 1
       assign has_isolated_grid_item_desktop = true
     endif
 

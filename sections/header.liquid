@@ -1240,11 +1240,47 @@
      the 44px icon buttons (not the 26px logo), so padding is solved against
      that: 17px top/bottom + 44px icons + 1px border ≈ 80px. */
   .header:not(.header--compact) {
-    --header-padding: 17px;
+    --header-padding: 17.5px;
   }
 
   .header .menu-list__link-title {
     padding-inline: 16px;
+  }
+
+  /* Reference logo sits at x=30 at 1440px; Horizon's default desktop
+     --page-margin (40px) pushes it to x=40. Scoped to the header only. */
+  @media screen and (min-width: 750px) {
+    .header__row {
+      --page-margin: 30px;
+    }
+  }
+
+  /* Custom Peru primary nav (see the `menu` capture override above) — the
+     Shopify "main-menu" linklist is Admin-only data and cannot carry the
+     confirmed Peru destinations from theme code, so this renders in its
+     place with the same 18px/500-weight density as the reference. */
+  .montibello-primary-nav__list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .montibello-primary-nav__link {
+    display: block;
+    padding-inline: 16px;
+    font-family: var(--font-accent--family);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: currentColor;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .montibello-primary-nav__link:hover {
+    text-decoration: underline;
   }
 
   /* Reference desktop icon language is search + locale + cart only — no

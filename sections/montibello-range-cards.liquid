@@ -84,6 +84,16 @@
     padding-inline: 30px;
   }
 
+  @media screen and (min-width: 1400px) {
+    /* At 1440 the reference gutter (~63px) is smaller than the 30px
+       viewport padding plus the 70px auto-center margin this box would
+       otherwise add on top of it; dropping the inner padding here lets
+       the auto-margin alone define the gutter, matching it closely. */
+    .montibello-ranges__viewport {
+      padding-inline: 0;
+    }
+  }
+
   .montibello-ranges__list {
     display: flex;
     flex-wrap: nowrap;
@@ -92,7 +102,11 @@
     min-width: 0;
     overflow-x: auto;
     scroll-snap-type: x proximity;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+  }
+
+  .montibello-ranges__list::-webkit-scrollbar {
+    display: none;
   }
 
   .montibello-ranges__list > * {
@@ -158,6 +172,17 @@
     .montibello-range-card {
       flex-basis: 385px;
       width: 385px;
+      /* Shared desktop shell height so the short Keratin teaser copy
+         doesn't collapse its card shorter than the other three. */
+      min-height: 661px;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .montibello-range-card {
+      flex-basis: 417px;
+      width: 417px;
+      min-height: 677px;
     }
   }
 

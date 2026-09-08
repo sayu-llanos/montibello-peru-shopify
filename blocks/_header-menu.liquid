@@ -66,8 +66,6 @@
   {% else %}
     {% liquid
       assign block_settings = block.settings
-      assign menu_content_type = block_settings.menu_style | default: 'text'
-      assign image_border_radius = block_settings.image_border_radius
 
       render 'contrast-override', background_color: block_settings.background_color, text_color: block_settings.text_color, section_id: block.id
 
@@ -84,89 +82,43 @@
       if parent_background_color.rgb == current_background_color.rgb
         assign background_color_classes = background_color_classes | append: ' background-matches-parent'
       endif
-
-      if block_settings.menu_style == 'featured_collections'
-        assign ratio = block_settings.featured_collections_aspect_ratio
-      elsif block_settings.menu_style == 'featured_products'
-        assign ratio = block_settings.featured_products_aspect_ratio
-      endif
     %}
 
+    {% comment %}
+      Montibello pixel-fidelity: the reference primary nav is a stable,
+      brand-owned category list (Color/Tratamiento/Decoloración/etc.), not
+      a merchant-editable menu. Shopify navigation menus are Admin-only
+      store data with no theme-file representation, so the "main-menu"
+      linklist cannot carry the confirmed Peru destinations from theme
+      code alone. Rather than ship a generic Inicio/Catálogo/Contacto
+      linklist, these top-level items are hardcoded here to the confirmed
+      Peru range mapping, in place of looping `block_settings.menu.links`.
+      They render as plain leaf items (no mega-menu/disclosure) inside the
+      same `<header-menu ref="headerMenu">` / overflow-list shell Horizon's
+      own header JS requires, so hover, keyboard, and overflow behavior are
+      unaffected. The mobile drawer menu (a separate `variant: 'mobile'`
+      capture) is left on the original linklist.
+    {% endcomment %}
+    {% liquid
+      assign montibello_nav_titles = 'COLOR,TRATAMIENTO,DECOLORACIÓN,PRÓXIMAMENTE,NOSOTROS,CONTACTO' | split: ','
+      assign montibello_nav_urls = 'collections/under,pages/hop,pages/luxlight,pages/hop-keratin,pages/nosotros,pages/contacto' | split: ','
+    %}
     {% capture children %}
-      {% for link in block_settings.menu.links %}
+      {% for title in montibello_nav_titles %}
         <li
           class="menu-list__list-item"
           on:blur="/deactivate"
           on:pointerenter="/activate"
           on:pointerleave="/deactivate"
         >
-          {%- if link.links != blank -%}
-            <span class="menu-list__trigger">
-          {%- endif -%}
           <a
-            href="{{ link.url }}"
+            href="{{ routes.root_url }}{{ montibello_nav_urls[forloop.index0] }}"
             data-skip-node-update="true"
-            class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
+            class="menu-list__link"
             ref="menuitem"
           >
-            <span class="menu-list__link-title">{{- link.title -}}</span>
+            <span class="menu-list__link-title">{{- title -}}</span>
           </a>
-          {%- if link.links != blank -%}
-            <button
-              type="button"
-              class="menu-list__disclosure button-unstyled"
-              aria-controls="submenu-{{ forloop.index }}"
-              aria-expanded="false"
-              ref="disclosure[]"
-              data-skip-node-update
-              on:click="/toggle"
-            >
-              <span class="visually-hidden">{{ 'accessibility.show_submenu' | t: title: link.title }}</span>
-              <svg
-                class="menu-list__disclosure-icon"
-                aria-hidden="true"
-                focusable="false"
-                viewBox="0 0 10 6"
-              >
-                {%- render 'icon', icon: 'caret' -%}
-              </svg>
-            </button>
-            </span>
-            {%- comment -%}
-              Collapsed by default via `inert`: keeps the submenu out of the tab order
-              and the accessibility tree until it is opened. Toggled in header-menu.js.
-            {%- endcomment -%}
-            <div class="menu-list__submenu{{ background_color_classes }}" ref="submenu[]" data-skip-node-update inert>
-              <div
-                id="submenu-{{ forloop.index }}"
-                class="menu-list__submenu-inner"
-                style="{% render 'submenu-font-styles', settings: block_settings %}"
-              >
-                {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
-                <div class="mega-menu section section--full-width-margin section--{{ section.settings.section_width }}">
-                  <div
-                    class="mega-menu__grid"
-                    data-menu-grid-id="{{ list_id }}"
-                  >
-                    {% render 'mega-menu-list',
-                      parent_link: link,
-                      id: list_id,
-                      section: section,
-                      grid_columns_count: 6,
-                      grid_columns_count_tablet: 4,
-                      grid_columns_count_collection_images: 8,
-                      menu_content_type: menu_content_type,
-                      content_aspect_ratio: ratio,
-                      image_border_radius: image_border_radius
-                    %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
         </li>
       {% endfor %}
       <li
