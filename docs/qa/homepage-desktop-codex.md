@@ -1,145 +1,362 @@
-# CODEX QA — DESKTOP HOMEPAGE MILESTONE
+# CODEX QA — STRICT DESKTOP FIDELITY
 
 ## VERDICT
 
 FAIL
 
-The homepage is not yet a near-1:1 desktop recreation of the international Montibello homepage. The implementation has a sound full-width shell, a correct Peru-only range set, working range-carousel controls, and valid campaign assets, but the middle and lower page diverge materially from the reference architecture. The homepage currently substitutes range-specific UNDER storytelling for the required Hair Magazine module, uses a static community grid instead of a media rail, implements the professional CTA as an oversized range-style split panel, and omits the reference assistance-card treatment and one footer information column.
-
-Peru commercial localization was treated as authoritative. No defect is recorded for omitting m.lab, Dénuée, Styling, Skincare, international HOP families, or international campaign count. HOP Keratin is correctly presented as “Próximamente” without a purchase link. Montserrat is accepted as the licensed fallback; the failures below concern its visual tuning and layout results, not the absence of TT Commons.
-
-## MANAGER-REVIEW READINESS
+## MANAGER REVIEW
 
 NOT READY TO SHOW
 
-The first viewport is directionally credible, but a manager scrolling the page will encounter unmistakable structural differences: the wrong HOME editorial module, no reference-shaped editorial/article rail, no community carousel behavior, an overlong professional section, a differently composed contact CTA, and an incomplete footer/navigation model. These are milestone-level differences rather than final-polish items.
+## DOES IT FEEL LIKE THE SAME WEBSITE?
+
+NO
+
+The current implementation is substantially better structured than the previous version, but a side-by-side comparison still reads as two different website systems. Local feels like a shorter custom Shopify homepage assembled from official Montibello assets; the reference feels like a dense editorial/commerce system with a specific typography, content, and interaction language.
+
+Peru commercial scope was applied correctly. This verdict is not caused by the absence of m.lab, Dénuée, Éclat, Styling, Skincare, other international-only ranges, or additional international campaigns.
+
+## TOP 5 VISUAL REASONS
+
+1. **Hero typography and placement are visibly different.** At 1280 px the reference headline is 40/40 px at x=30; local is 56/56 px at x=76. The local headline dominates the image like a bespoke campaign landing page, while the reference slideshow uses a smaller, left-edge editorial text system.
+
+2. **The central commerce/editorial density is wrong.** The product rail has only three cards occupying 924 px of a 1209 px rail, leaving a large empty right side and no usable arrow. The reference presents four complete product cards in view, with denser metadata and a visibly continuous rail.
+
+3. **The Magazine module has the right broad layout but the wrong identity.** Local uses a 32 px generic “Educación y tendencias para tu salón” lead, an underlined text link, and three reused range-promotion cards. The reference uses the Montibello wordmark, a 40/40 px “The Hair Magazine para profesionales” editorial lockup, a black button, and article cards that read as published stories.
+
+4. **The lower-page pacing is materially different.** Local’s locator band is 440 px high versus 330 px reference and stacks all copy at the lower left; the reference balances a left headline with a separate right tagline/button. Local’s assistance section is 267 px high versus 181 px reference. These extra heights make the final third feel slower and more generic.
+
+5. **Header and footer information density do not match the official system.** At 1280 the local primary navigation collapses `CONTACTO` into `MÁS`, despite the official reference keeping its full desktop navigation visible. The local utility bar has two actions instead of the reference’s four-action rhythm, and the footer has an empty social column, a sparse compliance slot, text instead of the wordmark, and `Mi tienda` branding.
 
 ## CRITICAL DIFFERENCES
 
-1. **HOME editorial architecture is incorrect.** The reference HOME uses a large Hair Magazine editorial lead plus a horizontal article-card rail and edge arrows. Local instead renders a 1,094 px-tall two-column “Tecnología Glucamine Nature Tech” UNDER section. Glucamine and long-form UNDER technology content belong on `/collections/under`, as specified by `docs/qa/site-architecture-codex.md`; this slot must not be repurposed on HOME.
+1. The hero’s 56 px headline, 76 px left inset, narrow 14 px body copy, and campaign-specific composition remain far from the reference slideshow typography (40 px headline, 30 px inset, 16 px body). Hero dimensions are now correct, but geometry alone does not make the composition faithful.
 
-2. **The professional/contact sequence is not reference-shaped.** Local uses a 1,094 px-tall split “Distribución oficial Montibello en Perú” section followed by a 370 px light-grey centered CTA. The reference uses a salon-locator/destination visual band followed by a distinct black assistance card with white text and a light button. The local sequence is substantially taller and lacks the black assistance-card visual hierarchy.
+2. The safe product stand-in is commercially truthful but visually incomplete. Only three cards appear, leaving approximately 285 px of unused rail width at 1280. The next arrow is disabled because the rail has no overflow. The official module reads as an active multi-item product carousel rather than three isolated range tiles.
 
-3. **Community behavior and geometry differ.** Local is a fixed four-column grid of four 287 × 359 px images at 1280 px, with no arrows and no horizontal rail. The reference is a wide mixed-media strip with carousel controls. Commercially safe Peru imagery is acceptable, but the reference interaction and strip geometry are still required.
+3. The Magazine area still reads as generic range promotion rather than the official editorial product. It lacks the Montibello wordmark and black CTA, uses a 32 px lead instead of 40 px, repeats imagery already used elsewhere, and labels cards with broad range descriptors instead of credible editorial subjects. No fabricated articles are required, but the visual role and hierarchy must be reproduced more faithfully.
 
-4. **The desktop navigation model is a placeholder rather than a localized Montibello information architecture.** Local primary navigation is only `INICIO / CATÁLOGO / CONTACTO`; the required Peru mapping is UNDER, HOP, LUXLIGHT, and HOP Keratin — Próximamente, with reference-like density and right-side tools. The utility bar has only two controls, while the reference uses four compact utility actions. This produces visibly empty header space and hides the confirmed portfolio behind a generic catalog destination.
+4. Important local destinations are not manager-review safe. Direct checks returned 404 for `/collections/under`, `/pages/hop`, `/pages/luxlight`, `/pages/hop-keratin`, and `/pages/contacto`; `/pages/nosotros` returned 502 during the HTTP status pass. In-browser verification confirmed `/collections/under` renders `404 No encontrado – Mi tienda`. That 404 template also exposes demo `S/. 19.99` content, although no fake price appears on the homepage itself.
 
-5. **The best-seller/product rail is undersized and incomplete as a component.** At 1280 px local cards are 260 px wide with 325 px media; the reference cards are approximately 283 px wide with 394 px media. Local has three static-width editorial cards, no edge controls, no alternate-image hover treatment, and a left-aligned 35 px heading. The reference has a centered 40 px heading and an arrow-controlled horizontal product rail. Using a truthful editorial stand-in while Shopify product data is unavailable is correct, but the stand-in must still reproduce the reference geometry and interaction without inventing prices, SKUs, or availability.
+5. The professional/locator module is 110 px taller than the reference (440 px local versus 330 px reference) and uses a single lower-left content block. It does not reproduce the reference’s two-part left/right message and CTA balance.
 
-6. **The range rail exposes a native horizontal scrollbar.** At 1280 px a thick browser scrollbar is visibly rendered below the cards. The official rail relies on edge arrows and does not present a desktop native scrollbar as part of the composition. This is highly visible after the first carousel interaction.
+6. The local scroll container has measurable page-level horizontal overflow at 1280: `.page-wrapper` client width is 1269 px and scroll width is 1273 px. The four-pixel overflow is consistent with carousel arrows positioned at `left: -4px` / `right: -4px`; after interaction the entire page can sit at `scrollLeft: 4`.
 
-## MINOR DIFFERENCES
+## SECTION-BY-SECTION COMPARISON
 
-1. **Hero height is not responsive to the reference ratio.** At 1280 × 900 local is approximately 1269 × 540 px; reference is approximately 1265 × 474 px. Desired desktop height at this viewport is about 474 px. At 1440 × 1000 local is 1440 × 540 px versus reference 1425 × 534 px, so the issue is the fixed-height behavior at the narrower desktop viewport. The single approved Peru campaign is valid and does not require multiple slides.
+### Header
 
-2. **Editorial statement wraps to three lines.** At both desktop sizes local is 750 × 120 px at 40/40 px; reference is approximately 750 × 80 px at 40/40 px and two lines. At 1280 px local begins at y=718 versus reference y=653, primarily because of the extra 66 px hero height. The fallback type needs width/weight/letter-spacing tuning so the exact statement remains two lines.
+- Utility/main header heights now match the reference at 49/80 px.
+- Wordmark size is close: local 152 × 26 px versus reference approximately 151 × 26 px. Local x=26 at the effective 1269 px canvas and x=30 at 1440, which is acceptable.
+- Local desktop nav uses 18 px text and six destinations. At 1280, `CONTACTO` is pushed into `MÁS`; reference keeps seven primary items visible.
+- Local labels `COLOR / TRATAMIENTO / DECOLORACIÓN / PRÓXIMAMENTE` are commercially safe but do not expose the actual Peru brands as clearly as `UNDER / HOP / LUXLIGHT / HOP KERATIN` would.
+- Utility density remains visibly low: local has only `¿ERES PROFESIONAL?` and `CONTACTO`; reference uses login, e-learning, locator, and contact separated by fine rules.
+- Search and cart remain; reference also has a locale/globe control. Do not add a nonfunctional locale control solely for decoration, but retune spacing so the right-side tool cluster feels complete.
+- Browser title and logo accessible name remain `Mi tienda`.
 
-3. **Range rail vertical position and large-desktop width differ.** At 1280 px local starts at y=888 versus reference y=773, a +115 px displacement. The local/reference card widths at that viewport are both 385 px with 25 px gaps, and the image height is correctly about 439 px. At 1440 px, however, local cards remain 385 px and start at x=100, while reference cards expand to about 417 px and start at x=63. Desired behavior: retain 385 px cards with a 30 px gutter at 1280, then expand to about 417 px inside an approximately 1300 px centered rail at 1440.
+### Hero
 
-4. **Range-card total heights are inconsistent.** At 1280 px the first three local cards are about 621 px tall versus approximately 661 px reference; HOP Keratin is only about 529 px tall. Give all four card shells a common desktop content rhythm/minimum height so title baselines and the following section remain stable, while keeping the coming-soon copy commercially distinct.
+- Geometry passes: local is 1269 × 476 px at 1280 versus reference 1265 × 474 px; local is 1429 × 536 px at 1440 versus reference about 1425 × 534 px.
+- The approved UNDER 2560 × 960 asset loads at full resolution, maintains its native 2.667:1 ratio, and is not stretched.
+- Local headline: 56 px/56 px, weight 700, x=76, y=271 at 1280.
+- Reference headline: 40 px/40 px, weight 600, x=30, y=351 on the inspected slide.
+- Local body: 14 px/22.4 px in a 319 px column. Reference body: 16 px/19.7 px in a 417 px column.
+- CTA scale is close (23 px), but local’s overall text cluster is larger, farther from the edge, and visually higher/heavier.
+- A single Peru campaign is allowed; lack of multiple slides is not a defect. If more campaigns are later added, they must use the reference slide transition and edge-control language.
 
-5. **Section headings are too small and inconsistently aligned.** Local `Nuestros productos` and `La comunidad Montibello` render at 35 px and left align to the content gutter. Reference major HOME headings render at approximately 40 px and, for these rails, use a centered 750 px text block.
+### Editorial Statement
 
-6. **Header spacing is close but not exact.** Local utility/main header heights are 49/79 px versus 49/80 px reference. At 1440 px the wordmark is 152 × 26 px at x=40; reference is about 151 × 26 px at x=30. Move the desktop logo 10 px left and restore the 80 px main-header height while rebuilding the navigation density.
+- The prior three-line defect is fixed. Local is two lines at 40/40 px and y=655; reference is two lines at 40/40 px and y=653.
+- Local width is 820 px at x=225; reference is 750 px at x=258. The result is close in line count but visibly broader and heavier.
+- There is too much space after the statement. Local range cards begin at y=835; reference cards begin at about y=773, leaving local +62 px low at both desktop sizes.
 
-7. **Footer is one structural column short.** Once lazy content renders, local has four total desktop columns: brand, ranges, information/support, and social. Reference architecture is a brand area plus four structured columns (five visual columns total), including a separate compliance/legal group. Local footer height is close—about 362 px at 1280 versus approximately 366 px reference—but the column model, legal grouping, and populated social destinations are incomplete.
+### Range Carousel
 
-8. **Brand naming remains generic in system surfaces.** The browser title, logo accessible label, and copyright identify the shop as `Mi tienda`, not Montibello Perú. This is visible in the tab title and footer and weakens an otherwise correct Montibello wordmark treatment.
+- Card geometry now passes at both viewports.
+  - 1280: local 385 × 661 px, 25 px gap, x=30/440/850/1260; media 385 × 439 px. These match the reference targets.
+  - 1440: local 417 × 677 px, 25 px gap, x=65/507/949/1391; reference is approximately x=63 with 417 × 677 px cards and 24–25 px gaps.
+- All cards share the intended height. HOP Keratin remains labelled `PRÓXIMAMENTE`, has no purchase link, and contains no price or availability claim.
+- Native rail scrollbar suppression passes (`scrollbar-width: none`).
+- Arrow behavior passes: at 1280 `Siguiente` moves from 0 to the 406 px maximum; previous/next disabled states update correctly.
+- Hover zoom passes technically: the tested image transitions from `none` to `matrix(1.08, 0, 0, 1.08, 0, 0)`.
+- Remaining issue is vertical pacing: the whole rail starts 62 px too low because statement-bottom plus range-top spacing totals about 100 px instead of the reference’s approximately 40 px.
 
-## HOME VS RANGE-PAGE ARCHITECTURE
+### Product Rail
 
-- HOME may use an UNDER campaign in the hero and may link to UNDER from a product/range card.
-- HOME must remain an editorial discovery surface: hero → statement → range carousel → best-seller/product rail → Magazine/editorial lead and article rail → community media rail → professional locator/destination CTA → black assistance CTA → footer.
-- `Tecnología Glucamine Nature Tech`, detailed technology explanations, proof points, Elevated Warmth long-form storytelling, shade education, and full specifications belong on the UNDER landing page. The current Glucamine section must therefore move out of the HOME sequence; it is not a valid localized substitute for Magazine.
-- The confirmed HOME commercial set is correctly limited to UNDER, HOP, LUXLIGHT, and HOP Keratin — Próximamente. The absence of international-only ranges is correct.
-- The HOME product area may remain a safe editorial stand-in until confirmed Shopify product data exists, but it must not claim best-seller status, price, SKU, size, availability, or purchase state without authoritative data. HOP Keratin must remain non-purchasable.
-- Peru can localize Magazine, community, locator, and assistance copy/destinations, but each slot must retain the international page’s visual role, geometry, hierarchy, and interaction model.
+- Card/media geometry now matches the target: local 283 px card width and 394 px media height at 1280, with 25 px gaps. Heading is centered at 40 px.
+- Commercial truth passes: only UNDER, HOP, and LUXLIGHT appear; there are no prices, sizes, SKUs, stock claims, Add to Cart controls, or HOP Keratin commerce.
+- Visual density fails. Local has three 283 px cards at x=30/338/646 and ends around x=929, leaving the right quarter of the 1209 px rail empty. Reference shows four approximately 283 px product cards across the row and continues as a carousel.
+- Product arrow logic exists but both arrows are effectively inactive because local client width and scroll width are both 1209 px.
+- The cards read as large range-image links, not product cards: minimal label/title hierarchy, no product-level packshot consistency, and no alternate-image treatment. The UNDER card is product-like, while HOP and LUXLIGHT are campaign/range images, producing inconsistent semantics.
+
+### Magazine / Editorial
+
+- The Glucamine/UNDER long-form technology section has been removed from HOME. This fix is verified.
+- The section now uses the correct lead-plus-horizontal-rail architecture and its arrow reaches the 99 px maximum with correct disabled states.
+- Card proportions are close: local 300 × 375 px; reference first article card approximately 288 × 367 px at 1280.
+- Lead treatment fails fidelity: local heading is 32/35.2 px in a 300 px column; reference is 40/40 px in an approximately 271 px column. Local substitutes an eyebrow and body paragraph for the official wordmark/editorial lockup.
+- Local CTA is an underlined text link; reference uses a filled black button.
+- Local first card begins at x=390 at rest versus reference about x=341. The 60 px lead-to-rail gap and 24 px card gaps make the composition looser.
+- Reusing Under/HOP/Luxlight range imagery and generic descriptors makes the module read as another range carousel, not a Magazine surface.
+
+### Community
+
+- The static-grid defect is fixed. Local is now a horizontal rail with five items, hidden native scrollbar, 50 px arrows, hover motion, and correct end-state logic. Two next clicks move to the 471 px maximum and disable the next arrow.
+- Local uses 320 × 440 px media with 20 px gaps inside a 1209 px rail. The reference also uses a dominant wide social rail, so the core interaction role now passes.
+- Editorial tone remains weak: local heading is only `La comunidad Montibello`, with no supporting community line, and every tile repeats imagery already seen in ranges, products, Magazine, or locator. The reference feels like a varied social feed with mixed-media rhythm.
+- No social handle should be fabricated. Use neutral approved copy and more varied approved campaign frames if a Peru account is unconfirmed.
+
+### Professional / Locator
+
+- The former 1,094 px split section has been replaced with an image-led band; that architectural fix is verified.
+- Local band: 1269 × 440 px. Reference: 1265 × 330 px. Local is 33% taller.
+- Local places a 32 px heading, paragraph, and button together in a lower-left 480 px block. Reference places a 40 px headline on the left and a separate “Siempre a tu lado” plus black locator button on the right.
+- Local uses an approved 1391 × 2086 professional image and does not stretch it, but the extreme face crop and bottom-heavy overlay do not communicate the same salon-locator visual role as the reference salon interior.
+- Routing to truthful Peru contact/commercial assistance is acceptable; destination localization is not the failure.
+
+### Assistance CTA
+
+- The black-card treatment is implemented and clearly closer to the reference.
+- Local card is approximately 1189 × 147 px at 1280; reference is approximately 1205 × 131 px. Local section is 267 px tall versus 181 px reference because of excessive outer padding.
+- Local heading is 24/24 px; reference is approximately 23/21 px. Contrast, horizontal copy/button layout, and light button treatment pass.
+- Reduce total section height and increase card width slightly; this is refinement rather than a full rebuild.
+
+### Footer
+
+- Five desktop visual columns now exist and total local footer height is approximately 362 px, close to the 366 px reference.
+- Visual content remains incomplete. Local uses `Montibello Perú` text plus a paragraph instead of the wordmark; reference uses the Montibello wordmark and a distinct About column.
+- Local `Compliance` contains only the generic `Términos y políticas` disclosure. Reference shows a dense legal link list.
+- Local `Síguenos` is empty, creating a conspicuous blank final column. Do not fabricate accounts, but either populate confirmed corporate Montibello channels approved for Peru or redesign the slot truthfully while retaining comparable density.
+- Bottom copyright still reads `© 2026 Mi tienda` instead of Montibello Perú.
+
+## TYPOGRAPHY FIDELITY
+
+Montserrat is accepted as the temporary licensed fallback and is not, by itself, a failure. Its current tuning is inconsistent:
+
+- Hero must reduce from 56/56 px, weight 700 to approximately 40/40 px, weight 600, and move from x=76 to x≈30.
+- Hero body should move from 14/22.4 px to approximately 16/20 px and use a wider ~417 px measure.
+- Editorial statement should return from 820 px to the reference 750 px while preserving two lines; test 40/40 px at weight 600 with tracking around `-0.03em` before changing font size.
+- Magazine lead must increase from 32/35.2 px to 40/40 px and use the reference’s tighter editorial lockup.
+- Destination heading must increase from 32/36.8 px to 40/40 px when the band is rebuilt.
+- Local major centered headings use 40/44 px while reference uses 40/40 px. Set line-height to 1.0 for the product and community headings.
+
+## IMAGE / ASSET FIDELITY
+
+- All 18 inspected homepage images loaded with non-zero natural dimensions. No missing or broken homepage image was found.
+- Hero uses the 2560 × 960 approved UNDER asset at the correct aspect ratio.
+- Range imagery loads at appropriate source resolution and uses `object-fit: cover`; no stretching was observed.
+- Product and Magazine sections over-reuse the same HOP and Luxlight campaign images. This makes different modules visually indistinguishable and weakens the reference’s progression from range discovery to products to editorial.
+- Community repeats the same assets again instead of creating a varied social/editorial cadence.
+- Locator uses an approved professional image, but its portrait source is forced into a shallow landscape band with an extreme face crop. Use an approved landscape salon/professional asset or a crop that preserves the locator intent.
+- No thumbnail-quality or obviously soft source was detected at the tested sizes.
 
 ## DESKTOP MEASUREMENTS
 
-| Component | 1280 × 900 reference | 1280 × 900 local | Desired | 1440 × 1000 reference | 1440 × 1000 local |
-|---|---:|---:|---:|---:|---:|
-| Effective content/page width | 1265 px | 1269 px | Full available width; no page overflow | 1425 px | 1440 px | 
-| Utility bar | 49 px | 49 px | 49 px | 49 px | 49 px |
-| Main header | 80 px | 79 px | 80 px | 80 px | 79 px |
-| Hero | 1265 × 474 px | 1269 × 540 px | ~1265 × 474 px | 1425 × 534 px | 1440 × 540 px |
-| Editorial statement | 750 × 80 px, 2 lines | 750 × 120 px, 3 lines | 750 × 80 px, 40/40 px, 2 lines | 750 × 80 px | 750 × 120 px |
-| Range rail start | y=773 | y=888 | y≈773 after hero/text correction | y=833 | y=938 |
-| Range card width / gap | 385 / 25 px | 385 / 25 px | 385 / 25 px | 417 / 24–25 px | 385 / 25 px |
-| Range image | ~385 × 439 px | ~385 × 439 px | Match reference | ~417 × 475 px | ~385 × 439 px |
-| Range card total height | ~661 px | ~621 px; Keratin ~529 px | ~661 px shared shell | ~677 px | ~621 px; Keratin ~529 px |
-| Range arrows | 50 × 50 px | 50 × 50 px | Keep; hide native scrollbar | 50 × 50 px | 50 × 50 px |
-| Product heading | 750 px centered, 40 px type | 1220 px left-aligned, 35 px type | 750 px centered, 40 px | 750 px centered, 40 px | 1240 px left-aligned, 35 px |
-| Product card / media | ~283 px / 394 px media | 260 px / 325 px media | ~283 px / 394 px media | ~306 px card | 260 px card |
-| Local Glucamine HOME block | Not present; Magazine occupies slot | 1,094 px tall | Replace with Magazine lead + article rail | Not present | 1,094 px tall |
-| Community layout | Horizontal mixed-media rail | Four-column static grid; 287 × 359 px tiles | Horizontal rail with edge controls | Horizontal mixed-media rail | Static grid |
-| Footer | ~366 px; five visual columns | ~362 px; four visual columns | Preserve height; add missing information architecture | ~366 px | ~362 px |
+| Item | Reference 1280 × 900 | Local 1280 × 900 | Reference 1440 × 1000 | Local 1440 × 1000 |
+|---|---:|---:|---:|---:|
+| Effective page width | 1265 px | 1269 px | 1425 px | 1429 px |
+| Utility / main header | 49 / 80 px | 49 / 80 px | 49 / 80 px | 49 / 80 px |
+| Hero | 1265 × 474 px | 1269 × 476 px | ~1425 × 534 px | 1429 × 536 px |
+| Hero headline | 40/40 px, x=30 | 56/56 px, x=76 | ~40/40 px, x=30 | 56/56 px, x≈80 |
+| Statement | x=258, y=653, 750 × 80 px | x=225, y=655, 820 × 80 px | x≈338, y=713, 750 × 80 px | x=305, y=715, 820 × 80 px |
+| Range cards start | y≈773 | y=835 | y≈833 | y=895 |
+| Range card / media | 385 × 661 / 385 × 439 px | exact match | 417 × 677 / 417 × 475 px | 417 × 677 / 417 × 476 px |
+| Product heading | y=1534, 40/40 px | y=1618, 40/44 px | y≈1610, 40 px | y=1694, 40/44 px |
+| Product card / media | ~283 px / 394 px | 283 px / 394 px | ~306 px card | 283 px card |
+| Magazine lead heading | 40/40 px, 271 px wide | 32/35.2 px, 300 px wide | ~40 px | 32 px |
+| Magazine card | ~288 × 367 px | 300 × 375 px | ~312 × 397 px | 300 × 375 px |
+| Community heading | y=2769, 750 × 40 px | y=2820, 586 × 44 px | y≈2909 | y=2896 |
+| Locator band | 1265 × 330 px | 1269 × 440 px | same visual ratio | 1429 × 440 px |
+| Assistance outer/card | 181 / 131 px high | 267 / 147 px high | similar reference rhythm | 267 / ~147 px high |
+| Footer | ~366 px | ~362 px | ~366 px | ~362 px |
+| Total scroll height | 4293 px | 4475 px | ~4473 px | ~4551 px inferred from measured sections/footer |
 
-Both local desktop widths use the full viewport without a narrow central-page constraint, blank right gutter, or page-level horizontal overflow. At 1280 px the range list has a 1209 px client width, 1615 px scroll width, and 406 px maximum scroll. Clicking `Siguiente` moves from 0 to 406 px, enables `Anterior`, and disables `Siguiente` at the end; this behavior passes.
+Local has eight major HOME modules before the footer, matching the official module count and order. The remaining rhythm mismatch comes from spacing distribution and component density, not missing section names.
 
-## TECHNICAL ISSUES
+## TECHNICAL STATUS
 
-1. Browser console reports: `[shopify-account] Menu "customer-account-main-menu" not found in Storefront API. Falling back to default menu items.` Configure the referenced customer-account menu or remove the unavailable menu dependency.
-
-2. Primary navigation `CONTACTO` resolves to `/pages/contact`, while the utility CTA and architecture use `/pages/contacto`. Normalize the route to the actual Peru contact page and verify it does not 404.
-
-3. The footer `Under` rich-text link is emitted as `shopify://collections/under` in the rendered DOM instead of a storefront URL. Replace the rich-text literal with a valid Shopify link-picker value or resolved `/collections/under` URL.
-
-4. The page `<title>`, logo alt text, and footer copyright use the placeholder `Mi tienda`. Set the shop/theme-facing brand identity to Montibello Perú without changing the approved wordmark asset.
-
-5. The range list and product list both use `overflow-x: auto` with visible desktop scrollbars. Preserve keyboard/touch scrolling and add cross-browser scrollbar suppression for the visual rail, with accessible arrow controls where overflow exists.
-
-6. The current range script is functional at 1280 px: one next-arrow activation reaches the 406 px maximum, and disabled states update correctly. Retain this logic when correcting geometry.
-
-7. Lazy-loaded media verification passes. After scrolling each region into view, all 15 homepage images report non-zero natural dimensions, including `montibello-under-glucamine-tech.jpg`, `montibello-under-editorial-elevated-warmth.jpg`, and `montibello-professional-salon-editorial.jpg`. Do not treat their initial off-screen `naturalWidth=0` state as a missing-asset defect.
-
-8. Git inspection shows an active homepage implementation set: added product teaser/community/editorial components and modified header, footer, range, hero, and `templates/index.json`. `git diff --check` returns no whitespace errors. No implementation file was changed during this QA pass.
+- `shopify theme check` completed successfully but is not clean: 372 files inspected, 11 warnings across `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. Warnings include two orphaned snippets and nine scoped-CSS-class warnings. Previous QA recorded no offenses, so these should be reviewed before handoff.
+- Homepage console inspection after load and carousel interaction returned no errors or warnings.
+- Range, Magazine, and community arrows work and update disabled states. Product arrows are present but inactive because the rail does not overflow.
+- Native rail scrollbars are visually suppressed (`scrollbar-width: none`); this fix passes.
+- Page-level horizontal overflow does not fully pass: `.page-wrapper` is 1269 px client / 1273 px scroll width at 1280.
+- Homepage images all resolve and report non-zero natural dimensions.
+- Homepage contains no price, SKU, stock, size, or Add to Cart claims. HOP Keratin is non-purchasable.
+- Important linked destinations fail in the current preview: UNDER, HOP, LUXLIGHT, HOP Keratin, and Contacto returned 404; Nosotros returned 502 during the status pass. Browser confirmation reproduced the UNDER 404.
+- `/collections/under` 404 template exposes demo `Montibello — próximamente` cards with `S/. 19.99`; remove this demo leakage even though it is outside the homepage DOM.
+- Footer `Under` now resolves to `/collections/under` rather than a raw `shopify://` href; that specific href fix is verified.
+- `git diff --check` passes. QA modified only this report.
 
 ## REQUIRED FIXES FOR CLAUDE
 
-1. **Rebuild `templates/index.json` HOME order** to match: hero → editorial statement → range carousel → truthful product rail → Magazine/editorial lead + article rail → community media rail → Peru locator/destination CTA → black assistance CTA → footer. Remove the Glucamine technology block from HOME and retain it for the UNDER landing.
+### 1. Recompose hero typography
 
-2. **Replace the current HOME Glucamine section** (`montibello_editorial_magazine`, currently 1,094 px tall) with a reference-shaped Magazine module: dark editorial lead/headline and CTA plus a horizontally scrollable article-card rail with 50 px edge controls. Use only approved Peru editorial content; if article destinations are not ready, do not fabricate publication claims or dead links.
+REFERENCE:
+40/40 px headline at x=30, weight 600; 16/19.7 px body in an approximately 417 px column; 23 px text CTA. The cluster feels integrated into the slideshow rather than dominant over it.
 
-3. **Correct desktop hero sizing in `sections/montibello-image-banner.liquid`.** At 1280 px change the rendered height from 540 px to approximately 474 px while retaining approximately 534–540 px at 1440 px. Use responsive aspect-ratio/clamp behavior instead of one fixed desktop height. Keep the current single Peru slide valid; render arrows/pagination only when multiple approved slides exist.
+LOCAL:
+56/56 px headline at x=76–80, weight 700; 14/22.4 px body in a 319 px column. The headline visually overwhelms the official campaign image.
 
-4. **Tune the editorial statement in `sections/montibello-editorial-statement.liquid`.** Current: 750 × 120 px, three lines, 40/40 px. Desired: approximately 750 × 80 px, two lines, 40/40 px. Adjust Montserrat weight, letter spacing, and/or inner width minimally; do not reduce the target 40 px scale merely to force wrapping.
+TARGET:
+Set desktop hero content inset to 30 px; headline approximately 40 px/40 px and weight 600; body approximately 16 px/20 px with max-width around 417 px. Rebalance vertical placement against the approved UNDER crop while keeping the now-correct 2.667:1 hero ratio.
 
-5. **Fix range rail responsive geometry in `sections/montibello-range-cards.liquid`.** Preserve current 1280 values (x=30, 385 px cards, 25 px gaps). At 1440 target x≈63 and 417 px cards rather than x=100 and 385 px cards. Use a centered ~1300 px rail with a responsive card basis. Set a shared desktop card/content minimum height near 661 px at 1280 and 677 px at 1440 so Keratin does not collapse to ~529 px. Keep Keratin unlinked and labeled Próximamente.
+PRIORITY:
+P0
 
-6. **Hide native desktop rail scrollbars** in the range and product rails while preserving touch, wheel/trackpad, keyboard accessibility, scroll snapping, and working arrow disabled states.
+### 2. Restore official vertical rhythm after the statement
 
-7. **Bring the product stand-in to reference geometry.** Current at 1280: 260 px card, 325 px media, 35 px left heading. Desired: approximately 283 px card, 394 px media, 40 px heading centered in a 750 px block, 25 px-ish rhythm, and edge arrows when content overflows. Add the alternate-image hover treatment only when a truthful approved alternate asset exists. Do not add fake prices, SKUs, sizes, availability, or cart controls.
+REFERENCE:
+At 1280 the statement is y=653–733 and range cards begin around y=773, approximately 40 px later.
 
-8. **Convert `sections/montibello-community.liquid` from a fixed grid to a media rail.** Keep approved Peru assets, but reproduce the reference horizontal strip, overflow, edge arrows, and restrained hover/motion treatment. Change the 35 px left-aligned heading to an approximately 40 px centered heading block. Mixed video is optional unless an approved optimized asset exists; the rail behavior is not optional.
+LOCAL:
+Statement is y=655–735 and range cards begin y=835, approximately 100 px later. The same +62 px displacement occurs at 1440.
 
-9. **Replace the oversized professional split section.** Current affected block: `montibello_banner_professional`, 1,094 px tall. Implement the reference locator/destination visual role as a substantially shallower image-led band with localized Peru copy. If no reliable Peru locator exists, route the locator-style CTA to commercial assistance as allowed by the architecture authority; do not claim an unavailable locator.
+TARGET:
+Reduce the combined statement-bottom/range-top gap from about 100 px to about 40 px. Keep current range dimensions unchanged. This should also move the product heading from y=1618 toward y≈1534.
 
-10. **Restyle the assistance CTA as the reference black card.** Current affected block: `montibello_contact`, 370 px light-grey full-width panel. Desired: a distinct black panel/card on a light field, white heading/body, and light filled `CONTACTAR`/localized contact button immediately before the footer.
+PRIORITY:
+P0
 
-11. **Rebuild desktop navigation content in `sections/header-group.json` / `sections/header.liquid`.** Replace generic `INICIO / CATÁLOGO / CONTACTO` with UNDER, HOP, LUXLIGHT, and HOP Keratin — Próximamente; add Peru-relevant utility destinations to restore reference density without exposing excluded international ranges. Retain search/cart, add the locale/globe control only if it has a truthful Peru function, set main header height to 80 px, and move the wordmark from x=40 to approximately x=30 at 1440.
+### 3. Make the safe product rail visually continuous
 
-12. **Complete the footer information architecture.** Keep the near-correct ~362–366 px height, but use five visual desktop columns: Montibello Perú brand area plus about/ecosystem, information/support, compliance/legal, and social. Populate or intentionally omit social links based on confirmed accounts; do not leave an empty `Síguenos` column. Correct the Under URL, contact URL, copyright brand, and all `Mi tienda` labels.
+REFERENCE:
+Four approximately 283 px product cards fill the 1280 desktop row, with product-level packshots, dense label/title/descriptor hierarchy, and a continuing carousel.
 
-13. **Clear technical placeholders and warnings.** Resolve the missing `customer-account-main-menu` warning, normalize `/pages/contacto`, replace rendered `shopify://` hrefs, set the document title and accessible logo label to Montibello Perú, then re-run console inspection at both desktop widths.
+LOCAL:
+Three 283 px cards end at x≈929 inside a 1209 px rail, leaving ~285 px blank. HOP and Luxlight use campaign/range images; arrows are disabled because there is no overflow.
 
-14. **Re-test at exactly 1280 × 900 and 1440 × 1000** after the structural rebuild. Verify no page-level horizontal overflow, no blank right gutter, no visible rail scrollbar, correct arrow end states, two-line editorial statement, lazy image completion, hover zoom, and the complete HOME sequence before requesting another manager-review milestone.
+TARGET:
+Use at least four truthful, confirmed Peru product/subfamily cards—for example UNDER plus confirmed HOP Color Last/Ultra Repair/Smooth Hydration and/or LUXLIGHT—using approved product-level packshots. Keep all price, SKU, size, stock, and purchase data absent until authoritative. Ensure total content exceeds the rail so the next arrow has a real function.
 
-## SHOPIFY THEME CHECK
+PRIORITY:
+P0
 
-PASS
+### 4. Rebuild the Magazine lead as Montibello editorial
 
-Command: `shopify theme check`
+REFERENCE:
+Montibello wordmark above a 40/40 px, three-line Hair Magazine title, filled black CTA, approximately 271 px lead width, then 288 × 367 px article cards beginning around x=341.
 
-Result: 369 files inspected; no offenses detected.
+LOCAL:
+14 px eyebrow, 32/35.2 px generic heading, body paragraph, underlined CTA, 300 px lead, 60 px lead-to-rail gap, and range-promotion cards beginning around x=390.
 
-Additional repository checks:
+TARGET:
+Add the approved Montibello wordmark to the lead; use a truthful Peru editorial label while preserving the Hair Magazine lockup, 40/40 px hierarchy, and black button. Reduce lead-to-rail gap toward ~30–40 px, card width toward ~288 px at 1280, and use approved education/editorial subjects rather than repeating range descriptors. If no article hub exists, use non-clicking editorial cards or a truthful `Próximamente` editorial destination instead of routing the CTA to generic Nosotros.
 
-- `git status --short` confirms the active implementation touches homepage-related blocks, sections, header/footer groups, and `templates/index.json`, plus QA documentation.
-- `git diff` was inspected for the current homepage implementation.
-- `git diff --check` passes with no whitespace errors.
-- QA did not modify any file under `sections/`, `blocks/`, `snippets/`, `templates/`, `layout/`, `config/`, `assets/`, or `locales/`.
+PRIORITY:
+P0
 
-## FINAL QA SUMMARY
+### 5. Fix important destinations and demo leakage
 
-The desktop homepage has a viable foundation: correct full-width behavior, near-correct header heights, an approved Peru hero, accurate 1280 px range-card width/gap/image geometry, correct Peru portfolio boundaries, a safe non-priced product stand-in, valid lazy-loaded assets, functioning range arrows, and a clean Shopify Theme Check result. It still fails the milestone because near-1:1 fidelity is determined by the complete page, not only the first screen. The Magazine, community, professional/locator, assistance, navigation, product-rail, and footer architectures must be corrected before manager review.
+REFERENCE:
+Primary, card, editorial, locator/contact, and footer links resolve to their intended live destinations.
+
+LOCAL:
+`/collections/under`, `/pages/hop`, `/pages/luxlight`, `/pages/hop-keratin`, and `/pages/contacto` return 404; `/pages/nosotros` returned 502 in the status pass. The UNDER 404 exposes demo S/. 19.99 content.
+
+TARGET:
+Create/attach the intended unpublished-theme resources in the preview store or temporarily remove/disable links that cannot resolve. Eliminate demo products/prices from the 404 template. Recheck every homepage href and require non-error responses before manager review.
+
+PRIORITY:
+P0
+
+### 6. Match locator band geometry and composition
+
+REFERENCE:
+1265 × 330 px at 1280, 40/40 px headline on the left, and a separate right-side tagline plus dark CTA over a salon-oriented landscape image.
+
+LOCAL:
+1269 × 440 px, 32/36.8 px heading, paragraph, and CTA stacked in one lower-left block over an extreme portrait face crop.
+
+TARGET:
+Reduce desktop band height to about 330 px; split content into left headline and right supporting message/button; increase headline to 40/40 px; use an approved landscape salon/professional asset or a crop that retains a salon/destination visual role. Route to Contacto if no locator exists.
+
+PRIORITY:
+P1
+
+### 7. Tighten assistance section
+
+REFERENCE:
+181 px outer section with a 1205 × 131 px black card at 1280 and approximately 25 px vertical outer spacing.
+
+LOCAL:
+267 px outer section with a 1189 × 147 px card and approximately 60 px vertical spacing.
+
+TARGET:
+Reduce outer padding to approximately 25 px top/bottom, widen the card toward 1205 px, reduce card height toward 131 px, and retain the current horizontal white-text/light-button arrangement.
+
+PRIORITY:
+P1
+
+### 8. Complete header density without overflow menus
+
+REFERENCE:
+All desktop primary destinations remain visible at 1280; utility actions form a compact four-item rhythm; search, locale, and cart align as one tool group.
+
+LOCAL:
+`CONTACTO` collapses into `MÁS` at 1280. Utility has only two actions, and long generic category labels consume excessive width.
+
+TARGET:
+Use shorter Peru brand labels `UNDER / HOP / LUXLIGHT / HOP KERATIN` plus only the essential supporting destinations, tune nav padding below the current 16 px per side if needed, and keep all intended desktop links visible at 1280. Restore reference-like utility density only with truthful destinations; do not add dead controls.
+
+PRIORITY:
+P1
+
+### 9. Complete footer visual content
+
+REFERENCE:
+Montibello wordmark plus dense About, Information/support, Compliance, and Social columns, followed by a compact legal row.
+
+LOCAL:
+Five columns exist, but brand is plain text, Compliance is one generic control, Social is empty, and copyright says `Mi tienda`.
+
+TARGET:
+Render the approved wordmark; replace `Mi tienda` with Montibello Perú; expose real available policy destinations individually; populate only confirmed/approved Montibello social channels or provide a truthful alternative with comparable visual density. Preserve the current near-correct 362 px total height.
+
+PRIORITY:
+P1
+
+### 10. Remove four-pixel page overflow
+
+REFERENCE:
+No page-level horizontal scrolling; carousel controls overlay within the viewport.
+
+LOCAL:
+At 1280 `.page-wrapper` is 1269 px client width and 1273 px scroll width, and can move to `scrollLeft: 4`. Carousel arrows use negative four-pixel offsets.
+
+TARGET:
+Place all rail arrows within their viewport (`left/right: 0` or a positive inset), then verify `.page-wrapper.scrollWidth === .page-wrapper.clientWidth` at both primary viewports while retaining horizontal rail overflow internally.
+
+PRIORITY:
+P1
+
+### 11. Refine statement and heading line-height
+
+REFERENCE:
+Statement 750 × 80 px at 40/40; centered section headings 40/40.
+
+LOCAL:
+Statement 820 × 80 px at 40/40; product/community headings use 40/44.
+
+TARGET:
+Return statement max-width to ~750 px while preserving two lines via Montserrat weight/tracking tuning (test weight 600 and `letter-spacing: -0.03em`). Set major 40 px headings to 40 px line-height.
+
+PRIORITY:
+P2
+
+### 12. Resolve Theme Check warnings
+
+REFERENCE:
+QA handoff should not introduce new lint debt.
+
+LOCAL:
+Theme Check completes with 11 warnings across two snippets, including orphaned snippets and scoped CSS class warnings.
+
+TARGET:
+Remove genuinely unused snippets or restore valid references; scope or annotate the reported mega-menu CSS classes appropriately. Re-run until the current changes introduce no new warnings.
+
+PRIORITY:
+P2
+
+## FINAL RECOMMENDATION
+
+Do not show this version to the manager as a near-1:1 Montibello Peru homepage. Preserve the verified structural work—correct section order, hero ratio, range geometry, truthful commerce, working rails, hidden native scrollbars, black assistance treatment, and five-column footer shell—but complete the P0 hero, spacing, product-density, Magazine, and destination-link fixes first. A subsequent review should begin with same-size top/full-page screenshots; if the pages still look authored by different design systems before measurements are read, the fidelity milestone has not been met.
