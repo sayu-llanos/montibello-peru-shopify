@@ -25,12 +25,9 @@
             "padding-block-end": 0
           },
           "blocks": {
-            "heading": {
-              "type": "text",
+            "logo": {
+              "type": "montibello-footer-logo",
               "settings": {
-                "text": "<h4>Montibello Perú</h4>",
-                "type_preset": "h6",
-                "case": "none",
                 "padding-block-end": 4
               }
             },
@@ -43,7 +40,7 @@
               }
             }
           },
-          "block_order": ["heading", "text"]
+          "block_order": ["logo", "text"]
         },
         "group_ranges": {
           "type": "group",
@@ -156,10 +153,10 @@
               }
             },
             "social_links": {
-              "type": "social-links",
+              "type": "text",
               "settings": {
-                "facebook_url": "https://www.facebook.com/",
-                "instagram_url": "https://www.instagram.com/"
+                "text": "<p>Muy pronto en nuestras redes sociales.</p>",
+                "type_preset": "rte"
               }
             }
           },

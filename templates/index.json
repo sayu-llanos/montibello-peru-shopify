@@ -9,60 +9,52 @@
  */{
   "sections": {
     "hero_montibello": {
-      "type": "montibello-image-banner",
+      "type": "montibello-hero-slider",
       "blocks": {
-        "caption": {
-          "type": "text",
-          "name": "t:names.caption",
+        "slide_under": {
+          "type": "hero-slide",
           "settings": {
-            "text": "<p>Distribuidor oficial Montibello en Perú</p>",
-            "type_preset": "h6",
-            "font": "var(--font-accent--family)",
-            "case": "uppercase",
-            "letter_spacing": "loose",
-            "text_color": "#FFFFFF",
-            "padding-block-end": 4
+            "bundled_image": "montibello-under-hero-desktop.jpg",
+            "image_alt": "Campaña Montibello Under Elevated Warmth",
+            "logo_image": "montibello-logo-under-white.png",
+            "range_name": "Under",
+            "heading": "Descubre Elevated Warmth",
+            "text": "7 nuevos tonos cálidos elevados diseñados para crear looks intensos, luminosos y ultranaturales.",
+            "button_label": "Ver gama",
+            "button_link": "shopify://collections/under"
           }
         },
-        "heading": {
-          "type": "text",
-          "name": "t:names.heading",
+        "slide_hop": {
+          "type": "hero-slide",
           "settings": {
-            "text": "<h1>Descubre Elevated Warmth</h1>",
-            "type_preset": "h1",
-            "text_color": "#FFFFFF",
-            "max_width": "narrow"
+            "bundled_image": "montibello-hop-hero-shampoo.jpg",
+            "image_alt": "Campaña Montibello HOP",
+            "logo_image": "",
+            "range_name": "hop",
+            "heading": "Protege tu color con biociencia",
+            "text": "HOP Colour Last: la biociencia de las algas para prolongar la vitalidad, el brillo y la duración del color.",
+            "button_label": "Ver gama",
+            "button_link": "/pages/hop"
           }
         },
-        "text": {
-          "type": "text",
+        "slide_luxlight": {
+          "type": "hero-slide",
           "settings": {
-            "text": "<p>7 nuevos tonos cálidos elevados. La coloración Under, con cobertura de alta definición y tecnología híbrida Glucamine Nature Tech.</p>",
-            "type_preset": "rte",
-            "text_color": "#FFFFFF",
-            "max_width": "narrow",
-            "padding-block-end": 12
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "label": "Descubrir Under →",
-            "link": "shopify://collections/under",
-            "style_class": "button-unstyled"
+            "bundled_image": "montibello-luxlight-hero-desktop.jpg",
+            "image_alt": "Campaña Montibello Luxlight",
+            "logo_image": "montibello-logo-luxlight-white.png",
+            "range_name": "luxlight",
+            "heading": "Máxima aclaración con el máximo cuidado capilar",
+            "text": "Descubre la gama para rubios puros, brillantes y seguros a todos los niveles.",
+            "button_label": "Ver gama",
+            "button_link": "/pages/luxlight"
           }
         }
       },
-      "block_order": ["caption", "heading", "text", "button"],
-      "name": "Banner Montibello",
+      "block_order": ["slide_under", "slide_hop", "slide_luxlight"],
+      "name": "Hero — Slider Montibello",
       "settings": {
-        "layout": "full",
         "section_width": "full-width",
-        "bundled_image": "montibello-under-hero-desktop.jpg",
-        "bundled_image_mobile": "montibello-under-hero-mobile.jpg",
-        "image_alt": "Campaña Montibello Under Elevated Warmth",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -84,7 +76,7 @@
         "under": {
           "type": "range-card",
           "settings": {
-            "bundled_image": "montibello-under-card-portrait.jpg",
+            "bundled_image": "montibello-under-card-desktop.jpg",
             "image_alt": "Montibello Under — coloración con cobertura de alta definición",
             "category": "Color",
             "title": "Under",
@@ -138,35 +130,62 @@
     "product_list_bestsellers": {
       "type": "montibello-product-teaser",
       "blocks": {
-        "under": {
+        "under_tubo": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-under-product-colorant.webp",
+            "bundled_image": "montibello-under-tubo.png",
             "title": "Under",
             "text": "Coloración de alta definición",
             "link": "shopify://collections/under"
           }
         },
-        "hop": {
+        "under_activador": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-hcare-hop-editorial.jpg",
+            "bundled_image": "montibello-under-crema-activadora.png",
+            "title": "Under",
+            "text": "Crema activadora",
+            "link": "shopify://collections/under"
+          }
+        },
+        "hop_ultra_repair": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-serum.png",
             "title": "HOP",
-            "text": "Cuidado capilar profesional",
+            "text": "Ultra Repair — sérum reparador nocturno",
             "link": "/pages/hop"
           }
         },
-        "luxlight": {
+        "hop_color_last": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-luxlight-card-portrait.jpg",
+            "bundled_image": "montibello-hop-color-last-shampoo.png",
+            "title": "HOP",
+            "text": "Color Last — champú protector del color",
+            "link": "/pages/hop"
+          }
+        },
+        "luxlight_lightener": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-luxlight-lightener-9plus.png",
             "title": "Luxlight",
-            "text": "Decoloración de alto rendimiento",
+            "text": "Supreme Lightener 9+ — decolorante en polvo",
+            "link": "/pages/luxlight"
+          }
+        },
+        "luxlight_shampoo": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-luxlight-ph-protective-shampoo.png",
+            "title": "Luxlight",
+            "text": "Champú protector pH",
             "link": "/pages/luxlight"
           }
         }
       },
-      "block_order": ["under", "hop", "luxlight"],
+      "block_order": ["under_tubo", "under_activador", "hop_ultra_repair", "hop_color_last", "luxlight_lightener", "luxlight_shampoo"],
       "name": "Vitrina de productos",
       "settings": {
         "heading": "Nuestros productos",
@@ -179,41 +198,40 @@
     "editorial_magazine": {
       "type": "montibello-magazine",
       "blocks": {
-        "under": {
-          "type": "magazine-card",
-          "settings": {
-            "bundled_image": "montibello-under-editorial-elevated-warmth.jpg",
-            "title": "Color de alta definición",
-            "text": "Under",
-            "link": "shopify://collections/under"
-          }
-        },
         "hop": {
           "type": "magazine-card",
           "settings": {
-            "bundled_image": "montibello-hcare-hop-editorial.jpg",
-            "title": "Cuidado capilar profesional",
-            "text": "HOP",
+            "bundled_image": "montibello-magazine-hop-ultra-repair.png",
+            "title": "Hop Ultra Repair y Barrefit® Studio convierten septiembre en el mes del autocuidado",
+            "text": "Cuidado capilar",
             "link": "/pages/hop"
           }
         },
         "luxlight": {
           "type": "magazine-card",
           "settings": {
-            "bundled_image": "montibello-luxlight-card-portrait.jpg",
-            "title": "Decoloración de alto rendimiento",
-            "text": "Luxlight",
+            "bundled_image": "montibello-magazine-luxlight-techniques.jpg",
+            "title": "Tendencias Luxlight: las 3 técnicas de aclaración que reinarán este verano",
+            "text": "Decoloración",
             "link": "/pages/luxlight"
+          }
+        },
+        "under": {
+          "type": "magazine-card",
+          "settings": {
+            "bundled_image": "montibello-magazine-brunette-edit.png",
+            "title": "The Brunette Edit: los tres castaños que marcarán la temporada",
+            "text": "Color",
+            "link": "shopify://collections/under"
           }
         }
       },
-      "block_order": ["under", "hop", "luxlight"],
+      "block_order": ["hop", "luxlight", "under"],
       "name": "Magazine Montibello",
       "settings": {
-        "eyebrow": "Para profesionales",
-        "heading": "Educación y tendencias para tu salón",
-        "text": "Contenido profesional Montibello sobre color, cuidado capilar y técnicas de salón.",
-        "button_label": "Conocer más",
+        "heading": "The Hair Magazine",
+        "heading_suffix": "para profesionales",
+        "button_label": "Descubre más",
         "button_link": "/pages/nosotros",
         "section_width": "full-width",
         "padding-block-start": 72,
@@ -224,7 +242,8 @@
       "type": "montibello-community",
       "name": "Comunidad Montibello",
       "settings": {
-        "heading": "La comunidad Montibello",
+        "heading": "Ínspirate con nosotros @montibellopro",
+        "subheading": "Únete a nuestra comunidad #montibellopro",
         "section_width": "full-width",
         "background_color": "#F6F6F3",
         "padding-block-start": 72,
@@ -235,12 +254,13 @@
       "type": "montibello-destination-band",
       "name": "Destino Montibello",
       "settings": {
-        "bundled_image": "montibello-professional-salon-editorial.jpg",
+        "bundled_image": "montibello-salon-finder-bg.jpg",
         "image_alt": "Editorial de profesional Montibello",
-        "heading": "Distribución oficial Montibello en Perú",
-        "text": "Somos distribuidor autorizado de Montibello en Perú, llevando color y cuidado capilar profesional de alto desempeño a salones y estilistas en todo el país.",
-        "button_label": "Conoce más",
-        "button_link": "/pages/nosotros",
+        "heading": "Encuentra tu salón Montibello más cercano.",
+        "text": "",
+        "support_text": "Siempre a tu lado",
+        "button_label": "Contáctanos",
+        "button_link": "/pages/contacto",
         "section_width": "full-width",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -284,7 +304,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h2>¿Eres estilista profesional?</h2>",
+                    "text": "<h2>¿Necesitas asistencia o información?</h2>",
                     "type_preset": "h4",
                     "text_color": "#FFFFFF",
                     "alignment": "left"
@@ -293,7 +313,7 @@
                 "text": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Solicita asesoría profesional, conoce nuestra cartera de distribución o consulta disponibilidad de producto para tu salón.</p>",
+                    "text": "<p>Nuestro equipo está aquí para ayudarte. Ponte en contacto con nosotros.</p>",
                     "type_preset": "rte",
                     "text_color": "#FFFFFF",
                     "alignment": "left"

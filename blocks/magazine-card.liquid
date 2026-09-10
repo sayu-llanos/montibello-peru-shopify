@@ -1,7 +1,9 @@
 {%- comment -%}
-  Editorial-themed card for the Magazine rail: image + topic title + short
-  line, linking to the real range page it covers — not a fabricated blog
-  article with an invented author/date.
+  Editorial card for the Magazine rail. Uses the SAME official Hair Magazine
+  article images and titles the live reference currently publishes
+  (downloaded from hair.montibello.com) where the article is relevant to a
+  confirmed Peru range or general professional education — not a fabricated
+  blog post with an invented author/date.
 {%- endcomment -%}
 
 <a href="{{ block.settings.link | default: '#' }}" class="montibello-magazine-card" {{ block.shopify_attributes }}>
@@ -12,8 +14,8 @@
         alt="{{ block.settings.title | escape }}"
         loading="lazy"
         class="montibello-magazine-card__image"
-        width="800"
-        height="1000"
+        width="606"
+        height="772"
       >
     {% endif %}
     <div class="montibello-magazine-card__scrim"></div>
@@ -71,9 +73,17 @@
   }
 
   .montibello-magazine-card__title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-card__title {
+      font-size: 23px;
+      line-height: 1.15;
+    }
   }
 
   .montibello-magazine-card__text {

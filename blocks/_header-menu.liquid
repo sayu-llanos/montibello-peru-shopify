@@ -100,8 +100,8 @@
       capture) is left on the original linklist.
     {% endcomment %}
     {% liquid
-      assign montibello_nav_titles = 'COLOR,TRATAMIENTO,DECOLORACIÓN,PRÓXIMAMENTE,NOSOTROS,CONTACTO' | split: ','
-      assign montibello_nav_urls = 'collections/under,pages/hop,pages/luxlight,pages/hop-keratin,pages/nosotros,pages/contacto' | split: ','
+      assign montibello_nav_titles = 'COLOR,TRATAMIENTO,DECOLORACIÓN,EDUCACIÓN,BEYOND HAIR,MAGAZINE' | split: ','
+      assign montibello_nav_urls = 'collections/under,pages/hop,pages/luxlight,pages/nosotros,pages/nosotros,#hair-magazine' | split: ','
     %}
     {% capture children %}
       {% for title in montibello_nav_titles %}

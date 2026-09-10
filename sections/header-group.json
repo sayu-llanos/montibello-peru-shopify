@@ -51,7 +51,7 @@
           "static": true,
           "settings": {
             "menu": "main-menu",
-            "type_font_primary_size": "1.125rem",
+            "type_font_primary_size": "1rem",
             "menu_font_style": "inverse",
             "type_font_primary_link": "accent",
             "type_case_primary_link": "uppercase",

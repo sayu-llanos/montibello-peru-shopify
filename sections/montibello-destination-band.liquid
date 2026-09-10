@@ -1,9 +1,12 @@
 {%- comment -%}
-  Reproduces the official homepage's salon-locator/destination CTA: a
-  shallow, image-led band with centered copy and a high-contrast button —
-  not a 50/50 range-style editorial split. Peru has no reliable salon
-  locator yet, so the CTA routes to commercial/contact assistance instead
-  of claiming a locator that does not exist.
+  Reproduces the official homepage's salon-locator band: exact official
+  heading ("Encuentra tu salón Montibello más cercano.") and support copy
+  ("Siempre a tu lado"), same left-heading/right-support visual split. Peru
+  has no reliable salon locator yet, so unlike the reference (whose CTA
+  reads "Localizador de centros"), this button is honestly labeled and
+  routes to real commercial contact instead of claiming a locator that
+  does not exist. The reference also carries no body paragraph under the
+  heading here — none is fabricated.
 {%- endcomment -%}
 
 {% liquid
@@ -17,6 +20,9 @@
     when 'montibello-under-hero-desktop.jpg'
       assign bundled_width = 2560
       assign bundled_height = 960
+    when 'montibello-salon-finder-bg.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 859
   endcase
 %}
 
@@ -39,14 +45,23 @@
   </div>
 
   <div class="montibello-destination__content">
-    {% if section.settings.heading != blank %}
-      <h2 class="montibello-destination__heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    {% if section.settings.text != blank %}
-      <p class="montibello-destination__text">{{ section.settings.text }}</p>
-    {% endif %}
-    {% if section.settings.button_label != blank %}
-      <a href="{{ section.settings.button_link | default: '#' }}" class="montibello-destination__button">{{ section.settings.button_label }}</a>
+    <div class="montibello-destination__main">
+      {% if section.settings.heading != blank %}
+        <h2 class="montibello-destination__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <p class="montibello-destination__text">{{ section.settings.text }}</p>
+      {% endif %}
+    </div>
+    {% if section.settings.support_text != blank or section.settings.button_label != blank %}
+      <div class="montibello-destination__support">
+        {% if section.settings.support_text != blank %}
+          <p class="montibello-destination__support-text">{{ section.settings.support_text }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link | default: '#' }}" class="montibello-destination__button">{{ section.settings.button_label }}</a>
+        {% endif %}
+      </div>
     {% endif %}
   </div>
 </div>
@@ -57,13 +72,15 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    min-height: 320px;
+    min-height: 300px;
     overflow: hidden;
   }
 
   @media screen and (min-width: 750px) {
     .montibello-destination {
-      min-height: 440px;
+      /* Fidelity sprint: reference locator band reads ~330px tall on
+         desktop, not the previous 440px full-campaign-band height. */
+      min-height: 330px;
     }
   }
 
@@ -81,16 +98,20 @@
   }
 
   .montibello-destination__overlay {
+    /* Reference uses a flat rgba(26,26,26,0.4) tint over the salon-finder
+       background image, not a gradient. */
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(46, 45, 44, 0.8) 0%, rgba(46, 45, 44, 0.3) 45%, rgba(46, 45, 44, 0) 75%);
+    background: rgba(26, 26, 26, 0.4);
   }
 
   .montibello-destination__content {
     position: relative;
     z-index: 1;
-    max-width: 480px;
-    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     padding: 30px;
     text-align: left;
     color: #FFFFFF;
@@ -98,27 +119,58 @@
 
   @media screen and (min-width: 750px) {
     .montibello-destination__content {
-      padding: 50px 60px;
+      /* Reference balances a left-side headline against a distinct
+         right-side supporting message + CTA, rather than one centered
+         block — split into two flex items at desktop. */
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 36px 60px;
     }
   }
 
-  .montibello-destination__heading {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.15;
+  .montibello-destination__main {
+    max-width: 470px;
+  }
+
+  .montibello-destination__support {
+    text-align: left;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-destination__support {
+      text-align: right;
+      flex-shrink: 0;
+    }
+  }
+
+  .montibello-destination__support-text {
+    font-size: 16px;
+    font-weight: 600;
     margin: 0 0 12px;
+  }
+
+  .montibello-destination__heading {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 470px;
   }
 
   @media screen and (min-width: 750px) {
     .montibello-destination__heading {
-      font-size: 32px;
+      font-size: 40px;
+      line-height: 40px;
     }
   }
 
   .montibello-destination__text {
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 0 0 24px;
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
     opacity: 0.9;
   }
 
@@ -151,10 +203,11 @@
       "id": "bundled_image",
       "label": "Imagen",
       "options": [
+        { "value": "montibello-salon-finder-bg.jpg", "label": "Oficial — Fondo salon finder (referencia)" },
         { "value": "montibello-professional-salon-editorial.jpg", "label": "Profesional — Editorial de salón" },
         { "value": "montibello-under-hero-desktop.jpg", "label": "Under — Elevated Warmth (campaña)" }
       ],
-      "default": "montibello-professional-salon-editorial.jpg"
+      "default": "montibello-salon-finder-bg.jpg"
     },
     {
       "type": "text",
@@ -165,13 +218,18 @@
       "type": "text",
       "id": "heading",
       "label": "Título",
-      "default": "Distribución oficial Montibello en Perú"
+      "default": "Encuentra tu salón Montibello más cercano."
     },
     {
       "type": "textarea",
       "id": "text",
-      "label": "Texto",
-      "default": "Solicita asesoría comercial y conoce nuestra cartera de distribución para tu salón."
+      "label": "Texto (opcional — la referencia no usa cuerpo de texto aquí)"
+    },
+    {
+      "type": "text",
+      "id": "support_text",
+      "label": "Mensaje de apoyo (derecha)",
+      "default": "Siempre a tu lado"
     },
     {
       "type": "text",

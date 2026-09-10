@@ -161,6 +161,25 @@
       margin-top: 12px;
     }
   }
+
+  /* Montibello pixel-fidelity: reference footer column headings measure
+     23px/600/-2% and links 16px/500/-1% — Horizon's default h6/rte presets
+     render noticeably smaller here (~12px/14px), reading lighter than the
+     reference. Scoped to the footer group only, !important because the
+     preset's font-size is a CSS custom property resolved via an inline
+     style attribute on the text-block wrapper. */
+  .shopify-section-group-footer-group .text-block.h6 :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .shopify-section-group-footer-group .text-block.rte :is(p, a) {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1.6 !important;
+  }
 {% endstylesheet %}
 
 {% schema %}

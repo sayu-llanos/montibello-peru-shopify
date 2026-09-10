@@ -1241,10 +1241,22 @@
      that: 17px top/bottom + 44px icons + 1px border ≈ 80px. */
   .header:not(.header--compact) {
     --header-padding: 17.5px;
+    /* Reference nav line-height is ~1.1x font-size (19.7px on 18px labels).
+       Horizon's --menu-font-sm--line-height defaults to a ~1.67x multiplier
+       tuned for a smaller base size, which on our 18px labels reads as a
+       tall, heavy row. Overriding the underlying variable (rather than the
+       inline --menu-top-level-font-line-height alias) lets it cascade
+       normally without !important. */
+    --menu-font-sm--line-height: 1.1;
   }
 
   .header .menu-list__link-title {
-    padding-inline: 16px;
+    /* Reduced from Horizon's 16px default: Montserrat renders visibly wider
+       than TT Commons at the same nominal size, and the reference fits 7
+       top-level items in the same header row — our 6 need tighter spacing
+       to avoid a premature overflow ("Más") collapse at 1280px. */
+    padding-inline: 11px;
+    letter-spacing: 0.02em;
   }
 
   /* Reference logo sits at x=30 at 1440px; Horizon's default desktop
@@ -1290,6 +1302,14 @@
     .header .account-button {
       display: none;
     }
+  }
+
+  /* Reference header icons measure 20x20 — Horizon's default --icon-size-sm
+     (22px) reads slightly heavier at this scale. */
+  .header .svg-wrapper,
+  .header .svg-wrapper > svg {
+    width: 20px;
+    height: 20px;
   }
 
   /* Montibello pixel-fidelity — mobile header (reference: 56px tall, logo

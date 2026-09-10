@@ -1,0 +1,222 @@
+{%- comment -%}
+  Reproduces the official homepage's rotating campaign hero (UIkit
+  `.uk-slideshow`, `ratio: 16:6`, no autoplay — manual arrow navigation
+  only, matching the reference exactly). Each slide is a block: bundled
+  campaign image + eyebrow/logo + heading + text + CTA, one per confirmed
+  Peru range (Under / HOP / Luxlight). Does not add slides for ranges
+  outside Peru's approved commercial scope (m.lab, Éclat, Dénuée, HOP Sun
+  Care) even though the current official rotation includes them.
+{%- endcomment -%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-hero-slider spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+  data-montibello-hero-slider
+>
+  <div class="montibello-hero-slider__track" data-montibello-hero-slider-track>
+    {% content_for 'blocks' %}
+  </div>
+
+  <button type="button" class="montibello-hero-slider__nav montibello-hero-slider__nav--prev" aria-label="Diapositiva anterior" data-montibello-hero-slider-prev>
+    <svg width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M3.3.1c.2-.2.5-.2.7,0,.2.2.2.5,0,.7L1.2,3.7l2.8,2.8c.2.2.2.5,0,.7s-.5.2-.7,0L.1,4c-.2-.2-.2-.5,0-.7L3.3.1ZM.5,3.2h16.2v.5s0,.5,0,.5H.5v-.5s0-.5,0-.5Z" fill="currentColor" />
+    </svg>
+  </button>
+  <button type="button" class="montibello-hero-slider__nav montibello-hero-slider__nav--next" aria-label="Siguiente diapositiva" data-montibello-hero-slider-next>
+    <svg width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13.7.1c-.2-.2-.5-.2-.7,0-.2.2-.2.5,0,.7l2.8,2.9-2.8,2.8c-.2.2-.2.5,0,.7s.5.2.7,0L16.9,4c.2-.2.2-.5,0-.7L13.7.1ZM16.5,3.2H.3v.5s0,.5,0,.5h16.2v-.5s0-.5,0-.5Z" fill="currentColor" />
+    </svg>
+  </button>
+
+  <div class="montibello-hero-slider__dots" data-montibello-hero-slider-dots></div>
+
+  <script>
+  (function () {
+    var root = document.currentScript.closest('[data-montibello-hero-slider]');
+    if (!root) return;
+    var track = root.querySelector('[data-montibello-hero-slider-track]');
+    // Shopify wraps each `content_for 'blocks'` item in its own
+    // `.shopify-block` div, so the actual slide elements are grandchildren
+    // of track, not track.children directly.
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.montibello-hero-slide'));
+    var prev = root.querySelector('[data-montibello-hero-slider-prev]');
+    var next = root.querySelector('[data-montibello-hero-slider-next]');
+    var dotsWrap = root.querySelector('[data-montibello-hero-slider-dots]');
+    if (slides.length <= 1) {
+      if (prev) prev.hidden = true;
+      if (next) next.hidden = true;
+      return;
+    }
+
+    var index = 0;
+    var dots = slides.map(function (_, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'montibello-hero-slider__dot';
+      dot.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+      dot.addEventListener('click', function () {
+        goTo(i);
+      });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    function render() {
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === index);
+        slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === index);
+      });
+    }
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      render();
+    }
+
+    prev.addEventListener('click', function () {
+      goTo(index - 1);
+    });
+    next.addEventListener('click', function () {
+      goTo(index + 1);
+    });
+
+    root.classList.add('js-hero-ready');
+    render();
+  })();
+  </script>
+</div>
+
+{% stylesheet %}
+  .montibello-hero-slider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .montibello-hero-slider__track {
+    position: relative;
+    aspect-ratio: 375 / 469;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-hero-slider__track {
+      /* Reference: uk-slideshow ratio 16:6 (≈2.667:1), matching the
+         2560×960 campaign photography — no autoplay confirmed on the live
+         reference, so navigation is manual-arrow-only. */
+      aspect-ratio: 2560 / 960;
+    }
+  }
+
+  .montibello-hero-slider__nav {
+    /* Matches the reference's arrow treatment used identically across every
+       carousel on the homepage (hero, ranges, product, magazine, community):
+       a 50x50 circle at rgba(0,0,0,0.32), flush with the slide edge. */
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    padding: 0;
+    background: rgba(0, 0, 0, 0.32);
+    border: none;
+    border-radius: 50%;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .montibello-hero-slider__nav:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .montibello-hero-slider__nav--prev {
+    left: 0;
+  }
+
+  .montibello-hero-slider__nav--next {
+    right: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-hero-slider__nav {
+      display: flex;
+    }
+  }
+
+  .montibello-hero-slider__dots {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+  }
+
+  .montibello-hero-slider__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .montibello-hero-slider__dot.is-active {
+    background: #FFFFFF;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero — Slider Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "hero-slide" }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero — Slider Montibello"
+    }
+  ]
+}
+{% endschema %}

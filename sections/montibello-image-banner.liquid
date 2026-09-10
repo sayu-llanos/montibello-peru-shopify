@@ -270,7 +270,10 @@
       z-index: 1;
       color: #fff;
       background: transparent;
-      padding: 4rem 5rem;
+      padding-block: 3rem;
+      /* Reference hero copy sits at x≈30px, not the 5rem/80px this inherited
+         from Horizon's generic banner padding scale. */
+      padding-inline: 30px;
     }
   }
 
@@ -290,6 +293,36 @@
     }
   }
 
+  /* Fidelity sprint: the reference HOME hero reads as a slideshow slide, not
+     a bespoke landing hero — a compact ~40px/40px headline and a wider,
+     16px/20px body column, not the theme's default h1 display scale
+     (~56px) and "narrow" (~19.5em) copy width. Horizon sets both the
+     heading/paragraph font metrics and the --max-width custom property via
+     its own type-preset classes (.text-block.h1, .text-block.rte), so
+     !important is required to win over those preset rules without
+     changing the sitewide h1/rte presets. Scoped to the full-bleed desktop
+     hero only. */
+  @media screen and (min-width: 750px) {
+    .montibello-banner--full .montibello-banner__content--on-media .text-block.h1 {
+      --max-width: 417px !important;
+    }
+
+    .montibello-banner--full .montibello-banner__content--on-media .text-block.h1 :is(h1, h2, h3) {
+      font-size: 40px !important;
+      line-height: 40px !important;
+      font-weight: 600 !important;
+    }
+
+    .montibello-banner--full .montibello-banner__content--on-media .text-block.rte {
+      --max-width: 417px !important;
+    }
+
+    .montibello-banner--full .montibello-banner__content--on-media .text-block.rte :is(p) {
+      font-size: 16px !important;
+      line-height: 20px !important;
+    }
+  }
+
   .montibello-banner__content .button-unstyled {
     font-size: 1rem;
     font-weight: 600;
@@ -297,7 +330,9 @@
 
   @media screen and (min-width: 750px) {
     .montibello-banner--full .montibello-banner__content--on-media .button-unstyled {
-      font-size: 1.4375rem;
+      /* Reference CTA reads as a modest text link, not an oversized
+         display-scale button — balanced against the new 40px headline. */
+      font-size: 1rem;
       color: #fff;
     }
   }

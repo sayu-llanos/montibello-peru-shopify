@@ -38,13 +38,21 @@
     overflow: hidden;
     border-radius: 5px;
     background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
   }
 
   .montibello-product-teaser-card__image {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* Real product packshots (transparent PNG, varied native ratios) must
+       show the whole product like a real PDP packshot — object-fit: cover
+       would crop bottles/tubes unpredictably depending on their aspect
+       ratio. */
+    object-fit: contain;
   }
 
   .montibello-product-teaser-card__title {

@@ -1,0 +1,59 @@
+{%- comment -%}
+  Renders the bundled Montibello wordmark (assets/montibello-logo.svg) in the
+  footer's first column, matching the reference's footer treatment (a plain
+  logo image, not a "Montibello Perú" text heading). A generic `text` block
+  can't reach `asset_url` — its content is static HTML, not re-parsed as
+  Liquid — so this is a dedicated block instead.
+{%- endcomment -%}
+
+<div class="montibello-footer-logo spacing-style" style="{% render 'spacing-style', settings: block.settings %}" {{ block.shopify_attributes }}>
+  <img
+    src="{{ 'montibello-logo.svg' | asset_url }}"
+    alt="Montibello"
+    width="150"
+    height="26"
+    loading="lazy"
+    class="montibello-footer-logo__image"
+  >
+</div>
+
+{% stylesheet %}
+  .montibello-footer-logo__image {
+    display: block;
+    width: 150px;
+    height: 26px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Logo Montibello",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Montibello"
+    }
+  ]
+}
+{% endschema %}
