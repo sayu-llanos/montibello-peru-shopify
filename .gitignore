@@ -6,3 +6,6 @@ node_modules/
 *.log
 source-assets/
 .mc-scratch/
+
+# Local Playwright MCP state
+.playwright-mcp/
