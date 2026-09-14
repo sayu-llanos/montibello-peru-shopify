@@ -1,0 +1,269 @@
+{%- comment -%}
+  Montibello PDP — PRODUCT INFORMATION.
+
+  Renders the reference pages' collapsed-by-default info rows ("Ver
+  características", "Cómo usar", "Ver todos los ingredientes", "Datos de
+  interés", "Datos técnicos"), plus an always-open technology block (matches
+  how Luxlight's reference page keeps its Bond3/Metal Shield paragraph
+  visible rather than collapsed) and a small-print claim footnote. Every row
+  is independently hidden when its metafield is blank, and the whole section
+  is hidden when none of them have content — never renders an empty
+  accordion shell.
+
+  Accordion rows use native `<details>/<summary>` (see
+  snippets/montibello-pdp-accordion-item.liquid) for keyboard accessibility
+  and semantic expanded/collapsed state, not a hidden-checkbox trick.
+
+  `montibello.features` is a list of `montibello_feature` metaobject
+  references — accessed with direct dot notation (`feature.title.value`),
+  not `feature.fields.title.value`. Shopify metaobject reference fields are
+  exposed directly on the referenced object, the `fields` wrapper does not
+  exist in Liquid.
+
+  Rendering path per field type:
+  - Rich text fields (`how_to_use`, `interest_data`, `technology_description`,
+    `technical_data`, and the metaobject fields `feature.description` /
+    `ingredient.description` in the other PDP sections) are rendered with
+    `| metafield_tag` on the field drop itself (not `.value`) — the
+    type-aware rendering path for `rich_text_field`. `.value` is kept only
+    for blank/presence checks, never for HTML output.
+  - `full_ingredients` is Multi-line text (`multi_line_text_field`) and was
+    already fixed to the same pattern in an earlier round: its `.value` is a
+    plain string with literal `\n` characters, which browsers collapse into
+    single spaces if printed directly. It's rendered via `| metafield_tag`
+    on the metafield object, which preserves line breaks. Left unchanged
+    here — still Multi-line text, not Rich text.
+{%- endcomment -%}
+
+{% liquid
+  assign features = product.metafields.montibello.features.value
+  assign how_to_use_field = product.metafields.montibello.how_to_use
+  assign how_to_use = how_to_use_field.value
+  assign full_ingredients_field = product.metafields.montibello.full_ingredients
+  assign ingredients = full_ingredients_field.value
+  assign interest_data_field = product.metafields.montibello.interest_data
+  assign interest_data = interest_data_field.value
+  assign technical_data_field = product.metafields.montibello.technical_data
+  assign technical_data = technical_data_field.value
+  assign technology_heading = product.metafields.montibello.technology_heading.value
+  assign technology_description_field = product.metafields.montibello.technology_description
+  assign technology_description = technology_description_field.value
+  assign claim_footnote = product.metafields.montibello.claim_footnote.value
+
+  assign has_features = false
+  for feature in features
+    assign has_features = true
+    break
+  endfor
+
+  assign has_technology = false
+  if technology_heading != blank or technology_description != blank
+    assign has_technology = true
+  endif
+
+  assign has_any_content = false
+  if has_features or how_to_use != blank or ingredients != blank or interest_data != blank or technical_data != blank or has_technology or claim_footnote != blank
+    assign has_any_content = true
+  endif
+%}
+
+{% if has_any_content %}
+  <div
+    class="section section--{{ section.settings.section_width }} montibello-pdp-details spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    <div class="montibello-pdp-details__inner">
+      {% if has_technology %}
+        <div class="montibello-pdp-details__technology">
+          {% if technology_heading != blank %}
+            <h2 class="montibello-pdp-details__technology-heading">{{ technology_heading }}</h2>
+          {% endif %}
+          {% if technology_description != blank %}
+            <div class="montibello-pdp-details__technology-description">{{ technology_description_field | metafield_tag }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="montibello-pdp-details__accordion">
+        {% if has_features %}
+          {% capture features_content %}
+            <ul class="montibello-pdp-details__feature-list">
+              {% for feature in features %}
+                <li>
+                  {% if feature.title.value != blank %}<strong>{{ feature.title.value }}:</strong>{% endif %}
+                  {% if feature.description.value != blank %}
+                    {{ feature.description | metafield_tag }}
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endcapture %}
+          {% render 'montibello-pdp-accordion-item', label: 'Ver características', content: features_content %}
+        {% endif %}
+
+        {% if how_to_use != blank %}
+          {% assign how_to_use_label = 'Cómo usar ' | append: product.title %}
+          {% assign how_to_use_tag = how_to_use_field | metafield_tag %}
+          {% render 'montibello-pdp-accordion-item', label: how_to_use_label, content: how_to_use_tag %}
+        {% endif %}
+
+        {% if ingredients != blank %}
+          {% assign ingredients_tag = full_ingredients_field | metafield_tag %}
+          {% capture ingredients_content %}<div class="montibello-pdp-details__ingredients">{{ ingredients_tag }}</div>{% endcapture %}
+          {% render 'montibello-pdp-accordion-item', label: 'Ver todos los ingredientes', content: ingredients_content %}
+        {% endif %}
+
+        {% if interest_data != blank %}
+          {% assign interest_data_tag = interest_data_field | metafield_tag %}
+          {% render 'montibello-pdp-accordion-item', label: 'Datos de interés', content: interest_data_tag %}
+        {% endif %}
+
+        {% if technical_data != blank %}
+          {% assign technical_data_tag = technical_data_field | metafield_tag %}
+          {% render 'montibello-pdp-accordion-item', label: 'Datos técnicos', content: technical_data_tag %}
+        {% endif %}
+      </div>
+
+      {% if claim_footnote != blank %}
+        <p class="montibello-pdp-details__footnote">{{ claim_footnote }}</p>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .montibello-pdp-details__inner {
+    max-width: 700px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-pdp-details__technology {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-details__technology-heading {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .montibello-pdp-details__technology-description {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .montibello-pdp-details__feature-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .montibello-pdp-details__ingredients {
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .montibello-pdp-details__footnote {
+    margin: 20px 0 0;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  /* montibello-pdp-accordion-item — shared accessible <details>/<summary>
+     accordion, rendered via snippets/montibello-pdp-accordion-item.liquid.
+     Styled here (rather than in the snippet) because the stylesheet tag is
+     section/block scoped and this is currently the only section using it. */
+  .montibello-pdp-accordion-item {
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-accordion-item:first-child {
+    border-top: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-accordion-item__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    list-style: none;
+  }
+
+  .montibello-pdp-accordion-item__label::-webkit-details-marker {
+    display: none;
+  }
+
+  .montibello-pdp-accordion-item__icon {
+    width: 10px;
+    height: 10px;
+    flex: none;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+
+  .montibello-pdp-accordion-item[open] .montibello-pdp-accordion-item__label .montibello-pdp-accordion-item__icon {
+    transform: rotate(-135deg);
+  }
+
+  .montibello-pdp-accordion-item__content {
+    padding: 0 4px 18px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Información",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,363 @@
+{%- comment -%}
+  Montibello PDP — PRODUCT MAIN.
+
+  Reuses Shopify's native `_product-media-gallery` block (real product media,
+  zoom, thumbnails — the same block the stock `product-information` section
+  uses) rather than rebuilding a gallery, since that logic already handles
+  video/model media correctly. `closest.product: product` is passed
+  explicitly to the block, matching the same pattern the stock
+  `product-information-content` snippet uses (`content_for 'block', type:
+  '_product-media-gallery', ..., closest.product: product`) — the gallery's
+  own renderer (`snippets/product-media-gallery-content.liquid`) reads
+  `closest.product` directly and shows an empty state when it's blank, so it
+  cannot be left to ambient inheritance. This section also emits the
+  product's structured data (`{{ product | structured_data }}`) the same way
+  the stock section does, so the alternate template still gets correct
+  Product JSON-LD — the montibello template does not render any other
+  section that would duplicate it.
+
+  Everything else here is bespoke Montibello copy driven by
+  `product.metafields.montibello.*`, each piece hidden when blank so an
+  unfinished/unapproved product never shows an empty label.
+
+  No Shopify `buy-buttons`/`price`/`variant-picker` blocks are used: Peru has
+  no approved prices or inventory yet, and showing Shopify's native buy UI
+  with no price would read as a fake `$0.00` storefront. Instead a real
+  Shopify variant (when more than the default exists, e.g. HOP `Size`) is
+  offered as a plain server-rendered link to `?variant={id}` — zero JS,
+  no fabricated cart state — and the actual "buy" path is the Tiendas
+  Aliadas CTA below, per the current Peru commercial model (allied external
+  retailers, not Shopify checkout).
+
+  The custom size selector below is only combination-safe for a SINGLE
+  option (e.g. HOP's `Size`): it picks the first variant whose value at that
+  option's position matches, which is only correct when there is nothing
+  else that could vary. It is therefore deliberately restricted to products
+  with exactly one option. A future product needing two or more options
+  (e.g. Size + Shade) must not use this selector — embed Shopify's native
+  `_variant-picker` block instead, which resolves full option combinations
+  correctly.
+{%- endcomment -%}
+
+{% liquid
+  assign range = product.metafields.montibello.range.value
+  assign subfamily = product.metafields.montibello.subfamily.value
+  assign functional_subtitle = product.metafields.montibello.functional_subtitle.value
+  assign professional_only = product.metafields.montibello.professional_only.value
+  assign hair_type = product.metafields.montibello.hair_type.value
+
+  assign current_variant = product.selected_or_first_available_variant
+
+  # Mirror montibello-allied-stores.liquid's own offer resolution exactly —
+  # a variant-level override list replaces the product-level list, and an
+  # offer only counts when active AND it has a destination URL — so the CTA
+  # only appears when the section it links to will actually render content.
+  assign variant_offers = current_variant.metafields.montibello.allied_store_offers.value
+  assign product_offers = product.metafields.montibello.allied_store_offers.value
+
+  assign has_variant_offers = false
+  for offer in variant_offers
+    assign has_variant_offers = true
+    break
+  endfor
+
+  assign allied_offers = product_offers
+  if has_variant_offers
+    assign allied_offers = variant_offers
+  endif
+
+  assign has_allied_offers = false
+  for offer in allied_offers
+    if offer.active.value == true and offer.product_url.value != blank
+      assign has_allied_offers = true
+    endif
+  endfor
+
+  assign show_format = false
+  if current_variant.title != blank and current_variant.title != 'Default Title'
+    assign show_format = true
+  endif
+
+  assign show_variant_selector = false
+  if product.has_only_default_variant == false and product.options_with_values.size == 1
+    assign show_variant_selector = true
+  endif
+%}
+
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-pdp-main spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="montibello-pdp-main__grid">
+    <div class="montibello-pdp-main__media">
+      {% content_for 'block', type: '_product-media-gallery', id: 'media-gallery', closest.product: product %}
+    </div>
+
+    <div class="montibello-pdp-main__details">
+      {% if range != blank or subfamily != blank %}
+        <p class="montibello-pdp-main__eyebrow">
+          {{ range }}{% if range != blank and subfamily != blank %} · {% endif %}{{ subfamily }}
+        </p>
+      {% endif %}
+
+      <h1 class="montibello-pdp-main__title">{{ product.title }}</h1>
+
+      {% if functional_subtitle != blank %}
+        <p class="montibello-pdp-main__subtitle">{{ functional_subtitle }}</p>
+      {% endif %}
+
+      {% if professional_only or hair_type != blank or show_format %}
+        <ul class="montibello-pdp-main__tags">
+          {% if professional_only %}
+            <li class="montibello-pdp-main__tag montibello-pdp-main__tag--professional">Exclusivo Profesional</li>
+          {% endif %}
+          {% if show_format %}
+            <li class="montibello-pdp-main__tag">{{ current_variant.title }}</li>
+          {% endif %}
+          {% if hair_type != blank %}
+            <li class="montibello-pdp-main__tag">{{ hair_type }}</li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      {% if product.description != blank %}
+        <div class="montibello-pdp-main__description">{{ product.description }}</div>
+      {% endif %}
+
+      {% if show_variant_selector %}
+        <div class="montibello-pdp-main__variants">
+          {% for option in product.options_with_values %}
+            {% assign option_index = option.position | minus: 1 %}
+            <fieldset class="montibello-pdp-main__variant-group">
+              <legend class="montibello-pdp-main__variant-label">{{ option.name }}</legend>
+              <div class="montibello-pdp-main__variant-pills">
+                {% for value in option.values %}
+                  {% for variant in product.variants %}
+                    {% if variant.options[option_index] == value %}
+                      <a
+                        href="{{ product.url }}?variant={{ variant.id }}"
+                        class="montibello-pdp-main__variant-pill{% if variant.id == current_variant.id %} is-selected{% endif %}"
+                        {% if variant.id == current_variant.id %}aria-current="true"{% endif %}
+                      >
+                        {{ value }}
+                      </a>
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </div>
+            </fieldset>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if has_allied_offers %}
+        <a href="#montibello-allied-stores-{{ product.id }}" class="montibello-pdp-main__cta">
+          Tiendas aliadas
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-pdp-main__grid {
+    display: grid;
+    gap: 40px;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding-inline: 30px;
+      align-items: start;
+    }
+  }
+
+  .montibello-pdp-main__media {
+    background: var(--color-background-secondary, #ece7dc);
+  }
+
+  .montibello-pdp-main__details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @media screen and (min-width: 750px) {
+      position: sticky;
+      top: calc(var(--header-height, 0px) + 30px);
+    }
+  }
+
+  .montibello-pdp-main__eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    opacity: 0.65;
+  }
+
+  .montibello-pdp-main__title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-pdp-main__subtitle {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+  }
+
+  .montibello-pdp-main__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .montibello-pdp-main__tag {
+    padding: 6px 14px;
+    border: 1px solid var(--color-border, #e4dfd4);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .montibello-pdp-main__tag--professional {
+    background: #2e2d2c;
+    color: #ffffff;
+    border-color: #2e2d2c;
+  }
+
+  .montibello-pdp-main__description {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .montibello-pdp-main__variants {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .montibello-pdp-main__variant-group {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .montibello-pdp-main__variant-label {
+    padding: 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    opacity: 0.65;
+  }
+
+  .montibello-pdp-main__variant-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .montibello-pdp-main__variant-pill {
+    padding: 8px 18px;
+    border: 1px solid #2e2d2c;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2e2d2c;
+    text-decoration: none;
+  }
+
+  .montibello-pdp-main__variant-pill.is-selected {
+    background: #2e2d2c;
+    color: #ffffff;
+  }
+
+  .montibello-pdp-main__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 8px;
+    padding: 0 28px;
+    height: 48px;
+    background: #2e2d2c;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Principal",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ]
+}
+{% endschema %}

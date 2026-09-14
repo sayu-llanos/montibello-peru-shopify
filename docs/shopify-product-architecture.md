@@ -1,8 +1,11 @@
 # Shopify Product Architecture
 
 Decision date: 2026-09-14
+Namespace resolved: 2026-09-14 (Codex PDP fix round)
 
 This document defines the canonical Shopify product, variant, metafield, and metaobject model for the 92 confirmed Montibello Peru catalog rows. It is an architecture specification only. No Shopify product, collection, metafield, metaobject, theme, or storefront change has been made.
+
+**Namespace note:** this document originally proposed a `custom.*` metafield namespace. That proposal is retired. The theme's PDP build (`templates/product.montibello.json` and the `montibello-product-*`/`montibello-allied-stores`/`montibello-shade-browser` sections) uses namespace `montibello` with the field names below, and this document has been updated to match — there is now one naming scheme, not two. See `docs/product-pages/product-data-schema.md` for the field-by-field type table the theme actually reads. Metaobject type handles below are likewise prefixed `montibello_` to match the implemented types.
 
 ## Executive Recommendation
 
@@ -38,13 +41,13 @@ The row-level decisions are recorded in:
 
 **Decision: option C, one informational colour-system PDP plus structured shade metaobjects.**
 
-Create one canonical PDP at `under-permanent-colour`. It explains the permanent colour system and renders the 57 confirmed shades as a filterable or grouped colour chart. Each shade is an `under_shade` metaobject, not a Shopify variant.
+Create one canonical PDP at `under-permanent-colour`. It explains the permanent colour system and renders the 57 confirmed shades as a filterable or grouped colour chart. Each shade is a `montibello_under_shade` metaobject, not a Shopify variant.
 
 This is preferable to 57 separate PDPs because the official Montibello presentation treats UNDER as one product system with a colour chart. It is also preferable to 57 current variants because the source values are shade identifiers, not confirmed Peru ERP SKUs. Creating variants now would falsely imply SKU, price, inventory, and purchase readiness.
 
 The informational PDP must remain non-purchasable until Montibello Peru defines the intended transaction model. Shopify's unavoidable default variant must have no fabricated SKU, barcode, price, or inventory value and must not be presented as a shade choice.
 
-If Peru later confirms ERP SKUs and direct shade purchasing, each commerce variant should use option `Shade` and reference its existing `under_shade` metaobject through a variant metafield. The metaobject remains the durable shade-chart record; the ERP variant becomes the commerce record.
+If Peru later confirms ERP SKUs and direct shade purchasing, each commerce variant should use option `Shade` and reference its existing `montibello_under_shade` metaobject through a variant metafield. The metaobject remains the durable shade-chart record; the ERP variant becomes the commerce record.
 
 ### UNDER Activators And Monodoses
 
@@ -91,39 +94,65 @@ Use Shopify's native product fields for title, handle, vendor, product type, sta
 
 ### Product Metafields
 
-| Proposed definition | Type | Purpose |
+Split below into what the current 3-pilot PDP build actually needs versus
+what only matters once broader commerce/ERP/catalog work is enabled — so
+reviewing or defining the pilot's fields in Admin is never blocked on
+future-only work. Every field uses namespace `montibello`, one exact
+Shopify type each (no "type A or type B" fields).
+
+#### A. PDP release definitions required now
+
+These are read by `templates/product.montibello.json` today and are needed
+to review the 3 pilot products (UNDER Permanent Colour, HOP Ultra Repair
+Shampoo, Luxlight Supreme Lightener 9+):
+
+| Definition | Type | Purpose |
 |---|---|---|
-| `custom.range` | Single line text or controlled metaobject reference | UNDER, HOP, LUXLIGHT, or HOP Keratin grouping |
-| `custom.subfamily` | Single line text or controlled metaobject reference | Color Last, Smooth Hydration, Ultra Repair, and equivalent families |
-| `custom.commercial_status` | Single line text with validation | `ACTIVE PORTFOLIO` or `COMING SOON`; never infer in-stock status |
-| `custom.pdp_mode` | Single line text with validation | `commercial`, `informational`, or `coming_soon` |
-| `custom.benefits` | Rich text | Approved product benefits |
-| `custom.how_to_use` | Rich text | Approved application instructions and professional warnings |
-| `custom.ingredients_inci` | Multi-line text | Full approved INCI in source order; do not split or normalize without approval |
-| `custom.ingredient_highlights` | List of metaobject references | Reusable, approved ingredient callouts only |
-| `custom.hair_needs` | List of metaobject references | Controlled hair type or need taxonomy |
-| `custom.technical_data` | Rich text | Lift, pH, mixing ratio, processing details, and system-component quantities |
-| `custom.developer_volume` | Integer or single line text | Product-level vol value for concentration-specific developer PDPs |
-| `custom.developer_percentage` | Decimal | Product-level peroxide percentage when confirmed |
-| `custom.shades` | List of `under_shade` references | Ordered shade chart for the informational UNDER PDP |
-| `custom.routine` | `hair_routine` reference | Connects a product to an approved regimen |
-| `custom.allied_store_offers` | List of `allied_store_offer` references | Ordered product-level and variant-level retailer links |
+| `montibello.range` | Single line text | UNDER, HOP, LUXLIGHT, or HOP Keratin grouping |
+| `montibello.subfamily` | Single line text | Color Last, Smooth Hydration, Ultra Repair, and equivalent families |
+| `montibello.functional_subtitle` | Single line text | The all-caps functional subtitle shown under the title on the reference PDPs (e.g. "COLORACIÓN PERMANENTE DE ALTA COBERTURA...") |
+| `montibello.hair_type` | Single line text | Optional per-product hair type/target tag |
+| `montibello.professional_only` | Boolean | "Exclusivo Profesional" badge |
+| `montibello.features` | List of `montibello_feature` references | Approved product benefits/characteristics, read as plain text (accordion) and as visual cards (Benefits section) |
+| `montibello.how_to_use` | Rich text | Approved application instructions and professional warnings |
+| `montibello.full_ingredients` | Multi-line text | Full approved INCI in source order; do not split or normalize without approval. Rendered via `metafield_tag` in the theme, not raw `.value`, to preserve line breaks. |
+| `montibello.key_ingredients` | List of `montibello_ingredient` references | Reusable, approved ingredient callouts only |
+| `montibello.interest_data` | Rich text | Short approved claim lines ("Datos de interés") |
+| `montibello.technology_heading` / `montibello.technology_description` | Single line text / Rich text | Always-open technology block (e.g. Luxlight's Bond3/Metal Shield story) |
+| `montibello.technical_data` | Rich text | Lift, pH, mixing ratio, processing details, and system-component quantities (Luxlight pilot) |
+| `montibello.claim_footnote` | Single line text | Small-print claim qualifier |
+| `montibello.shades` | List of `montibello_under_shade` references | Ordered shade chart for the informational UNDER PDP |
+| `montibello.routine` | List of `montibello_routine_step` references | One metaobject per numbered step, each with its own `products` list — connects a product to an approved regimen without needing a separate higher-level routine record (HOP pilot) |
+| `montibello.allied_store_offers` | List of `montibello_allied_store_offer` references | Ordered product-level retailer links — the PDP's current CTA mechanism; the definition is needed now even though real retailer records aren't authored yet |
 
 Do not populate these fields from assumptions. Empty approved content is preferable to generated claims.
+
+#### B. Future commerce / ERP definitions
+
+Not read by any current PDP section. Needed only once the corresponding
+future work is undertaken — defining these now is optional catalog-planning
+groundwork, not a blocker for the current pilot:
+
+| Definition | Type | Needed once… |
+|---|---|---|
+| `montibello.commercial_status` | Single line text with validation (`ACTIVE PORTFOLIO` / `COMING SOON`) | The full 92-row catalog (beyond the 3 pilots) is being published, so publication status can be tracked per product; never infer in-stock status from it |
+| `montibello.pdp_mode` | Single line text with validation (`commercial` / `informational` / `coming_soon`) | Same catalog-wide publication rollout as above |
+| `montibello.developer_volume` | Single line text (values like "10 vol / 3%" are display/domain labels, not arithmetic — not Integer or Decimal) | The separate Luxlight Supreme Oil Developer 10vol/20vol/30vol PDPs are built — none of the 3 current pilots are a developer product |
+| `montibello.developer_percentage` | Decimal | Same developer-PDP rollout as above, once a peroxide percentage is confirmed |
 
 ### Variant Metafields
 
 Keep variant data minimal:
 
-- Use native SKU and HOP `Size` option values for the 35 confirmed commerce records.
-- Add `custom.content_amount` only if a typed quantity is needed independently of the display option.
-- Add `custom.shade` as an `under_shade` reference only when a confirmed ERP-backed UNDER shade variant is created later.
+- Use native SKU and HOP `Size` option values for the 35 confirmed commerce records. **(A — required now** for the HOP Ultra Repair Shampoo pilot's size variants.)
+- Keep size- or SKU-specific Tiendas Aliadas links in `montibello.allied_store_offers` directly on the variant (overriding, not merging with, the product-level list) rather than embedding retailer-specific columns on each variant. **(A — required now.)**
+- Add `montibello.content_amount` only if a typed quantity is needed independently of the display option. **(B — future,** only if a product needs a quantity that isn't already the variant's own option value.)
+- Add `montibello.shade` as a `montibello_under_shade` reference only when a confirmed ERP-backed UNDER shade variant is created later. **(B — future,** gated on Peru ERP SKU confirmation for the 57 shades — see Implementation Gates.)
 - Do not create strength variant metafields in the current architecture because developer concentrations are separate PDPs.
-- Keep size- or SKU-specific Tiendas Aliadas links in `allied_store_offer`, with an optional variant reference, rather than embedding retailer-specific columns on each variant.
 
 ## Metaobjects
 
-### `under_shade`
+### `montibello_under_shade`
 
 Recommended fields:
 
@@ -135,31 +164,30 @@ Recommended fields:
 - `swatch` or `image`: blank unless an approved shade-accurate asset is supplied.
 - `sort_order`: preserves official chart order.
 - `is_elevated_warmth`: boolean only for the seven catalog-confirmed additions.
+- `active`: opt-out boolean (blank/unset = active; only an explicit `false` retires a shade).
 
 The source map's 57 shade rows are the input ledger for these records. Their `source_sku` values are catalog identifiers despite the inherited source-column name.
 
-### `hair_need`
+### `montibello_feature` ("PRODUCT FEATURE")
 
-Use a controlled reusable record with title, handle, approved description, and optional image. This prevents inconsistent free-text hair-type labels across products and collection filters.
+Use a controlled reusable record with title, approved rich-text description, and optional image — covers both hair-need/benefit callouts and general product characteristics. This prevents inconsistent free-text labels across products and collection filters.
 
-### `ingredient_highlight`
+### `montibello_ingredient` ("KEY INGREDIENT")
 
-Use for reusable approved ingredient stories with display name, approved benefit copy, and optional image. Keep the legally ordered full INCI in the product metafield, not in this promotional model.
+Use for reusable approved ingredient stories with title, approved rich-text description, and optional image. Keep the legally ordered full INCI in the product metafield (`montibello.full_ingredients`), not in this promotional model.
 
-### `hair_routine`
+### `montibello_routine_step` ("ROUTINE STEP")
 
-Recommended fields are title, subfamily, ordered product references, step labels, and approved guidance. A routine should connect Shampoo, Rinse, Mask, and leave-in products without merging them into one PDP.
+One metaobject per numbered step: `step_number`, `label`, and an ordered list of product references (`products`). A step connecting more than one product (e.g. Ultra Repair Shampoo's step 2 = Mask + Rinse) holds all of them in that one step's `products` list — it does not need a second metaobject sharing the same `step_number`.
 
-### `retailer` And `allied_store_offer`
+### `montibello_retailer` And `montibello_allied_store_offer`
 
-`retailer` should hold the approved retailer name, logo, and base identity. `allied_store_offer` should hold:
+`montibello_retailer` should hold the approved retailer name, logo, and optional website — entered once per retailer, then referenced from every offer that retailer appears in. `montibello_allied_store_offer` should hold:
 
-- retailer reference;
-- product reference;
-- optional variant reference;
-- exact approved destination URL;
-- optional region or channel label;
-- active flag and display order.
+- `retailer`: reference to a `montibello_retailer`;
+- `product_url`: exact approved destination URL (required — an offer with no URL never renders);
+- `button_label`: optional, defaults to "Ver en tienda";
+- `active`: opt-in boolean — must be explicitly `true`, together with a non-blank `product_url`, for the offer to render.
 
 Do not store availability, price, or stock unless Montibello Peru receives and maintains authoritative retailer data.
 

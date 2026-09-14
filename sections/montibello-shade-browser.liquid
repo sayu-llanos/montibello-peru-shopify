@@ -1,0 +1,234 @@
+{%- comment -%}
+  Montibello PDP — UNDER shade browser.
+
+  The 57 UNDER shades are NOT 27 Shopify variants (per
+  docs/shopify-product-architecture.md) — they are `montibello_under_shade`
+  metaobjects referenced by the informational `under-permanent-colour`
+  product's `montibello.shades` metafield. This section only ever renders on
+  that one PDP (any other product simply has no `shades` value and the
+  section stays hidden). Shades are grouped by `shade_family` to match the
+  official colour-chart presentation. A shade renders its real swatch color
+  only when one was authored on the metaobject — never a guessed or
+  generated hex value; without one it shows a neutral placeholder chip with
+  just the code, which is still useful as a chart reference. A shade is
+  hidden only when its `active` field is explicitly set to false — left
+  blank/unset, it is treated as active, since the field is an opt-out flag
+  for retiring a shade, not an opt-in gate.
+
+  Fields are accessed with direct dot notation (`shade.shade_family.value`),
+  not `shade.fields.shade_family.value`. Family grouping and the "at least
+  one active shade in this family" check use plain `for`/`if` loops rather
+  than a `where: 'fields....value'` filter, which is not a supported pattern
+  for metaobject reference lists.
+
+  Every `for shade in shades` pass below is split into two chunks
+  (`limit: 50, offset: 0` and `limit: 50, offset: 50`) so all up to 57
+  confirmed shades are reachable even if a single unbounded loop over a
+  reference list were capped — this covers up to 100 shades, comfortably
+  above the current catalog.
+{%- endcomment -%}
+
+{% liquid
+  assign shades = product.metafields.montibello.shades.value
+  assign has_shades = false
+  for shade in shades
+    assign has_shades = true
+    break
+  endfor
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+{% if has_shades %}
+  <div
+    class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} montibello-shade-browser spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="montibello-shade-browser__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% comment %}
+      Discover distinct family names across both pagination chunks, without
+      using `.size` or `where` — just a string-marker accumulator over plain
+      dot-notation field access.
+    {% endcomment %}
+    {% assign seen_family_markers = '' %}
+    {% assign family_name_string = '' %}
+    {% for shade in shades limit: 50, offset: 0 %}
+      {% assign family = shade.shade_family.value | default: 'Otros' %}
+      {% assign marker = '|' | append: family | append: '|' %}
+      {% unless seen_family_markers contains marker %}
+        {% assign seen_family_markers = seen_family_markers | append: marker %}
+        {% assign family_name_string = family_name_string | append: family | append: '||' %}
+      {% endunless %}
+    {% endfor %}
+    {% for shade in shades limit: 50, offset: 50 %}
+      {% assign family = shade.shade_family.value | default: 'Otros' %}
+      {% assign marker = '|' | append: family | append: '|' %}
+      {% unless seen_family_markers contains marker %}
+        {% assign seen_family_markers = seen_family_markers | append: marker %}
+        {% assign family_name_string = family_name_string | append: family | append: '||' %}
+      {% endunless %}
+    {% endfor %}
+    {% assign family_name_list = family_name_string | split: '||' %}
+
+    {% for family_name in family_name_list %}
+      {% assign family_has_active_shade = false %}
+      {% for shade in shades limit: 50, offset: 0 %}
+        {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+        {% if shade_family == family_name and shade.active.value != false %}
+          {% assign family_has_active_shade = true %}
+        {% endif %}
+      {% endfor %}
+      {% for shade in shades limit: 50, offset: 50 %}
+        {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+        {% if shade_family == family_name and shade.active.value != false %}
+          {% assign family_has_active_shade = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% if family_has_active_shade %}
+        <h3 class="montibello-shade-browser__family">{{ family_name }}</h3>
+        <div class="montibello-shade-browser__grid">
+          {% for shade in shades limit: 50, offset: 0 %}
+            {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+            {% if shade_family == family_name and shade.active.value != false %}
+              {% render 'montibello-pdp-shade-chip', shade: shade %}
+            {% endif %}
+          {% endfor %}
+          {% for shade in shades limit: 50, offset: 50 %}
+            {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+            {% if shade_family == family_name and shade.active.value != false %}
+              {% render 'montibello-pdp-shade-chip', shade: shade %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .montibello-shade-browser__heading {
+    max-width: 1400px;
+    margin: 0 auto 24px;
+    padding-inline: 20px;
+    font-size: 26px;
+    font-weight: 700;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-shade-browser__family {
+    max-width: 1400px;
+    margin: 32px auto 12px;
+    padding-inline: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    opacity: 0.7;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-shade-browser__family:first-of-type {
+    margin-top: 0;
+  }
+
+  .montibello-shade-browser__grid {
+    display: grid;
+    gap: 12px;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-shade-browser__chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .montibello-shade-browser__swatch {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-background-secondary, #ece7dc);
+    border: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-shade-browser__code {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Carta de Color",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Carta de Color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

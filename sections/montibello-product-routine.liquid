@@ -1,0 +1,192 @@
+{%- comment -%}
+  Montibello PDP — routine.
+
+  Matches the reference PDPs' "Descubre la rutina completa" module: numbered
+  steps, where one step number can hold more than one product side by side
+  (e.g. Ultra Repair's step 2 groups Mask + Rinse together). `montibello.routine`
+  is a list of `montibello_routine_step` metaobject references, ONE metaobject
+  per numbered step (step_number, label, products — `products` is itself a
+  list, so step 2 holds both Mask and Rinse on a single metaobject rather than
+  needing two step-2 records grouped at render time). This section therefore
+  renders the list directly, in order, with no cross-entry grouping logic.
+  Fields are accessed with direct dot notation (`step.step_number.value`),
+  not `step.fields.step_number.value`.
+
+  The manager's metaobject list defines ROUTINE STEP but not a separate
+  higher-level "routine" record, so the product-level `routine` metafield is
+  implemented directly as this ordered step list rather than inventing an
+  unlisted metaobject type — see docs/product-pages/product-data-schema.md.
+{%- endcomment -%}
+
+{% liquid
+  assign steps = product.metafields.montibello.routine.value
+  assign has_steps = false
+  for step in steps
+    assign has_steps = true
+    break
+  endfor
+%}
+
+{% if has_steps %}
+  <div
+    class="section section--{{ section.settings.section_width }} montibello-pdp-routine spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="montibello-pdp-routine__heading">{{ section.settings.heading }} {{ product.title }}.</h2>
+    {% endif %}
+
+    <ol class="montibello-pdp-routine__list">
+      {% for step in steps %}
+        <li class="montibello-pdp-routine__step">
+          <span class="montibello-pdp-routine__number">{{ step.step_number.value }}</span>
+          <div class="montibello-pdp-routine__group">
+            {% assign step_products = step.products.value %}
+            {% for step_product in step_products %}
+              <a href="{{ step_product.url }}" class="montibello-pdp-routine__product-link">
+                {% if step_product.featured_image != blank %}
+                  {{
+                    step_product.featured_image
+                    | image_url: width: 300
+                    | image_tag: loading: 'lazy', class: 'montibello-pdp-routine__product-image', widths: '150,220,300'
+                  }}
+                {% endif %}
+                <span class="montibello-pdp-routine__product-title">
+                  {{ step.label.value | default: step_product.title }}
+                </span>
+              </a>
+            {% endfor %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .montibello-pdp-routine__heading {
+    max-width: 1400px;
+    margin: 0 auto 24px;
+    padding-inline: 20px;
+    font-size: 26px;
+    font-weight: 700;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-pdp-routine__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    list-style: none;
+
+    @media screen and (min-width: 750px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-pdp-routine__step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+
+    @media screen and (min-width: 750px) {
+      flex: 1 1 200px;
+    }
+  }
+
+  .montibello-pdp-routine__number {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #2e2d2c;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .montibello-pdp-routine__group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .montibello-pdp-routine__product-link {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .montibello-pdp-routine__product-image {
+    display: block;
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .montibello-pdp-routine__product-title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Rutina",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Descubre la rutina completa"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

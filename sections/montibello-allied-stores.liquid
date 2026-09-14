@@ -1,0 +1,218 @@
+{%- comment -%}
+  Montibello PDP — Tiendas Aliadas.
+
+  Peru's current commerce model routes purchases to allied external
+  retailers rather than a Shopify cart (see montibello-product-main.liquid
+  for why native buy-buttons/price aren't used). Offers come entirely from
+  `product.metafields.montibello.allied_store_offers` (a list of
+  `montibello_allied_store_offer` metaobject references, each referencing a
+  reusable `montibello_retailer` metaobject for name/logo) — never hardcoded
+  retailer names here, per the explicit management requirement. When the
+  current variant has its own offers (a size-specific retailer link), those
+  replace the product-level list for that variant; otherwise the
+  product-level offers are shown as a fallback.
+
+  An offer only renders when BOTH `active == true` AND it has a destination
+  URL — no placeholder "coming soon" stores, no fake availability, and no
+  "active but URL-less" offer is ever allowed to make the section (or the
+  main hero's CTA — see montibello-product-main.liquid) appear only to then
+  render nothing. If zero offers satisfy both conditions, the entire
+  component (including the anchor target the main CTA scrolls to) is
+  omitted.
+
+  Metaobject reference fields are accessed with direct dot notation
+  (`offer.active.value`), not `offer.fields.active.value` — the `fields`
+  wrapper does not exist in Liquid. Filtering is done with plain `for`/`if`
+  rather than a nested `where: 'fields....value'` filter, which is not a
+  supported pattern for metaobject reference lists.
+{%- endcomment -%}
+
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign variant_offers = current_variant.metafields.montibello.allied_store_offers.value
+  assign product_offers = product.metafields.montibello.allied_store_offers.value
+
+  assign has_variant_offers = false
+  for offer in variant_offers
+    assign has_variant_offers = true
+    break
+  endfor
+
+  assign offers = product_offers
+  if has_variant_offers
+    assign offers = variant_offers
+  endif
+
+  assign has_active_offers = false
+  for offer in offers
+    if offer.active.value == true and offer.product_url.value != blank
+      assign has_active_offers = true
+    endif
+  endfor
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+{% if has_active_offers %}
+  <div
+    class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    id="montibello-allied-stores-{{ product.id }}"
+    class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} montibello-allied-stores spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="montibello-allied-stores__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="montibello-allied-stores__grid">
+      {% for offer in offers %}
+        {% if offer.active.value == true and offer.product_url.value != blank %}
+          {% assign retailer = offer.retailer.value %}
+          <a
+            href="{{ offer.product_url.value | escape }}"
+            class="montibello-allied-stores__card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% if retailer.logo.value != blank %}
+              {{
+                retailer.logo.value
+                | image_url: width: 240
+                | image_tag: loading: 'lazy', class: 'montibello-allied-stores__logo', widths: '120,180,240'
+              }}
+            {% elsif retailer.name.value != blank %}
+              <span class="montibello-allied-stores__name">{{ retailer.name.value }}</span>
+            {% endif %}
+            <span class="montibello-allied-stores__button">
+              {{ offer.button_label.value | default: 'Ver en tienda' }}
+            </span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .montibello-allied-stores__heading {
+    max-width: 1400px;
+    margin: 0 auto 24px;
+    padding-inline: 20px;
+    font-size: 26px;
+    font-weight: 700;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-allied-stores__grid {
+    display: grid;
+    gap: 16px;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-allied-stores__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px 16px;
+    border: 1px solid var(--color-border, #e4dfd4);
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  .montibello-allied-stores__card:hover {
+    border-color: #2e2d2c;
+  }
+
+  .montibello-allied-stores__logo {
+    display: block;
+    max-width: 100%;
+    max-height: 40px;
+    height: auto;
+    width: auto;
+  }
+
+  .montibello-allied-stores__name {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .montibello-allied-stores__button {
+    padding: 8px 20px;
+    background: #2e2d2c;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-radius: 100px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tiendas aliadas",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Tiendas aliadas"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

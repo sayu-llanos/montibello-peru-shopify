@@ -1,0 +1,162 @@
+{%- comment -%}
+  Montibello PDP — EDITORIAL: benefits / features.
+
+  Visual card version of the same `montibello.features` list also used as
+  plain text inside the "Ver características" accordion in
+  montibello-product-details.liquid — one authored list, two presentations
+  (a short plain-text summary for the collapsed info row, a richer visual
+  module here for products where an icon/image was supplied). Hidden
+  entirely when no feature in the list has an icon/image, since otherwise
+  this section would just duplicate the accordion row with no added value.
+
+  `montibello.features` is a list of `montibello_feature` metaobject
+  references — accessed with direct dot notation (`feature.title.value`),
+  not `feature.fields.title.value`.
+
+  `feature.description` is Rich text (`rich_text_field`), rendered with
+  `| metafield_tag` on the field drop itself below — `.value` is used only
+  for the blank/presence check, never for HTML output.
+{%- endcomment -%}
+
+{% liquid
+  assign features = product.metafields.montibello.features.value
+  assign has_illustrated_feature = false
+  for feature in features
+    if feature.image.value != blank
+      assign has_illustrated_feature = true
+    endif
+  endfor
+%}
+
+{% if has_illustrated_feature %}
+  <div
+    class="section section--{{ section.settings.section_width }} montibello-pdp-benefits spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="montibello-pdp-benefits__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="montibello-pdp-benefits__grid">
+      {% for feature in features %}
+        <div class="montibello-pdp-benefits__card">
+          {% if feature.image.value != blank %}
+            {{
+              feature.image.value
+              | image_url: width: 200
+              | image_tag: loading: 'lazy', class: 'montibello-pdp-benefits__icon', widths: '100,150,200'
+            }}
+          {% endif %}
+          {% if feature.title.value != blank %}
+            <h3 class="montibello-pdp-benefits__title">{{ feature.title.value }}</h3>
+          {% endif %}
+          {% if feature.description.value != blank %}
+            <div class="montibello-pdp-benefits__description">{{ feature.description | metafield_tag }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .montibello-pdp-benefits__heading {
+    max-width: 1400px;
+    margin: 0 auto 24px;
+    padding-inline: 20px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-pdp-benefits__grid {
+    display: grid;
+    gap: 32px;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    text-align: center;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-pdp-benefits__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .montibello-pdp-benefits__icon {
+    display: block;
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  .montibello-pdp-benefits__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .montibello-pdp-benefits__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Beneficios",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Beneficios"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

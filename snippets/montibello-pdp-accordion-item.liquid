@@ -1,0 +1,26 @@
+{% doc %}
+  Renders one accessible accordion row (native `<details>/<summary>`, no JS,
+  no hidden-checkbox trick) for the Montibello PDP's PRODUCT INFORMATION
+  section. Keyboard-operable and exposes expanded/collapsed state natively
+  via the `details` element — no `display:none` control dependency. Closed
+  by default (no `open` attribute). Caller is responsible for checking the
+  underlying metafield is present before rendering — this snippet does not
+  hide itself.
+
+  @param {string} label - the closed-state row label, e.g. "Cómo usar"
+  @param {string} content - pre-rendered HTML/rich text content to reveal
+{% enddoc %}
+
+<details class="montibello-pdp-accordion-item">
+  <summary class="montibello-pdp-accordion-item__label">
+    {{ label }}
+    <span class="montibello-pdp-accordion-item__icon" aria-hidden="true"></span>
+  </summary>
+  <div class="montibello-pdp-accordion-item__content">{{ content }}</div>
+</details>
+
+{%- comment -%}
+  Styling for `.montibello-pdp-accordion-item*` lives in the CSS of whichever
+  section renders this snippet (`montibello-product-details.liquid`) —
+  the stylesheet tag is only valid in section/block files, not snippets.
+{%- endcomment -%}

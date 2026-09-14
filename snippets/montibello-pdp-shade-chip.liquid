@@ -1,0 +1,20 @@
+{% doc %}
+  Renders one UNDER shade swatch chip for montibello-shade-browser.liquid.
+  Extracted to a snippet purely to avoid duplicating this markup across the
+  two 50-item pagination passes that section runs per shade family.
+
+  @param {object} shade - a `montibello_under_shade` metaobject
+{% enddoc %}
+
+<div
+  class="montibello-shade-browser__chip"
+  title="{{ shade.display_name.value | default: shade.catalog_identifier.value }}"
+>
+  <span
+    class="montibello-shade-browser__swatch"
+    {% if shade.swatch.value != blank %}
+      style="background-color: {{ shade.swatch.value }};"
+    {% endif %}
+  ></span>
+  <span class="montibello-shade-browser__code">{{ shade.catalog_identifier.value }}</span>
+</div>

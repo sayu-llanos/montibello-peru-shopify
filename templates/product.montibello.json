@@ -1,0 +1,208 @@
+{
+  "sections": {
+    "montibello_product_main": {
+      "type": "montibello-product-main",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "one",
+            "image_gap": 4,
+            "large_first_image": true,
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "left",
+            "thumbnail_width": 64,
+            "thumbnail_radius": 0,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "cover",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [],
+      "name": "Montibello PDP — Principal",
+      "settings": {
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "montibello_product_details": {
+      "type": "montibello-product-details",
+      "name": "Montibello PDP — Información",
+      "settings": {
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 40
+      }
+    },
+    "montibello_product_ingredients": {
+      "type": "montibello-product-ingredients",
+      "name": "Montibello PDP — Ingredientes",
+      "settings": {
+        "heading": "Ingredientes principales",
+        "section_width": "page-width",
+        "background_color": "#F6F6F3",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "montibello_product_benefits": {
+      "type": "montibello-product-benefits",
+      "name": "Montibello PDP — Beneficios",
+      "settings": {
+        "heading": "Beneficios",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "montibello_shade_browser": {
+      "type": "montibello-shade-browser",
+      "name": "Montibello PDP — Carta de Color",
+      "settings": {
+        "heading": "Carta de Color",
+        "section_width": "page-width",
+        "background_color": "#F6F6F3",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "montibello_product_routine": {
+      "type": "montibello-product-routine",
+      "name": "Montibello PDP — Rutina",
+      "settings": {
+        "heading": "Descubre la rutina completa",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "montibello_allied_stores": {
+      "type": "montibello-allied-stores",
+      "name": "Montibello PDP — Tiendas aliadas",
+      "settings": {
+        "heading": "Tiendas aliadas",
+        "section_width": "page-width",
+        "background_color": "#F6F6F3",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "section_contact_cta": {
+      "type": "section",
+      "blocks": {
+        "group_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "gap": 32
+          },
+          "blocks": {
+            "group_professional": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Contacta con un comercial",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": ["heading", "button"]
+            },
+            "group_locator": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Encuentra",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": ["text", "button"]
+            }
+          },
+          "block_order": ["group_professional", "group_locator"]
+        }
+      },
+      "block_order": ["group_row"],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "#000000",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "montibello_product_main",
+    "montibello_product_details",
+    "montibello_product_ingredients",
+    "montibello_product_benefits",
+    "montibello_shade_browser",
+    "montibello_product_routine",
+    "montibello_allied_stores",
+    "section_contact_cta"
+  ]
+}
