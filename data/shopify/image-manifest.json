@@ -1,0 +1,13 @@
+{
+  "hop-ultra-repair-shampoo": {
+    "product_images": [
+      "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-shampoo.png"
+    ],
+    "excluded_candidates": [
+      {
+        "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-shampoo-ts.png",
+        "reason": "Inspected visually — same bottle, composition, and copy as the primary packshot, but rendered in an off-white/cream colorway instead of the true tan/mocha packaging color shown in hop-ultra-repair-shampoo.png. Appears to be a tone-swap/alternate-colorway design render, not a real product photograph of the actual retail packaging. Not used as a product image."
+      }
+    ]
+  }
+}

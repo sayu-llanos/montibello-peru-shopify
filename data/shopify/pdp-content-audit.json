@@ -1,0 +1,4127 @@
+{
+  "generated_at": "2026-09-15",
+  "scope": "Phase 4A read-only PDP content audit for all 27 confirmed Montibello Peru canonical products. No Shopify writes performed.",
+  "products": [
+    {
+      "handle": "under-permanent-colour",
+      "title": "UNDER Permanent Colour",
+      "canonicalId": "UNDER-COLOUR",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "All shade families"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "All shade families",
+          "proposed": "All shade families",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "La coloración con cobertura de alta definición y tecnología híbrida que potencia la realidad y naturalidad de un color sin límites.",
+          "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit \"salon-exclusive\" claim found for UNDER in the reviewed catalog text (unlike Luxlight's explicit statement) — not assumed."
+        },
+        {
+          "key": "shades",
+          "current": null,
+          "proposed": "57 shade entries proposed",
+          "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+          "sourcePage": "6-7",
+          "confidence": "HIGH",
+          "action": "REVIEW",
+          "note": "57 montibello_under_shade metaobject proposals below — catalog_identifier + shade_family match product-grouping.csv exactly; NOT created in this audit-only phase."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "under-activator-15vol",
+      "title": "UNDER Activator 15vol 4.5%",
+      "canonicalId": "UNDER-UO15",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "Activators"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Activators",
+          "proposed": "Activators",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit salon-exclusive claim found for this developer/activator product specifically."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "under-activator-25vol",
+      "title": "UNDER Activator 25vol 7.5%",
+      "canonicalId": "UNDER-UO25",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "Activators"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Activators",
+          "proposed": "Activators",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit salon-exclusive claim found for this developer/activator product specifically."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "under-activator-35vol",
+      "title": "UNDER Activator 35vol 10.5%",
+      "canonicalId": "UNDER-UO35",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "Activators"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Activators",
+          "proposed": "Activators",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit salon-exclusive claim found for this developer/activator product specifically."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "under-monodose-15vol",
+      "title": "UNDER Monodose 15vol 4.5%",
+      "canonicalId": "UNDER-UMA15",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "Monodose"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Monodose",
+          "proposed": "Monodose",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit salon-exclusive claim found for this developer/activator product specifically."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "under-monodose-25vol",
+      "title": "UNDER Monodose 25vol 7.5%",
+      "canonicalId": "UNDER-UMA25",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "Monodose"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Monodose",
+          "proposed": "Monodose",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit salon-exclusive claim found for this developer/activator product specifically."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "under-monodose-35vol",
+      "title": "UNDER Monodose 35vol 10.5%",
+      "canonicalId": "UNDER-UMA35",
+      "currentMetafields": {
+        "range": "UNDER",
+        "subfamily": "Monodose"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "UNDER",
+          "proposed": "UNDER",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Monodose",
+          "proposed": "Monodose",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No explicit salon-exclusive claim found for this developer/activator product specifically."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-colour-last-rinse",
+      "title": "HOP Colour Last Rinse",
+      "canonicalId": "HOP-COLOUR-LAST-RINSE",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Color Last"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Color Last",
+          "proposed": "Color Last",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Acondicionador prolongador del color",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello coloreado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Sella la cutícula y protege el cabello contra la pérdida del color. Cabello ligero, manejable y con brillo.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-colour-last-mask",
+      "title": "HOP Colour Last Mask",
+      "canonicalId": "HOP-COLOUR-LAST-MASK",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Color Last"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Color Last",
+          "proposed": "Color Last",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Mascarilla protectora del color",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello coloreado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Prolonga el color, hidrata y repara en profundidad. Brillo radiante e intensidad del color más duraderos.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-colour-last-shampoo",
+      "title": "HOP Colour Last Shampoo",
+      "canonicalId": "HOP-COLOUR-LAST-SHAMPOO",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Color Last"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Color Last",
+          "proposed": "Color Last",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Champú prolongador del color",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello coloreado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Ayuda a sellar el color en el cabello por más tiempo y evita la pérdida del color. El cabello luce con un tono que perdura, más intenso y brillante.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-smooth-hydration-mask",
+      "title": "HOP Smooth Hydration Mask",
+      "canonicalId": "HOP-SMOOTH-HYDRATION-MASK",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Smooth Hydration"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Smooth Hydration",
+          "proposed": "Smooth Hydration",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Mascarilla hidratante",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello seco, rebelde y/o encrespado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Restaura, preserva y sella la hidratación en el interior del cabello. Aporta elasticidad y resistencia frente a la rotura. Protege contra el encrespamiento. Cabello suave, sedoso y brillante.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-smooth-hydration-rinse",
+      "title": "HOP Smooth Hydration Rinse",
+      "canonicalId": "HOP-SMOOTH-HYDRATION-RINSE",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Smooth Hydration"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Smooth Hydration",
+          "proposed": "Smooth Hydration",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Acondicionador hidratante",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello seco, rebelde y/o encrespado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Combate el frizz y aporta flexibilidad y suavidad sin peso. Desenreda y acondiciona. Cabello más manejable, con control y brillo.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-smooth-hydration-shampoo",
+      "title": "HOP Smooth Hydration Shampoo",
+      "canonicalId": "HOP-SMOOTH-HYDRATION-SHAMPOO",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Smooth Hydration"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Smooth Hydration",
+          "proposed": "Smooth Hydration",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Champú hidratante",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello seco, rebelde y/o encrespado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Fortalece el cabello y proporciona una alta dosis de hidratación. Elimina el frizz y aporta control. Cabello sedoso, suelto y flexible.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 26,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-ultra-repair-mask",
+      "title": "HOP Ultra Repair Mask",
+      "canonicalId": "HOP-ULTRA-REPAIR-MASK",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Ultra Repair"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Ultra Repair",
+          "proposed": "Ultra Repair",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Mascarilla ultra reparadora",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello seco y/o dañado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Repara profundamente el cabello dañado y seco. Protege el cabello de la sequedad. Previene roturas y ayuda a prevenir las puntas abiertas.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-ultra-repair-rinse",
+      "title": "HOP Ultra Repair Rinse",
+      "canonicalId": "HOP-ULTRA-REPAIR-RINSE",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Ultra Repair"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Ultra Repair",
+          "proposed": "Ultra Repair",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Acondicionador ultra reparador",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Cabello seco y/o dañado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Refuerza y fortifica la fibra capilar para evitar su rotura. Facilita el desenredado. Cabello reparado, ligero y brillante.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-ultra-repair-sealed-ends",
+      "title": "HOP Ultra Repair Sealed Ends",
+      "canonicalId": "HOP-ULTRA-REPAIR-SEALED-ENDS",
+      "currentMetafields": {
+        "range": "HOP",
+        "subfamily": "Ultra Repair"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Ultra Repair",
+          "proposed": "Ultra Repair",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Crema nutritiva intensiva para puntas",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": "Puntas abiertas, frágiles y/o quebradizas",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Nutre intensamente y sella las puntas. Controla el encrespado y facilita el secado. Protección térmica. Cabello nutrido, suave, fácil de peinar y con brillo.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-ultra-repair-shampoo",
+      "title": "HOP Ultra Repair Shampoo",
+      "canonicalId": "HOP-ULTRA-REPAIR-SHAMPOO",
+      "currentMetafields": {
+        "interest_data": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"La fórmula combina biociencia de algas con ingredientes cosméticos de alta eficacia para ayudar a tratar los signos del bienestar capilar. Está enriquecida con Colágeno Vegano, un complejo de proteínas de origen vegetal que ayuda a rellenar, fortalecer y restaurar la fibra capilar, aportando brillo, elasticidad y suavidad.\"}]}]}",
+        "how_to_use": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Aplicar sobre el cabello mojado. Masajear, dejar actuar y aclarar. Repetir si fuese necesario.\"}]}]}",
+        "professional_only": "false",
+        "hair_type": "Cabello dañado",
+        "functional_subtitle": "Champú ultra reparador",
+        "subfamily": "Ultra Repair",
+        "range": "HOP"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP",
+          "proposed": "HOP",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Ultra Repair",
+          "proposed": "Ultra Repair",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": "Champú ultra reparador",
+          "proposed": "Champú ultra reparador",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Verbatim from official Peru-relevant HOP catalog product grid."
+        },
+        {
+          "key": "hair_type",
+          "current": "Cabello dañado",
+          "proposed": "Cabello dañado",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": "(rich text set)",
+          "proposed": "Reconstruye, fortalece, repara y protege para un cabello más fuerte y resistente. Cabello suave y sedoso con una fluidez ligera.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": 24,
+          "confidence": "MEDIUM",
+          "action": "REVIEW",
+          "note": "Live value already set (likely by an earlier external process) and is a close paraphrase, not verbatim, of this catalog page — flagged for human comparison rather than silently overwritten."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "LifeAlgae BioScience",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La tecnología LifeAlgae BioScience amplifica y potencia las moléculas activas: sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello y potenciar así los 9 signos del bienestar capilar.",
+          "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+          "sourcePage": "14-15",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI ingredient list found in any reviewed local source; must not be fabricated."
+        },
+        {
+          "key": "how_to_use",
+          "current": "(rich text set)",
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "KEEP",
+          "note": "Already set (pilot); no matching source text found to verify against, left untouched."
+        },
+        {
+          "key": "professional_only",
+          "current": "false",
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "KEEP",
+          "note": "Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Percentage/test claims in hop-catalogo.pdf (e.g. \"+93%**\") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-lightener-9plus",
+      "title": "Supreme Lightener 9+",
+      "canonicalId": "LUX-LXLEB5",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Lightener"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Lightener",
+          "proposed": "Supreme Lightener",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Polvo decolorante no volátil multitécnicas",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Aclara hasta 9 tonos. Contiene agentes anti-amarillos para neutralizar subtonos indeseados. Fácil de mezclar.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Textura: polvo no volátil azul suave. Técnica: adecuado para todas las técnicas y seguro para aplicaciones en cuero cabelludo. Activador: 3% (10 vol) / 6% (20 vol) / 9% (30 vol). Proporción de mezcla: 1:2 o 1:2,5. Tiempo de exposición recomendado: hasta 55 min (no se recomienda aplicar calor). Formato: 500g.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Corroborado por luxlight-9plus-tarjeta.pdf: usar báscula para el ratio 1:2 o 1:2.5 (no medidores/cazos), no mezclar con varillas metálicas, trabajar a bajos volúmenes, no aplicar calor."
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": "Vs servicio decoloración convencional / vs sin tratamiento Bond3 Force System / cabello decolorado vs cabello natural.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "MEDIUM",
+          "action": "REVIEW",
+          "note": "Footnote markers apply to specific stat claims on the same page — needs a human to confirm exact attribution before publishing."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-clay-lightener-7plus",
+      "title": "Supreme Clay Lightener 7+",
+      "canonicalId": "LUX-LXLCB5",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Lightener"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Lightener",
+          "proposed": "Supreme Lightener",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Polvo-arcilla decolorante para técnicas a mano alzada",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Aclara hasta 7 tonos. Textura transformadora: de cremosa a sólida. No se hincha, no se desplaza, no gotea. Sin necesidad de cubrir.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Textura: polvo-arcilla no volátil blanco. Técnica: mano alzada. Activador: 3% (10 vol) / 6% (20 vol) / 9% (30 vol). Proporción de mezcla: 1:1,5 o 1:2. Tiempo de exposición recomendado: hasta 45 min (no se recomienda aplicar calor). Formato: 400g.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "17, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-control-oil-lightening-system",
+      "title": "Supreme Control Oil Lightening Sys+",
+      "canonicalId": "LUX-LXLPCB42",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Control Oil"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Control Oil",
+          "proposed": "Supreme Control Oil",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Sistema de aclaración controlada en dos pasos",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "19, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Sistema de dos pasos: 1. Aceite aclarante Supreme Control Oil Lightener. 2. Aceite activador Supreme Control Oil Activator. Aclara hasta 2 tonos (1 en cabello coloreado, 2 en cabello natural); hasta 4 tonos mezclado con Supreme Lightener 9+. Fórmula sin ammonia y sin persulfatos.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "19, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Textura: sistema de dos pasos, de gel a crema. Mezcla base: Supreme Control Oil Lightener + Supreme Control Oil Activator (ratio 1:2). Potenciador (añadiendo Supreme Lightener 9+): 30g Lightener + 60g Activator + 10g Supreme Lightener 9+. Tiempo de exposición: hasta 20 min. Formato: 200g + 400g (dos componentes).",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "19, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-oil-developer-10vol",
+      "title": "Supreme Oil Developer 10vol (3%)",
+      "canonicalId": "LUX-LXLDB101",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Oil Developer"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Oil Developer",
+          "proposed": "Supreme Oil Developer",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Activador a base de aceites nutritivos — 3% (10 vol)",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Fórmula intensiva a base de aceites para aportar el máximo de protección y cuidado al cuero cabelludo y cabello.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Textura: crema-aceite. Concentración: 3% (10 vol). Formato: 1000ml. Para un resultado superior, mezclar la cantidad de polvo deseada de Supreme Lightener 9+ o Supreme Clay Lightener 7+ con este activador.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-oil-developer-20vol",
+      "title": "Supreme Oil Developer 20vol (6%)",
+      "canonicalId": "LUX-LXLDB201",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Oil Developer"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Oil Developer",
+          "proposed": "Supreme Oil Developer",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Activador a base de aceites nutritivos — 6% (20 vol)",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Fórmula intensiva a base de aceites para aportar el máximo de protección y cuidado al cuero cabelludo y cabello.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Textura: crema-aceite. Concentración: 6% (20 vol). Formato: 1000ml. Para un resultado superior, mezclar la cantidad de polvo deseada de Supreme Lightener 9+ o Supreme Clay Lightener 7+ con este activador.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-oil-developer-30vol",
+      "title": "Supreme Oil Developer 30vol (9%)",
+      "canonicalId": "LUX-LXLDB301",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Oil Developer"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Oil Developer",
+          "proposed": "Supreme Oil Developer",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Activador a base de aceites nutritivos — 9% (30 vol)",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Fórmula intensiva a base de aceites para aportar el máximo de protección y cuidado al cuero cabelludo y cabello.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Textura: crema-aceite. Concentración: 9% (30 vol). Formato: 1000ml. Para un resultado superior, mezclar la cantidad de polvo deseada de Supreme Lightener 9+ o Supreme Clay Lightener 7+ con este activador.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 44,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-ph-protective-shampoo",
+      "title": "Supreme pH Protective Shampoo",
+      "canonicalId": "LUX-LXLSB1",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Care"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Care",
+          "proposed": "Supreme Care",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Champú reestructurante con pH optimizado",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "21, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Reequilibra los niveles de pH y restaura la hidratación del cuero cabelludo y del cabello. Repara y refuerza los enlaces capilares debilitados. Captura, neutraliza y elimina los metales para un cabello más fuerte y resistente. Diseñado para aplicar después de la decoloración, antes y después del matiz.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "21, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Fórmula concentrada sin sulfatos. Uso: post coloración y/o decoloración, post tonalización, Servicio Advanced Repair Service. Tiempo: 2 min. Formato: 1000ml.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "21, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "luxlight-supreme-acidic-ph-treatment",
+      "title": "Supreme Acidic pH Treatment",
+      "canonicalId": "LUX-LXLMB4",
+      "currentMetafields": {
+        "range": "LUXLIGHT",
+        "subfamily": "Supreme Care"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "LUXLIGHT",
+          "proposed": "LUXLIGHT",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Supreme Care",
+          "proposed": "Supreme Care",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "professional_only",
+          "current": null,
+          "proposed": "true",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": 1,
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "Catalog cover explicitly states \"SERVICIO EXCLUSIVO DE SALÓN\" (salon-exclusive service) for the Luxlight lightening system."
+        },
+        {
+          "key": "technology_heading",
+          "current": null,
+          "proposed": "Bond3 Force System + Metal Shield",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technology_description",
+          "current": null,
+          "proposed": "Innovadora tecnología que actúa en las diferentes capas del cabello. Bond3 Force System + Metal Shield reconstruye y refuerza los enlaces internos del cabello mientras captura y neutraliza los metales acumulados en el cabello. Sistema de triple acción: BOND PROTECTION (complejo de aminoácidos biomiméticos), BOND CREATION (complejo de proteínas vegetales de doble acción) y BOND REPAIR (molécula biodegradable derivada de azúcares de origen vegetal). Confirmado por FAQ: \"La gama luxlight contiene el sistema Bond3 force integrado en todas sus formulaciones\" y \"contiene escudo antimetales Metal Shield\" en todas sus formulaciones.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "7-11, FAQ p.45",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": "FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": "Tratamiento reestructurante con pH ácido",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "21, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": "Fórmula concentrada de pH ácido que repara y refuerza los enlaces debilitados para un cabello más fuerte y resistente. Aporta hidratación intensa tanto en el interior como en el exterior del cabello. Protege frente a los efectos de metales acumulados. Aporta brillo y sedosidad al cabello.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "21, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "technical_data",
+          "current": null,
+          "proposed": "Fórmula concentrada, textura cremosa. Uso: tratamiento post lavado con Supreme pH Protective Shampoo, Servicio Advanced Repair Service. Tiempo: 10 min. Formato: 450ml.",
+          "sourceFile": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+          "sourcePage": "21, 44",
+          "confidence": "HIGH",
+          "action": "FILL",
+          "note": null
+        },
+        {
+          "key": "claim_footnote",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Application/mixing detail exists (captured in technical_data) but a clean single \"how to use\" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+        },
+        {
+          "key": "hair_type",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "No confirmed retailer URL for this product."
+        }
+      ]
+    },
+    {
+      "handle": "hop-keratin-shampoo",
+      "title": "HOP Keratin Shampoo",
+      "canonicalId": "HOPK-HKS",
+      "currentMetafields": {
+        "range": "HOP Keratin",
+        "subfamily": "Keratin"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP Keratin",
+          "proposed": "HOP Keratin",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Keratin",
+          "proposed": "Keratin",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "REVIEW",
+          "note": "source-assets/HOP-KERATIN/coming-soon/hop-keratin-catalogo.pdf identifies this 2-step system internationally as \"Fase 1: ORGANIC ALKALINE SHAMPOO\" and \"Fase 2: ORGANIC KERATIN THERAPY\" — different names from the confirmed Peru canonical titles \"HOP Keratin Shampoo\" / \"HOP Keratin Lotion\" in product-grouping.csv. Per instruction, Peru naming is preserved and NOT auto-replaced; this is a naming-discrepancy flag for human review before launch, not a conflict to resolve silently."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "REVIEW",
+          "note": "Rich 2-phase application/technical content exists in hop-keratin-catalogo.pdf, but positioning is COMING SOON pending naming resolution — do not populate ahead of that decision."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "REVIEW",
+          "note": "Catalog claims (e.g. \"elimina 100% el encrespado por 3 a 6 meses\") describe the combined 2-phase treatment, not confirmed as attributable to a single bottle (Shampoo vs. Lotion) without human sign-off."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "COMING SOON — no allied-store offers per catalog rules."
+        }
+      ]
+    },
+    {
+      "handle": "hop-keratin-lotion",
+      "title": "HOP Keratin Lotion",
+      "canonicalId": "HOPK-HKL",
+      "currentMetafields": {
+        "range": "HOP Keratin",
+        "subfamily": "Keratin"
+      },
+      "fields": [
+        {
+          "key": "range",
+          "current": "HOP Keratin",
+          "proposed": "HOP Keratin",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "subfamily",
+          "current": "Keratin",
+          "proposed": "Keratin",
+          "sourceFile": "data/shopify/product-grouping.csv",
+          "sourcePage": null,
+          "confidence": "HIGH",
+          "action": "KEEP",
+          "note": "Already set correctly from canonical catalog."
+        },
+        {
+          "key": "functional_subtitle",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "REVIEW",
+          "note": "source-assets/HOP-KERATIN/coming-soon/hop-keratin-catalogo.pdf identifies this 2-step system internationally as \"Fase 1: ORGANIC ALKALINE SHAMPOO\" and \"Fase 2: ORGANIC KERATIN THERAPY\" — different names from the confirmed Peru canonical titles \"HOP Keratin Shampoo\" / \"HOP Keratin Lotion\" in product-grouping.csv. Per instruction, Peru naming is preserved and NOT auto-replaced; this is a naming-discrepancy flag for human review before launch, not a conflict to resolve silently."
+        },
+        {
+          "key": "how_to_use",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "REVIEW",
+          "note": "Rich 2-phase application/technical content exists in hop-keratin-catalogo.pdf, but positioning is COMING SOON pending naming resolution — do not populate ahead of that decision."
+        },
+        {
+          "key": "full_ingredients",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": null
+        },
+        {
+          "key": "interest_data",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "REVIEW",
+          "note": "Catalog claims (e.g. \"elimina 100% el encrespado por 3 a 6 meses\") describe the combined 2-phase treatment, not confirmed as attributable to a single bottle (Shampoo vs. Lotion) without human sign-off."
+        },
+        {
+          "key": "allied_store_offers",
+          "current": null,
+          "proposed": null,
+          "sourceFile": null,
+          "sourcePage": null,
+          "confidence": null,
+          "action": "SOURCE_REQUIRED",
+          "note": "COMING SOON — no allied-store offers per catalog rules."
+        }
+      ]
+    }
+  ],
+  "metaobject_proposals": {
+    "features": [
+      {
+        "subfamily": "Ultra Repair",
+        "appliesToCanonicalIds": [
+          "HOP-ULTRA-REPAIR-SHAMPOO",
+          "HOP-ULTRA-REPAIR-RINSE",
+          "HOP-ULTRA-REPAIR-MASK",
+          "HOP-ULTRA-REPAIR-SEALED-ENDS"
+        ],
+        "title": "Colágeno Vegano",
+        "description": "Enriquecido con Colágeno Vegano, un complejo de proteínas de origen vegetal que rellena, fortalece y restaura la fibra capilar a la vez que proporciona brillo, elasticidad y suavidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "subfamily": "Color Last",
+        "appliesToCanonicalIds": [
+          "HOP-COLOUR-LAST-SHAMPOO",
+          "HOP-COLOUR-LAST-RINSE",
+          "HOP-COLOUR-LAST-MASK"
+        ],
+        "title": "Ácido Ferúlico",
+        "description": "Enriquecido con Ácido Ferúlico, un potente antioxidante de origen vegetal con un alto poder hidratante que protege y prolonga el color y el brillo, y con una capacidad protectora que neutraliza los daños procedentes de la radiación solar.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "subfamily": "Smooth Hydration",
+        "appliesToCanonicalIds": [
+          "HOP-SMOOTH-HYDRATION-SHAMPOO",
+          "HOP-SMOOTH-HYDRATION-RINSE",
+          "HOP-SMOOTH-HYDRATION-MASK"
+        ],
+        "title": "Ácido Hialurónico",
+        "description": "Enriquecido con Ácido Hialurónico, un activo altamente hidratante que repara la función barrera del cabello para mejorar la elasticidad, controlar el frizz y devolver el brillo, la suavidad y la manejabilidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 26,
+        "confidence": "HIGH"
+      }
+    ],
+    "key_ingredients": [
+      {
+        "appliesToHandle": "hop-colour-last-rinse",
+        "title": "Ácido Ferúlico",
+        "description": "Enriquecido con Ácido Ferúlico, un potente antioxidante de origen vegetal con un alto poder hidratante que protege y prolonga el color y el brillo, y con una capacidad protectora que neutraliza los daños procedentes de la radiación solar.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-colour-last-mask",
+        "title": "Ácido Ferúlico",
+        "description": "Enriquecido con Ácido Ferúlico, un potente antioxidante de origen vegetal con un alto poder hidratante que protege y prolonga el color y el brillo, y con una capacidad protectora que neutraliza los daños procedentes de la radiación solar.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-colour-last-shampoo",
+        "title": "Ácido Ferúlico",
+        "description": "Enriquecido con Ácido Ferúlico, un potente antioxidante de origen vegetal con un alto poder hidratante que protege y prolonga el color y el brillo, y con una capacidad protectora que neutraliza los daños procedentes de la radiación solar.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-smooth-hydration-mask",
+        "title": "Ácido Hialurónico",
+        "description": "Enriquecido con Ácido Hialurónico, un activo altamente hidratante que repara la función barrera del cabello para mejorar la elasticidad, controlar el frizz y devolver el brillo, la suavidad y la manejabilidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 26,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-smooth-hydration-rinse",
+        "title": "Ácido Hialurónico",
+        "description": "Enriquecido con Ácido Hialurónico, un activo altamente hidratante que repara la función barrera del cabello para mejorar la elasticidad, controlar el frizz y devolver el brillo, la suavidad y la manejabilidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 26,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-smooth-hydration-shampoo",
+        "title": "Ácido Hialurónico",
+        "description": "Enriquecido con Ácido Hialurónico, un activo altamente hidratante que repara la función barrera del cabello para mejorar la elasticidad, controlar el frizz y devolver el brillo, la suavidad y la manejabilidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 26,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-ultra-repair-mask",
+        "title": "Colágeno Vegano",
+        "description": "Enriquecido con Colágeno Vegano, un complejo de proteínas de origen vegetal que rellena, fortalece y restaura la fibra capilar a la vez que proporciona brillo, elasticidad y suavidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-ultra-repair-rinse",
+        "title": "Colágeno Vegano",
+        "description": "Enriquecido con Colágeno Vegano, un complejo de proteínas de origen vegetal que rellena, fortalece y restaura la fibra capilar a la vez que proporciona brillo, elasticidad y suavidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-ultra-repair-sealed-ends",
+        "title": "Colágeno Vegano",
+        "description": "Enriquecido con Colágeno Vegano, un complejo de proteínas de origen vegetal que rellena, fortalece y restaura la fibra capilar a la vez que proporciona brillo, elasticidad y suavidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      },
+      {
+        "appliesToHandle": "hop-ultra-repair-shampoo",
+        "title": "Colágeno Vegano",
+        "description": "Enriquecido con Colágeno Vegano, un complejo de proteínas de origen vegetal que rellena, fortalece y restaura la fibra capilar a la vez que proporciona brillo, elasticidad y suavidad.",
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "confidence": "HIGH"
+      }
+    ],
+    "routine_steps": [
+      {
+        "subfamily": "Ultra Repair",
+        "status": "ALREADY EXISTS — not touched",
+        "steps": null
+      },
+      {
+        "subfamily": "Color Last",
+        "status": "PROPOSED",
+        "confidence": "MEDIUM",
+        "steps": [
+          {
+            "step_number": 1,
+            "label": "Champú",
+            "products": [
+              "hop-colour-last-shampoo"
+            ]
+          },
+          {
+            "step_number": 2,
+            "label": "Mascarilla y Acondicionador",
+            "products": [
+              "hop-colour-last-mask",
+              "hop-colour-last-rinse"
+            ]
+          }
+        ],
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 24,
+        "note": "Inferred from the same shampoo -> mask+rinse structure already approved for Ultra Repair Shampoo; not an explicit numbered routine in the catalog for this subfamily."
+      },
+      {
+        "subfamily": "Smooth Hydration",
+        "status": "PROPOSED",
+        "confidence": "MEDIUM",
+        "steps": [
+          {
+            "step_number": 1,
+            "label": "Champú",
+            "products": [
+              "hop-smooth-hydration-shampoo"
+            ]
+          },
+          {
+            "step_number": 2,
+            "label": "Mascarilla y Acondicionador",
+            "products": [
+              "hop-smooth-hydration-mask",
+              "hop-smooth-hydration-rinse"
+            ]
+          }
+        ],
+        "sourceFile": "source-assets/HOP/pdf/hop-catalogo.pdf",
+        "sourcePage": 26,
+        "note": "Same inference as Color Last."
+      }
+    ],
+    "under_shades": [
+      {
+        "catalog_identifier": "3.0/3N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "4.0/4N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.0/5N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.0/6N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.0/7N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.0/8N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.0/9N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "10.0/10N",
+        "shade_family": "Naturales",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "4.60/4BD",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.60/5BD",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.60/6BD",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.60/7BD",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.60/9BD",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.63/5BG",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.63/7BG",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "10.63/10BG",
+        "shade_family": "Marrones",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.10/6AD",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.01/7NA",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.01/8NA",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.01/9NA",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.13/6AG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.13/8AG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "10.13/10AG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.16/6AB",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.16/8AB",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.23/5PG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.23/7PG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.23/8PG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.23/9PG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "10.23/10PG",
+        "shade_family": "Cenizas e Irisados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "3.61/3BA",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.61/5BA",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.61/8BA",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "4.62/4BP",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.62/6BP",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.62/7BP",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.62/9BP",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.34/7GC",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.43/7CG",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.43/9CG",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.40/6CD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.40/7CD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.40/8CD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.70/5RD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.70/6RD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.70/7RD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "5.80/5VRD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.80/7VRD",
+        "shade_family": "Cobrizos, Rojizos y Púrpuras",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "6.30/6GD",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.30/8GD",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.31/7GA",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.31/9GA",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": true,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "7.32/7GP",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.32/8GP",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "9.32/9GP",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "10.32/10GP",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      },
+      {
+        "catalog_identifier": "8.36/8GB",
+        "shade_family": "Dorados",
+        "display_name": null,
+        "swatch": null,
+        "erp_sku": null,
+        "is_elevated_warmth": false,
+        "active": null,
+        "sourceFile": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+        "sourcePage": "6-7",
+        "confidence": "HIGH",
+        "note": "catalog_identifier + shade_family confirmed exact match against product-grouping.csv's 57 identifiers. display_name, swatch, and erp_sku are SOURCE_REQUIRED — not present as clean per-shade text/color data in the reviewed source."
+      }
+    ]
+  },
+  "conflicts": [],
+  "totals": {
+    "fields_already_complete": 58,
+    "fields_ready_to_fill": 96,
+    "fields_requiring_review": 9,
+    "fields_source_required": 125,
+    "feature_metaobjects_proposed": 3,
+    "ingredient_metaobjects_proposed": 10,
+    "routine_steps_proposed": 2,
+    "under_shades_proposed": 57,
+    "conflicts": 0,
+    "errors": 0
+  }
+}

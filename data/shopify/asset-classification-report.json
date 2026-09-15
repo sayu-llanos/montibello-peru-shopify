@@ -1,0 +1,1038 @@
+{
+  "generated_at": "2026-09-15",
+  "scope": "Full source-assets/ inventory vs. data/shopify/product-grouping.csv confirmed Peru assortment. Report only — no uploads, no product changes.",
+  "summary": {
+    "EXACT_MATCH": 19,
+    "POSSIBLE_MATCH": 9,
+    "UNMATCHED": 159,
+    "OUT_OF_PERU_SCOPE": 5
+  },
+  "assets": [
+    {
+      "path": "source-assets/BRAND/montibello-brand-book-2026.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Brand-level or community collateral, not a single-product image."
+    },
+    {
+      "path": "source-assets/BRAND/montibello-logo-package.zip",
+      "classification": "UNMATCHED",
+      "reason": "Brand-level or community collateral, not a single-product image."
+    },
+    {
+      "path": "source-assets/HOP/COLOR-LAST/hop-colour-last-mask-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-COLOUR-LAST-MASK",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/COLOR-LAST/hop-colour-last-mask.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-COLOUR-LAST-MASK",
+      "product_handle": "hop-colour-last-mask",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-colour-last-mask\"."
+    },
+    {
+      "path": "source-assets/HOP/COLOR-LAST/hop-colour-last-rinse-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-COLOUR-LAST-RINSE",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/COLOR-LAST/hop-colour-last-rinse.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-COLOUR-LAST-RINSE",
+      "product_handle": "hop-colour-last-rinse",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-colour-last-rinse\"."
+    },
+    {
+      "path": "source-assets/HOP/COLOR-LAST/hop-colour-last-shampoo-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-COLOUR-LAST-SHAMPOO",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/COLOR-LAST/hop-colour-last-shampoo.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-COLOUR-LAST-SHAMPOO",
+      "product_handle": "hop-colour-last-shampoo",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-colour-last-shampoo\"."
+    },
+    {
+      "path": "source-assets/HOP/SMOOTH-HYDRATION/hop-smooth-hydration-mask-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-SMOOTH-HYDRATION-MASK",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/SMOOTH-HYDRATION/hop-smooth-hydration-mask.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-SMOOTH-HYDRATION-MASK",
+      "product_handle": "hop-smooth-hydration-mask",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-smooth-hydration-mask\"."
+    },
+    {
+      "path": "source-assets/HOP/SMOOTH-HYDRATION/hop-smooth-hydration-rinse-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-SMOOTH-HYDRATION-RINSE",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/SMOOTH-HYDRATION/hop-smooth-hydration-rinse.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-SMOOTH-HYDRATION-RINSE",
+      "product_handle": "hop-smooth-hydration-rinse",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-smooth-hydration-rinse\"."
+    },
+    {
+      "path": "source-assets/HOP/SMOOTH-HYDRATION/hop-smooth-hydration-shampoo-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-SMOOTH-HYDRATION-SHAMPOO",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/SMOOTH-HYDRATION/hop-smooth-hydration-shampoo.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-SMOOTH-HYDRATION-SHAMPOO",
+      "product_handle": "hop-smooth-hydration-shampoo",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-smooth-hydration-shampoo\"."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-mask-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-MASK",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-mask.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-MASK",
+      "product_handle": "hop-ultra-repair-mask",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-ultra-repair-mask\"."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-overnight-serum-gama-01.jpg",
+      "classification": "OUT_OF_PERU_SCOPE",
+      "reason": "HOP Ultra Repair Overnight Serum has no row in data/shopify/product-grouping.csv — not a confirmed Peru product."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-overnight-serum-lifestyle-01.jpg",
+      "classification": "OUT_OF_PERU_SCOPE",
+      "reason": "HOP Ultra Repair Overnight Serum has no row in data/shopify/product-grouping.csv — not a confirmed Peru product."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-overnight-serum-lifestyle-02.jpg",
+      "classification": "OUT_OF_PERU_SCOPE",
+      "reason": "HOP Ultra Repair Overnight Serum has no row in data/shopify/product-grouping.csv — not a confirmed Peru product."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-overnight-serum-modelo-01.jpg",
+      "classification": "OUT_OF_PERU_SCOPE",
+      "reason": "HOP Ultra Repair Overnight Serum has no row in data/shopify/product-grouping.csv — not a confirmed Peru product."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-overnight-serum.png",
+      "classification": "OUT_OF_PERU_SCOPE",
+      "reason": "HOP Ultra Repair Overnight Serum has no row in data/shopify/product-grouping.csv — not a confirmed Peru product."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-rinse-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-RINSE",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-rinse.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-RINSE",
+      "product_handle": "hop-ultra-repair-rinse",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-ultra-repair-rinse\"."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-sealed-ends.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-SEALED-ENDS",
+      "product_handle": "hop-ultra-repair-sealed-ends",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"hop-ultra-repair-sealed-ends\"."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-shampoo-ts.png",
+      "classification": "POSSIBLE_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-SHAMPOO",
+      "reason": "Filename ends in \"-ts\" (tone-swap/alternate-colorway render) — same product, but not confirmed as the real retail packaging color. Inspect visually before use, same as hop-ultra-repair-shampoo-ts.png was for this pilot."
+    },
+    {
+      "path": "source-assets/HOP/ULTRA-REPAIR/hop-ultra-repair-shampoo.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "HOP-ULTRA-REPAIR-SHAMPOO",
+      "product_handle": "hop-ultra-repair-shampoo",
+      "csv_image_status": "OFFICIAL SHARED FORMULATION IMAGE; NOT SIZE-SPECIFIC",
+      "reason": "Filename token matches confirmed product handle \"hop-ultra-repair-shampoo\"."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-gama-completa.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-gama-repair-colour.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-gama-volume-hydration.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-modelos-dancer-beauty-01.tif",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-modelos-dancer-entero-01.tif",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-modelos-mindfullness-beauty-01.tif",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/campaign/hop-shampoo.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/pdf/hop-catalogo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/pdf/hop-guia-tecnica.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/pdf/hop-in-salon-catalogo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/pdf/hop-in-salon-guia-tecnica.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/professional/hop-in-salon-aplicador.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/professional/hop-in-salon-expositor.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/professional/hop-in-salon-gama-completa.png",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/professional/hop-in-salon-grupo.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/professional/hop-in-salon-intensifiers.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/professional/hop-in-salon-vaporizador.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/video/hop-brand-video.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/video/hop-in-salon-treatment-experience.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP/video/hop-video.mov",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/HOP-KERATIN/coming-soon/hop-keratin-catalogo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/HOP-KERATIN/coming-soon/hop-keratin-cleanser.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/HOP-KERATIN/coming-soon/hop-keratin-guia-tecnica.pdf",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/HOP-KERATIN/coming-soon/hop-keratin-infusion.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-fotos-lifestyle-01.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-fotos-lifestyle-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-fotos-lifestyle-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-fotos-lifestyle-07.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-modelo-01.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-modelo-04.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-modelo-08.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/campaign/luxlight-modelo-10.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/pdf/luxlight-9plus-tarjeta.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/pdf/luxlight-logo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-bodegon-01.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-bodegon-02.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-bodegon-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-bodegon-04.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-bodegon-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-bodegon-06.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-gama-completa.png",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-acidic-ph-treatment.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLMB4",
+      "product_handle": "luxlight-supreme-acidic-ph-treatment",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-acidic-ph-treatment\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-clay-lightener-7plus.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLCB5",
+      "product_handle": "luxlight-supreme-clay-lightener-7plus",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-clay-lightener-7plus\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-control-oil-lightening-system-1.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLPCB42",
+      "product_handle": "luxlight-supreme-control-oil-lightening-system",
+      "csv_image_status": "TWO EXACT COMPONENT PACKSHOTS",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-control-oil-lightening-system\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-control-oil-lightening-system-2.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLPCB42",
+      "product_handle": "luxlight-supreme-control-oil-lightening-system",
+      "csv_image_status": "TWO EXACT COMPONENT PACKSHOTS",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-control-oil-lightening-system\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-lightener-9plus.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLEB5",
+      "product_handle": "luxlight-supreme-lightener-9plus",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-lightener-9plus\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-oil-developer-10vol.jpg",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLDB101",
+      "product_handle": "luxlight-supreme-oil-developer-10vol",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-oil-developer-10vol\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-oil-developer-20vol.jpg",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLDB201",
+      "product_handle": "luxlight-supreme-oil-developer-20vol",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-oil-developer-20vol\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-oil-developer-30vol.jpg",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLDB301",
+      "product_handle": "luxlight-supreme-oil-developer-30vol",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-oil-developer-30vol\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/products/luxlight-supreme-ph-protective-shampoo.png",
+      "classification": "EXACT_MATCH",
+      "canonical_product_id": "LUX-LXLSB1",
+      "product_handle": "luxlight-supreme-ph-protective-shampoo",
+      "csv_image_status": "EXACT PRODUCT-AND-SIZE PACKSHOT",
+      "reason": "Filename token matches confirmed product handle \"luxlight-supreme-ph-protective-shampoo\"."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/technical/luxlight-tecnologia-01.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/technical/luxlight-tecnologia-02.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/technical/luxlight-tecnologia-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/technical/luxlight-tecnologia-04.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/technical/luxlight-tecnologia-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/video/luxlight-stepbystep-expensive-blonde-es.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/video/luxlight-stepbystep-frosted-platinum-es.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/video/luxlight-stepbystep-honey-cascade-es.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/video/luxlight-stepbystep-light-blow-balayage-es.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/video/luxlight-video-campana.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/LUXLIGHT/video/luxlight-video-tecnologia.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-02.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-04.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-06.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-07.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-08.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-09.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/community/community-10.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/hero/hop-gama-repair-colour-source.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/hero/logo-LL-blanco.png",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/hero/logo-under-negatiu.png",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/hero/luxlight-hero-bodegon-1.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/hero/under-hero-desktop-2026-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/lower-home/salon-finder-bg-new.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/magazine/brunette-edit-article.png",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/magazine/hop-ultra-repair-article.png",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/magazine/luxlight-techniques-article.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/range-cards/hop-card-bodegon-principal-2.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-HOME/range-cards/under-card-desktop.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-blonde.png",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-detox.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-full-volume.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-purify.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-reflects.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-sensitive.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-silver.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/EXCLUDE-hop-card-sun-care.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/hop-card-colour-last.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/hop-card-in-salon-wellageing.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/hop-card-smooth-hydration.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/family-cards/hop-card-ultra-repair.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/gallery/hop-allrange-083.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/gallery/hop-lifestyle-028.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/gallery/hop-lifestyle-074.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/gallery/hop-repair-model-113.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/gallery/hop-repair-modelproduct-054.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/gallery/hop-repair-modelproduct-069.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/hero/hop-colour-last-square-hero.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/hero/hop-hero-bodegon-principal-2.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/hero/hop-smooth-hydration-hero.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/hero/hop-wellness-science-nature.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/colour-last/hop-colour-last-mask-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/colour-last/hop-colour-last-rinse-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/colour-last/hop-colour-last-shampoo-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/smooth-hydration/hop-smooth-hydration-mask-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/smooth-hydration/hop-smooth-hydration-rinse-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/smooth-hydration/hop-smooth-hydration-shampoo-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/ultra-repair/hop-ultra-repair-mask-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/ultra-repair/hop-ultra-repair-overnight-serum-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/ultra-repair/hop-ultra-repair-rinse-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/ultra-repair/hop-ultra-repair-sealed-ends-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/products/ultra-repair/hop-ultra-repair-shampoo-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/technology/hop-colour-last-acido-ferulico.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/technology/hop-hydration-acido-hialuronico.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/technology/hop-lifealgae-stat-1.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/technology/hop-lifealgae-stat-2.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/technology/hop-repair-collagen-vegano.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/HOP/technology/hop-repair-overnight-stats.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/gallery/supreme-9-gallery-05-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/gallery/supreme-9-gallery-06-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/hero/luxlight-hero-desktop-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/hero/luxlight-hero-mobile-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/products/supreme-9-bodegon-card-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/products/supreme-shampoo-bodegon-card-reference.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/technology/eclat-before-after-AFTER-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/technology/luxlight-before-after-BEFORE-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/technology/luxlight-intro-01-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/LUXLIGHT/technology/luxlight-intro-02-reference.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/documents/Carta-UNDER_26.pdf",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/gallery/under-gallery-01.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/gallery/under-gallery-02.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/gallery/under-gallery-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/hero/under-hero-desktop-2560w.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/logos/montibello-logo.svg",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/technology/under-elevated-warmth-swatch-900w.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/technology/under-glucamine-1350w.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/REFERENCE-RANGES/UNDER/technology/under-stats-editorial-1707w.webp",
+      "classification": "UNMATCHED",
+      "reason": "International reference/inspiration asset from an earlier design-audit round — not a Peru production packshot candidate."
+    },
+    {
+      "path": "source-assets/UNDER/campaign/under-2026-modelo-02.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/campaign/under-2026-modelo-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/campaign/under-2026-modelo-04.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/campaign/under-2026-modelo-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/campaign/under-2026-modelo-06.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/campaign/under-tendencias-2026.jpg",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/pdf/under-2026-catalogo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/pdf/under-carta-de-color-digital.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/pdf/under-catalogo.pdf",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-01.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-02.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-03.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-04.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-05.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-06.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-07.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-08.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-09.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-10.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-11.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-bodegon-12.jpg",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-crema-activadora.png",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/products/under-tubo.png",
+      "classification": "UNMATCHED",
+      "reason": "No confirmed product handle token found in this filename."
+    },
+    {
+      "path": "source-assets/UNDER/technical/under-carta-de-color.png",
+      "classification": "UNMATCHED",
+      "reason": "Range-level campaign/technical/collateral asset, not a single confirmed product's packshot."
+    },
+    {
+      "path": "source-assets/community/montibello-community-proven-results.png",
+      "classification": "UNMATCHED",
+      "reason": "Brand-level or community collateral, not a single-product image."
+    },
+    {
+      "path": "source-assets/community/montibello-community-video.mp4",
+      "classification": "UNMATCHED",
+      "reason": "Brand-level or community collateral, not a single-product image."
+    }
+  ]
+}

@@ -9,3 +9,4 @@ source-assets/
 
 # Local Playwright MCP state
 .playwright-mcp/
+local-assets/

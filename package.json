@@ -1,0 +1,13 @@
+{
+  "name": "montibello-peru-shopify",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Montibello Peru Shopify theme + product/PDP data sync scripts.",
+  "scripts": {
+    "shopify:pdp": "node scripts/shopify/pdp-sync.js",
+    "shopify:asset-report": "node scripts/shopify/asset-report.js",
+    "shopify:catalog-dry-run": "node scripts/shopify/catalog-dry-run.js",
+    "shopify:content-audit": "node scripts/shopify/content-audit.js",
+    "test": "node --test scripts/shopify/test/*.test.js"
+  }
+}

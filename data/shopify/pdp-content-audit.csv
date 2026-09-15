@@ -1,0 +1,289 @@
+handle,title,field,action,confidence,current_present,proposed_present,source_file,source_page,note
+under-permanent-colour,UNDER Permanent Colour,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-permanent-colour,UNDER Permanent Colour,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-permanent-colour,UNDER Permanent Colour,functional_subtitle,FILL,HIGH,no,yes,source-assets/UNDER/pdf/under-2026-catalogo.pdf,1,
+under-permanent-colour,UNDER Permanent Colour,professional_only,SOURCE_REQUIRED,,no,no,,,"No explicit ""salon-exclusive"" claim found for UNDER in the reviewed catalog text (unlike Luxlight's explicit statement) — not assumed."
+under-permanent-colour,UNDER Permanent Colour,shades,REVIEW,HIGH,no,yes,source-assets/UNDER/pdf/under-2026-catalogo.pdf,6-7,57 montibello_under_shade metaobject proposals below — catalog_identifier + shade_family match product-grouping.csv exactly; NOT created in this audit-only phase.
+under-permanent-colour,UNDER Permanent Colour,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-permanent-colour,UNDER Permanent Colour,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-permanent-colour,UNDER Permanent Colour,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+under-activator-15vol,UNDER Activator 15vol 4.5%,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-activator-15vol,UNDER Activator 15vol 4.5%,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-activator-15vol,UNDER Activator 15vol 4.5%,functional_subtitle,SOURCE_REQUIRED,,no,no,,,under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy.
+under-activator-15vol,UNDER Activator 15vol 4.5%,professional_only,SOURCE_REQUIRED,,no,no,,,No explicit salon-exclusive claim found for this developer/activator product specifically.
+under-activator-15vol,UNDER Activator 15vol 4.5%,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-activator-15vol,UNDER Activator 15vol 4.5%,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-activator-15vol,UNDER Activator 15vol 4.5%,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+under-activator-25vol,UNDER Activator 25vol 7.5%,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-activator-25vol,UNDER Activator 25vol 7.5%,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-activator-25vol,UNDER Activator 25vol 7.5%,functional_subtitle,SOURCE_REQUIRED,,no,no,,,under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy.
+under-activator-25vol,UNDER Activator 25vol 7.5%,professional_only,SOURCE_REQUIRED,,no,no,,,No explicit salon-exclusive claim found for this developer/activator product specifically.
+under-activator-25vol,UNDER Activator 25vol 7.5%,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-activator-25vol,UNDER Activator 25vol 7.5%,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-activator-25vol,UNDER Activator 25vol 7.5%,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+under-activator-35vol,UNDER Activator 35vol 10.5%,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-activator-35vol,UNDER Activator 35vol 10.5%,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-activator-35vol,UNDER Activator 35vol 10.5%,functional_subtitle,SOURCE_REQUIRED,,no,no,,,under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy.
+under-activator-35vol,UNDER Activator 35vol 10.5%,professional_only,SOURCE_REQUIRED,,no,no,,,No explicit salon-exclusive claim found for this developer/activator product specifically.
+under-activator-35vol,UNDER Activator 35vol 10.5%,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-activator-35vol,UNDER Activator 35vol 10.5%,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-activator-35vol,UNDER Activator 35vol 10.5%,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,functional_subtitle,SOURCE_REQUIRED,,no,no,,,under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy.
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,professional_only,SOURCE_REQUIRED,,no,no,,,No explicit salon-exclusive claim found for this developer/activator product specifically.
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-monodose-15vol,UNDER Monodose 15vol 4.5%,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,functional_subtitle,SOURCE_REQUIRED,,no,no,,,under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy.
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,professional_only,SOURCE_REQUIRED,,no,no,,,No explicit salon-exclusive claim found for this developer/activator product specifically.
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-monodose-25vol,UNDER Monodose 25vol 7.5%,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,functional_subtitle,SOURCE_REQUIRED,,no,no,,,under-2026-catalogo.pdf gives no per-concentration tagline distinct from the shared colour-system copy.
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,professional_only,SOURCE_REQUIRED,,no,no,,,No explicit salon-exclusive claim found for this developer/activator product specifically.
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,how_to_use,SOURCE_REQUIRED,,no,no,,,"No per-product mixing/application instructions found (color system technical data lives in a professional colour chart, not extracted here as text)."
+under-monodose-35vol,UNDER Monodose 35vol 10.5%,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-colour-last-rinse,HOP Colour Last Rinse,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-colour-last-rinse,HOP Colour Last Rinse,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-colour-last-rinse,HOP Colour Last Rinse,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-colour-last-rinse,HOP Colour Last Rinse,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-colour-last-rinse,HOP Colour Last Rinse,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-colour-last-rinse,HOP Colour Last Rinse,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-colour-last-rinse,HOP Colour Last Rinse,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-colour-last-rinse,HOP Colour Last Rinse,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-colour-last-rinse,HOP Colour Last Rinse,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-colour-last-rinse,HOP Colour Last Rinse,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-colour-last-rinse,HOP Colour Last Rinse,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-colour-last-rinse,HOP Colour Last Rinse,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-colour-last-mask,HOP Colour Last Mask,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-colour-last-mask,HOP Colour Last Mask,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-colour-last-mask,HOP Colour Last Mask,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-colour-last-mask,HOP Colour Last Mask,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-colour-last-mask,HOP Colour Last Mask,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-colour-last-mask,HOP Colour Last Mask,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-colour-last-mask,HOP Colour Last Mask,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-colour-last-mask,HOP Colour Last Mask,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-colour-last-mask,HOP Colour Last Mask,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-colour-last-mask,HOP Colour Last Mask,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-colour-last-mask,HOP Colour Last Mask,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-colour-last-mask,HOP Colour Last Mask,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-colour-last-shampoo,HOP Colour Last Shampoo,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-colour-last-shampoo,HOP Colour Last Shampoo,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-colour-last-shampoo,HOP Colour Last Shampoo,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-colour-last-shampoo,HOP Colour Last Shampoo,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-colour-last-shampoo,HOP Colour Last Shampoo,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-colour-last-shampoo,HOP Colour Last Shampoo,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-colour-last-shampoo,HOP Colour Last Shampoo,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-colour-last-shampoo,HOP Colour Last Shampoo,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-colour-last-shampoo,HOP Colour Last Shampoo,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-colour-last-shampoo,HOP Colour Last Shampoo,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-colour-last-shampoo,HOP Colour Last Shampoo,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-colour-last-shampoo,HOP Colour Last Shampoo,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-smooth-hydration-mask,HOP Smooth Hydration Mask,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-smooth-hydration-rinse,HOP Smooth Hydration Rinse,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,26,
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-smooth-hydration-shampoo,HOP Smooth Hydration Shampoo,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-ultra-repair-mask,HOP Ultra Repair Mask,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-mask,HOP Ultra Repair Mask,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-mask,HOP Ultra Repair Mask,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-ultra-repair-mask,HOP Ultra Repair Mask,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-mask,HOP Ultra Repair Mask,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-mask,HOP Ultra Repair Mask,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-ultra-repair-mask,HOP Ultra Repair Mask,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-ultra-repair-mask,HOP Ultra Repair Mask,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-ultra-repair-mask,HOP Ultra Repair Mask,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-ultra-repair-mask,HOP Ultra Repair Mask,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-ultra-repair-mask,HOP Ultra Repair Mask,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-ultra-repair-mask,HOP Ultra Repair Mask,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-ultra-repair-rinse,HOP Ultra Repair Rinse,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,functional_subtitle,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,hair_type,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,interest_data,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,how_to_use,SOURCE_REQUIRED,,no,no,,,No per-formulation application instructions found in hop-catalogo.pdf beyond generic salon-ritual steps that combine multiple products — not safe to generalize to a single-bottle instruction.
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,professional_only,SOURCE_REQUIRED,,no,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-ultra-repair-sealed-ends,HOP Ultra Repair Sealed Ends,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,functional_subtitle,KEEP,HIGH,yes,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,Verbatim from official Peru-relevant HOP catalog product grid.
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,hair_type,KEEP,HIGH,yes,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,interest_data,REVIEW,MEDIUM,yes,yes,source-assets/HOP/pdf/hop-catalogo.pdf,24,"Live value already set (likely by an earlier external process) and is a close paraphrase, not verbatim, of this catalog page — flagged for human comparison rather than silently overwritten."
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,technology_heading,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,"Range-wide HOP technology story (LifeAlgae BioScience), applicable to all HOP formulations."
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,technology_description,FILL,HIGH,no,yes,source-assets/HOP/pdf/hop-catalogo.pdf,14-15,
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,full_ingredients,SOURCE_REQUIRED,,no,no,,,No INCI ingredient list found in any reviewed local source; must not be fabricated.
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,how_to_use,KEEP,,yes,no,,,"Already set (pilot); no matching source text found to verify against, left untouched."
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,professional_only,KEEP,,yes,no,,,"Not in schema's expected field set for HOP (Used by: UNDER, Luxlight); pilot has it set to false from an untracked external source — left untouched, not replicated to other HOP products without a source."
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,claim_footnote,SOURCE_REQUIRED,,no,no,,,"Percentage/test claims in hop-catalogo.pdf (e.g. ""+93%**"") are range-wide 9-signs results, not attributable to this specific formulation without guessing."
+hop-ultra-repair-shampoo,HOP Ultra Repair Shampoo,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44",
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44",
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44","Corroborado por luxlight-9plus-tarjeta.pdf: usar báscula para el ratio 1:2 o 1:2.5 (no medidores/cazos), no mezclar con varillas metálicas, trabajar a bajos volúmenes, no aplicar calor."
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,claim_footnote,REVIEW,MEDIUM,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44",Footnote markers apply to specific stat claims on the same page — needs a human to confirm exact attribution before publishing.
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-lightener-9plus,Supreme Lightener 9+,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44",
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44",
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"17, 44",
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-clay-lightener-7plus,Supreme Clay Lightener 7+,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"19, 44",
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"19, 44",
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"19, 44",
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-control-oil-lightening-system,Supreme Control Oil Lightening Sys+,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-oil-developer-10vol,Supreme Oil Developer 10vol (3%),allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-oil-developer-20vol,Supreme Oil Developer 20vol (6%),allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,44,
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-oil-developer-30vol,Supreme Oil Developer 30vol (9%),allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"21, 44",
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"21, 44",
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"21, 44",
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-ph-protective-shampoo,Supreme pH Protective Shampoo,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,professional_only,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,1,"Catalog cover explicitly states ""SERVICIO EXCLUSIVO DE SALÓN"" (salon-exclusive service) for the Luxlight lightening system."
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,technology_heading,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45",
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,technology_description,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"7-11, FAQ p.45","FAQ explicitly confirms Bond3/Metal Shield is in ALL Luxlight formulations, not only the lighteners."
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,functional_subtitle,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"21, 44",
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,interest_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"21, 44",
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,technical_data,FILL,HIGH,no,yes,source-assets/LUXLIGHT/pdf/luxlight-catalogo.pdf,"21, 44",
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,claim_footnote,SOURCE_REQUIRED,,no,no,,,
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,full_ingredients,SOURCE_REQUIRED,,no,no,,,"No INCI list found; this is a technical/marketing catalog, not a regulatory ingredient sheet."
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,how_to_use,SOURCE_REQUIRED,,no,no,,,"Application/mixing detail exists (captured in technical_data) but a clean single ""how to use"" paragraph distinct from technical_data was not found — needs human authoring, not a duplicate of technical_data."
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,hair_type,SOURCE_REQUIRED,,no,no,,,Not target-hair-type products (professional colouring process for colourists) — no hair_type claim found.
+luxlight-supreme-acidic-ph-treatment,Supreme Acidic pH Treatment,allied_store_offers,SOURCE_REQUIRED,,no,no,,,No confirmed retailer URL for this product.
+hop-keratin-shampoo,HOP Keratin Shampoo,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-keratin-shampoo,HOP Keratin Shampoo,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-keratin-shampoo,HOP Keratin Shampoo,functional_subtitle,REVIEW,,no,no,,,"source-assets/HOP-KERATIN/coming-soon/hop-keratin-catalogo.pdf identifies this 2-step system internationally as ""Fase 1: ORGANIC ALKALINE SHAMPOO"" and ""Fase 2: ORGANIC KERATIN THERAPY"" — different names from the confirmed Peru canonical titles ""HOP Keratin Shampoo"" / ""HOP Keratin Lotion"" in product-grouping.csv. Per instruction, Peru naming is preserved and NOT auto-replaced; this is a naming-discrepancy flag for human review before launch, not a conflict to resolve silently."
+hop-keratin-shampoo,HOP Keratin Shampoo,how_to_use,REVIEW,,no,no,,,"Rich 2-phase application/technical content exists in hop-keratin-catalogo.pdf, but positioning is COMING SOON pending naming resolution — do not populate ahead of that decision."
+hop-keratin-shampoo,HOP Keratin Shampoo,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+hop-keratin-shampoo,HOP Keratin Shampoo,interest_data,REVIEW,,no,no,,,"Catalog claims (e.g. ""elimina 100% el encrespado por 3 a 6 meses"") describe the combined 2-phase treatment, not confirmed as attributable to a single bottle (Shampoo vs. Lotion) without human sign-off."
+hop-keratin-shampoo,HOP Keratin Shampoo,allied_store_offers,SOURCE_REQUIRED,,no,no,,,COMING SOON — no allied-store offers per catalog rules.
+hop-keratin-lotion,HOP Keratin Lotion,range,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-keratin-lotion,HOP Keratin Lotion,subfamily,KEEP,HIGH,yes,yes,data/shopify/product-grouping.csv,,Already set correctly from canonical catalog.
+hop-keratin-lotion,HOP Keratin Lotion,functional_subtitle,REVIEW,,no,no,,,"source-assets/HOP-KERATIN/coming-soon/hop-keratin-catalogo.pdf identifies this 2-step system internationally as ""Fase 1: ORGANIC ALKALINE SHAMPOO"" and ""Fase 2: ORGANIC KERATIN THERAPY"" — different names from the confirmed Peru canonical titles ""HOP Keratin Shampoo"" / ""HOP Keratin Lotion"" in product-grouping.csv. Per instruction, Peru naming is preserved and NOT auto-replaced; this is a naming-discrepancy flag for human review before launch, not a conflict to resolve silently."
+hop-keratin-lotion,HOP Keratin Lotion,how_to_use,REVIEW,,no,no,,,"Rich 2-phase application/technical content exists in hop-keratin-catalogo.pdf, but positioning is COMING SOON pending naming resolution — do not populate ahead of that decision."
+hop-keratin-lotion,HOP Keratin Lotion,full_ingredients,SOURCE_REQUIRED,,no,no,,,
+hop-keratin-lotion,HOP Keratin Lotion,interest_data,REVIEW,,no,no,,,"Catalog claims (e.g. ""elimina 100% el encrespado por 3 a 6 meses"") describe the combined 2-phase treatment, not confirmed as attributable to a single bottle (Shampoo vs. Lotion) without human sign-off."
+hop-keratin-lotion,HOP Keratin Lotion,allied_store_offers,SOURCE_REQUIRED,,no,no,,,COMING SOON — no allied-store offers per catalog rules.
