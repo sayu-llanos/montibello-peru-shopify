@@ -104,6 +104,24 @@ const METAOBJECT_UPSERT = `
   }
 `;
 
+// Reads an existing metaobject entry by (type, handle), or null if none
+// exists. NOTE (verified live): this returns null identically whether the
+// handle doesn't exist yet OR the type string itself is wrong — Shopify
+// does not distinguish the two cases here. It is used for a pre-flight
+// "does this already have different content" check, never as proof a type
+// string is valid; that is only confirmed by the first real
+// metaobjectUpsert call succeeding without a userError.
+const METAOBJECT_BY_HANDLE = `
+  query MetaobjectByHandle($handle: MetaobjectHandleInput!) {
+    metaobjectByHandle(handle: $handle) {
+      id
+      handle
+      type
+      fields { key value }
+    }
+  }
+`;
+
 const STAGED_UPLOADS_CREATE = `
   mutation StagedUploadsCreate($input: [StagedUploadInput!]!) {
     stagedUploadsCreate(input: $input) {
@@ -250,4 +268,5 @@ module.exports = {
   PRODUCT_UPDATE_MEDIA,
   PRODUCT_CREATE,
   PRODUCT_OPTIONS_CREATE,
+  METAOBJECT_BY_HANDLE,
 };

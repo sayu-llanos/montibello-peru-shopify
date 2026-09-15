@@ -1,13 +1,17 @@
 {%- comment -%}
   Montibello PDP — EDITORIAL: benefits / features.
 
-  Visual card version of the same `montibello.features` list also used as
-  plain text inside the "Ver características" accordion in
-  montibello-product-details.liquid — one authored list, two presentations
-  (a short plain-text summary for the collapsed info row, a richer visual
-  module here for products where an icon/image was supplied). Hidden
-  entirely when no feature in the list has an icon/image, since otherwise
-  this section would just duplicate the accordion row with no added value.
+  Visual card version of `montibello.features`. Renders the product-specific
+  benefit section from the official PDP structure (e.g. HOP Ultra Repair
+  Shampoo's "El primer paso en tu rutina de cuidado") — `feature.title` is
+  the benefit-section heading, `feature.description` the bullet body. No new
+  product-level metafield was created for the heading; the feature
+  metaobject's own `title` field serves that role (Phase 4F decision).
+
+  Renders whenever any referenced feature has a title or description — an
+  icon/image is optional and purely decorative when present, never required
+  to show the section (HOP's product-specific features currently have no
+  image, since no exact authoritative icon asset exists per product).
 
   `montibello.features` is a list of `montibello_feature` metaobject
   references — accessed with direct dot notation (`feature.title.value`),
@@ -20,15 +24,15 @@
 
 {% liquid
   assign features = product.metafields.montibello.features.value
-  assign has_illustrated_feature = false
+  assign has_feature_content = false
   for feature in features
-    if feature.image.value != blank
-      assign has_illustrated_feature = true
+    if feature.title.value != blank or feature.description.value != blank
+      assign has_feature_content = true
     endif
   endfor
 %}
 
-{% if has_illustrated_feature %}
+{% if has_feature_content %}
   <div
     class="section section--{{ section.settings.section_width }} montibello-pdp-benefits spacing-style"
     style="{% render 'spacing-style', settings: section.settings %}"

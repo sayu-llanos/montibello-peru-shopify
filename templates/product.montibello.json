@@ -198,8 +198,8 @@
   "order": [
     "montibello_product_main",
     "montibello_product_details",
-    "montibello_product_ingredients",
     "montibello_product_benefits",
+    "montibello_product_ingredients",
     "montibello_shade_browser",
     "montibello_product_routine",
     "montibello_allied_stores",

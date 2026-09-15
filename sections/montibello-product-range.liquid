@@ -1,11 +1,27 @@
 {%- comment -%}
-  "Descubre la gama completa" product grid for the UNDER page. Once real
-  UNDER products exist in this collection, it renders them exactly like
-  Horizon's native product-list section (same _product-card block, so it
-  stays theme-editor customizable). Until then — the connected store
-  currently has no products at all — it falls back to four temporary cards
-  built from the official Montibello UNDER product photography, so the page
-  doesn't show Horizon's generic apparel placeholder cards.
+  "Descubre la gama completa" product grid — reused across UNDER, HOP
+  subfamily pages, and LUXLIGHT (Phase 4G manager-review sprint).
+
+  Two independent rendering paths:
+  1. `collection.products` (Horizon's native `_product-card` block) — used
+     automatically once real products are added as members of the page's
+     bound collection AND are ACTIVE. Currently unused (0 members on any
+     Montibello collection today), kept for when the catalog goes live.
+  2. `product-grid-card` blocks — an explicit, curated list of real Shopify
+     products (via a `type: "product"` block setting), one block per
+     canonical PDP. This is the path actually rendering right now: it reads
+     real product data (image, title, montibello.functional_subtitle,
+     variant sizes) via the block's product reference, which resolves
+     regardless of product status — unlike `collection.products` or a
+     direct `/products/<handle>` visit, a referenced product's data (title,
+     image, metafields) is readable in Liquid even while DRAFT. The card's
+     link still points to the real PDP URL; visiting it will 404 while the
+     product stays DRAFT — a known, reported limitation, not a bug to route
+     around by changing product status.
+
+  Falls back to a plain "no products configured yet" note only if neither
+  path has anything to show, so this section never renders an empty grid
+  shell.
 {%- endcomment -%}
 
 {% liquid
@@ -37,65 +53,65 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="montibello-product-range__grid montibello-product-range__grid--placeholder">
-      <div class="montibello-product-range__card">
-        <div class="montibello-product-range__image-wrap">
-          <img
-            src="{{ 'montibello-under-product-colorant.webp' | asset_url }}"
-            alt="Under — coloración permanente"
-            loading="lazy"
-            class="montibello-product-range__image"
-            width="1855"
-            height="2560"
-          >
-        </div>
-        <p class="montibello-product-range__name">Under</p>
-        <p class="montibello-product-range__type">Coloración permanente de alta cobertura</p>
+    {% liquid
+      assign grid_card_count = 0
+      for block in section.blocks
+        if block.type == 'product-grid-card'
+          assign grid_card_count = grid_card_count | plus: 1
+        endif
+      endfor
+    %}
+
+    {% if grid_card_count > 0 %}
+      <div class="montibello-product-range__grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'product-grid-card' %}
+            {% liquid
+              assign card_product = block.settings.product
+              assign card_subtitle = card_product.metafields.montibello.functional_subtitle.value
+              assign card_sizes = ''
+              if card_product != blank
+                for variant in card_product.variants
+                  if variant.title != 'Default Title' and variant.title != blank
+                    if card_sizes == ''
+                      assign card_sizes = variant.title
+                    else
+                      assign card_sizes = card_sizes | append: ' / ' | append: variant.title
+                    endif
+                  endif
+                endfor
+              endif
+            %}
+            <a
+              href="{{ card_product.url | default: '#' }}"
+              class="montibello-product-range__card"
+              {{ block.shopify_attributes }}
+            >
+              <div class="montibello-product-range__image-wrap">
+                {% if card_product.featured_image != blank %}
+                  {{
+                    card_product.featured_image
+                    | image_url: width: 600
+                    | image_tag: loading: 'lazy', class: 'montibello-product-range__image', widths: '300,450,600'
+                  }}
+                {% else %}
+                  <div class="montibello-product-range__image-placeholder" aria-hidden="true"></div>
+                {% endif %}
+              </div>
+              <p class="montibello-product-range__name">{{ card_product.title | default: block.settings.fallback_title }}</p>
+              {% if card_subtitle != blank %}
+                <p class="montibello-product-range__type">{{ card_subtitle }}</p>
+              {% endif %}
+              {% if card_sizes != blank %}
+                <p class="montibello-product-range__sizes">{{ card_sizes }}</p>
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
       </div>
-      <div class="montibello-product-range__card">
-        <div class="montibello-product-range__image-wrap">
-          <img
-            src="{{ 'montibello-under-activating-cream-15vol.jpg' | asset_url }}"
-            alt="Under Activating Cream 4,5% (15 vol)"
-            loading="lazy"
-            class="montibello-product-range__image"
-            width="1855"
-            height="2560"
-          >
-        </div>
-        <p class="montibello-product-range__name">Under Activating Cream 4,5% (15 vol)</p>
-        <p class="montibello-product-range__type">Crema activadora</p>
-      </div>
-      <div class="montibello-product-range__card">
-        <div class="montibello-product-range__image-wrap">
-          <img
-            src="{{ 'montibello-under-activating-cream-25vol.jpg' | asset_url }}"
-            alt="Under Activating Cream 7,5% (25 vol)"
-            loading="lazy"
-            class="montibello-product-range__image"
-            width="1855"
-            height="2560"
-          >
-        </div>
-        <p class="montibello-product-range__name">Under Activating Cream 7,5% (25 vol)</p>
-        <p class="montibello-product-range__type">Crema activadora</p>
-      </div>
-      <div class="montibello-product-range__card">
-        <div class="montibello-product-range__image-wrap">
-          <img
-            src="{{ 'montibello-under-activating-cream-35vol.jpg' | asset_url }}"
-            alt="Under Activating Cream 10,5% (35 vol)"
-            loading="lazy"
-            class="montibello-product-range__image"
-            width="1855"
-            height="2560"
-          >
-        </div>
-        <p class="montibello-product-range__name">Under Activating Cream 10,5% (35 vol)</p>
-        <p class="montibello-product-range__type">Crema activadora</p>
-      </div>
-    </div>
-    <p class="montibello-product-range__note">{{ section.settings.placeholder_note }}</p>
+    {% else %}
+      <p class="montibello-product-range__note">{{ section.settings.placeholder_note }}</p>
+    {% endif %}
   {% endif %}
 </div>
 
@@ -120,18 +136,29 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
   }
 
   .montibello-product-range__image-wrap {
     aspect-ratio: 3 / 4;
     overflow: hidden;
     background: var(--color-background-secondary, #ece7dc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .montibello-product-range__image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+  }
+
+  .montibello-product-range__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-background-secondary, #ece7dc);
   }
 
   .montibello-product-range__name {
@@ -142,6 +169,12 @@
   .montibello-product-range__type {
     font-size: var(--font-size--xs);
     opacity: 0.7;
+    margin: 0;
+  }
+
+  .montibello-product-range__sizes {
+    font-size: var(--font-size--xs);
+    opacity: 0.55;
     margin: 0;
   }
 
@@ -160,7 +193,8 @@
   "class": "section-wrapper",
   "blocks": [
     { "type": "text" },
-    { "type": "_product-card" }
+    { "type": "_product-card" },
+    { "type": "product-grid-card" }
   ],
   "settings": [
     {
@@ -176,7 +210,7 @@
     {
       "type": "text",
       "id": "placeholder_note",
-      "label": "Nota bajo la cuadrícula temporal",
+      "label": "Nota cuando no hay productos configurados",
       "default": "Catálogo completo disponible próximamente en Montibello Perú."
     },
     {

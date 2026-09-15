@@ -34,7 +34,7 @@
             "heading": "Protege tu color con biociencia",
             "text": "HOP Colour Last: la biociencia de las algas para prolongar la vitalidad, el brillo y la duración del color.",
             "button_label": "Ver gama",
-            "button_link": "/pages/hop"
+            "button_link": "shopify://collections/hop"
           }
         },
         "slide_luxlight": {
@@ -47,7 +47,7 @@
             "heading": "Máxima aclaración con el máximo cuidado capilar",
             "text": "Descubre la gama para rubios puros, brillantes y seguros a todos los niveles.",
             "button_label": "Ver gama",
-            "button_link": "/pages/luxlight"
+            "button_link": "shopify://collections/luxlight"
           }
         }
       },
@@ -92,7 +92,7 @@
             "category": "Cuidado capilar",
             "title": "HOP",
             "text": "Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas.",
-            "link": "/pages/hop"
+            "link": "shopify://collections/hop"
           }
         },
         "luxlight": {
@@ -103,7 +103,7 @@
             "category": "Decoloración",
             "title": "Luxlight",
             "text": "Sistema de decoloración de alto rendimiento con máximo cuidado y control del resultado en cada aclarado.",
-            "link": "/pages/luxlight"
+            "link": "shopify://collections/luxlight"
           }
         },
         "hop_keratin": {
@@ -151,10 +151,10 @@
         "hop_ultra_repair": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-hop-ultra-repair-serum.png",
+            "bundled_image": "montibello-hop-hero-shampoo.jpg",
             "title": "HOP",
-            "text": "Ultra Repair — sérum reparador nocturno",
-            "link": "/pages/hop"
+            "text": "Ultra Repair — champú reparador",
+            "link": "shopify://collections/hop-ultra-repair"
           }
         },
         "hop_color_last": {
@@ -163,7 +163,7 @@
             "bundled_image": "montibello-hop-color-last-shampoo.png",
             "title": "HOP",
             "text": "Color Last — champú protector del color",
-            "link": "/pages/hop"
+            "link": "shopify://collections/hop-colour-last"
           }
         },
         "luxlight_lightener": {
@@ -172,7 +172,7 @@
             "bundled_image": "montibello-luxlight-lightener-9plus.png",
             "title": "Luxlight",
             "text": "Supreme Lightener 9+ — decolorante en polvo",
-            "link": "/pages/luxlight"
+            "link": "shopify://collections/luxlight"
           }
         },
         "luxlight_shampoo": {
@@ -181,7 +181,7 @@
             "bundled_image": "montibello-luxlight-ph-protective-shampoo.png",
             "title": "Luxlight",
             "text": "Champú protector pH",
-            "link": "/pages/luxlight"
+            "link": "shopify://collections/luxlight"
           }
         }
       },
@@ -201,10 +201,10 @@
         "hop": {
           "type": "magazine-card",
           "settings": {
-            "bundled_image": "montibello-magazine-hop-ultra-repair.png",
+            "bundled_image": "montibello-hop-hero-shampoo.jpg",
             "title": "Hop Ultra Repair y Barrefit® Studio convierten septiembre en el mes del autocuidado",
             "text": "Cuidado capilar",
-            "link": "/pages/hop"
+            "link": "shopify://collections/hop"
           }
         },
         "luxlight": {
@@ -213,7 +213,7 @@
             "bundled_image": "montibello-magazine-luxlight-techniques.jpg",
             "title": "Tendencias Luxlight: las 3 técnicas de aclaración que reinarán este verano",
             "text": "Decoloración",
-            "link": "/pages/luxlight"
+            "link": "shopify://collections/luxlight"
           }
         },
         "under": {

@@ -242,8 +242,46 @@
             }
           },
           "block_order": ["product_card_gallery", "product_title", "price"]
+        },
+        "card_permanent_colour": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068161217", "fallback_title": "Under Permanent Colour" }
+        },
+        "card_activator_15": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068259521", "fallback_title": "Under Activator 15 vol" }
+        },
+        "card_activator_25": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068390593", "fallback_title": "Under Activator 25 vol" }
+        },
+        "card_activator_35": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068488897", "fallback_title": "Under Activator 35 vol" }
+        },
+        "card_monodose_15": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068619969", "fallback_title": "Under Monodose 15 vol" }
+        },
+        "card_monodose_25": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068718273", "fallback_title": "Under Monodose 25 vol" }
+        },
+        "card_monodose_35": {
+          "type": "product-grid-card",
+          "settings": { "product": "gid://shopify/Product/11077068849345", "fallback_title": "Under Monodose 35 vol" }
         }
       },
+      "block_order": [
+        "heading",
+        "card_permanent_colour",
+        "card_activator_15",
+        "card_activator_25",
+        "card_activator_35",
+        "card_monodose_15",
+        "card_monodose_25",
+        "card_monodose_35"
+      ],
       "name": "Gama de productos Montibello",
       "settings": {
         "section_width": "page-width",

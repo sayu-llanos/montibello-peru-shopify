@@ -1,0 +1,264 @@
+{
+  "sections": {
+    "hero_luxlight": {
+      "type": "montibello-image-banner",
+      "blocks": {},
+      "block_order": [],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "full",
+        "section_width": "full-width",
+        "bundled_image": "montibello-luxlight-hero-desktop.jpg",
+        "image_alt": "Campaña Montibello Luxlight",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "intro_luxlight": {
+      "type": "section",
+      "blocks": {
+        "intro_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>Luxlight</h1>",
+                "type_preset": "h1",
+                "max_width": "none"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Sistema de decoloración de alto rendimiento con máximo cuidado y control del resultado en cada aclarado. Descubre la gama para rubios puros, brillantes y seguros a todos los niveles.</p>",
+                "type_preset": "rte",
+                "max_width": "none"
+              }
+            }
+          },
+          "block_order": [
+            "heading",
+            "text"
+          ]
+        }
+      },
+      "block_order": [
+        "intro_group"
+      ],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "product_range_luxlight": {
+      "type": "montibello-product-range",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Descubre la gama completa</h2>",
+            "type_preset": "h2",
+            "alignment": "center",
+            "width": "100%"
+          }
+        },
+        "card_1": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067014337",
+            "fallback_title": "Supreme Lightener 9+"
+          }
+        },
+        "card_2": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067047105",
+            "fallback_title": "Supreme Clay Lightener 7+"
+          }
+        },
+        "card_3": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067079873",
+            "fallback_title": "Supreme Control Oil Lightening System"
+          }
+        },
+        "card_4": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067145409",
+            "fallback_title": "Supreme Oil Developer 10 vol"
+          }
+        },
+        "card_5": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067276481",
+            "fallback_title": "Supreme Oil Developer 20 vol"
+          }
+        },
+        "card_6": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067473089",
+            "fallback_title": "Supreme Oil Developer 30 vol"
+          }
+        },
+        "card_7": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067669697",
+            "fallback_title": "Supreme pH Protective Shampoo"
+          }
+        },
+        "card_8": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077067899073",
+            "fallback_title": "Supreme Acidic pH Treatment"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4",
+        "card_5",
+        "card_6",
+        "card_7",
+        "card_8"
+      ],
+      "name": "Gama de productos Montibello",
+      "settings": {
+        "section_width": "page-width",
+        "placeholder_note": "Catálogo completo disponible próximamente en Montibello Perú.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "cta_professional_luxlight": {
+      "type": "section",
+      "blocks": {
+        "group_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "gap": 32
+          },
+          "blocks": {
+            "group_professional": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Contacta con un comercial",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": [
+                "heading",
+                "button"
+              ]
+            },
+            "group_locator": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Encuentra",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": [
+                "text",
+                "button"
+              ]
+            }
+          },
+          "block_order": [
+            "group_professional",
+            "group_locator"
+          ]
+        }
+      },
+      "block_order": [
+        "group_row"
+      ],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "#000000",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "hero_luxlight",
+    "intro_luxlight",
+    "product_range_luxlight",
+    "cta_professional_luxlight"
+  ]
+}

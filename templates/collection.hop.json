@@ -1,0 +1,221 @@
+{
+  "sections": {
+    "hero_hop": {
+      "type": "montibello-image-banner",
+      "blocks": {},
+      "block_order": [],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "full",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-hero-desktop.jpg",
+        "image_alt": "Campaña Montibello HOP",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "intro_hop": {
+      "type": "section",
+      "blocks": {
+        "intro_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>HOP</h1>",
+                "type_preset": "h1",
+                "max_width": "none"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas. Elige tu gama.</p>",
+                "type_preset": "rte",
+                "max_width": "none"
+              }
+            }
+          },
+          "block_order": [
+            "heading",
+            "text"
+          ]
+        }
+      },
+      "block_order": [
+        "intro_group"
+      ],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "subfamilies_hop": {
+      "type": "montibello-product-teaser",
+      "blocks": {
+        "ultra_repair": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-hop-hero-shampoo.jpg",
+            "title": "Ultra Repair",
+            "text": "Reparación intensiva para cabellos dañados",
+            "link": "shopify://collections/hop-ultra-repair"
+          }
+        },
+        "colour_last": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-hop-color-last-shampoo.png",
+            "title": "Colour Last",
+            "text": "Protección y prolongación del color",
+            "link": "shopify://collections/hop-colour-last"
+          }
+        },
+        "smooth_hydration": {
+          "type": "product-teaser-card",
+          "settings": {
+            "bundled_image": "montibello-hop-card-portrait.jpg",
+            "title": "Smooth Hydration",
+            "text": "Hidratación y control del frizz",
+            "link": "shopify://collections/hop-smooth-hydration"
+          }
+        }
+      },
+      "block_order": [
+        "ultra_repair",
+        "colour_last",
+        "smooth_hydration"
+      ],
+      "name": "Vitrina de productos",
+      "settings": {
+        "heading": "Elige tu gama HOP",
+        "section_width": "full-width",
+        "background_color": "#F6F6F3",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "cta_professional_hop": {
+      "type": "section",
+      "blocks": {
+        "group_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "gap": 32
+          },
+          "blocks": {
+            "group_professional": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Contacta con un comercial",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": [
+                "heading",
+                "button"
+              ]
+            },
+            "group_locator": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Encuentra",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": [
+                "text",
+                "button"
+              ]
+            }
+          },
+          "block_order": [
+            "group_professional",
+            "group_locator"
+          ]
+        }
+      },
+      "block_order": [
+        "group_row"
+      ],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "#000000",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "hero_hop",
+    "intro_hop",
+    "subfamilies_hop",
+    "cta_professional_hop"
+  ]
+}

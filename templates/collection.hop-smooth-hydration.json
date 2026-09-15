@@ -1,0 +1,208 @@
+{
+  "sections": {
+    "hero_intro_smooth_hydration": {
+      "type": "section",
+      "blocks": {
+        "intro_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>Smooth Hydration</h1>",
+                "type_preset": "h1",
+                "max_width": "none"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Hidratación profunda y control del frizz, con Ácido Hialurónico y LifeAlgae Bioscience.</p>",
+                "type_preset": "rte",
+                "max_width": "none"
+              }
+            }
+          },
+          "block_order": [
+            "heading",
+            "text"
+          ]
+        }
+      },
+      "block_order": [
+        "intro_group"
+      ],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "product_range_smooth_hydration": {
+      "type": "montibello-product-range",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Descubre la gama completa</h2>",
+            "type_preset": "h2",
+            "alignment": "center",
+            "width": "100%"
+          }
+        },
+        "card_1": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077066850497",
+            "fallback_title": "HOP Smooth Hydration Shampoo"
+          }
+        },
+        "card_2": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077066817729",
+            "fallback_title": "HOP Smooth Hydration Rinse"
+          }
+        },
+        "card_3": {
+          "type": "product-grid-card",
+          "settings": {
+            "product": "gid://shopify/Product/11077066784961",
+            "fallback_title": "HOP Smooth Hydration Mask"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "name": "Gama de productos Montibello",
+      "settings": {
+        "section_width": "page-width",
+        "placeholder_note": "Catálogo completo disponible próximamente en Montibello Perú.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "cta_professional_smooth_hydration": {
+      "type": "section",
+      "blocks": {
+        "group_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "gap": 32
+          },
+          "blocks": {
+            "group_professional": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Contacta con un comercial",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": [
+                "heading",
+                "button"
+              ]
+            },
+            "group_locator": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "vertical_alignment": "center",
+                "gap": 24,
+                "width": "fill"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
+                    "type_preset": "h5",
+                    "text_color": "#FFFFFF",
+                    "max_width": "normal"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Encuentra",
+                    "link": "/pages/contacto",
+                    "style_class": "button-custom",
+                    "custom_button_background": "rgba(0,0,0,0)",
+                    "custom_button_text": "#FFFFFF",
+                    "custom_button_border": "#FFFFFF"
+                  }
+                }
+              },
+              "block_order": [
+                "text",
+                "button"
+              ]
+            }
+          },
+          "block_order": [
+            "group_professional",
+            "group_locator"
+          ]
+        }
+      },
+      "block_order": [
+        "group_row"
+      ],
+      "name": "Sección",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "#000000",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "hero_intro_smooth_hydration",
+    "product_range_smooth_hydration",
+    "cta_professional_smooth_hydration"
+  ]
+}

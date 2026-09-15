@@ -1,0 +1,26 @@
+{%- comment -%}
+  Schema-only block: defines the `product` + `fallback_title` settings used
+  by a grid card in montibello-product-range.liquid. Rendering happens
+  inline in that section (reading `block.settings.*` directly) rather than
+  via `content_for 'block', ..., id: block.id` here, because content_for's
+  `id` argument must be a literal string — it cannot take a dynamic
+  per-template block id, which a reusable, block-count-varying grid needs.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Tarjeta de producto",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto"
+    },
+    {
+      "type": "text",
+      "id": "fallback_title",
+      "label": "Título alternativo"
+    }
+  ]
+}
+{% endschema %}

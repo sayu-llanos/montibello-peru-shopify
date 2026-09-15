@@ -1,14 +1,25 @@
 {%- comment -%}
   Montibello PDP — PRODUCT INFORMATION.
 
-  Renders the reference pages' collapsed-by-default info rows ("Ver
-  características", "Cómo usar", "Ver todos los ingredientes", "Datos de
-  interés", "Datos técnicos"), plus an always-open technology block (matches
-  how Luxlight's reference page keeps its Bond3/Metal Shield paragraph
-  visible rather than collapsed) and a small-print claim footnote. Every row
+  Renders the reference pages' collapsed-by-default info rows — official
+  accordion order is "Ver todos los ingredientes", "Cómo usar", "Datos de
+  interés", then "Datos técnicos" (LUXLIGHT-only in practice) — plus an
+  always-open technology block and a small-print claim footnote. Every row
   is independently hidden when its metafield is blank, and the whole section
   is hidden when none of them have content — never renders an empty
   accordion shell.
+
+  The technology block and the "Ver características" feature accordion row
+  are both range-gated to `range != 'HOP'` (Phase 4F): HOP now presents its
+  product-specific feature via the dedicated montibello-product-benefits.liquid
+  section instead (avoiding a duplicate presentation of the same content),
+  and HOP's official PDP has no standalone technology block — LifeAlgae
+  Bioscience appears there only as an Ingredientes principales card. LUXLIGHT
+  keeps both exactly as before (its reference page keeps its Bond3/Metal
+  Shield paragraph visible rather than collapsed, and it has no
+  product-specific `features` data today so the accordion row was already a
+  no-op for it). Stored technology_heading/technology_description data is
+  never deleted for HOP — only its rendering here is suppressed.
 
   Accordion rows use native `<details>/<summary>` (see
   snippets/montibello-pdp-accordion-item.liquid) for keyboard accessibility
@@ -36,6 +47,7 @@
 {%- endcomment -%}
 
 {% liquid
+  assign range = product.metafields.montibello.range.value
   assign features = product.metafields.montibello.features.value
   assign how_to_use_field = product.metafields.montibello.how_to_use
   assign how_to_use = how_to_use_field.value
@@ -51,14 +63,19 @@
   assign claim_footnote = product.metafields.montibello.claim_footnote.value
 
   assign has_features = false
-  for feature in features
-    assign has_features = true
-    break
-  endfor
+  if range != 'HOP'
+    for feature in features
+      assign has_features = true
+      break
+    endfor
+  endif
 
   assign has_technology = false
   if technology_heading != blank or technology_description != blank
     assign has_technology = true
+  endif
+  if range == 'HOP'
+    assign has_technology = false
   endif
 
   assign has_any_content = false
@@ -85,6 +102,28 @@
       {% endif %}
 
       <div class="montibello-pdp-details__accordion">
+        {% if ingredients != blank %}
+          {% assign ingredients_tag = full_ingredients_field | metafield_tag %}
+          {% capture ingredients_content %}<div class="montibello-pdp-details__ingredients">{{ ingredients_tag }}</div>{% endcapture %}
+          {% render 'montibello-pdp-accordion-item', label: 'Ver todos los ingredientes', content: ingredients_content %}
+        {% endif %}
+
+        {% if how_to_use != blank %}
+          {% assign how_to_use_label = 'Cómo usar ' | append: product.title %}
+          {% assign how_to_use_tag = how_to_use_field | metafield_tag %}
+          {% render 'montibello-pdp-accordion-item', label: how_to_use_label, content: how_to_use_tag %}
+        {% endif %}
+
+        {% if interest_data != blank %}
+          {% assign interest_data_tag = interest_data_field | metafield_tag %}
+          {% render 'montibello-pdp-accordion-item', label: 'Datos de interés', content: interest_data_tag %}
+        {% endif %}
+
+        {% if technical_data != blank %}
+          {% assign technical_data_tag = technical_data_field | metafield_tag %}
+          {% render 'montibello-pdp-accordion-item', label: 'Datos técnicos', content: technical_data_tag %}
+        {% endif %}
+
         {% if has_features %}
           {% capture features_content %}
             <ul class="montibello-pdp-details__feature-list">
@@ -99,28 +138,6 @@
             </ul>
           {% endcapture %}
           {% render 'montibello-pdp-accordion-item', label: 'Ver características', content: features_content %}
-        {% endif %}
-
-        {% if how_to_use != blank %}
-          {% assign how_to_use_label = 'Cómo usar ' | append: product.title %}
-          {% assign how_to_use_tag = how_to_use_field | metafield_tag %}
-          {% render 'montibello-pdp-accordion-item', label: how_to_use_label, content: how_to_use_tag %}
-        {% endif %}
-
-        {% if ingredients != blank %}
-          {% assign ingredients_tag = full_ingredients_field | metafield_tag %}
-          {% capture ingredients_content %}<div class="montibello-pdp-details__ingredients">{{ ingredients_tag }}</div>{% endcapture %}
-          {% render 'montibello-pdp-accordion-item', label: 'Ver todos los ingredientes', content: ingredients_content %}
-        {% endif %}
-
-        {% if interest_data != blank %}
-          {% assign interest_data_tag = interest_data_field | metafield_tag %}
-          {% render 'montibello-pdp-accordion-item', label: 'Datos de interés', content: interest_data_tag %}
-        {% endif %}
-
-        {% if technical_data != blank %}
-          {% assign technical_data_tag = technical_data_field | metafield_tag %}
-          {% render 'montibello-pdp-accordion-item', label: 'Datos técnicos', content: technical_data_tag %}
         {% endif %}
       </div>
 
