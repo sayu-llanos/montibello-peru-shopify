@@ -216,6 +216,7 @@
       "blocks": {
         "heading": {
           "type": "text",
+          "static": true,
           "settings": {
             "text": "<h2>Descubre la gama completa</h2>",
             "type_preset": "h2",
@@ -273,7 +274,6 @@
         }
       },
       "block_order": [
-        "heading",
         "card_permanent_colour",
         "card_activator_15",
         "card_activator_25",

@@ -19,6 +19,25 @@
      product stays DRAFT — a known, reported limitation, not a bug to route
      around by changing product status.
 
+  The card blocks are rendered via `{% content_for 'blocks' %}`, not a
+  manual `for block in section.blocks` loop reading `block.settings.*`
+  directly — that manual-read pattern was the original implementation and
+  was the actual bug behind the range grids showing the empty-catalog
+  fallback for every product-grid-card block: this block type lives in a
+  separate file under blocks/ (a theme block), and theme blocks need
+  Shopify to be asked to render them via content_for before their settings
+  reliably resolve. `content_for 'blocks'` handles a variable-length,
+  merchant-ordered block list without needing a literal id.
+
+  The "heading" block is rendered separately, above the grid, via the
+  singular `content_for 'block', type: 'text', id: 'heading'`. That call
+  is Shopify's documented API for a single *static* block — which requires
+  the block's JSON entry to carry `"static": true` and be omitted from
+  `block_order` (see the 5 collection.*.json templates). Without that
+  `"static": true` flag, "heading" was a normal dynamic block being
+  addressed as if it were static, which is unsupported and part of why
+  the grid area below it also never resolved correctly.
+
   Falls back to a plain "no products configured yet" note only if neither
   path has anything to show, so this section never renders an empty grid
   shell.
@@ -56,58 +75,15 @@
     {% liquid
       assign grid_card_count = 0
       for block in section.blocks
-        if block.type == 'product-grid-card'
+        unless block.id == 'heading'
           assign grid_card_count = grid_card_count | plus: 1
-        endif
+        endunless
       endfor
     %}
 
     {% if grid_card_count > 0 %}
       <div class="montibello-product-range__grid">
-        {% for block in section.blocks %}
-          {% if block.type == 'product-grid-card' %}
-            {% liquid
-              assign card_product = block.settings.product
-              assign card_subtitle = card_product.metafields.montibello.functional_subtitle.value
-              assign card_sizes = ''
-              if card_product != blank
-                for variant in card_product.variants
-                  if variant.title != 'Default Title' and variant.title != blank
-                    if card_sizes == ''
-                      assign card_sizes = variant.title
-                    else
-                      assign card_sizes = card_sizes | append: ' / ' | append: variant.title
-                    endif
-                  endif
-                endfor
-              endif
-            %}
-            <a
-              href="{{ card_product.url | default: '#' }}"
-              class="montibello-product-range__card"
-              {{ block.shopify_attributes }}
-            >
-              <div class="montibello-product-range__image-wrap">
-                {% if card_product.featured_image != blank %}
-                  {{
-                    card_product.featured_image
-                    | image_url: width: 600
-                    | image_tag: loading: 'lazy', class: 'montibello-product-range__image', widths: '300,450,600'
-                  }}
-                {% else %}
-                  <div class="montibello-product-range__image-placeholder" aria-hidden="true"></div>
-                {% endif %}
-              </div>
-              <p class="montibello-product-range__name">{{ card_product.title | default: block.settings.fallback_title }}</p>
-              {% if card_subtitle != blank %}
-                <p class="montibello-product-range__type">{{ card_subtitle }}</p>
-              {% endif %}
-              {% if card_sizes != blank %}
-                <p class="montibello-product-range__sizes">{{ card_sizes }}</p>
-              {% endif %}
-            </a>
-          {% endif %}
-        {% endfor %}
+        {% content_for 'blocks' %}
       </div>
     {% else %}
       <p class="montibello-product-range__note">{{ section.settings.placeholder_note }}</p>

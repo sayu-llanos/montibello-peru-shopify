@@ -53,6 +53,7 @@
       "blocks": {
         "heading": {
           "type": "text",
+          "static": true,
           "settings": {
             "text": "<h2>Descubre la gama completa</h2>",
             "type_preset": "h2",
@@ -90,7 +91,6 @@
         }
       },
       "block_order": [
-        "heading",
         "card_1",
         "card_2",
         "card_3",

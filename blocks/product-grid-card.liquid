@@ -1,11 +1,61 @@
 {%- comment -%}
-  Schema-only block: defines the `product` + `fallback_title` settings used
-  by a grid card in montibello-product-range.liquid. Rendering happens
-  inline in that section (reading `block.settings.*` directly) rather than
-  via `content_for 'block', ..., id: block.id` here, because content_for's
-  `id` argument must be a literal string — it cannot take a dynamic
-  per-template block id, which a reusable, block-count-varying grid needs.
+  Renders one curated product card in montibello-product-range.liquid's grid.
+  Rendered via `{% content_for 'blocks' %}` in the parent section — NOT via
+  a manual `for block in section.blocks` + direct `block.settings.*` read.
+
+  That manual-read pattern is what shipped originally and was the actual
+  root cause of the "Catálogo completo disponible próximamente" fallback
+  showing instead of any cards: this block type is declared as a file
+  under blocks/ (a theme block), and theme blocks only get resolved for
+  merchant/editor pathways when Shopify is asked to render them via
+  content_for — enumerating them from `section.blocks` without ever
+  content_for'ing them does not have a reliable resolved `.settings`
+  payload. `content_for 'blocks'` is Shopify's documented mechanism for a
+  variable-length, merchant-ordered list of theme blocks and needs no
+  literal/static id (unlike the singular `content_for 'block', id: ...`,
+  which is for one fixed static block only).
 {%- endcomment -%}
+
+{% liquid
+  assign card_product = block.settings.product
+  assign card_subtitle = card_product.metafields.montibello.functional_subtitle.value
+  assign card_sizes = ''
+  if card_product != blank
+    for variant in card_product.variants
+      if variant.title != 'Default Title' and variant.title != blank
+        if card_sizes == ''
+          assign card_sizes = variant.title
+        else
+          assign card_sizes = card_sizes | append: ' / ' | append: variant.title
+        endif
+      endif
+    endfor
+  endif
+%}
+<a
+  href="{{ card_product.url | default: '#' }}"
+  class="montibello-product-range__card"
+  {{ block.shopify_attributes }}
+>
+  <div class="montibello-product-range__image-wrap">
+    {% if card_product.featured_image != blank %}
+      {{
+        card_product.featured_image
+        | image_url: width: 600
+        | image_tag: loading: 'lazy', class: 'montibello-product-range__image', widths: '300,450,600'
+      }}
+    {% else %}
+      <div class="montibello-product-range__image-placeholder" aria-hidden="true"></div>
+    {% endif %}
+  </div>
+  <p class="montibello-product-range__name">{{ card_product.title | default: block.settings.fallback_title }}</p>
+  {% if card_subtitle != blank %}
+    <p class="montibello-product-range__type">{{ card_subtitle }}</p>
+  {% endif %}
+  {% if card_sizes != blank %}
+    <p class="montibello-product-range__sizes">{{ card_sizes }}</p>
+  {% endif %}
+</a>
 
 {% schema %}
 {
