@@ -63,6 +63,109 @@
         "padding-block-end": 40
       }
     },
+    "results_luxlight": {
+      "type": "montibello-stats-panel",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Máxima aclaración con el máximo cuidado capilar</h2>",
+            "type_preset": "h2",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading"],
+      "name": "Panel de datos Luxlight",
+      "settings": {
+        "bundled_image": "montibello-luxlight-results-editorial.webp",
+        "image_alt": "Montibello Luxlight — resultados de aclarado en todos los niveles",
+        "media_position": "right",
+        "toggle_label": "Ver datos",
+        "stat_1_number": "x20",
+        "stat_1_label": "veces más fuerte*",
+        "stat_2_number": "52%",
+        "stat_2_label": "más resistente a la rotura**",
+        "stat_3_number": "x10",
+        "stat_3_label": "veces más suave*",
+        "stat_4_number": "",
+        "stat_4_label": "",
+        "footnote": "* Vs. servicio de decoloración convencional. ** Vs. sin tratamiento Bond3 Force System. Recupera la fuerza natural del cabello.**",
+        "bundled_file": "none",
+        "file_label": "",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "technology_luxlight": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Potenciada por la tecnología Bond3 Force System + Metal Shield</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Bond3 Force System:</strong> un nuevo sistema de triple acción.</p><ul><li>Refuerza y restaura los enlaces debilitados y dañados para aportar mayor resistencia.</li><li>Crea enlaces adicionales en las cadenas de queratina y entre ellas.</li><li>Refuerza la estructura interna de la fibra.</li></ul><p><strong>Metal Shield:</strong> un escudo antimetales que crea un film para reparar y reforzar el cabello mientras lo protege frente a los efectos del exceso de metales acumulados, para un cabello fuerte y resistente.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "left",
+        "section_width": "full-width",
+        "bundled_image": "montibello-luxlight-technology-editorial.webp",
+        "image_alt": "Bond3 Force System + Metal Shield — tecnología Montibello Luxlight",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "service_luxlight": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Diseñada para cubrir todas las necesidades de los servicios de aclaración</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Servicio premium 360º en el salón.</p><p>Gama completa con aclaración + tratamiento.</p><p>Rendimiento demostrado, resultados elevados.</p><p>Menú de servicios para antes, durante y después de la aclaración.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "section_width": "full-width",
+        "bundled_image": "montibello-professional-salon-editorial.jpg",
+        "image_alt": "Servicio profesional de aclarado Montibello Luxlight en salón",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "product_range_luxlight": {
       "type": "montibello-product-range",
       "blocks": {
@@ -258,6 +361,9 @@
   "order": [
     "hero_luxlight",
     "intro_luxlight",
+    "results_luxlight",
+    "technology_luxlight",
+    "service_luxlight",
     "product_range_luxlight",
     "cta_professional_luxlight"
   ]

@@ -1,0 +1,127 @@
+{%- comment -%}
+  Large static video poster/cinematic thumbnail with a centered play button,
+  matching the official Montibello Hair range-page treatment placed below the
+  product grid. Clicking it opens the single shared #montibello-video-modal
+  (see montibello-video-modal.liquid) — no separate player, no autoplay here.
+{%- endcomment -%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-video-poster spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <a href="#montibello-video-modal" class="montibello-video-poster__trigger" aria-label="{{ section.settings.aria_label | default: 'Reproducir vídeo' }}">
+    {% if section.settings.poster_url != blank %}
+      <img
+        src="{{ section.settings.poster_url }}"
+        alt=""
+        loading="lazy"
+        width="2810"
+        height="1440"
+        class="montibello-video-poster__image"
+      >
+    {% else %}
+      <div class="montibello-video-poster__placeholder" aria-hidden="true">
+        {{ 'hero-apparel-3' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+    <span class="montibello-video-poster__play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28" focusable="false">
+        <path d="M8 5v14l11-7z" fill="currentColor" />
+      </svg>
+    </span>
+  </a>
+</div>
+
+{% stylesheet %}
+  .montibello-video-poster__trigger {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .montibello-video-poster__image,
+  .montibello-video-poster__placeholder {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2810 / 1440;
+    object-fit: cover;
+  }
+
+  .montibello-video-poster__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .montibello-video-poster__trigger:hover .montibello-video-poster__play {
+    background: rgba(0, 0, 0, 0.65);
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Póster vídeo Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "poster_url",
+      "label": "URL de la imagen de portada"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Etiqueta accesible del botón"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Póster vídeo Montibello"
+    }
+  ]
+}
+{% endschema %}

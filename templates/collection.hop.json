@@ -63,13 +63,116 @@
         "padding-block-end": 40
       }
     },
+    "wellbeing_hop": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Corrige los signos del bienestar capilar</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Impulsa el bienestar en el cabello con ingredientes cosméticos de alta eficacia.</p><p>Experiencia inmersiva de bienestar a través de la sensorialidad de texturas y fragancias.</p><p>Una gama ecorresponsable para el bienestar del cabello y del planeta.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "left",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-wellbeing-editorial.jpg",
+        "image_alt": "Montibello HOP — bienestar capilar",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "technology_hop": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>LifeAlgae BioScience multiplica x4 el poder de los activos</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La clave: la hiperfermentación de las algas. Un proceso biotecnológico transformador único.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-lifealgae-technology.jpg",
+        "image_alt": "LifeAlgae BioScience — biociencia de algas Montibello HOP",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "results_hop": {
+      "type": "montibello-stats-panel",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Resultados</h2>",
+            "type_preset": "h2",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading"],
+      "name": "Panel de datos HOP",
+      "settings": {
+        "bundled_image": "montibello-hop-results-editorial.jpg",
+        "image_alt": "Montibello HOP — resultados verificados",
+        "media_position": "left",
+        "toggle_label": "Ver datos",
+        "stat_1_number": "+93%",
+        "stat_1_label": "más hidratación",
+        "stat_2_number": "+87%",
+        "stat_2_label": "más nutrición",
+        "stat_3_number": "x6",
+        "stat_3_label": "más fuerza",
+        "stat_4_number": "+8",
+        "stat_4_label": "semanas de color protegido",
+        "footnote": "",
+        "bundled_file": "none",
+        "file_label": "",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "subfamilies_hop": {
       "type": "montibello-product-teaser",
       "blocks": {
         "ultra_repair": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-hop-hero-shampoo.jpg",
+            "bundled_image": "montibello-hop-subfamily-ultra-repair.jpg",
             "title": "Ultra Repair",
             "text": "Reparación intensiva para cabellos dañados",
             "link": "shopify://collections/hop-ultra-repair"
@@ -87,7 +190,7 @@
         "smooth_hydration": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-hop-card-portrait.jpg",
+            "bundled_image": "montibello-hop-subfamily-smooth-hydration.jpg",
             "title": "Smooth Hydration",
             "text": "Hidratación y control del frizz",
             "link": "shopify://collections/hop-smooth-hydration"
@@ -215,6 +318,9 @@
   "order": [
     "hero_hop",
     "intro_hop",
+    "wellbeing_hop",
+    "technology_hop",
+    "results_hop",
     "subfamilies_hop",
     "cta_professional_hop"
   ]

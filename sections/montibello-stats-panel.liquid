@@ -28,6 +28,17 @@
 
   assign position_class = 'montibello-stats--media-' | append: section.settings.media_position
   assign toggle_id = 'montibello-stats-toggle-' | append: section.id
+
+  assign bundled_width = 1707
+  assign bundled_height = 1766
+  case bundled_image
+    when 'montibello-hop-results-editorial.jpg'
+      assign bundled_width = 1445
+      assign bundled_height = 1351
+    when 'montibello-luxlight-results-editorial.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+  endcase
 %}
 
 <div
@@ -52,8 +63,8 @@
         alt="{{ section.settings.image_alt | escape }}"
         loading="lazy"
         class="montibello-stats__image"
-        width="1707"
-        height="1766"
+        width="{{ bundled_width }}"
+        height="{{ bundled_height }}"
       >
     {% endif %}
   </div>
@@ -299,7 +310,9 @@
       "label": "Imagen oficial incluida",
       "options": [
         { "value": "none", "label": "Ninguna" },
-        { "value": "montibello-under-stats-editorial.jpg", "label": "Under — Editorial (alta definición)" }
+        { "value": "montibello-under-stats-editorial.jpg", "label": "Under — Editorial (alta definición)" },
+        { "value": "montibello-hop-results-editorial.jpg", "label": "HOP — Resultados (datos)" },
+        { "value": "montibello-luxlight-results-editorial.webp", "label": "Luxlight — Resultados (niveles de aclarado)" }
       ],
       "default": "montibello-under-stats-editorial.jpg"
     },
