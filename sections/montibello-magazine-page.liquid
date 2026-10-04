@@ -1,0 +1,490 @@
+{%- comment -%}
+  Dedicated Hair Magazine page (/pages/magazine), reverse-engineered from
+  hair.montibello.com/magazine/: centred "The HAIR journal para
+  profesionales." heading, a 3-up article rail with circular arrows, the
+  category filter chips and the mosaic article grid.
+
+  Editorial only. Every card is a landing card that carries the official
+  image, date, title and category; it links to the article on the official
+  Hair Montibello site because the full article bodies are not reproduced
+  in this theme. International launches mentioned in the articles are not
+  Peru catalogue items and no commerce CTA is attached to any card.
+
+  Rendered by layout/theme.liquid for the page with handle `magazine`, so
+  the content and defaults live here.
+{%- endcomment -%}
+
+{%- capture magazine_articles -%}
+mascarilla;;29 septiembre 26;;La mascarilla que tu cabello necesita este otoño (aunque todavía no lo sepas);;Tratamiento;;https://hair.montibello.com/la-mascarilla-que-tu-cabello-necesita-este-otono-aunque-todavia-no-lo-sepas/;;w60 xl;;822/488
+comunicado;;18 septiembre 26;;Cosbar Group incorpora a Tobias Kuetscher como nuevo CEO Global;;Comunicado;;https://hair.montibello.com/cosbar-group-incorpora-a-tobias-kuetscher-como-nuevo-ceo-global/;;w40;;822/488
+scalp-care;;18 septiembre 26;;Porque un cabello bonito empieza por un cuero cabelludo sano, te presentamos m.lab scalp care;;Tratamiento;;https://hair.montibello.com/porque-un-cabello-bonito-empieza-por-un-cuero-cabelludo-sano-te-presentamos-m-lab-scalp-care/;;w33;;822/624
+scalp-salud;;14 septiembre 26;;La salud del cuero cabelludo, la nueva prioridad de la belleza capilar;;Tratamiento;;https://hair.montibello.com/la-salud-del-cuero-cabelludo-la-nueva-prioridad-de-la-belleza-capilar/;;w33;;822/624
+brunette;;08 septiembre 26;;The Brunette Edit: los tres castaños que marcarán la temporada;;Tendencias y consejos;;https://hair.montibello.com/the-brunette-edit-los-tres-castanos-que-marcaran-la-temporada/;;w33;;822/624
+hop-barrefit;;02 septiembre 26;;Hop Ultra Repair y Barrefit®️ Studio convierten septiembre en el mes del autocuidado;;Tratamiento;;https://hair.montibello.com/hop-ultra-repair-y-barrefit%ef%b8%8f-studio-convierten-septiembre-en-el-mes-del-autocuidado/;;w40;;822/488
+rutina;;25 agosto 26;;La mejor rutina capilar para recuperar el cabello después del verano;;Tratamiento;;https://hair.montibello.com/la-mejor-rutina-capilar-para-recuperar-el-cabello-despues-del-verano/;;w60;;822/488
+{%- endcapture -%}
+{%- assign article_rows = magazine_articles | strip | split: '
+' -%}
+{%- assign slider_keys = 'mascarilla,comunicado,scalp-care,scalp-salud,brunette,hop-barrefit' | split: ',' -%}
+{%- assign filter_labels = 'Todos,Styling,Tratamiento,Coloración,Tendencias y consejos,Comunicado' | split: ',' -%}
+
+<div class="montibello-magazine-page" data-montibello-magazine-page>
+  <section class="montibello-magazine-page__intro">
+    <h1 class="montibello-magazine-page__title"><em>The HAIR journal</em> para profesionales.</h1>
+  </section>
+
+  <section class="montibello-magazine-page__rail-section" aria-label="Artículos destacados">
+    <div class="montibello-magazine-page__container">
+      <div class="montibello-magazine-page__rail-wrap">
+        <button type="button" class="montibello-magazine-page__arrow montibello-magazine-page__arrow--prev" aria-label="Anterior" data-mp-prev>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="montibello-magazine-page__rail" data-mp-rail>
+          {%- for key in slider_keys -%}
+            {%- for row in article_rows -%}
+              {%- assign f = row | strip | split: ';;' -%}
+              {%- if f[0] == key -%}
+                <div class="montibello-magazine-page__slide">
+                  <a class="montibello-magazine-page__slide-link" href="{{ f[4] }}" target="_blank" rel="noopener">
+                    <span class="montibello-magazine-page__slide-media">
+                      <img src="{{ 'montibello-magazine-page-s' | append: forloop.parentloop.index | append: '-' | append: key | append: '.webp' | asset_url }}" alt="{{ f[2] | escape }}" width="807" height="520" loading="lazy">
+                    </span>
+                    <span class="montibello-magazine-page__slide-date">{{ f[1] }}</span>
+                    <span class="montibello-magazine-page__slide-title">{{ f[2] }}</span>
+                    <span class="montibello-magazine-page__slide-cat">{{ f[3] }}</span>
+                  </a>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+        <button type="button" class="montibello-magazine-page__arrow montibello-magazine-page__arrow--next" aria-label="Siguiente" data-mp-next>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="montibello-magazine-page__filters" aria-label="Categorías">
+    <div class="montibello-magazine-page__container montibello-magazine-page__chips">
+      {%- for label in filter_labels -%}
+        <button type="button" class="montibello-magazine-page__chip{% if forloop.first %} is-active{% endif %}" data-mp-filter="{{ label }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ label }}</button>
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="montibello-magazine-page__grid-section">
+    <div class="montibello-magazine-page__container">
+      <div class="montibello-magazine-page__grid" data-mp-grid>
+        {%- for row in article_rows -%}
+          {%- assign f = row | strip | split: ';;' -%}
+          {%- assign ratio = f[6] | split: '/' -%}
+          <article class="montibello-magazine-page__card montibello-magazine-page__card--{{ f[5] | split: ' ' | first }}{% if f[5] contains 'xl' %} montibello-magazine-page__card--xl{% endif %}" data-mp-category="{{ f[3] }}">
+            <a class="montibello-magazine-page__card-link" href="{{ f[4] }}" target="_blank" rel="noopener">
+              <span class="montibello-magazine-page__card-media" style="aspect-ratio: {{ ratio[0] }} / {{ ratio[1] }};">
+                <img src="{{ 'montibello-magazine-page-g' | append: forloop.index | append: '-' | append: f[0] | append: '.webp' | asset_url }}" alt="{{ f[2] | escape }}" width="{{ ratio[0] }}" height="{{ ratio[1] }}" loading="lazy">
+              </span>
+              <time class="montibello-magazine-page__card-date">{{ f[1] }}</time>
+              <h2 class="montibello-magazine-page__card-title">{{ f[2] }}</h2>
+              <span class="montibello-magazine-page__card-cat">{{ f[3] }}</span>
+            </a>
+          </article>
+        {%- endfor -%}
+      </div>
+      <p class="montibello-magazine-page__empty" data-mp-empty hidden>Todavía no hay artículos en esta categoría.</p>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var root = document.currentScript.closest('[data-montibello-magazine-page]');
+      if (!root) return;
+
+      var rail = root.querySelector('[data-mp-rail]');
+      var prev = root.querySelector('[data-mp-prev]');
+      var next = root.querySelector('[data-mp-next]');
+      function step() {
+        var slide = rail.querySelector('.montibello-magazine-page__slide');
+        return slide ? slide.getBoundingClientRect().width : rail.clientWidth / 3;
+      }
+      function max() { return rail.scrollWidth - rail.clientWidth; }
+      next.addEventListener('click', function () {
+        if (rail.scrollLeft >= max() - 2) rail.scrollTo({ left: 0, behavior: 'smooth' });
+        else rail.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+      prev.addEventListener('click', function () {
+        if (rail.scrollLeft <= 2) rail.scrollTo({ left: max(), behavior: 'smooth' });
+        else rail.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      // the official rail opens on its second article
+      rail.scrollLeft = Math.floor(step());
+
+      var chips = root.querySelectorAll('[data-mp-filter]');
+      var cards = root.querySelectorAll('[data-mp-category]');
+      var empty = root.querySelector('[data-mp-empty]');
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var value = chip.getAttribute('data-mp-filter');
+          var shown = 0;
+          chips.forEach(function (c) {
+            var on = c === chip;
+            c.classList.toggle('is-active', on);
+            c.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          cards.forEach(function (card) {
+            var match = value === 'Todos' || card.getAttribute('data-mp-category') === value;
+            card.hidden = !match;
+            if (match) shown++;
+          });
+          empty.hidden = shown > 0;
+        });
+      });
+    })();
+  </script>
+</div>
+
+{% stylesheet %}
+  .montibello-magazine-page {
+    color: #000;
+    font-weight: 500;
+  }
+
+  .montibello-magazine-page__container {
+    max-width: 1300px;
+    margin-inline: auto;
+    padding-inline: 15px;
+  }
+
+  @media screen and (min-width: 1360px) {
+    .montibello-magazine-page__container {
+      padding-inline: 0;
+    }
+  }
+
+  .montibello-magazine-page__intro {
+    padding: 30px 15px;
+    background: #fff;
+  }
+
+  .montibello-magazine-page__title {
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 35px;
+    line-height: 35px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #000;
+  }
+
+  .montibello-magazine-page__title em {
+    font-style: italic;
+    letter-spacing: -0.03em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-page__intro {
+      padding: 50px 15px;
+    }
+
+    .montibello-magazine-page__title {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  /* article rail */
+  .montibello-magazine-page__rail-section {
+    padding: 0 0 30px;
+    background: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-page__rail-section {
+      padding-bottom: 50px;
+    }
+  }
+
+  .montibello-magazine-page__rail-wrap {
+    position: relative;
+  }
+
+  .montibello-magazine-page__rail {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: -15px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .montibello-magazine-page__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .montibello-magazine-page__slide {
+    flex: 0 0 83.3333%;
+    padding-left: 15px;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-page__slide {
+      flex-basis: 33.3333%;
+    }
+  }
+
+  .montibello-magazine-page__slide-link,
+  .montibello-magazine-page__card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .montibello-magazine-page__slide-media,
+  .montibello-magazine-page__card-media {
+    display: block;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  .montibello-magazine-page__slide-media {
+    aspect-ratio: 423 / 272;
+  }
+
+  .montibello-magazine-page__slide-media img,
+  .montibello-magazine-page__card-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .montibello-magazine-page__slide-link:hover img,
+  .montibello-magazine-page__card-link:hover img {
+    transform: scale(1.03);
+  }
+
+  .montibello-magazine-page__slide-date {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 19.7px;
+    letter-spacing: -0.01em;
+  }
+
+  .montibello-magazine-page__slide-title {
+    display: block;
+    margin-top: 10px;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .montibello-magazine-page__slide-cat {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 19.7px;
+  }
+
+  .montibello-magazine-page__arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.32);
+    color: #fff;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background 0.2s ease;
+  }
+
+  .montibello-magazine-page__arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .montibello-magazine-page__arrow--prev {
+    left: 20px;
+  }
+
+  .montibello-magazine-page__arrow--next {
+    right: 20px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-magazine-page__arrow {
+      display: flex;
+    }
+  }
+
+  /* category chips */
+  .montibello-magazine-page__filters {
+    padding: 30px 0 0;
+    background: rgb(246, 246, 243);
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-page__filters {
+      padding-top: 50px;
+    }
+  }
+
+  .montibello-magazine-page__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .montibello-magazine-page__chip {
+    padding: 10px 13px;
+    border: 0;
+    border-radius: 5px;
+    background: rgb(228, 218, 209);
+    color: #000;
+    font: inherit;
+    font-size: 18px;
+    line-height: 19.7px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .montibello-magazine-page__chip:hover {
+    background: rgb(214, 202, 191);
+  }
+
+  .montibello-magazine-page__chip.is-active {
+    background: rgb(46, 45, 44);
+    color: #fff;
+  }
+
+  .montibello-magazine-page__chip:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
+  /* mosaic grid */
+  .montibello-magazine-page__grid-section {
+    padding: 30px 0;
+    background: rgb(246, 246, 243);
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-page__grid-section {
+      padding: 50px 0;
+    }
+  }
+
+  .montibello-magazine-page__grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-left: -25px;
+    row-gap: 22px;
+  }
+
+  .montibello-magazine-page__card {
+    flex: 0 0 100%;
+    padding-left: 25px;
+    box-sizing: border-box;
+  }
+
+  .montibello-magazine-page__card[hidden] {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .montibello-magazine-page__grid {
+      margin-left: 0;
+    }
+
+    .montibello-magazine-page__card {
+      padding-left: 0;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-magazine-page__grid {
+      row-gap: 42px;
+    }
+
+    .montibello-magazine-page__card--w60 {
+      flex-basis: 60%;
+    }
+
+    .montibello-magazine-page__card--w40 {
+      flex-basis: 40%;
+    }
+
+    .montibello-magazine-page__card--w33 {
+      flex-basis: 33.3333%;
+    }
+  }
+
+  .montibello-magazine-page__card-date {
+    display: block;
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .montibello-magazine-page__card-title {
+    max-width: 450px;
+    margin: 10px 0 0;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #000;
+  }
+
+  .montibello-magazine-page__card--xl .montibello-magazine-page__card-title {
+    max-width: 500px;
+  }
+
+  .montibello-magazine-page__card-cat {
+    display: block;
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .montibello-magazine-page__empty {
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .montibello-magazine-page__slide-media img,
+    .montibello-magazine-page__card-media img {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Página Hair Magazine",
+  "settings": [],
+  "presets": [{ "name": "Página Hair Magazine" }]
+}
+{% endschema %}

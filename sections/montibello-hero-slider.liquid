@@ -12,6 +12,9 @@
   class="section section--{{ section.settings.section_width }} montibello-hero-slider spacing-style"
   style="{% render 'spacing-style', settings: section.settings %}"
   data-montibello-hero-slider
+  data-section-id="{{ section.id }}"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-autoplay-ms="{{ section.settings.autoplay_speed | default: 5 | times: 1000 }}"
 >
   <div class="montibello-hero-slider__track" data-montibello-hero-slider-track>
     {% content_for 'blocks' %}
@@ -71,9 +74,79 @@
       });
     }
 
+    // Autoplay: one rescheduling timeout per section instance. Every goTo()
+    // (arrows, dots, autoplay itself) restarts the countdown.
+    var sectionId = root.getAttribute('data-section-id');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var autoplayOn = root.getAttribute('data-autoplay') === 'true' && !reduceMotion;
+    var delay = parseInt(root.getAttribute('data-autoplay-ms'), 10) || 5000;
+    var timer = null;
+    var hovered = false;
+    var editorPaused = false;
+
+    function stop() {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    }
+
+    function schedule() {
+      stop();
+      if (!autoplayOn || hovered || editorPaused || document.hidden) return;
+      timer = setTimeout(function () {
+        if (!root.isConnected) {
+          destroy();
+          return;
+        }
+        goTo(index + 1);
+      }, delay);
+    }
+
     function goTo(i) {
       index = (i + slides.length) % slides.length;
       render();
+      schedule();
+    }
+
+    function onVisibility() {
+      if (document.hidden) stop();
+      else schedule();
+    }
+
+    // Theme editor: selecting a slide block shows it and holds autoplay;
+    // deselecting resumes. Unload tears down everything this instance added
+    // outside its own DOM.
+    function onBlockSelect(e) {
+      if (!root.contains(e.target)) return;
+      var target = e.target;
+      var found = slides.findIndex(function (slide) {
+        return target === slide || target.contains(slide) || slide.contains(target);
+      });
+      editorPaused = true;
+      if (found > -1) {
+        index = found;
+        render();
+      }
+      stop();
+    }
+
+    function onBlockDeselect(e) {
+      if (!root.contains(e.target)) return;
+      editorPaused = false;
+      schedule();
+    }
+
+    function onSectionUnload(e) {
+      if (e.detail && e.detail.sectionId === sectionId) destroy();
+    }
+
+    function destroy() {
+      stop();
+      document.removeEventListener('visibilitychange', onVisibility);
+      document.removeEventListener('shopify:block:select', onBlockSelect);
+      document.removeEventListener('shopify:block:deselect', onBlockDeselect);
+      document.removeEventListener('shopify:section:unload', onSectionUnload);
     }
 
     prev.addEventListener('click', function () {
@@ -83,8 +156,24 @@
       goTo(index + 1);
     });
 
+    document.addEventListener('visibilitychange', onVisibility);
+    document.addEventListener('shopify:block:select', onBlockSelect);
+    document.addEventListener('shopify:block:deselect', onBlockDeselect);
+    document.addEventListener('shopify:section:unload', onSectionUnload);
+
+    // touch swipe (mobile hero)
+    var touchX = null;
+    track.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
     root.classList.add('js-hero-ready');
     render();
+    schedule();
   })();
   </script>
 </div>
@@ -98,6 +187,18 @@
   .montibello-hero-slider__track {
     position: relative;
     aspect-ratio: 375 / 469;
+  }
+
+  @media screen and (max-width: 749px) {
+    /* image 375x469 + copy panel (≈287px) as on the official mobile hero */
+    .montibello-hero-slider__track {
+      aspect-ratio: 375 / 756;
+      min-height: 0;
+    }
+
+    .montibello-hero-slide__content {
+      min-height: 0;
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -136,11 +237,24 @@
   }
 
   .montibello-hero-slider__nav--prev {
-    left: 0;
+    left: 20px;
   }
 
   .montibello-hero-slider__nav--next {
-    right: 0;
+    right: 20px;
+  }
+
+  /* official arrows only appear while the slideshow is hovered/focused */
+  @media (hover: hover) {
+    .montibello-hero-slider__nav {
+      opacity: 0;
+      transition: opacity 0.25s ease, background 0.2s ease;
+    }
+
+    .montibello-hero-slider:hover .montibello-hero-slider__nav,
+    .montibello-hero-slider:focus-within .montibello-hero-slider__nav {
+      opacity: 1;
+    }
   }
 
   @media screen and (min-width: 990px) {
@@ -150,6 +264,7 @@
   }
 
   .montibello-hero-slider__dots {
+    display: none !important;
     position: absolute;
     bottom: 20px;
     right: 30px;
@@ -171,6 +286,12 @@
   .montibello-hero-slider__dot.is-active {
     background: #FFFFFF;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .montibello-hero-slider .montibello-hero-slide {
+      transition: none;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -182,6 +303,22 @@
     { "type": "hero-slide" }
   ],
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Rotación automática",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Tiempo entre banners",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
     {
       "type": "select",
       "id": "section_width",

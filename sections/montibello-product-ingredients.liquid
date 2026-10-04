@@ -16,24 +16,56 @@
 {%- endcomment -%}
 
 {% liquid
+  assign range = product.metafields.montibello.range.value
   assign ingredients = product.metafields.montibello.key_ingredients.value
   assign has_ingredients = false
-  for ingredient in ingredients
-    assign has_ingredients = true
-    break
-  endfor
+  # UNDER 4-PDP urgent correction: the official UNDER pages do NOT show a
+  # separate "Ingredientes principales" module below the editorial block —
+  # confirmed live on all 4 (the PDP ends at the result rows / CARTA DE
+  # COLOR CTA). The `key_ingredients` metafield IS populated on all 4
+  # UNDER products (real data, left untouched), so without this guard this
+  # section rendered an extra block the official page doesn't have. Scoped
+  # to UNDER only — HOP/Luxlight keep this section exactly as before.
+  if range != 'UNDER'
+    for ingredient in ingredients
+      assign has_ingredients = true
+      break
+    endfor
+  endif
 
-  if section.settings.background_color != blank
-    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  # HOP ULTRA REPAIR — TRUE OFFICIAL PARITY FINAL (pixel-diff pass): a
+  # side-by-side screenshot comparison against the live official page found
+  # a real visual mismatch the earlier DOM/data-only check missed — official
+  # ingredient cards are compact (~310px wide images with visible empty
+  # space to their right), while Peru's `auto-fit` + `1fr` grid tracks
+  # stretch both cards to fill the full 1400px row edge-to-edge (~630px
+  # images each). Scoped to the 4 real Ultra Repair products via the
+  # existing `subfamily` metafield — HOP's other subfamilies (Colour Last/
+  # Keratin) and every other range keep the original full-width grid.
+  assign subfamily = product.metafields.montibello.subfamily.value
+  assign is_hop_ultra_repair = false
+  if range == 'HOP' and subfamily == 'Ultra Repair' or range == 'HOP' and subfamily == 'Color Last' or range == 'HOP' and subfamily == 'Smooth Hydration'
+    assign is_hop_ultra_repair = true
+  endif
+
+  # Official Ultra Repair ingredients band is plain white (rgb 255,255,255),
+  # unlike the beige instance colour used by the other HOP subfamilies.
+  assign section_bg = section.settings.background_color
+  if is_hop_ultra_repair
+    assign section_bg = blank
+  endif
+
+  if section_bg != blank
+    render 'contrast-override', background_color: section_bg, section_id: section.id
   endif
 %}
 
 {% if has_ingredients %}
   <div
-    class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    class="section-background{% if section_bg != blank %} color-custom-{{ section.id }}{% endif %}"
   ></div>
   <div
-    class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} montibello-pdp-ingredients spacing-style"
+    class="section section--{{ section.settings.section_width }}{% if section_bg != blank %} color-custom-{{ section.id }}{% endif %} montibello-pdp-ingredients{% if is_hop_ultra_repair %} montibello-pdp-ingredients--hop-ultra-repair{% endif %} spacing-style"
     style="{% render 'spacing-style', settings: section.settings %}"
   >
     {% if section.settings.heading != blank %}
@@ -78,10 +110,16 @@
   .montibello-pdp-ingredients__grid {
     display: grid;
     gap: 24px;
+    width: 100%;
     max-width: 1400px;
     margin-inline: auto;
     padding-inline: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    box-sizing: border-box;
+    /* min(220px, 100%) lets a track shrink to fill a narrow container
+       instead of forcing a fixed 220px floor — a bare `minmax(220px, 1fr)`
+       here caused real horizontal body overflow at 390px with only 2
+       cards, confirmed live. */
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
 
     @media screen and (min-width: 750px) {
       padding-inline: 30px;
@@ -94,26 +132,102 @@
     gap: 10px;
   }
 
-  .montibello-pdp-ingredients__image {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+  /* HOP ULTRA REPAIR forensic ingredients (official, 1440): white band,
+     50px block padding, 40/40 centred heading + 30px, a 4-column 15px-gap
+     grid of 313.75px cards (only 2 used), 2:1 images, 23/700 title 30px
+     below the image, 16/19.7 copy 20px below the title. */
+  .montibello-pdp-ingredients--hop-ultra-repair {
+    font-family: 'TTCommons', 'Montserrat', sans-serif;
+    color: #000;
+    padding-block: 50px !important;
+  }
+
+  .montibello-pdp-ingredients--hop-ultra-repair * {
+    font-family: inherit;
+  }
+
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__heading {
+    max-width: 1300px;
+    margin: 0 auto 30px;
+    padding: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__grid {
+    max-width: 1300px;
+    padding-inline: 20px;
+    gap: 30px 15px;
+    grid-template-columns: minmax(0, 1fr);
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 0;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__card {
+    gap: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    /* official mobile: 15px gutters, 35/35 heading, swipeable row of 273px
+       cards with the next card peeking */
+    .montibello-pdp-ingredients--hop-ultra-repair {
+      padding-block: 30px !important;
+      padding-inline: 0 !important;
+    }
+
+    .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__heading {
+      font-size: 35px;
+      line-height: 35px;
+    }
+
+    .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__grid {
+      display: flex;
+      gap: 15px;
+      padding-inline: 0;
+      margin-inline: -16px;
+      padding-left: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 16px;
+      scrollbar-width: none;
+    }
+
+    .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__card {
+      flex: 0 0 273px;
+      scroll-snap-align: start;
+    }
+  }
+
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__image {
+    aspect-ratio: 2 / 1;
     border-radius: 5px;
   }
 
-  .montibello-pdp-ingredients__title {
-    margin: 0;
-    font-size: 18px;
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__title {
+    margin: 30px 0 0;
+    font-size: 23px;
     font-weight: 700;
+    line-height: 21px;
+    letter-spacing: -0.02em;
   }
 
-  .montibello-pdp-ingredients__description {
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__description {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.7px;
+    opacity: 1;
+    color: #000;
+  }
+
+  .montibello-pdp-ingredients--hop-ultra-repair .montibello-pdp-ingredients__description p {
     margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-    opacity: 0.8;
   }
 {% endstylesheet %}
 

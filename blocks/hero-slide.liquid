@@ -7,14 +7,19 @@
 
 <div class="montibello-hero-slide" {{ block.shopify_attributes }}>
   {% if block.settings.bundled_image != blank %}
-    <img
-      src="{{ block.settings.bundled_image | asset_url }}"
-      alt="{{ block.settings.image_alt | escape }}"
-      loading="lazy"
-      class="montibello-hero-slide__image"
-      width="2560"
-      height="960"
-    >
+    <picture>
+      {% if block.settings.mobile_image != blank %}
+        <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | asset_url }}" width="768" height="960">
+      {% endif %}
+      <img
+        src="{{ block.settings.bundled_image | asset_url }}"
+        alt="{{ block.settings.image_alt | escape }}"
+        loading="lazy"
+        class="montibello-hero-slide__image{% if block.settings.mobile_image == blank %} montibello-hero-slide__image--crop{% endif %}"
+        width="2560"
+        height="960"
+      >
+    </picture>
   {% endif %}
 
   <div class="montibello-hero-slide__content">
@@ -164,6 +169,62 @@
       font-size: 23px;
     }
   }
+
+  /* official mobile hero (390): 375x469 portrait image, then a beige copy
+     panel below it (35/35/700 title, 14/19.7 copy, "Ver gama" link) */
+  @media screen and (max-width: 749px) {
+    .montibello-hero-slide {
+      background: rgb(246, 246, 243);
+    }
+
+    .montibello-hero-slide picture {
+      display: block;
+    }
+
+    .montibello-hero-slide__image {
+      height: auto;
+      aspect-ratio: 375 / 469;
+    }
+
+    .montibello-hero-slide__image--crop {
+      object-position: 78% center;
+    }
+
+    .montibello-hero-slide__content {
+      position: static;
+      padding: 40px 15px 30px;
+      color: #000;
+    }
+
+    .montibello-hero-slide__logo {
+      display: none;
+    }
+
+    .montibello-hero-slide__heading {
+      margin: 0 0 20px;
+      font-size: 35px;
+      line-height: 35px;
+      letter-spacing: -0.03em;
+    }
+
+    .montibello-hero-slide__text {
+      margin: 0 0 20px;
+      font-size: 14px;
+      line-height: 19.7px;
+      opacity: 1;
+    }
+
+    .montibello-hero-slide__cta {
+      color: #000;
+      font-size: 23px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .montibello-hero-slide__cta::after {
+      content: ' →';
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -175,6 +236,11 @@
       "id": "bundled_image",
       "label": "Nombre de archivo en /assets",
       "default": "montibello-under-hero-desktop.jpg"
+    },
+    {
+      "type": "text",
+      "id": "mobile_image",
+      "label": "Imagen móvil (nombre de archivo en /assets, opcional)"
     },
     {
       "type": "text",

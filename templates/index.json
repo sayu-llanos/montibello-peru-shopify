@@ -15,6 +15,7 @@
           "type": "hero-slide",
           "settings": {
             "bundled_image": "montibello-under-hero-desktop.jpg",
+            "mobile_image": "montibello-hero-mobile-under.webp",
             "image_alt": "Campaña Montibello Under Elevated Warmth",
             "logo_image": "montibello-logo-under-white.png",
             "range_name": "Under",
@@ -41,6 +42,7 @@
           "type": "hero-slide",
           "settings": {
             "bundled_image": "montibello-luxlight-hero-desktop.jpg",
+            "mobile_image": "montibello-hero-mobile-luxlight.webp",
             "image_alt": "Campaña Montibello Luxlight",
             "logo_image": "montibello-logo-luxlight-white.png",
             "range_name": "luxlight",
@@ -51,9 +53,15 @@
           }
         }
       },
-      "block_order": ["slide_under", "slide_hop", "slide_luxlight"],
+      "block_order": [
+        "slide_hop",
+        "slide_luxlight",
+        "slide_under"
+      ],
       "name": "Hero — Slider Montibello",
       "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
         "section_width": "full-width",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -67,7 +75,7 @@
         "section_width": "full-width",
         "background_color": "#FFFFFF",
         "padding-block-start": 50,
-        "padding-block-end": 50
+        "padding-block-end": 40
       }
     },
     "ranges_montibello": {
@@ -76,7 +84,7 @@
         "under": {
           "type": "range-card",
           "settings": {
-            "bundled_image": "montibello-under-card-desktop.jpg",
+            "bundled_image": "montibello-home-card-under.webp",
             "image_alt": "Montibello Under — coloración con cobertura de alta definición",
             "category": "Color",
             "title": "Under",
@@ -87,11 +95,11 @@
         "hop": {
           "type": "range-card",
           "settings": {
-            "bundled_image": "montibello-hop-card-portrait.jpg",
+            "bundled_image": "montibello-home-card-hop.webp",
             "image_alt": "Montibello HOP — cuidado capilar profesional",
-            "category": "Cuidado capilar",
-            "title": "HOP",
-            "text": "Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas.",
+            "category": "Tratamiento",
+            "title": "Hop",
+            "text": "El cuidado capilar de alto rendimiento basado en la biociencia de las algas capaz de corregir los 8 signos del bienestar del cuero cabelludo y el cabello: hidratación, nutrición, equilibrio, fuerza, protección del color, encrespamiento, volumen y brillo.",
             "link": "shopify://collections/hop"
           }
         },
@@ -105,25 +113,18 @@
             "text": "Sistema de decoloración de alto rendimiento con máximo cuidado y control del resultado en cada aclarado.",
             "link": "shopify://collections/luxlight"
           }
-        },
-        "hop_keratin": {
-          "type": "range-card",
-          "settings": {
-            "bundled_image": "montibello-hop-keratin-teaser.jpg",
-            "image_alt": "Montibello HOP Keratin — próximamente",
-            "category": "Próximamente",
-            "title": "HOP Keratin",
-            "text": "Nueva gama en desarrollo.",
-            "coming_soon": true
-          }
         }
       },
-      "block_order": ["under", "hop", "luxlight", "hop_keratin"],
+      "block_order": [
+        "under",
+        "hop",
+        "luxlight"
+      ],
       "name": "Gamas Montibello",
       "settings": {
         "section_width": "full-width",
         "background_color": "#FFFFFF",
-        "padding-block-start": 50,
+        "padding-block-start": 0,
         "padding-block-end": 50
       }
     },
@@ -133,66 +134,79 @@
         "under_tubo": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-under-tubo.png",
+            "bundled_image": "official-card-under-permanent-colour.webp",
             "title": "Under",
-            "text": "Coloración de alta definición",
-            "link": "shopify://collections/under"
-          }
+            "text": "Coloración permanente de alta cobertura con bajo contenido de amoníaco",
+            "link": "shopify://products/under-permanent-colour",
+          "product_name": "Under"
+        }
         },
         "under_activador": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-under-crema-activadora.png",
+            "bundled_image": "official-card-under-activator-15vol.webp",
             "title": "Under",
             "text": "Crema activadora",
-            "link": "shopify://collections/under"
-          }
+            "link": "shopify://products/under-activator-15vol",
+          "product_name": "Under Activator 15vol 4.5%"
+        }
         },
         "hop_ultra_repair": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-hop-hero-shampoo.jpg",
-            "title": "HOP",
-            "text": "Ultra Repair — champú reparador",
-            "link": "shopify://collections/hop-ultra-repair"
-          }
+            "bundled_image": "official-card-hop-ultra-repair-shampoo.webp",
+            "title": "Ultra Repair",
+            "text": "Champú ultra reparador",
+            "link": "shopify://products/hop-ultra-repair-shampoo",
+          "product_name": "Ultra Repair Shampoo"
+        }
         },
         "hop_color_last": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-hop-color-last-shampoo.png",
-            "title": "HOP",
-            "text": "Color Last — champú protector del color",
-            "link": "shopify://collections/hop-colour-last"
-          }
+            "bundled_image": "official-card-hop-colour-last-shampoo.webp",
+            "title": "Colour Last",
+            "text": "Champú prolongador del color",
+            "link": "shopify://products/hop-colour-last-shampoo",
+          "product_name": "Colour Last Shampoo"
+        }
         },
         "luxlight_lightener": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-luxlight-lightener-9plus.png",
+            "bundled_image": "official-card-luxlight-supreme-lightener-9plus.webp",
             "title": "Luxlight",
-            "text": "Supreme Lightener 9+ — decolorante en polvo",
-            "link": "shopify://collections/luxlight"
-          }
+            "text": "Polvo decolorante multitécnicas",
+            "link": "shopify://products/luxlight-supreme-lightener-9plus",
+          "product_name": "Supreme Lightener 9+"
+        }
         },
         "luxlight_shampoo": {
           "type": "product-teaser-card",
           "settings": {
-            "bundled_image": "montibello-luxlight-ph-protective-shampoo.png",
+            "bundled_image": "official-card-luxlight-supreme-ph-protective-shampoo.webp",
             "title": "Luxlight",
-            "text": "Champú protector pH",
-            "link": "shopify://collections/luxlight"
-          }
+            "text": "Champú reestructurante con pH optimizado",
+            "link": "shopify://products/luxlight-supreme-ph-protective-shampoo",
+          "product_name": "Supreme pH Protective Shampoo"
+        }
         }
       },
-      "block_order": ["under_tubo", "under_activador", "hop_ultra_repair", "hop_color_last", "luxlight_lightener", "luxlight_shampoo"],
+      "block_order": [
+        "under_tubo",
+        "under_activador",
+        "hop_ultra_repair",
+        "hop_color_last",
+        "luxlight_lightener",
+        "luxlight_shampoo"
+      ],
       "name": "Vitrina de productos",
       "settings": {
-        "heading": "Nuestros productos",
+        "heading": "Los más vendidos",
         "section_width": "full-width",
         "background_color": "#F6F6F3",
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-start": 50,
+        "padding-block-end": 50
       }
     },
     "editorial_magazine": {
@@ -204,7 +218,7 @@
             "bundled_image": "montibello-hop-hero-shampoo.jpg",
             "title": "Hop Ultra Repair y Barrefit® Studio convierten septiembre en el mes del autocuidado",
             "text": "Cuidado capilar",
-            "link": "shopify://collections/hop"
+            "link": "/pages/magazine"
           }
         },
         "luxlight": {
@@ -213,7 +227,16 @@
             "bundled_image": "montibello-magazine-luxlight-techniques.jpg",
             "title": "Tendencias Luxlight: las 3 técnicas de aclaración que reinarán este verano",
             "text": "Decoloración",
-            "link": "shopify://collections/luxlight"
+            "link": "/pages/magazine"
+          }
+        },
+        "ultra_repair": {
+          "type": "magazine-card",
+          "settings": {
+            "bundled_image": "montibello-magazine-hop-ultra-repair.png",
+            "title": "HOP Ultra Repair: la reparación profunda para cabello dañado",
+            "text": "Cuidado capilar",
+            "link": "/pages/magazine"
           }
         },
         "under": {
@@ -222,17 +245,22 @@
             "bundled_image": "montibello-magazine-brunette-edit.png",
             "title": "The Brunette Edit: los tres castaños que marcarán la temporada",
             "text": "Color",
-            "link": "shopify://collections/under"
+            "link": "/pages/magazine"
           }
         }
       },
-      "block_order": ["hop", "luxlight", "under"],
+      "block_order": [
+        "hop",
+        "luxlight",
+        "under",
+        "ultra_repair"
+      ],
       "name": "Magazine Montibello",
       "settings": {
         "heading": "The Hair Magazine",
         "heading_suffix": "para profesionales",
         "button_label": "Descubre más",
-        "button_link": "/pages/nosotros",
+        "button_link": "/pages/magazine",
         "section_width": "full-width",
         "padding-block-start": 72,
         "padding-block-end": 72
@@ -260,7 +288,7 @@
         "text": "",
         "support_text": "Siempre a tu lado",
         "button_label": "Contáctanos",
-        "button_link": "/pages/contacto",
+        "button_link": "/pages/contact",
         "section_width": "full-width",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -280,12 +308,12 @@
             "width": "fill",
             "width_mobile": "fill",
             "height": "fit",
-            "background_color": "#2E2D2C",
-            "border_radius": 4,
-            "padding-block-start": 36,
-            "padding-block-end": 36,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "background_color": "#000000",
+            "border_radius": 12,
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 50,
+            "padding-inline-end": 50
           },
           "blocks": {
             "group_copy": {
@@ -320,30 +348,38 @@
                   }
                 }
               },
-              "block_order": ["heading", "text"]
+              "block_order": [
+                "heading",
+                "text"
+              ]
             },
             "button": {
               "type": "button",
               "settings": {
                 "label": "Contactar",
-                "link": "/pages/contacto",
+                "link": "/pages/contact",
                 "style_class": "button-custom",
                 "custom_button_background": "#FFFFFF",
-                "custom_button_text": "#2E2D2C",
+                "custom_button_text": "#000000",
                 "custom_button_border": "#FFFFFF"
               }
             }
           },
-          "block_order": ["group_copy", "button"]
+          "block_order": [
+            "group_copy",
+            "button"
+          ]
         }
       },
-      "block_order": ["group_cta"],
+      "block_order": [
+        "group_cta"
+      ],
       "name": "t:names.section",
       "settings": {
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 60,
-        "padding-block-end": 60
+        "padding-block-start": 24,
+        "padding-block-end": 24
       }
     }
   },

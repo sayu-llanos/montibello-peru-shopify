@@ -37,14 +37,229 @@
   (e.g. Size + Shade) must not use this selector — embed Shopify's native
   `_variant-picker` block instead, which resolves full option combinations
   correctly.
+
+  HERO RESTRUCTURE (Luxlight visual-parity reset, Supreme Lightener 9+):
+  a live screenshot audit of https://hair.montibello.com/producto/supreme-lightener-9/
+  found this hero did not match the official composition at all. Fixed to
+  mirror the real structure:
+  - Eyebrow is `range` ALONE (e.g. "luxlight"), not "range · subfamily" —
+    the official hero never shows subfamily inline here.
+  - `professional_only` ("Exclusivo Profesional") is plain accent-colored
+    text under the description, not a filled pill — confirmed live.
+  - `hair_type` and a single-variant `current_variant.title` (format) are
+    NOT pill tags — the official page shows them as icon + text rows below
+    a divider, alongside a short technology blurb. The multi-variant pill
+    selector (`show_variant_selector`) is untouched for real multi-format
+    products (e.g. HOP `Size`) — this only changes the SINGLE-format
+    display, which previously duplicated the same "500 gr" text twice (once
+    as a tag, once as a redundant "Formato" pill-group).
+  - A new optional icon row renders `technology_description` (short, e.g.
+    "Tecnología avanzada que reconstruye..." for Luxlight) directly under
+    hair_type — this is the same real metafield the details section used to
+    show much further down the page as a standalone heading block; official
+    shows it here, inline, with no separate titled section. Kept range-
+    agnostic (any range with hair_type/technology_description data gets the
+    row) rather than hardcoded to Luxlight, since HOP/UNDER simply don't
+    populate these two fields the same way and the block hides per-row when
+    blank.
+
+  TAXONOMY EYEBROW (manager feedback — Supreme Lightener 9+, "COLOR ·
+  DECOLORACIÓN" context above the range/product name): no per-product
+  taxonomy/category field exists in the `montibello.*` schema
+  (docs/product-pages/product-data-schema.md), and none was added — instead
+  this is keyed off the existing `range` metafield via a small Liquid map,
+  so it is driven by real product data and applies to every product in a
+  range (not a one-off `product.handle == 'luxlight-supreme-lightener-9plus'`
+  condition). Only LUXLIGHT is mapped for now, since that's the only range
+  the manager gave copy for — HOP/UNDER render no taxonomy row until their
+  own labels are confirmed, rather than guessing.
+
+  TRUE VISUAL PARITY PASS (official icon system + smooth interactions,
+  Luxlight only): a live DOM audit of the official Control Oil PDP found
+  the bullet-row and accordion-row icons Peru used (generic box/leaf/lock/
+  clipboard/bottle/question-mark from this theme's own `icon.liquid`) are
+  NOT the real Montibello icon language — the official page loads its own
+  SVG files (format-icon.svg, icono-tipo-de-cabello.svg, icono-ingrediente-
+  principal.svg, icono-ingredientes.svg, icono-como-usar.svg, icono-
+  check.svg). Those exact assets were reproduced in
+  `snippets/montibello-luxlight-icon.liquid` (see its own doc comment) and
+  are used here ONLY when `range == 'LUXLIGHT'` — HOP/UNDER keep the
+  original `icon.liquid` set untouched, matching the explicit "ONLY THE 8
+  LUXLIGHT PDPs" scope limit. The right-arrow disclosure marker is also
+  swapped to a clean single right-facing arrow per the manager's reference
+  (the official page's LIVE marker is actually a UIkit plus/cross icon —
+  the manager's own screenshot explicitly overrides that per this pass's
+  source-priority rule; see montibello-luxlight-icon.liquid's 'chevron_right'
+  case for the full reasoning).
+
+  INFO STACK MERGE (Luxlight 8-PDP right-column parity pass — ROOT CAUSE
+  FIX): the "Ver todos los ingredientes" / "Cómo usar" / "Datos de interés"
+  accordion rows, the always-open technology block, and the claim footnote
+  used to live in a completely SEPARATE section, `montibello-product-
+  details.liquid`, rendered as its own sibling section AFTER this whole hero
+  grid in `templates/product.montibello.json`'s `order` — its own container
+  was independently `max-width:700px; margin-inline:auto`, i.e. genuinely
+  centered on the page, below the two-column grid entirely. That is the
+  exact "detached / centered / below" bug reported live against the
+  official pages (which show these rows continuing the SAME right-column
+  info stack, directly under the bullet rows). No CSS margin trick can fix
+  that — the accordion literally lived in a different section/DOM subtree
+  than `.montibello-pdp-main__details`. Fixed by moving the section's full
+  liquid logic and markup here, inside `.montibello-pdp-main__details`,
+  right after the CTA buttons — `sections/montibello-product-details.liquid`
+  has been deleted and removed from the template's `order` (see git history
+  for the prior version if ever needed). This is a shared-template fix: it
+  applies to every product using `product.montibello.json` (HOP, UNDER,
+  Luxlight), not only the 8 Luxlight PDPs that reported it.
 {%- endcomment -%}
 
 {% liquid
   assign range = product.metafields.montibello.range.value
-  assign subfamily = product.metafields.montibello.subfamily.value
   assign functional_subtitle = product.metafields.montibello.functional_subtitle.value
   assign professional_only = product.metafields.montibello.professional_only.value
   assign hair_type = product.metafields.montibello.hair_type.value
+  assign technology_description_field = product.metafields.montibello.technology_description
+  assign technology_description = technology_description_field.value
+
+  assign taxonomy = blank
+  assign is_luxlight = false
+  if range == 'LUXLIGHT'
+    assign taxonomy = 'COLOR · DECOLORACIÓN'
+    assign is_luxlight = true
+  endif
+
+  # UNDER 4-PDP official parity pass: Under's official page reuses the exact
+  # same icon language as Luxlight (format/ingredients/how-to/interest-data
+  # icons, clean single right arrow) — confirmed via a live DOM audit of
+  # hair.montibello.com/producto/under/. `use_official_icons` is the shared
+  # switch both ranges key off, so the icon markup below isn't duplicated
+  # per range.
+  assign is_under = false
+  if range == 'UNDER'
+    assign is_under = true
+    # Official breadcrumb reads "COLOR | COLOR" on 3 of the 4 UNDER PDPs
+    # (confirmed live) — Peru has no real per-product category/breadcrumb
+    # infrastructure (same limitation noted for Luxlight's taxonomy above),
+    # so this reuses that exact established pattern: a small range-keyed
+    # value, not a real breadcrumb component. One of the 4 official pages
+    # (25 Vol activator) actually shows "COLOR | COLORACIÓN ALTA COBERTURA"
+    # instead — a genuine one-off on Montibello's own site, not a caching
+    # artifact (re-verified live) — left as a known, documented minor gap
+    # rather than adding a `product.handle` exception for a single product.
+    assign taxonomy = 'COLOR | COLOR'
+  endif
+  # HOP ULTRA REPAIR — TRUE OFFICIAL PARITY FINAL: scoped to the 4 real
+  # "Ultra Repair" subfamily products only (Shampoo/Mask/Rinse/Sealed Ends),
+  # never the whole HOP range — Colour Last and Keratin stay completely
+  # untouched. Keyed off the existing `subfamily` metafield (already real
+  # product data, confirmed live: "Ultra Repair" on exactly these 4), not a
+  # `product.handle` chain.
+  assign subfamily = product.metafields.montibello.subfamily.value
+  assign is_hop_ultra_repair = false
+  assign is_hop_family = false
+  assign taxonomy_category = product.metafields.montibello.taxonomy_category.value
+  assign official_gallery_raw = product.metafields.montibello.official_gallery.value
+  # FULL-SITE PARITY: the official UNDER and Luxlight PDPs now use the very same
+  # layout as the HOP family pages (beige band, side thumbnails + 1600:2239
+  # stage, TT Commons, long arrows). The shared "official PDP system" switch
+  # (`is_hop_ultra_repair`, historic name) therefore turns on for any UNDER /
+  # Luxlight product that carries its official gallery; `is_hop_family` keeps
+  # the HOP-only rules (eyebrow = subfamily, technology row hidden).
+  if range == 'HOP' and subfamily == 'Ultra Repair' or range == 'HOP' and subfamily == 'Color Last' or range == 'HOP' and subfamily == 'Smooth Hydration'
+    assign is_hop_family = true
+  endif
+  assign official_range = false
+  if is_under
+    assign official_range = true
+  elsif is_luxlight
+    assign official_range = true
+  endif
+  if official_gallery_raw == blank
+    assign official_range = false
+  endif
+  if is_hop_family or official_range
+    assign is_hop_ultra_repair = true
+    # Breadcrumb ("TRATAMIENTO | CHAMPÚ" etc. — confirmed live, differs per
+    # product: Champú/Mascarilla/Acondicionador/Sérum). No per-product field
+    # existed for this word; `productUpdate`/`product.type` was blocked by
+    # the environment's own permission classifier ("Modify Shared
+    # Resources"), so a new scoped metafield (`montibello.taxonomy_category`)
+    # was added instead — real per-product data, not a handle map.
+    if taxonomy_category contains ' | '
+      assign taxonomy = taxonomy_category
+    elsif taxonomy_category != blank
+      assign taxonomy = 'Tratamiento | ' | append: taxonomy_category
+    endif
+  endif
+
+  assign use_official_icons = false
+  if is_luxlight or is_under or is_hop_ultra_repair
+    assign use_official_icons = true
+  endif
+  assign arrow_style = 'chevron_right'
+  if is_hop_ultra_repair
+    assign arrow_style = 'arrow_long'
+  endif
+
+  # HOP ULTRA REPAIR forensic pass: the official gallery is NOT Peru's native
+  # product media — the official packshots are 1600x2239 canvases with the
+  # product already framed inside generous white space, which Peru's tight
+  # product crops cannot reproduce at any CSS scale. The exact official files
+  # live in theme assets and each product's ordered file list is plain data
+  # (`montibello.official_gallery`, comma separated asset names) — no handle
+  # chain. Falls back to the native gallery block when the list is blank.
+  assign official_gallery = blank
+  assign use_official_gallery = false
+  if is_hop_ultra_repair and official_gallery_raw != blank
+    assign official_gallery = official_gallery_raw | split: ','
+    assign use_official_gallery = true
+  endif
+
+  # Luxlight PDPs: the official gallery ends with a short looping product video
+  # (muted, no sound). The files were re-hosted in Shopify Files.
+  assign official_video = blank
+  case product.handle
+    when 'luxlight-supreme-lightener-9plus'
+      assign official_video = 'https://cdn.shopify.com/videos/c/vp/e30cfc870e6c4739bcf62f8185aee86c/e30cfc870e6c4739bcf62f8185aee86c.SD-480p-0.9Mbps-96249944.mp4'
+    when 'luxlight-supreme-clay-lightener-7plus'
+      assign official_video = 'https://cdn.shopify.com/videos/c/vp/e207241d0bd34131b350c065e39d02da/e207241d0bd34131b350c065e39d02da.SD-480p-1.2Mbps-96249970.mp4'
+    when 'luxlight-supreme-control-oil-lightening-system'
+      assign official_video = 'https://cdn.shopify.com/videos/c/vp/1aece978eff4458681e602d9ecefd390/1aece978eff4458681e602d9ecefd390.SD-480p-0.9Mbps-96249992.mp4'
+    when 'luxlight-supreme-oil-developer-10vol', 'luxlight-supreme-oil-developer-20vol', 'luxlight-supreme-oil-developer-30vol'
+      assign official_video = 'https://cdn.shopify.com/videos/c/vp/a12d3d14d764410ea669ae262693b704/a12d3d14d764410ea669ae262693b704.SD-480p-0.9Mbps-96250012.mp4'
+  endcase
+  if use_official_gallery != true
+    assign official_video = blank
+  endif
+
+  # Official h2 is the product name without the "HOP " brand prefix
+  # ("Ultra Repair Shampoo"); display-only, the product title is untouched.
+  assign display_title = product.title
+  if is_hop_ultra_repair
+    assign display_title = product.title | remove_first: 'HOP '
+  endif
+
+  # Official breadcrumb is two separate crumbs ("Tratamiento" / "Champú"),
+  # rendered above the grid at the left edge, not inside the details column.
+  assign crumbs = blank
+  if is_hop_ultra_repair and taxonomy != blank
+    assign crumbs = taxonomy | split: ' | '
+  endif
+
+  # UNDER's own eyebrow/title casing is "Under" (capitalized), not
+  # lowercase like Luxlight's stylized "luxlight" wordmark — confirmed live
+  # against all 4 official pages. `range_display` overrides the default
+  # `| downcase` only for UNDER.
+  assign range_display = range | downcase
+  if is_under
+    assign range_display = 'Under'
+  endif
+  # Official HOP Ultra Repair eyebrow reads "Ultra Repair" (confirmed live
+  # on all 4 PDPs), not the generic lowercase "hop" wordmark — HOP's other
+  # subfamilies (Colour Last/Keratin) are untouched, still "hop".
+  if is_hop_family and subfamily != blank
+    assign range_display = subfamily | replace: 'Color Last', 'Colour Last'
+  endif
 
   assign current_variant = product.selected_or_first_available_variant
 
@@ -78,9 +293,110 @@
     assign show_format = true
   endif
 
+  # Only a genuine choice between 2+ real values counts as a "selector" —
+  # a single named option value (e.g. Luxlight's "Formato: 500 gr" after the
+  # earlier format-tag data fix) is informational only and must fall through
+  # to the plain icon row below, never render as a one-item clickable pill
+  # group. Confirmed live: renaming a product's synthetic "Title" option
+  # flips `has_only_default_variant` to false even with only one real value,
+  # so that flag alone is not sufficient — the value count must be checked too.
   assign show_variant_selector = false
-  if product.has_only_default_variant == false and product.options_with_values.size == 1
+  if product.has_only_default_variant == false and product.options_with_values.size == 1 and product.options_with_values.first.values.size > 1
     assign show_variant_selector = true
+  endif
+
+  # A single-format product (the common Luxlight case) shows its format as
+  # a plain icon row alongside hair_type/technology, never as a pill AND
+  # never duplicated into a separate "Formato" group — that redundancy
+  # (the same "500 gr" shown twice) was one of the confirmed visual-parity
+  # bugs. A true multi-format product keeps its own pill selector below,
+  # unaffected.
+  assign show_format_row = false
+  if show_format and show_variant_selector == false
+    assign show_format_row = true
+  endif
+
+  # UNDER's official page never shows a hair-type row (confirmed live —
+  # only "60 g"/"1000 ml" + the 3 accordions appear in the info stack) even
+  # though the `hair_type` metafield IS populated on the activators with
+  # genuinely useful text ("4,5% (15 vol.): Aclara hasta 1 tono...") —
+  # that text simply isn't surfaced as a row on the official PDP. Per this
+  # sprint's explicit "do not invent a hair-type row if the official page
+  # does not show one" rule, it's suppressed for UNDER only; the metafield
+  # itself is untouched (still available for HOP, which does show this row).
+  assign show_hair_type_row = false
+  if hair_type != blank and is_under == false
+    assign show_hair_type_row = true
+  endif
+
+  # HOP Ultra Repair's official hero goes straight from the "Cabello dañado"
+  # row into the 3 accordions — no `technology_description` bullet row
+  # (confirmed live: that long LifeAlgae paragraph only appears, shorter and
+  # rewritten, as the "LifeAlgae Bioscience" card in Ingredientes
+  # principales further down). Rendering the same long paragraph a second
+  # time as a top bullet row was never matched on the official page.
+  assign show_technology_row = false
+  if technology_description != blank and is_hop_family == false
+    assign show_technology_row = true
+  endif
+
+  assign has_info_rows = false
+  if show_hair_type_row or show_format_row or show_technology_row
+    assign has_info_rows = true
+  endif
+
+  # --- Merged from the former montibello-product-details.liquid section ---
+  assign features = product.metafields.montibello.features.value
+  assign how_to_use_field = product.metafields.montibello.how_to_use
+  assign how_to_use = how_to_use_field.value
+  assign full_ingredients_field = product.metafields.montibello.full_ingredients
+  assign ingredients = full_ingredients_field.value
+  assign interest_data_field = product.metafields.montibello.interest_data
+  assign interest_data = interest_data_field.value
+  assign technical_data_field = product.metafields.montibello.technical_data
+  assign technical_data = technical_data_field.value
+  assign technology_heading = product.metafields.montibello.technology_heading.value
+  assign claim_footnote = product.metafields.montibello.claim_footnote.value
+
+  # UNDER 4-PDP official parity pass: UNDER's `features` metaobject is
+  # already rendered as the full editorial photo-row further down the page
+  # (sections/montibello-product-benefits.liquid, which the montibello
+  # template also includes) — rendering it a SECOND time here as a plain
+  # bullet-list "Ver características" accordion produced a duplicate the
+  # official page doesn't have (confirmed live: exactly 3 accordions, no
+  # 4th). Excluded alongside HOP/LUXLIGHT, which already had their own
+  # reasons not to show this accordion.
+  assign has_features = false
+  if range != 'HOP' and range != 'LUXLIGHT' and range != 'UNDER'
+    for feature in features
+      assign has_features = true
+      break
+    endfor
+  endif
+
+  assign has_technology_block = false
+  if technology_heading != blank or technology_description != blank
+    assign has_technology_block = true
+  endif
+  if range == 'HOP' or range == 'LUXLIGHT'
+    assign has_technology_block = false
+  endif
+
+  # UNDER's official page shows exactly 3 accordions (ingredients/how-to/
+  # datos de interés) — no separate "Datos técnicos" row (confirmed live).
+  # The `technical_data` metafield content (mix ratios, etc.) stays intact
+  # on the product for any other use; only its accordion render is hidden.
+  assign show_technical_data = true
+  if range == 'LUXLIGHT' or range == 'UNDER'
+    assign show_technical_data = false
+  endif
+
+  assign has_info_stack = false
+  if has_features or how_to_use != blank or ingredients != blank or interest_data != blank or has_technology_block or claim_footnote != blank
+    assign has_info_stack = true
+  endif
+  if show_technical_data and technical_data != blank
+    assign has_info_stack = true
   endif
 %}
 
@@ -89,43 +405,168 @@
 </script>
 
 <div
-  class="section section--{{ section.settings.section_width }} montibello-pdp-main spacing-style"
+  class="section section--{{ section.settings.section_width }} montibello-pdp-main{% if is_luxlight %} montibello-pdp-main--luxlight{% endif %}{% if is_under %} montibello-pdp-main--under{% endif %}{% if is_hop_ultra_repair %} montibello-pdp-main--hop-ultra-repair{% endif %} spacing-style"
   style="{% render 'spacing-style', settings: section.settings %}"
 >
+  {% if crumbs != blank %}
+    <ul class="montibello-pdp-main__crumbs">
+      {% for crumb in crumbs %}
+        <li class="montibello-pdp-main__crumb">{{ crumb }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <div class="montibello-pdp-main__grid">
-    <div class="montibello-pdp-main__media">
-      {% content_for 'block', type: '_product-media-gallery', id: 'media-gallery', closest.product: product %}
+    <div class="montibello-pdp-main__media montibello-pdp-main__enter montibello-pdp-main__enter--1">
+      {% if use_official_gallery %}
+        <div class="montibello-ur-gallery" data-montibello-ur-gallery>
+          <ul class="montibello-ur-gallery__thumbs" style="--ur-thumbs: {% liquid
+                if official_video != blank
+                  assign thumb_count = official_gallery.size | plus: 1
+                else
+                  assign thumb_count = official_gallery.size
+                endif
+                if thumb_count < 5
+                  assign thumb_count = 5
+                endif
+              %}{{ thumb_count }}">
+            {% for file in official_gallery %}
+              <li>
+                <button type="button" class="montibello-ur-gallery__thumb{% if forloop.first %} is-active{% endif %}" data-ur-thumb="{{ forloop.index0 }}" aria-label="{{ product.title | escape }} {{ forloop.index }}">
+                  <img src="{{ file | strip | asset_url }}" alt="" width="66" height="93" loading="lazy">
+                </button>
+              </li>
+            {% endfor %}
+            {% if official_video != blank %}
+              <li>
+                <button type="button" class="montibello-ur-gallery__thumb" data-ur-thumb="{{ official_gallery.size }}" aria-label="{{ product.title | escape }} — vídeo">
+                  <img src="{{ 'official-pdp-video-thumb.webp' | asset_url }}" alt="" width="66" height="93" loading="lazy">
+                </button>
+              </li>
+            {% endif %}
+          </ul>
+          <div class="montibello-ur-gallery__stage">
+            {% if range == 'LUXLIGHT' %}<span class="montibello-nuevo-badge">nuevo</span>{% endif %}
+            {% for file in official_gallery %}
+              <img
+                class="montibello-ur-gallery__slide{% if forloop.first %} is-active{% endif %}"
+                src="{{ file | strip | asset_url }}"
+                alt="{{ product.title | escape }}"
+                width="1600"
+                height="2239"
+                {% unless forloop.first %}loading="lazy"{% endunless %}
+                data-ur-slide="{{ forloop.index0 }}"
+              >
+            {% endfor %}
+            {% if official_video != blank %}
+              <video
+                class="montibello-ur-gallery__slide montibello-ur-gallery__slide--video"
+                src="{{ official_video }}"
+                width="1600"
+                height="2239"
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-ur-slide="{{ official_gallery.size }}"
+                aria-label="{{ product.title | escape }} — vídeo"
+              ></video>
+            {% endif %}
+            <button type="button" class="montibello-ur-gallery__arrow montibello-ur-gallery__arrow--prev" data-ur-prev aria-label="Anterior" hidden>
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="montibello-ur-gallery__arrow montibello-ur-gallery__arrow--next" data-ur-next aria-label="Siguiente">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      {% else %}
+        {% content_for 'block', type: '_product-media-gallery', id: 'media-gallery', closest.product: product %}
+      {% endif %}
     </div>
 
     <div class="montibello-pdp-main__details">
-      {% if range != blank or subfamily != blank %}
-        <p class="montibello-pdp-main__eyebrow">
-          {{ range }}{% if range != blank and subfamily != blank %} · {% endif %}{{ subfamily }}
-        </p>
+      {% if taxonomy != blank and crumbs == blank %}
+        <p class="montibello-pdp-main__taxonomy montibello-pdp-main__enter montibello-pdp-main__enter--2">{{ taxonomy }}</p>
       {% endif %}
 
-      <h1 class="montibello-pdp-main__title">{{ product.title }}</h1>
+      {% if range != blank %}
+        <p class="montibello-pdp-main__eyebrow montibello-pdp-main__enter montibello-pdp-main__enter--2">{{ range_display }}</p>
+      {% endif %}
+
+      <h2 class="montibello-pdp-main__title montibello-pdp-main__enter montibello-pdp-main__enter--2">{{ display_title }}</h2>
 
       {% if functional_subtitle != blank %}
-        <p class="montibello-pdp-main__subtitle">{{ functional_subtitle }}</p>
-      {% endif %}
-
-      {% if professional_only or hair_type != blank or show_format %}
-        <ul class="montibello-pdp-main__tags">
-          {% if professional_only %}
-            <li class="montibello-pdp-main__tag montibello-pdp-main__tag--professional">Exclusivo Profesional</li>
-          {% endif %}
-          {% if show_format %}
-            <li class="montibello-pdp-main__tag">{{ current_variant.title }}</li>
-          {% endif %}
-          {% if hair_type != blank %}
-            <li class="montibello-pdp-main__tag">{{ hair_type }}</li>
-          {% endif %}
-        </ul>
+        <h1 class="montibello-pdp-main__subtitle{% if functional_subtitle.size > 60 %} montibello-pdp-main__subtitle--long{% endif %} montibello-pdp-main__enter montibello-pdp-main__enter--2">{{ functional_subtitle }}</h1>
       {% endif %}
 
       {% if product.description != blank %}
-        <div class="montibello-pdp-main__description">{{ product.description }}</div>
+        <div class="montibello-pdp-main__description montibello-pdp-main__enter montibello-pdp-main__enter--3">{{ product.description }}</div>
+      {% endif %}
+
+      {% if professional_only %}
+        <p class="montibello-pdp-main__professional montibello-pdp-main__enter montibello-pdp-main__enter--3">Exclusivo Profesional</p>
+      {% endif %}
+
+      {% if is_hop_ultra_repair and use_official_gallery %}
+        {% comment %}
+          Mobile only (hidden on desktop by CSS): the official mobile PDP collapses
+          the hair-type row + the three accordions behind a bold "Ver características"
+          bar. Pure presentation toggle, no data of its own.
+        {% endcomment %}
+        <button type="button" class="montibello-pdp-main__features-toggle" data-ur-features-toggle aria-expanded="false">
+          <span>Ver características</span>
+          <span class="montibello-pdp-main__features-toggle-icon" aria-hidden="true">{% render 'montibello-luxlight-icon', icon: 'arrow_long' %}</span>
+        </button>
+      {% endif %}
+
+      {% if has_info_rows %}
+        <div class="montibello-pdp-main__info-rows montibello-pdp-main__enter montibello-pdp-main__enter--4">
+          {% comment %}
+            ROW ORDER (Luxlight copy audit pass): official Spain order is
+            Format → Hair type → Technology, confirmed live via DOM order on
+            every one of the 8 official PDPs (format-icon.svg row, then
+            icono-tipo-de-cabello.svg row, then icono-ingrediente-
+            principal.svg row). This used to render Hair type before Format
+            — swapped to match.
+          {%- endcomment -%}
+          {% if show_format_row %}
+            <div class="montibello-pdp-main__info-row">
+              <span class="montibello-pdp-main__info-icon{% if use_official_icons %} montibello-pdp-main__info-icon--official{% endif %}" aria-hidden="true">
+                {% if use_official_icons %}
+                  {% render 'montibello-luxlight-icon', icon: 'format' %}
+                {% else %}
+                  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">{% render 'icon', icon: 'box' %}</svg>
+                {% endif %}
+              </span>
+              <span>{{ current_variant.title }}</span>
+            </div>
+          {% endif %}
+          {% if show_hair_type_row %}
+            <div class="montibello-pdp-main__info-row">
+              <span class="montibello-pdp-main__info-icon{% if use_official_icons %} montibello-pdp-main__info-icon--official{% endif %}" aria-hidden="true">
+                {% if use_official_icons %}
+                  {% render 'montibello-luxlight-icon', icon: 'hair_type' %}
+                {% else %}
+                  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">{% render 'icon', icon: 'leaf' %}</svg>
+                {% endif %}
+              </span>
+              <span>{{ hair_type }}</span>
+            </div>
+          {% endif %}
+          {% if show_technology_row %}
+            <div class="montibello-pdp-main__info-row">
+              <span class="montibello-pdp-main__info-icon{% if use_official_icons %} montibello-pdp-main__info-icon--official{% endif %}" aria-hidden="true">
+                {% if use_official_icons %}
+                  {% render 'montibello-luxlight-icon', icon: 'technology' %}
+                {% else %}
+                  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">{% render 'icon', icon: 'lock' %}</svg>
+                {% endif %}
+              </span>
+              <span>{{ technology_description_field | metafield_tag }}</span>
+            </div>
+          {% endif %}
+        </div>
       {% endif %}
 
       {% if show_variant_selector %}
@@ -155,14 +596,159 @@
         </div>
       {% endif %}
 
+      {% comment %}
+        Primary non-ecommerce purchase-path CTA. Peru has no direct
+        checkout, so this always points to the informational
+        /pages/donde-comprar page — unconditional, unlike the "Tiendas
+        aliadas" CTA above it used to be (that one required
+        allied_store_offers data that doesn't exist yet for any product).
+
+        HIDDEN FOR LUXLIGHT (copy audit pass): the official Luxlight hero
+        info-stack has no purchase CTA interrupting the flow — it goes
+        straight from the bullet rows into the accordion rows. Removed from
+        the Luxlight hero presentation ONLY; `/pages/donde-comprar` itself
+        is untouched and still linked from HOP/UNDER PDPs and everywhere
+        else it already appeared.
+      {% endcomment %}
+      {% comment %}
+        HIDDEN FOR UNDER too (UNDER 4-PDP official parity pass): a live DOM
+        audit of all 4 official Under PDPs found no "Dónde comprar" CTA in
+        the hero info stack (same flow as Luxlight — bullet rows straight
+        into the accordion rows). `/pages/donde-comprar` itself is
+        untouched and still linked from HOP.
+      {%- endcomment -%}
+      {% comment %}
+        HIDDEN FOR HOP ULTRA REPAIR too (TRUE OFFICIAL PARITY FINAL pass): a
+        live audit of all 4 official Ultra Repair PDPs found no "Dónde
+        comprar" CTA in the info stack — Spain's own buy flow / country-
+        availability notice sits there instead, which Peru doesn't
+        replicate (no real checkout). Scoped to the 4 Ultra Repair products
+        only; HOP's other subfamilies (Colour Last/Keratin) keep this CTA
+        unchanged.
+      {%- endcomment -%}
+      {% if range != 'LUXLIGHT' and range != 'UNDER' and is_hop_ultra_repair == false %}
+        <a href="/pages/donde-comprar" class="montibello-pdp-main__cta">
+          Dónde comprar
+        </a>
+      {% endif %}
+
       {% if has_allied_offers %}
-        <a href="#montibello-allied-stores-{{ product.id }}" class="montibello-pdp-main__cta">
+        <a href="#montibello-allied-stores-{{ product.id }}" class="montibello-pdp-main__cta montibello-pdp-main__cta--secondary">
           Tiendas aliadas
         </a>
+      {% endif %}
+
+      {% comment %}
+        Info stack — accordion rows, technology block, footnote. Merged in
+        from the former montibello-product-details.liquid section so it
+        stays inside THIS right column, directly below the CTAs — see the
+        INFO STACK MERGE comment above.
+      {%- endcomment -%}
+      {% if has_info_stack %}
+        <div class="montibello-pdp-main__info-stack montibello-pdp-main__enter montibello-pdp-main__enter--5">
+          {% if has_technology_block %}
+            <div class="montibello-pdp-main__technology">
+              {% if technology_heading != blank %}
+                <h2 class="montibello-pdp-main__technology-heading">{{ technology_heading }}</h2>
+              {% endif %}
+              {% if technology_description != blank %}
+                <div class="montibello-pdp-main__technology-description">{{ technology_description_field | metafield_tag }}</div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="montibello-pdp-main__accordion">
+            {% if ingredients != blank %}
+              {% assign ingredients_tag = full_ingredients_field | metafield_tag %}
+              {% capture ingredients_content %}<div class="montibello-pdp-main__ingredients">{{ ingredients_tag }}</div>{% endcapture %}
+              {% if use_official_icons %}
+                {% render 'montibello-pdp-accordion-item', label: 'Ver todos los ingredientes', content: ingredients_content, icon: 'ingredients', icon_source: 'official', arrow: arrow_style %}
+              {% else %}
+                {% render 'montibello-pdp-accordion-item', label: 'Ver todos los ingredientes', content: ingredients_content, icon: 'clipboard' %}
+              {% endif %}
+            {% endif %}
+
+            {% if how_to_use != blank %}
+              {% comment %}
+                Official pages use the RANGE wordmark here, not the product
+                name — confirmed live: "Cómo usar luxlight" (Supreme
+                Lightener 9+) and "Cómo usar Under" (all 4 Under PDPs,
+                including the activators — same fixed label regardless of
+                strength, confirmed against all 4 official pages). Other
+                ranges keep the previous product.title behavior until
+                independently verified.
+              {% endcomment %}
+              {% if range == 'LUXLIGHT' %}
+                {% assign how_to_use_label = 'Cómo usar luxlight' %}
+              {% elsif range == 'UNDER' %}
+                {% assign how_to_use_label = 'Cómo usar Under' %}
+              {% elsif is_hop_ultra_repair and subfamily != blank %}
+                {% comment %}
+                  Official reads "Cómo usar Ultra Repair" on all 4 PDPs —
+                  the SUBFAMILY name, not the individual product title
+                  (confirmed live, same fixed-label pattern as Luxlight/
+                  Under above).
+                {%- endcomment -%}
+                {% assign how_to_use_label = 'Cómo usar ' | append: subfamily | replace: 'Color Last', 'Colour Last' %}
+              {% else %}
+                {% assign how_to_use_label = 'Cómo usar ' | append: product.title %}
+              {% endif %}
+              {% assign how_to_use_tag = how_to_use_field | metafield_tag %}
+              {% if use_official_icons %}
+                {% render 'montibello-pdp-accordion-item', label: how_to_use_label, content: how_to_use_tag, icon: 'how_to', icon_source: 'official', arrow: arrow_style %}
+              {% else %}
+                {% render 'montibello-pdp-accordion-item', label: how_to_use_label, content: how_to_use_tag, icon: 'bottle' %}
+              {% endif %}
+            {% endif %}
+
+            {% if interest_data != blank %}
+              {% assign interest_data_tag = interest_data_field | metafield_tag %}
+              {% if use_official_icons %}
+                {% render 'montibello-pdp-accordion-item', label: 'Datos de interés', content: interest_data_tag, icon: 'interest_data', icon_source: 'official', arrow: arrow_style %}
+              {% else %}
+                {% render 'montibello-pdp-accordion-item', label: 'Datos de interés', content: interest_data_tag, icon: 'question_mark' %}
+              {% endif %}
+            {% endif %}
+
+            {% if show_technical_data and technical_data != blank %}
+              {% assign technical_data_tag = technical_data_field | metafield_tag %}
+              {% render 'montibello-pdp-accordion-item', label: 'Datos técnicos', content: technical_data_tag, icon: 'question_mark' %}
+            {% endif %}
+
+            {% if has_features %}
+              {% capture features_content %}
+                <ul class="montibello-pdp-main__feature-list">
+                  {% for feature in features %}
+                    <li>
+                      {% if feature.title.value != blank %}<strong>{{ feature.title.value }}:</strong>{% endif %}
+                      {% if feature.description.value != blank %}
+                        {{ feature.description | metafield_tag }}
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endcapture %}
+              {% render 'montibello-pdp-accordion-item', label: 'Ver características', content: features_content, icon: 'clipboard' %}
+            {% endif %}
+          </div>
+
+          {% if claim_footnote != blank %}
+            <p class="montibello-pdp-main__footnote">{{ claim_footnote }}</p>
+          {% endif %}
+        </div>
       {% endif %}
     </div>
   </div>
 </div>
+
+{% if is_hop_ultra_repair %}
+  {% style %}
+    @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 400; font-display: swap; src: url('{{ 'tt-commons-regular.woff2' | asset_url }}') format('woff2'); }
+    @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 500; font-display: swap; src: url('{{ 'tt-commons-medium.woff2' | asset_url }}') format('woff2'); }
+    @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 600; font-display: swap; src: url('{{ 'tt-commons-demibold.woff2' | asset_url }}') format('woff2'); }
+    @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 700; font-display: swap; src: url('{{ 'tt-commons-bold.woff2' | asset_url }}') format('woff2'); }
+  {% endstyle %}
+{% endif %}
 
 {% stylesheet %}
   .montibello-pdp-main__grid {
@@ -181,7 +767,555 @@
   }
 
   .montibello-pdp-main__media {
-    background: var(--color-background-secondary, #ece7dc);
+    /* Flush against the page background, no gray/beige box — the official
+       gallery sits on plain white with no container background at all. */
+    background: transparent;
+    /* Manager-feedback closure pass: switching the native gallery block to
+       `media_presentation: carousel` (fixing the "giant image" bug) lays
+       every slide out side-by-side in a track wider than the viewport and
+       translates it to show the active one — correct off-viewport slides
+       were bleeding out and causing real horizontal page overflow at
+       mobile widths (measured 1008px scrollWidth on a 390px viewport, all
+       other slides visible past the right edge). Clipping here contains
+       the track without touching the native gallery component itself. */
+    overflow: hidden;
+  }
+
+  /* PACKSHOT SCALE (UNDER 4-PDP official parity pass, P0 #1): measured live
+     via getBoundingClientRect() — the native gallery's `aspect_ratio:
+     "adapt"` setting sizes the media box to the SOURCE photo's own
+     intrinsic ratio at full column width, and Under's tube/cream packshots
+     (e.g. under-tubo.png, a tall 720×1336 crop) are far more elongated than
+     the official Spain photography at that same "adapt" full-width
+     treatment — measured 615×820px before this fix (the image alone taller
+     than the entire right-column text stack, confirmed against the
+     official page's own rendered packshot at 546×764px in a wider column).
+     The whole size chain (media-gallery → slideshow-slide →
+     .product-media's own inline `aspect-ratio`) is driven by the WIDTH this
+     outer container provides, so capping max-width here (not max-height)
+     lets every descendant recompute proportionally with zero cropping
+     (`object-fit: cover` never has to crop when the box ratio already
+     matches the image's own ratio) — the packshot shrinks as a whole,
+     stays centered, and the text column stops feeling dominated. */
+  .montibello-pdp-main--under .montibello-pdp-main__media {
+    @media screen and (min-width: 750px) {
+      /* `width` (not `max-width` + `margin-inline: auto`) — a grid item
+         with auto margins switches to shrink-to-fit sizing per spec, which
+         made its own `width: 100%` descendants (the native gallery's
+         percentage-width chain) resolve against an indefinite containing
+         block and collapse to 0 (confirmed live: computed width 0px,
+         packshot disappeared entirely). A definite `width` avoids that
+         circularity; `justify-self: center` centers it in the grid track. */
+      width: 300px;
+      justify-self: center;
+    }
+  }
+
+  /* PACKSHOT SCALE (HOP ULTRA REPAIR — TRUE OFFICIAL PARITY FINAL): the
+     official photography already bakes generous white space around the
+     bottle/jar/tube INTO the source image at full column width — Peru's
+     own product photos are tight crops with no such built-in margin, so at
+     the same full-column "adapt" treatment the packshot reads as "too
+     close"/zoomed in (measured live: the shampoo bottle's media box was
+     614.5×944px, filling the entire column edge to edge). Same root cause
+     and same fix shape as the UNDER packshot-scale fix above (a definite
+     `width`, not `max-width + margin-inline:auto`, to avoid the grid-item
+     shrink-to-fit 0-width bug documented there) — just a lighter reduction,
+     since HOP's packshots aren't as extremely elongated as UNDER's were.
+     Scoped to the 4 real Ultra Repair products only. */
+  /* (superseded by the official gallery below — the old 420px cap only
+     existed to fake whitespace around Peru's tight crops; the official
+     canvases carry their own whitespace.) */
+
+  /* ===== HOP ULTRA REPAIR — forensic official layout (1440 measurements from
+     hair.montibello.com/producto/ultra-repair-shampoo): content 1300px
+     centred, two 630px columns with a 40px gap; gallery = 66px thumbnail
+     column + 18px gap + 546x764 stage (1600:2239 canvas); right column
+     starts level with the stage top. Everything is scoped to the modifier
+     so every other range keeps its previous CSS untouched. ===== */
+  .montibello-pdp-main--hop-ultra-repair {
+    font-family: 'TTCommons', 'Montserrat', sans-serif;
+    color: #000;
+    background-color: #f6f6f3 !important;
+    /* full-bleed beige band without touching the section wrapper markup */
+    box-shadow: 0 0 0 100vmax #f6f6f3;
+    clip-path: inset(0 -100vmax);
+    padding-block: 50px 25px !important;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair * {
+    font-family: inherit;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__crumbs {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 24px;
+    padding: 0 20px;
+    list-style: none;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: #767676;
+
+    @media screen and (min-width: 750px) {
+      padding: 0;
+    }
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__crumb + .montibello-pdp-main__crumb {
+    position: relative;
+    margin-left: 20px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__crumb + .montibello-pdp-main__crumb::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 3px;
+    bottom: 3px;
+    width: 1px;
+    background: rgba(118, 118, 118, 0.45);
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__grid {
+    max-width: 1300px;
+    padding-inline: 20px;
+    gap: 32px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 630px 630px;
+      gap: 40px;
+      padding-inline: 0;
+      align-items: start;
+    }
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__media {
+    overflow: visible;
+  }
+
+  .montibello-ur-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 66px 546px;
+      gap: 18px;
+    }
+  }
+
+  .montibello-ur-gallery__thumbs {
+    display: flex;
+    gap: 10px;
+    order: 2;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+
+    @media screen and (min-width: 750px) {
+      order: 0;
+      flex-direction: column;
+      gap: 15px;
+      overflow: visible;
+    }
+  }
+
+  .montibello-ur-gallery__thumb {
+    display: block;
+    flex: none;
+    width: 66px;
+    height: 93px;
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .montibello-ur-gallery__thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .montibello-ur-gallery__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1600 / 2239;
+    background: #fff;
+  }
+
+  .montibello-ur-gallery__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .montibello-ur-gallery__slide--video {
+    object-fit: contain;
+    background: #fff;
+  }
+
+  .montibello-ur-gallery__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .montibello-ur-gallery__arrow {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+
+    @media screen and (min-width: 750px) {
+      right: -50px;
+    }
+  }
+
+  .montibello-ur-gallery__arrow--prev {
+    right: auto;
+    left: 8px;
+
+    @media screen and (min-width: 750px) {
+      left: -50px;
+    }
+  }
+
+  /* official arrow is effectively invisible on the beige canvas until the
+     gallery is hovered — keep the control reachable, show it on hover/focus */
+  .montibello-ur-gallery__arrow {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .montibello-ur-gallery:hover .montibello-ur-gallery__arrow,
+  .montibello-ur-gallery__arrow:focus-visible {
+    opacity: 0.6;
+  }
+
+  .montibello-ur-gallery__arrow[hidden] {
+    display: none;
+  }
+
+  /* right column — official vertical rhythm (all values measured) */
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__details {
+    gap: 0;
+    position: static;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__eyebrow {
+    order: 1;
+    margin: 0 0 20px;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+    opacity: 1;
+    color: #000;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__title {
+    order: 2;
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.03em;
+    text-transform: capitalize;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__subtitle {
+    order: 3;
+    margin: 20px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 12px;
+    letter-spacing: 0.11em;
+    opacity: 1;
+    color: #000;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__description {
+    order: 4;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.7px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__description p {
+    margin: 0;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__description p + p {
+    margin-top: 20px;
+  }
+
+  /* "Exclusivo Profesional" sits under the description in the official red */
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__professional {
+    order: 5;
+    margin: 20px 0 -20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.7px;
+    color: rgb(225, 53, 62);
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__variants {
+    order: 5;
+    margin-top: 40px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__variant-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__variant-pills {
+    margin-top: 0;
+    gap: 10px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__variant-pill {
+    display: inline-flex;
+    align-items: center;
+    height: 39px;
+    padding: 0 20px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #000;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__variant-pill.is-selected {
+    background: transparent;
+    color: #000;
+    border-width: 1.5px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__features-toggle {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    /* official mobile (390): 15px gutters, 35/35 title, thumbs in a 5-up row,
+       and the hair/accordion stack collapsed behind "Ver características" */
+    .montibello-pdp-main--hop-ultra-repair {
+      padding-inline: 0 !important;
+      padding-block-start: 30px !important;
+    }
+
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__crumbs,
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__grid {
+      padding-inline: 0;
+    }
+
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__title {
+      font-size: 35px;
+      line-height: 35px;
+    }
+
+    .montibello-ur-gallery__thumbs {
+      display: grid;
+      grid-template-columns: repeat(var(--ur-thumbs, 5), minmax(0, 1fr));
+      gap: 11px;
+      overflow: visible;
+    }
+
+    .montibello-ur-gallery__thumb {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 66 / 93;
+    }
+
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__features-toggle {
+      order: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 30px;
+      padding: 20px 0;
+      border: 0;
+      border-top: 0.5px solid #767676;
+      border-bottom: 0.5px solid #767676;
+      background: transparent;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 23px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .montibello-pdp-main__features-toggle-icon {
+      display: inline-flex;
+      width: 24px;
+      height: 12px;
+      transition: transform 0.25s ease;
+    }
+
+    .montibello-pdp-main__features-toggle-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .montibello-pdp-main__features-toggle[aria-expanded='true'] .montibello-pdp-main__features-toggle-icon {
+      transform: rotate(90deg);
+    }
+
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-rows,
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-stack {
+      display: none;
+      margin-top: 0;
+      border-top: 0;
+    }
+
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__details.is-features-open .montibello-pdp-main__info-rows,
+    .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__details.is-features-open .montibello-pdp-main__info-stack {
+      display: flex;
+    }
+  }
+
+  /* hairline + hair-type row + accordions share one rule system:
+     0.5px #767676 dividers, 20px above/below a 19.7px text line */
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-rows {
+    order: 7;
+    margin-top: 40px;
+    padding-top: 0;
+    border-top: 0.5px solid #767676;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-row {
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.7px;
+    border-bottom: 0.5px solid #767676;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-row:last-child {
+    border-bottom: 0.5px solid #767676;
+  }
+
+  /* One shared icon box for the hair-type row and all three accordions:
+     same size, same centre line, same icon-to-text gap, SVG centred. */
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-icon,
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item__icon-left {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 20px;
+    margin: 0 20px 0 0;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item--official .montibello-pdp-accordion-item__icon-left svg {
+    max-width: 22px;
+    max-height: 20px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-icon svg,
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-icon img,
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item--official .montibello-pdp-accordion-item__icon-left svg {
+    display: block;
+    margin: 0;
+    flex: none;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-stack {
+    order: 8;
+    margin-top: 0;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item,
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item:first-child {
+    border-top: 0;
+    border-bottom: 0.5px solid #767676;
+    border-color: #767676;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item__label {
+    gap: 0;
+    padding: 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.7px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item__icon {
+    width: 24px;
+    height: 12px;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item--official .montibello-pdp-accordion-item__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-stack .montibello-pdp-main__accordion {
+    margin: 0;
+  }
+
+  /* BLACK DIVIDER LINES (FINAL 20/20 MICRO-POLISH): the official UNDER
+     pages use a visibly dark/black row-divider system — confirmed live —
+     noticeably stronger than this theme's default pale `#e4dfd4` beige
+     border used for every other range's info rows/accordions. Overridden
+     ONLY inside `.montibello-pdp-main--under` so HOP/Luxlight (which use
+     the shared `.montibello-pdp-accordion-item` component too) keep their
+     existing, already-approved border color untouched. */
+  .montibello-pdp-main--under .montibello-pdp-main__info-rows,
+  .montibello-pdp-main--under .montibello-pdp-main__info-row,
+  .montibello-pdp-main--under .montibello-pdp-accordion-item,
+  .montibello-pdp-main--under .montibello-pdp-accordion-item:first-child {
+    border-color: rgba(17, 17, 17, 0.85);
+  }
+
+  /* Under on the shared official PDP system: undo the legacy 300px centred
+     packshot and the dark divider colour (the official uses the same 0.5px
+     #767676 hairlines as every other official PDP). */
+  .montibello-pdp-main--under.montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__media {
+    width: auto;
+    justify-self: stretch;
+  }
+
+  .montibello-pdp-main--under.montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-rows,
+  .montibello-pdp-main--under.montibello-pdp-main--hop-ultra-repair .montibello-pdp-main__info-row,
+  .montibello-pdp-main--under.montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item,
+  .montibello-pdp-main--under.montibello-pdp-main--hop-ultra-repair .montibello-pdp-accordion-item:first-child {
+    border-color: #767676;
   }
 
   .montibello-pdp-main__details {
@@ -195,13 +1329,20 @@
     }
   }
 
+  .montibello-pdp-main__taxonomy {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
   .montibello-pdp-main__eyebrow {
     margin: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    opacity: 0.65;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0.85;
   }
 
   .montibello-pdp-main__title {
@@ -225,32 +1366,80 @@
     opacity: 0.85;
   }
 
-  .montibello-pdp-main__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 4px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .montibello-pdp-main__tag {
-    padding: 6px 14px;
-    border: 1px solid var(--color-border, #e4dfd4);
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .montibello-pdp-main__tag--professional {
-    background: #2e2d2c;
-    color: #ffffff;
-    border-color: #2e2d2c;
+  /* long two-line descriptors (e.g. UNDER Permanent Colour) get a little air
+     between the lines; one-line subtitles keep the official 12px leading */
+  .montibello-pdp-main__subtitle.montibello-pdp-main__subtitle--long {
+    line-height: 17px;
   }
 
   .montibello-pdp-main__description {
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  .montibello-pdp-main__professional {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-error, #8b0000);
+  }
+
+  /* Icon + text info rows (hair type / format / technology) — replaces the
+     former pill-tag row, which duplicated the same values shown elsewhere
+     and didn't match the official page's divider-separated row treatment. */
+  .montibello-pdp-main__info-rows {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-main__info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-main__info-row:last-child {
+    border-bottom: none;
+  }
+
+  .montibello-pdp-main__info-icon {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+  }
+
+  .montibello-pdp-main__info-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1.3;
+    fill: none;
+  }
+
+  /* OFFICIAL icon set (Luxlight only) — real Montibello SVGs, each with its
+     own native aspect ratio (a bottle silhouette is much taller than wide,
+     a check-circle is square, etc.) rather than the theme's generic 20x20
+     outline-icon convention. `object-fit`-style containment via max-width/
+     max-height keeps every row's icon visually the same OPTICAL size
+     without stretching/distorting the official artwork. */
+  .montibello-pdp-main__info-icon--official svg {
+    width: auto;
+    height: auto;
+    max-width: 16px;
+    max-height: 20px;
+    stroke: none;
+    fill: currentColor;
   }
 
   .montibello-pdp-main__variants {
@@ -316,7 +1505,353 @@
     text-decoration: none;
     border-radius: 5px;
   }
+
+  .montibello-pdp-main__cta--secondary {
+    background: transparent;
+    color: #2e2d2c;
+    border: 1px solid #2e2d2c;
+    margin-top: 4px;
+  }
+
+  /* INFO STACK (merged from the former montibello-product-details.liquid —
+     see the INFO STACK MERGE comment above the liquid block). Lives inside
+     `.montibello-pdp-main__details`, so it naturally inherits the right
+     column's own width — no separate max-width/centering rule needed,
+     which is exactly what fixes the "detached / centered" bug: this stack
+     is now just more content in the same flex column as the bullets/CTA
+     above it. */
+  .montibello-pdp-main__info-stack {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+  }
+
+  .montibello-pdp-main__technology {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-main__technology-heading {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .montibello-pdp-main__technology-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .montibello-pdp-main__accordion {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .montibello-pdp-main__feature-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .montibello-pdp-main__ingredients {
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .montibello-pdp-main__footnote {
+    margin: 16px 0 0;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  /* montibello-pdp-accordion-item — shared accessible <details>/<summary>
+     accordion, rendered via snippets/montibello-pdp-accordion-item.liquid.
+     Left icon + label + right arrow, full-width row, divider below — the
+     official row pattern (icono-ingredientes.svg / icono-como-usar.svg
+     next to the label on hair.montibello.com), not a plain text row. */
+  .montibello-pdp-accordion-item {
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-accordion-item:first-child {
+    border-top: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-accordion-item__label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    list-style: none;
+  }
+
+  .montibello-pdp-accordion-item__label::-webkit-details-marker {
+    display: none;
+  }
+
+  .montibello-pdp-accordion-item__icon-left {
+    flex: none;
+    display: flex;
+    width: 20px;
+    height: 20px;
+  }
+
+  .montibello-pdp-accordion-item__icon-left svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1.3;
+    fill: none;
+  }
+
+  /* OFFICIAL variant (Luxlight only) — same real Montibello SVGs as the
+     bullet rows above, contained rather than stretched to a square. */
+  .montibello-pdp-accordion-item--official .montibello-pdp-accordion-item__icon-left svg {
+    width: auto;
+    height: auto;
+    max-width: 17px;
+    max-height: 19px;
+    margin-inline: auto;
+    stroke: none;
+    fill: currentColor;
+  }
+
+  .montibello-pdp-accordion-item__text {
+    flex: 1 1 auto;
+  }
+
+  .montibello-pdp-accordion-item__icon {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .montibello-pdp-accordion-item__icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+
+  /* Clean single right arrow (official variant): rotates 90° open, same as
+     the plain-arrow theme icon it replaces — no stroke override needed
+     since montibello-luxlight-icon's 'chevron_right' already uses
+     stroke="currentColor" fill="none" on its own path. */
+  .montibello-pdp-accordion-item--official .montibello-pdp-accordion-item__icon svg {
+    fill: none;
+  }
+
+  .montibello-pdp-accordion-item[open] .montibello-pdp-accordion-item__label .montibello-pdp-accordion-item__icon {
+    transform: rotate(90deg);
+  }
+
+  .montibello-pdp-accordion-item__content {
+    padding: 0 0 18px 32px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow: hidden;
+  }
+
+  /* SMOOTH EXPANSION (Part 3): max-height/opacity are animated inline by
+     the JS below (scoped to `[data-montibello-accordion-content]`) — this
+     transition declaration is what actually makes those inline style
+     changes animate instead of jumping. `prefers-reduced-motion` users
+     never get the inline styles set at all (see the JS guard), so they
+     keep the native instant toggle. */
+  @media (prefers-reduced-motion: no-preference) {
+    .montibello-pdp-accordion-item__content {
+      transition: max-height 0.28s ease, opacity 0.28s ease;
+    }
+  }
+
+  /* SMOOTH PREMIUM ENTRANCE (FINAL 20/20 pass, Part 13; extended to UNDER
+     in the UNDER 4-PDP parity pass, Part 8 — "reuse the restrained Luxlight
+     motion system if technically reusable without cross-family
+     regressions": this is purely additive CSS scoped to a second class
+     selector, HOP is untouched), CSS-only page-load animation — no JS
+     dependency, so there is no risk of content staying invisible if a
+     script fails to run. Each `__enter--N` tier gets a progressively later
+     `animation-delay` (staggered 70ms apart), a short opacity+translateY
+     keyframe, and `both` fill mode so the element sits at its PRE-animation
+     state (opacity 0) only for the instant before the animation starts,
+     never after it ends. Entirely inside `@media (prefers-reduced-motion:
+     no-preference)`, so a reduced-motion user never receives the keyframe
+     at all — elements keep their normal default opacity: 1 / no transform,
+     i.e. instantly available, satisfying Part 15 without a separate
+     override rule. */
+  @media (prefers-reduced-motion: no-preference) {
+    .montibello-pdp-main--luxlight .montibello-pdp-main__enter,
+    .montibello-pdp-main--under .montibello-pdp-main__enter {
+      animation: montibello-luxlight-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .montibello-pdp-main--luxlight .montibello-pdp-main__enter--1,
+    .montibello-pdp-main--under .montibello-pdp-main__enter--1 {
+      animation-delay: 0ms;
+    }
+
+    .montibello-pdp-main--luxlight .montibello-pdp-main__enter--2,
+    .montibello-pdp-main--under .montibello-pdp-main__enter--2 {
+      animation-delay: 80ms;
+    }
+
+    .montibello-pdp-main--luxlight .montibello-pdp-main__enter--3,
+    .montibello-pdp-main--under .montibello-pdp-main__enter--3 {
+      animation-delay: 150ms;
+    }
+
+    .montibello-pdp-main--luxlight .montibello-pdp-main__enter--4,
+    .montibello-pdp-main--under .montibello-pdp-main__enter--4 {
+      animation-delay: 220ms;
+    }
+
+    .montibello-pdp-main--luxlight .montibello-pdp-main__enter--5,
+    .montibello-pdp-main--under .montibello-pdp-main__enter--5 {
+      animation-delay: 290ms;
+    }
+  }
+
+  @keyframes montibello-luxlight-enter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* GALLERY CROSSFADE (Part 4): scoped to this PDP's own media container
+     only — never touches the shared slideshow component's site-wide CSS.
+     The native gallery is a scroll-snap track (see snippets/slideshow-
+     styles.liquid), so this layers a subtle fade-in on the slide as it
+     becomes the active one on top of the existing slide motion, rather
+     than replacing the native mechanism (which is shared with every other
+     page on the site and out of scope to rewrite here). */
+  @media (prefers-reduced-motion: no-preference) {
+    .montibello-pdp-main__media slideshow-slide {
+      transition: opacity 0.22s ease;
+    }
+
+    .montibello-pdp-main__media slideshow-slide[aria-hidden='true'] {
+      opacity: 0.55;
+    }
+  }
 {% endstylesheet %}
+
+{% javascript %}
+  // SMOOTH ACCORDION EXPANSION (Part 3 of the Luxlight true-parity pass).
+  // Shopify dedupes a section's own javascript-tag output automatically,
+  // so this runs once regardless of how many montibello-pdp-accordion-item
+  // rows are on the page. Native <details>/<summary> semantics are kept
+  // throughout (the `open` attribute is still what's actually toggled) —
+  // this only adds a height/opacity transition around that toggle.
+  (function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.addEventListener('click', function (event) {
+      var summary = event.target.closest('.montibello-pdp-accordion-item__label');
+      if (!summary) return;
+      var details = summary.closest('[data-montibello-accordion]');
+      if (!details) return;
+      var content = details.querySelector('[data-montibello-accordion-content]');
+      if (!content || reduceMotion) return; // native instant toggle otherwise
+
+      event.preventDefault();
+
+      if (details.hasAttribute('open')) {
+        var startHeight = content.scrollHeight;
+        content.style.maxHeight = startHeight + 'px';
+        content.style.opacity = '1';
+        void content.offsetHeight; // force reflow before animating to 0
+        requestAnimationFrame(function () {
+          content.style.maxHeight = '0px';
+          content.style.opacity = '0';
+        });
+        content.addEventListener(
+          'transitionend',
+          function onEnd() {
+            content.removeEventListener('transitionend', onEnd);
+            details.removeAttribute('open');
+            content.style.maxHeight = '';
+            content.style.opacity = '';
+          },
+          { once: true }
+        );
+      } else {
+        details.setAttribute('open', '');
+        var endHeight = content.scrollHeight;
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        void content.offsetHeight; // force reflow before animating up
+        requestAnimationFrame(function () {
+          content.style.maxHeight = endHeight + 'px';
+          content.style.opacity = '1';
+        });
+        content.addEventListener(
+          'transitionend',
+          function onEnd() {
+            content.removeEventListener('transitionend', onEnd);
+            content.style.maxHeight = '';
+            content.style.opacity = '';
+          },
+          { once: true }
+        );
+      }
+    });
+  })();
+
+  document.addEventListener('click', function (event) {
+    var btn = event.target.closest('[data-ur-features-toggle]');
+    if (!btn) return;
+    var details = btn.closest('.montibello-pdp-main__details');
+    if (!details) return;
+    var open = details.classList.toggle('is-features-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // HOP ULTRA REPAIR official gallery: thumbnail click, prev/next arrows,
+  // keyboard-reachable buttons only (no layout logic in JS).
+  (function () {
+    document.querySelectorAll('[data-montibello-ur-gallery]').forEach(function (root) {
+      var slides = root.querySelectorAll('[data-ur-slide]');
+      var thumbs = root.querySelectorAll('[data-ur-thumb]');
+      var prev = root.querySelector('[data-ur-prev]');
+      var next = root.querySelector('[data-ur-next]');
+      var current = 0;
+      function show(i) {
+        current = Math.max(0, Math.min(slides.length - 1, i));
+        slides.forEach(function (el, n) {
+          el.classList.toggle('is-active', n === current);
+          if (el.tagName === 'VIDEO') {
+            if (n === current) { var pr = el.play(); if (pr && pr.catch) pr.catch(function () {}); }
+            else el.pause();
+          }
+        });
+        thumbs.forEach(function (el, n) { el.classList.toggle('is-active', n === current); });
+        if (prev) prev.hidden = current === 0;
+        if (next) next.hidden = current === slides.length - 1;
+      }
+      thumbs.forEach(function (el, n) { el.addEventListener('click', function () { show(n); }); });
+      if (prev) prev.addEventListener('click', function () { show(current - 1); });
+      if (next) next.addEventListener('click', function () { show(current + 1); });
+      show(0);
+    });
+  })();
+{% endjavascript %}
 
 {% schema %}
 {

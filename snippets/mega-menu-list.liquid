@@ -108,7 +108,7 @@
     %}
     <div>
       <a
-        href="{{ link.url }}"
+        href="{% render 'montibello-menu-url', url: link.url %}"
         class="mega-menu__link {% if link.links != blank %}mega-menu__link--parent{% endif %}"
       >
         {% if menu_content_type == 'collection_images' %}
@@ -150,7 +150,7 @@
               {% endif %}
             >
               <a
-                href="{{ childLink.url }}"
+                href="{% render 'montibello-menu-url', url: childLink.url %}"
                 class="mega-menu__link"
               >
                 <span class="wrap-text">{{- childLink.title -}}</span>

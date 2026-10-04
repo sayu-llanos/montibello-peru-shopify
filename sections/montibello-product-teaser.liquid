@@ -70,7 +70,7 @@
 {% stylesheet %}
   .montibello-product-teaser__heading {
     max-width: 750px;
-    margin: 0 auto 30px;
+    margin: 0 auto 40px;
     padding-inline: 30px;
     text-align: center;
     font-size: 28px;
@@ -140,16 +140,54 @@
   }
 
   .montibello-product-teaser__arrow--prev {
-    left: -4px;
+    left: 20px;
   }
 
   .montibello-product-teaser__arrow--next {
-    right: -4px;
+    right: 20px;
   }
 
   @media screen and (min-width: 990px) {
     .montibello-product-teaser__arrow {
       display: flex;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    /* official mobile: 35/35 centred title, 15px gutters, 271px cards with the next one peeking */
+    .montibello-product-teaser__heading {
+      font-size: 35px;
+      line-height: 35px;
+      letter-spacing: -0.03em;
+      color: #000;
+    }
+
+    .montibello-product-teaser__viewport {
+      padding-inline: 15px;
+    }
+
+    .montibello-product-teaser {
+      padding-block: 30px !important;
+    }
+
+    .montibello-product-teaser__heading {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-product-teaser__viewport {
+      padding-inline: 0;
+    }
+
+    .montibello-product-teaser__list {
+      gap: 25px;
+    }
+
+    .montibello-product-teaser__heading {
+      line-height: 40px;
+      letter-spacing: -0.03em;
+      color: #000;
     }
   }
 {% endstylesheet %}

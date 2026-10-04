@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "category": {
+      "type": "montibello-category-collection",
+      "name": "Categoría Montibello",
+      "settings": {
+        "section_width": "full-width",
+        "products_heading": "Productos",
+        "empty_note": "Próximamente.",
+        "padding-block-start": 48,
+        "padding-block-end": 64
+      }
+    },
+    "cta_professional": {
+      "type": "montibello-professional-cta",
+      "settings": {
+        "left_text": "¿Tienes un salón pero no eres cliente todavía?",
+        "left_button_label": "Contacta con un comercial",
+        "left_button_link": "/pages/contact",
+        "right_text": "Localiza tu salón o peluquería Montibello más cercana",
+        "right_button_label": "Encuentra",
+        "right_button_link": "/pages/contact",
+        "background_color": "#000000",
+        "section_width": "page-width",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    }
+  },
+  "order": [
+    "category",
+    "cta_professional"
+  ]
+}

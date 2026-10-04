@@ -1,13 +1,27 @@
 {
   "sections": {
-    "hero_intro_ultra_repair": {
+    "hero_ultra_repair": {
+      "type": "montibello-image-banner",
+      "blocks": {},
+      "block_order": [],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "full",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-ultra-repair-hero.jpg",
+        "image_alt": "Montibello HOP Ultra Repair — gama completa",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "intro_ultra_repair": {
       "type": "section",
       "blocks": {
         "intro_group": {
           "type": "group",
           "settings": {
             "content_direction": "column",
-            "gap": 16,
             "width": "custom",
             "custom_width": 50,
             "width_mobile": "fill",
@@ -25,7 +39,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p>Reconstruye, fortalece, repara y protege para conseguir un cabello más fuerte y resistente. Con Colágeno Vegano y LifeAlgae Bioscience.</p>",
+                "text": "<p>Rutina reparadora y nutritiva que reconstruye y fortalece los cabellos dañados químicamente, térmicamente o por factores medioambientales. Enriquecida con Colágeno vegano, un complejo de proteínas de origen vegetal que rellenan y restauran la fibra capilar.</p>",
                 "type_preset": "rte",
                 "max_width": "none"
               }
@@ -44,8 +58,94 @@
       "settings": {
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-start": 25,
+        "padding-block-end": 0
+      }
+    },
+    "range_title_styles": {
+      "type": "montibello-range-title",
+      "settings": {}
+    },
+    "results_ultra_repair": {
+      "type": "montibello-stats-panel",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "static": true,
+          "settings": {
+            "text": "<h2>Cuidado intensivo 24/7 para tu cabello dañado.</h2>",
+            "type_preset": "h2",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": [],
+      "name": "Panel de datos Ultra Repair",
+      "settings": {
+        "bundled_image": "montibello-hop-ultra-repair-results.webp",
+        "image_alt": "Montibello HOP Ultra Repair — cuidado intensivo",
+        "media_position": "left",
+        "toggle_label": "Ver resultados",
+        "stat_1_number": "125%",
+        "stat_1_label": "cabello más fuerte*",
+        "stat_2_number": "x5",
+        "stat_2_label": "más hidratación*",
+        "stat_3_number": "x4",
+        "stat_3_label": "menos encrespamiento*",
+        "stat_4_number": "x4",
+        "stat_4_label": "cabello más sedoso*",
+        "footnote": "* Desde la primera aplicación. Test instrumental. Shampoo, rinse y sealed ends de la gama hop Ultra Repair.",
+        "bundled_file": "none",
+        "file_label": "",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "technology_ultra_repair": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>LifeAlgae Bioscience + Colágeno Vegano</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Combinación de algas que amplifica y potencia las moléculas activas, sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Colágeno Vegano: un complejo de proteínas de origen vegetal que rellena, fortalece y restaura la fibra capilar a la vez que proporciona brillo, elasticidad y suavidad.</p><ul><li>Repara</li><li>Rellena</li><li>Fortalece</li><li>Restaura</li><li>Protege contra la rotura</li></ul>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text_1",
+        "text_2"
+      ],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-repair-collagen-vegano.jpg",
+        "image_alt": "LifeAlgae Bioscience + Colágeno Vegano — Montibello HOP Ultra Repair",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_range_ultra_repair": {
@@ -64,29 +164,33 @@
         "card_1": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11075616702657",
-            "fallback_title": "HOP Ultra Repair Shampoo"
+            "fallback_title": "HOP Ultra Repair Shampoo",
+            "product_handle": "hop-ultra-repair-shampoo",
+            "card_image": "hop-ultra-repair-shampoo-card.webp"
           }
         },
         "card_2": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077066916033",
-            "fallback_title": "HOP Ultra Repair Rinse"
+            "fallback_title": "HOP Ultra Repair Rinse",
+            "product_handle": "hop-ultra-repair-rinse",
+            "card_image": "hop-ultra-repair-rinse-card.webp"
           }
         },
         "card_3": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077066883265",
-            "fallback_title": "HOP Ultra Repair Mask"
+            "fallback_title": "HOP Ultra Repair Mask",
+            "product_handle": "hop-ultra-repair-mask",
+            "card_image": "hop-ultra-repair-mask-card.webp"
           }
         },
         "card_4": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077066981569",
-            "fallback_title": "HOP Ultra Repair Sealed Ends"
+            "fallback_title": "HOP Ultra Repair Sealed Ends",
+            "product_handle": "hop-ultra-repair-sealed-ends",
+            "card_image": "hop-ultra-repair-sealed-ends-card.webp"
           }
         }
       },
@@ -104,113 +208,165 @@
         "padding-block-end": 64
       }
     },
-    "cta_professional_ultra_repair": {
-      "type": "section",
+    "gallery_ultra_repair": {
+      "type": "montibello-editorial-gallery",
       "blocks": {
-        "group_row": {
-          "type": "group",
+        "img_1": {
+          "type": "montibello-gallery-image",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "center",
-            "gap": 32
-          },
-          "blocks": {
-            "group_professional": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Contacta con un comercial",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "heading",
-                "button"
-              ]
-            },
-            "group_locator": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Encuentra",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "text",
-                "button"
-              ]
-            }
-          },
-          "block_order": [
-            "group_professional",
-            "group_locator"
-          ]
+            "bundled_image": "montibello-hop-ultra-repair-gallery-01.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — modelo"
+          }
+        },
+        "img_2": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-gallery-02.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — gama completa"
+          }
+        },
+        "img_3": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-gallery-03.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — neceser"
+          }
+        },
+        "img_4": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-gallery-04.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — modelo y producto"
+          }
+        },
+        "img_5": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-gallery-05.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — neceser y peine"
+          }
+        },
+        "img_6": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-gallery-06.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — modelo y producto"
+          }
+        },
+        "img_7": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-ultra-repair-gallery-07.jpg",
+            "image_alt": "Campaña Montibello HOP Ultra Repair — gama completa"
+          }
         }
       },
       "block_order": [
-        "group_row"
+        "img_1",
+        "img_2",
+        "img_3",
+        "img_4",
+        "img_5",
+        "img_6",
+        "img_7"
       ],
-      "name": "Sección",
+      "name": "Galería editorial",
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "cta_professional_ultra_repair": {
+      "type": "montibello-professional-cta",
+      "name": "CTA profesional",
+      "settings": {
+        "left_text": "¿Tienes un salón pero no eres cliente todavía?",
+        "left_button_label": "Contacta con un comercial",
+        "left_button_link": "/pages/contact",
+        "right_text": "Localiza tu salón o peluquería Montibello más cercana",
+        "right_button_label": "Encuentra",
+        "right_button_link": "/pages/contact",
         "background_color": "#000000",
+        "section_width": "page-width",
         "padding-block-start": 56,
         "padding-block-end": 56
+      }
+    },
+    "subfamily_media_frame_styles": {
+      "type": "montibello-hop-luxlight-media-frame",
+      "settings": {}
+    },
+    "overnight_ultra_repair": {
+      "type": "montibello-feature-rows",
+      "blocks": {
+        "heading": {
+          "type": "montibello-feature-heading",
+          "settings": {
+            "text": "<h2>Descubre el nuevo hop Ultra Repair Overnight Serum</h2>"
+          }
+        },
+        "row_1": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "text": "Recupera la fuerza, hidratación y suavidad del cabello",
+            "tail_in": "en tan solo 1 noche"
+          }
+        },
+        "row_2": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "90%",
+            "text": "cabello más fuerte*"
+          }
+        },
+        "row_3": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "x3",
+            "text": "más hidratación*"
+          }
+        },
+        "row_4": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "75%",
+            "text": "menos encrespamiento tras 8 horas*"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4"
+      ],
+      "name": "Overnight Serum (editorial)",
+      "settings": {
+        "bundled_image": "montibello-hop-overnight-serum-editorial.webp",
+        "image_alt": "Descubre el nuevo hop Ultra Repair Overnight Serum",
+        "media_type": "image",
+        "media_position": "left",
+        "mobile_collapsible": true,
+        "toggle_label": "Ver resultados",
+        "footnote": "* Test instrumental",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
   "order": [
-    "hero_intro_ultra_repair",
+    "hero_ultra_repair",
+    "range_title_styles",
+    "subfamily_media_frame_styles",
+    "intro_ultra_repair",
+    "results_ultra_repair",
+    "technology_ultra_repair",
+    "overnight_ultra_repair",
     "product_range_ultra_repair",
+    "gallery_ultra_repair",
     "cta_professional_ultra_repair"
   ]
 }

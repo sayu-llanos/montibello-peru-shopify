@@ -3,20 +3,15 @@
   module as a horizontal media rail with edge arrows. Uses the SAME official
   community media the live reference currently shows, in the same relative
   order (downloaded from hair.montibello.com /wp-content/uploads/2026/01/):
-  01 (video), 02–05, 06 ("Proven results"), 07, 08 — skipping only the 2
-  items outside Peru's commercial scope (an Éclat tile, item 09, and an
-  m.lab tile, item 10). The @montibellopro handle is reproduced as global
+  01 (video), 02, 04, 05, 06 ("Proven results"), 07, 08 — skipping the
+  items outside Peru's commercial scope (an Éclat tile, item 09, an
+  m.lab tile, item 10, and the Overnight Serum tile, item 03). The @montibellopro handle is reproduced as global
   Montibello brand/editorial content, not claimed as a Peru-specific
   account.
 
-  Infinite loop: the rail keeps native scroll (so trackpad/touch/drag all
-  keep working) but renders THREE copies of the same media set back to
-  back. It boots scrolled into the middle copy, and a scroll listener
-  silently snaps `scrollLeft` back by exactly one set-width whenever the
-  user scrolls into the trailing copy (or forward by one set-width when
-  scrolled into the leading copy) — since the copies are pixel-identical,
-  the snap lands on the same visual frame and is imperceptible. Arrows
-  never disable since there is no real end.
+  One unique set of cards (no duplicated copies). Arrows page through the rail
+  and wrap at either end. Item 03 (Overnight Serum) is also skipped: it is a
+  Spain-only product.
 {%- endcomment -%}
 
 {% capture media_set %}
@@ -24,7 +19,6 @@
     <source src="{{ 'montibello-community-video.mp4' | asset_url }}" type="video/mp4">
   </video>
   <img src="{{ 'montibello-community-02.jpg' | asset_url }}" alt="Montibello HOP" loading="lazy" class="montibello-community__image" width="840" height="1050">
-  <img src="{{ 'montibello-community-03.jpg' | asset_url }}" alt="Montibello HOP Ultra Repair" loading="lazy" class="montibello-community__image" width="840" height="1050">
   <img src="{{ 'montibello-community-04.jpg' | asset_url }}" alt="Resultado de salón Montibello" loading="lazy" class="montibello-community__image" width="840" height="1050">
   <img src="{{ 'montibello-community-05.jpg' | asset_url }}" alt="Montibello Under" loading="lazy" class="montibello-community__image" width="840" height="1050">
   <img src="{{ 'montibello-community-proven-results.png' | asset_url }}" alt="Proven results — productos eficaces, puros y seguros" loading="lazy" class="montibello-community__image" width="840" height="1050">
@@ -51,9 +45,7 @@
     </button>
 
     <div class="montibello-community__rail" data-montibello-community-rail>
-      <div class="montibello-community__set" data-montibello-community-set>{{ media_set }}</div>
-      <div class="montibello-community__set" data-montibello-community-set>{{ media_set }}</div>
-      <div class="montibello-community__set" data-montibello-community-set>{{ media_set }}</div>
+      {{ media_set }}
     </div>
 
     <button type="button" class="montibello-community__arrow montibello-community__arrow--next" aria-label="Siguiente" data-montibello-community-next>
@@ -70,59 +62,25 @@
       var rail = section.querySelector('[data-montibello-community-rail]');
       var prev = section.querySelector('[data-montibello-community-prev]');
       var next = section.querySelector('[data-montibello-community-next]');
-      var sets = section.querySelectorAll('[data-montibello-community-set]');
-      if (!rail || !prev || !next || sets.length < 3) return;
+      if (!rail || !prev || !next) return;
 
-      var settling = false;
-      var settleTimer = null;
-
-      function setWidth() {
-        // Distance from the start of one set to the start of the next —
-        // this is what one full backward/forward wrap must jump by.
-        return sets[1].offsetLeft - sets[0].offsetLeft;
+      function maxScroll() {
+        return rail.scrollWidth - rail.clientWidth;
       }
 
       function step() {
         var item = rail.querySelector('.montibello-community__image');
-        return item ? item.getBoundingClientRect().width + 20 : rail.clientWidth * 0.8;
-      }
-
-      function initPosition() {
-        // Boot scrolled to the start of the middle (real) copy.
-        rail.scrollLeft = sets[1].offsetLeft;
-      }
-
-      function settleLoop() {
-        var width = setWidth();
-        if (!width) return;
-        var min = sets[0].offsetLeft;
-        var max = sets[2].offsetLeft;
-        if (rail.scrollLeft >= max) {
-          rail.style.scrollBehavior = 'auto';
-          rail.scrollLeft -= width;
-          rail.style.scrollBehavior = '';
-        } else if (rail.scrollLeft < min) {
-          rail.style.scrollBehavior = 'auto';
-          rail.scrollLeft += width;
-          rail.style.scrollBehavior = '';
-        }
-      }
-
-      function onScroll() {
-        if (settleTimer) clearTimeout(settleTimer);
-        settleTimer = setTimeout(settleLoop, 120);
+        return item ? item.getBoundingClientRect().width + 15 : rail.clientWidth * 0.8;
       }
 
       prev.addEventListener('click', function () {
-        rail.scrollBy({ left: -step(), behavior: 'smooth' });
+        if (rail.scrollLeft <= 1) rail.scrollTo({ left: maxScroll(), behavior: 'smooth' });
+        else rail.scrollBy({ left: -step(), behavior: 'smooth' });
       });
       next.addEventListener('click', function () {
-        rail.scrollBy({ left: step(), behavior: 'smooth' });
+        if (rail.scrollLeft >= maxScroll() - 1) rail.scrollTo({ left: 0, behavior: 'smooth' });
+        else rail.scrollBy({ left: step(), behavior: 'smooth' });
       });
-
-      rail.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', initPosition);
-      initPosition();
     })();
   </script>
 </div>
@@ -171,13 +129,19 @@
     width: 100%;
     min-width: 0;
     margin-inline: auto;
-    padding-inline: 30px;
+    padding-inline: 15px;
+  }
+
+  @media screen and (min-width: 1000px) {
+    .montibello-community__viewport {
+      padding-inline: 0;
+    }
   }
 
   .montibello-community__rail {
     display: flex;
     flex-wrap: nowrap;
-    gap: 20px;
+    gap: 15px;
     max-width: 100%;
     min-width: 0;
     overflow-x: auto;
@@ -189,28 +153,22 @@
     display: none;
   }
 
-  .montibello-community__set {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-  }
-
   .montibello-community__image {
     display: block;
-    flex: 0 0 240px;
-    width: 240px;
-    height: 320px;
+    flex: 0 0 273px;
+    width: 273px;
+    height: 341px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 12px;
     scroll-snap-align: start;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
   }
 
   @media screen and (min-width: 750px) {
     .montibello-community__image {
-      flex-basis: 320px;
-      width: 320px;
-      height: 440px;
+      flex-basis: 423px;
+      width: 423px;
+      height: 529px;
     }
   }
 
@@ -245,11 +203,11 @@
   }
 
   .montibello-community__arrow--prev {
-    left: -4px;
+    left: 20px;
   }
 
   .montibello-community__arrow--next {
-    right: -4px;
+    right: 20px;
   }
 
   @media screen and (min-width: 990px) {

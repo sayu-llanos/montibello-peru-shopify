@@ -20,9 +20,102 @@
   `feature.description` is Rich text (`rich_text_field`), rendered with
   `| metafield_tag` on the field drop itself below — `.value` is used only
   for the blank/presence check, never for HTML output.
+
+  LUXLIGHT LAYOUT (Supreme Lightener 9+ visual-parity reset): a live
+  screenshot audit of https://hair.montibello.com/producto/supreme-lightener-9/
+  found the official "Máxima aclaración..." block is NOT a centered card
+  grid — it's a left-aligned heading followed by single-line benefit
+  statements separated by divider rules (already stored as separate
+  paragraph nodes in `feature.description` — one `<p>` per line via
+  `metafield_tag`, so no data reshaping was needed, only CSS). There is also
+  no generic "Beneficios" label on the official page; the feature's own
+  title IS the heading. Both are range-gated to `range == 'LUXLIGHT'` so
+  HOP's already-verified centered card grid is untouched.
+
+  PHOTO LAYOUT (manager-feedback closure pass, HOP Ultra Repair Shampoo —
+  "DIAGRAMAR CORRECTAMENTE CON IMAGEN A LA IZQUIERDA"): when a non-Luxlight
+  feature now has `feature.image` populated (an official editorial photo,
+  not a small icon), it renders as a real 2-column image-left/text-right
+  row instead of the centered icon-grid card, matching the official
+  structure. Values match the same measured system already used on the
+  range pages (sections/montibello-hop-luxlight-media-frame.liquid,
+  montibello-under-layout.liquid): 650:462 media ratio, 12px radius,
+  rgb(246,246,243) background, 40px/35px heading scale — kept consistent
+  site-wide rather than inventing new numbers for this one section.
+
+  MULTI-SECTION LUXLIGHT PDPs (Luxlight 8-PDP official parity pass): the
+  official pages for Supreme Control Oil Lightening System 2+ and Supreme
+  pH Protective Shampoo / Supreme Acidic pH Treatment each have TWO
+  distinct lower editorial sections (not one) — confirmed via a live DOM
+  audit of hair.montibello.com (see scripts/scratch/luxlight-8-audit.json
+  used during that pass). The layout below is decided PER FEATURE, not
+  once for the whole section/product: any feature with an image renders
+  its own full-width photo row (each is its own `<div>`, not a shared grid
+  cell), stacked with real vertical spacing between rows — this is what
+  makes "N features with images" render as N independent official-style
+  sections instead of forcing a 2-up icon grid. A feature with no image
+  still falls back to the original centered icon-grid card, unchanged.
+
+  ORIENTATION MAPPING (LUXLIGHT FINAL VISUAL FIX pass — supersedes the
+  prior "both rows image-right" rule): that prior pass applied the
+  manager's screenshots literally, which made BOTH editorial rows on
+  Control Oil/pH Shampoo/Acidic Treatment text-left/image-right — visually
+  flat, not a zig-zag. This pass's brief is explicit: the FIRST editorial
+  block on each of these 3 products must be IMAGE-LEFT/TEXT-RIGHT, and the
+  SECOND must be TEXT-LEFT/IMAGE-RIGHT (the official zig-zag rhythm),
+  confirmed per-product:
+    - Control Oil: [0] "Una herramienta versátil..." (benefits) = image
+      left; [1] "Múltiples servicios" (results) = image right.
+    - pH Shampoo: [0] "Reparador y protector del pH" (benefits) = image
+      left; [1] "Tratamiento luxlight que eleva los resultados"
+      (ph-results-shared) = image right.
+    - Acidic Treatment: [0] "Hidratación y reparación profunda..."
+      (benefits) = image left; [1] same shared "ph-results-shared"
+      feature = image right.
+
+  Kept the same explicit feature-HANDLE map (`image_right_feature_
+  handles`) — not a `product.handle` conditional; this keys off the
+  stable `montibello_feature` metaobject handle, the same identifier
+  already used everywhere else in this file to look products/features up.
+  Only each product's SECOND ("results"/shared) feature handle is listed
+  now; each product's FIRST ("benefits") feature handle was removed from
+  the list so it falls through to the default (image-left), producing the
+  zig-zag. Lightener 9+ and Clay-7+'s single photo-row features remain
+  NOT in this list, unchanged (image-left, already correct). Adding a
+  future Luxlight product's feature handle here is the full extent of
+  what's needed to onboard it; this is the "safe feature-id/title mapping"
+  tier, not a chain of `if product.handle == ...` branches.
+
+  Still adding a real `image_position` field to the metaobject definition
+  remains blocked: this app's OAuth client isn't granted
+  `write_metaobject_definitions` (only write_files/write_metaobjects/
+  write_products — confirmed via a live scope check). If that scope is
+  ever granted, this map should be replaced by reading the field directly.
+
+  BOLD LEAD-IN PHRASES (Part 7): "Múltiples servicios" and "Tratamiento
+  luxlight que eleva los resultados" both render an inline `<strong>` lead
+  phrase before each line on the official page (e.g. "Base breaker: aclara
+  suavemente..."). The underlying `description` rich text for exactly these
+  two metaobjects was corrected this pass (via the same script) to carry a
+  real `bold: true` text node for the lead phrase — `| metafield_tag`
+  already renders that as `<strong>`, so no markup logic was needed here,
+  only the data fix.
+
+  STRETCHED MEDIA HEIGHT (Parts 8–9): the official photo rows show the
+  image spanning close to the full height of its text column, not a
+  shorter fixed-aspect-ratio crop floating beside a taller text block
+  (measured live: e.g. Control Oil's "Una herramienta versátil" section is
+  430px tall, its image 380px — image-to-text height parity, not a small
+  image in a tall section). Switched the photo-row grid to
+  `align-items: stretch` with the image at `height: 100%; object-fit: cover`
+  instead of a fixed `aspect-ratio`, so the image genuinely stretches to
+  match whichever column (text or image) ends up taller — the old fixed
+  650:462 ratio is kept ONLY as a mobile-width fallback where there is no
+  second column to stretch against.
 {%- endcomment -%}
 
 {% liquid
+  assign range = product.metafields.montibello.range.value
   assign features = product.metafields.montibello.features.value
   assign has_feature_content = false
   for feature in features
@@ -30,40 +123,226 @@
       assign has_feature_content = true
     endif
   endfor
+
+  assign is_luxlight_layout = false
+  if range == 'LUXLIGHT'
+    assign is_luxlight_layout = true
+  endif
+
+  # UNDER FINAL 20/20 MICRO-POLISH: the official UNDER editorial result rows
+  # are separated by clear divider lines (confirmed live on all 4 official
+  # pages) — this photo-row previously had NO row dividers at all for
+  # UNDER (plain stacked paragraphs), unlike Luxlight's own divider variant.
+  # Reuses the exact same visual treatment as `--luxlight` under its own
+  # modifier class, scoped so Luxlight/HOP are untouched.
+  assign is_under_layout = false
+  if range == 'UNDER'
+    assign is_under_layout = true
+  endif
+
+  # HOP ULTRA REPAIR — TRUE OFFICIAL PARITY FINAL: the official editorial
+  # "girl" block separates its result lines with a thin, PALE divider line
+  # (confirmed live — NOT black/bold like UNDER's own divider requirement)
+  # — Peru's default (non-Luxlight/non-Under) photo-row style has no
+  # divider at all between these lines. Reuses the shared pale
+  # `var(--color-border, #e4dfd4)` already used everywhere else on this
+  # theme as the default hairline, not a new color. Scoped to the 4 real
+  # Ultra Repair products via the `subfamily` metafield — HOP's other
+  # subfamilies (Colour Last/Keratin) are untouched.
+  assign hop_subfamily = product.metafields.montibello.subfamily.value
+  assign is_hop_ultra_repair_layout = false
+  if range == 'HOP' and hop_subfamily == 'Ultra Repair' or range == 'HOP' and hop_subfamily == 'Color Last' or range == 'HOP' and hop_subfamily == 'Smooth Hydration'
+    assign is_hop_ultra_repair_layout = true
+  endif
+  # FULL-SITE PARITY: UNDER / Luxlight products that carry their official
+  # gallery use the same official PDP system as the HOP families (full-bleed
+  # beige editorial band, 630/630 grid, 0.5px #767676 rules).
+  assign benefits_official_gallery = product.metafields.montibello.official_gallery.value
+  if benefits_official_gallery != blank
+    if range == 'UNDER'
+      assign is_hop_ultra_repair_layout = true
+    elsif range == 'LUXLIGHT'
+      assign is_hop_ultra_repair_layout = true
+    endif
+  endif
+
+  # UNDER — Carta de Color CTA relocation (final punctual fix): the official
+  # Permanent Colour page shows the black "CARTA DE COLOR" button INSIDE the
+  # lifestyle photo-row itself — right column, directly under the 4 result
+  # lines, part of the same copy block. It was previously its own section
+  # (montibello-shade-browser) rendered well below with its own background,
+  # which read as a separate detached band no matter how much its top
+  # padding was reduced. Moved the CTA markup into THIS row's copy instead.
+  # Gated on `has_shades` (not just `is_under_layout`) because the activator
+  # products share this same section/template instance but have no shades
+  # metafield data — this keeps the CTA on Permanent Colour only, with zero
+  # per-product `product.handle` branching.
+  assign shades_primary = product.metafields.montibello.shades.value
+  assign shades_overflow = product.metafields.montibello.shades_overflow.value
+  assign has_shades = false
+  for shade in shades_primary
+    assign has_shades = true
+    break
+  endfor
+  unless has_shades
+    for shade in shades_overflow
+      assign has_shades = true
+      break
+    endfor
+  endunless
+  assign show_shade_cta = false
+  if is_under_layout and has_shades and section.settings.shade_chart_url != blank
+    assign show_shade_cta = true
+  endif
+
+  assign has_icon_only_feature = false
+  for feature in features
+    if feature.image.value == blank
+      assign has_icon_only_feature = true
+    endif
+  endfor
+
+  # Explicit feature-handle → image-right map (see ORIENTATION MAPPING doc
+  # comment above). Comma-delimited with leading/trailing commas so the
+  # `contains` check below can't false-positive on a handle that happens to
+  # be a substring of another.
+  assign image_right_feature_handles = ',feature-luxlight-supreme-control-oil-lightening-system-results,feature-luxlight-supreme-ph-results-shared,'
 %}
 
 {% if has_feature_content %}
   <div
-    class="section section--{{ section.settings.section_width }} montibello-pdp-benefits spacing-style"
+    class="section section--{{ section.settings.section_width }} montibello-pdp-benefits{% if is_luxlight_layout %} montibello-pdp-benefits--luxlight{% endif %}{% if is_hop_ultra_repair_layout %} montibello-pdp-benefits--hop-ultra-repair{% endif %} spacing-style"
     style="{% render 'spacing-style', settings: section.settings %}"
   >
-    {% if section.settings.heading != blank %}
-      <h2 class="montibello-pdp-benefits__heading">{{ section.settings.heading }}</h2>
+    {% comment %}
+      All icon-only (no-image) features share ONE compact centered grid with
+      ONE heading, exactly as before this pass — rendered first, once, not
+      per-feature (a per-feature heading would repeat it for every card).
+    {%- endcomment -%}
+    {% if has_icon_only_feature %}
+      {% if is_luxlight_layout == false and section.settings.heading != blank %}
+        <h2 class="montibello-pdp-benefits__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      <div class="montibello-pdp-benefits__grid">
+        {% for feature in features %}
+          {% if feature.image.value == blank %}
+            <div class="montibello-pdp-benefits__card">
+              <div class="montibello-pdp-benefits__copy">
+                {% if feature.title.value != blank %}
+                  <h3 class="montibello-pdp-benefits__title">{{ feature.title.value }}</h3>
+                {% endif %}
+                {% if feature.description.value != blank %}
+                  <div class="montibello-pdp-benefits__description">{{ feature.description | metafield_tag }}</div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endif %}
 
-    <div class="montibello-pdp-benefits__grid">
-      {% for feature in features %}
-        <div class="montibello-pdp-benefits__card">
-          {% if feature.image.value != blank %}
-            {{
-              feature.image.value
-              | image_url: width: 200
-              | image_tag: loading: 'lazy', class: 'montibello-pdp-benefits__icon', widths: '100,150,200'
-            }}
-          {% endif %}
-          {% if feature.title.value != blank %}
-            <h3 class="montibello-pdp-benefits__title">{{ feature.title.value }}</h3>
-          {% endif %}
-          {% if feature.description.value != blank %}
-            <div class="montibello-pdp-benefits__description">{{ feature.description | metafield_tag }}</div>
-          {% endif %}
+    {% comment %}
+      Every feature WITH an image gets its own full-width image-left/text-
+      right row, stacked in order — N features with images render as N real
+      stacked official-style sections (e.g. Supreme Control Oil Lightening
+      System 2+ and Supreme pH Protective Shampoo / Supreme Acidic pH
+      Treatment each have two on the official page), not a forced grid.
+    {%- endcomment -%}
+    {% assign photo_row_n = 0 %}
+    {% for feature in features %}
+      {% if feature.image.value != blank %}
+        {% assign photo_row_n = photo_row_n | plus: 1 %}
+        {% comment %}
+          Explicit handle map decides orientation — see the ORIENTATION
+          MAPPING doc comment above. Default (handle not listed) is
+          image-left, matching Lightener 9+/Clay-7+'s untouched behavior.
+        {%- endcomment -%}
+        {% assign feature_needle = feature.system.handle | prepend: ',' | append: ',' %}
+        {% assign is_image_right = false %}
+        {% if image_right_feature_handles contains feature_needle %}
+          {% assign is_image_right = true %}
+        {% endif %}
+        <div
+          class="montibello-pdp-benefits__photo-row{% if is_luxlight_layout %} montibello-pdp-benefits__photo-row--luxlight{% endif %}{% if is_under_layout %} montibello-pdp-benefits__photo-row--under{% endif %}{% if is_hop_ultra_repair_layout %} montibello-pdp-benefits__photo-row--hop-ultra-repair{% endif %}{% if is_image_right %} montibello-pdp-benefits__photo-row--image-right{% endif %}"
+          {% if is_luxlight_layout %}data-montibello-reveal{% endif %}
+        >
+          <div class="montibello-pdp-benefits__grid">
+            <div class="montibello-pdp-benefits__card">
+              <div class="montibello-pdp-benefits__photo-wrap">
+                {{
+                  feature.image.value
+                  | image_url: width: 800
+                  | image_tag: loading: 'lazy', class: 'montibello-pdp-benefits__icon', widths: '400,600,800'
+                }}
+              </div>
+              <div class="montibello-pdp-benefits__copy">
+                {% if feature.title.value != blank %}
+                  <h3 class="montibello-pdp-benefits__title">{{ feature.title.value }}</h3>
+                {% endif %}
+                {% if photo_row_n > 1 and is_luxlight_layout %}
+                  {%- comment -%} official mobile: the second editorial block collapses behind a "Ver resultados" row {%- endcomment -%}
+                  <input type="checkbox" id="{{ section.id }}-benefit-toggle-{{ photo_row_n }}" class="montibello-pdp-benefits__toggle-input">
+                  <label class="montibello-pdp-benefits__toggle-label" for="{{ section.id }}-benefit-toggle-{{ photo_row_n }}">Ver resultados <span aria-hidden="true">→</span></label>
+                {% endif %}
+                {% if feature.description.value != blank %}
+                  <div class="montibello-pdp-benefits__description">{{ feature.description | metafield_tag }}</div>
+                {% endif %}
+                {% if show_shade_cta and forloop.last %}
+                  <a
+                    class="montibello-pdp-benefits__shade-cta"
+                    href="{{ section.settings.shade_chart_url }}"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="montibello-pdp-benefits__shade-cta-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="18" height="18">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m4-5l5 5 5-5m-5 5V3"></path>
+                      </svg>
+                    </span>
+                    {{ section.settings.shade_chart_label | default: 'Descargar Carta de Color' }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
-      {% endfor %}
-    </div>
+      {% endif %}
+    {% endfor %}
   </div>
 {% endif %}
 
 {% stylesheet %}
+  .montibello-pdp-benefits__toggle-input,
+  .montibello-pdp-benefits__toggle-label {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    /* official mobile result rows: ~35px pitch with a light hairline */
+    .montibello-pdp-benefits .montibello-pdp-benefits__photo-row--luxlight .montibello-pdp-benefits__description p,
+    .montibello-pdp-benefits .montibello-pdp-benefits__photo-row--under .montibello-pdp-benefits__description p {
+      padding: 7px 0;
+      border-bottom: 0.5px solid #767676;
+    }
+
+    .montibello-pdp-benefits__toggle-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #cfcfcf;
+      font-size: 23px;
+      line-height: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+    }
+
+    .montibello-pdp-benefits__toggle-input:not(:checked) ~ .montibello-pdp-benefits__description {
+      display: none;
+    }
+  }
+
   .montibello-pdp-benefits__heading {
     max-width: 1400px;
     margin: 0 auto 24px;
@@ -80,10 +359,14 @@
   .montibello-pdp-benefits__grid {
     display: grid;
     gap: 32px;
+    width: 100%;
     max-width: 1400px;
     margin-inline: auto;
     padding-inline: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    box-sizing: border-box;
+    /* min(180px, 100%) — see montibello-product-ingredients.liquid for why
+       a bare fixed-px minmax floor overflows narrow viewports. */
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
     text-align: center;
 
     @media screen and (min-width: 750px) {
@@ -95,6 +378,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+  }
+
+  .montibello-pdp-benefits__copy {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
   }
 
@@ -117,7 +406,443 @@
     line-height: 1.5;
     opacity: 0.8;
   }
+
+  /* LUXLIGHT: left-aligned heading + divider-separated single-line rows,
+     matching the official "Máxima aclaración..." block — not a centered
+     card grid. `feature.description` already renders one <p> per line via
+     `metafield_tag`, so only the paragraph spacing/border needs styling. */
+  .montibello-pdp-benefits--luxlight .montibello-pdp-benefits__grid {
+    display: block;
+    max-width: 700px;
+    margin-inline: 0;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-pdp-benefits--luxlight .montibello-pdp-benefits__card {
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .montibello-pdp-benefits--luxlight .montibello-pdp-benefits__title {
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+
+    @media screen and (min-width: 750px) {
+      font-size: 28px;
+    }
+  }
+
+  .montibello-pdp-benefits--luxlight .montibello-pdp-benefits__description {
+    width: 100%;
+    text-align: left;
+    opacity: 1;
+  }
+
+  .montibello-pdp-benefits--luxlight .montibello-pdp-benefits__description p {
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-benefits--luxlight .montibello-pdp-benefits__description p:last-child {
+    border-bottom: none;
+  }
+
+  /* PHOTO ROW: image left / text right, matching the official structure and
+     reusing this site's established range-page media system (measured
+     against hair.montibello.com — see sections/montibello-hop-luxlight-
+     media-frame.liquid and montibello-under-layout.liquid for the original
+     measurements): 650:462 ratio, 12px radius, rgb(246,246,243) background,
+     40px/35px heading scale, 1300px contained width, 48px column gap.
+
+     ONE ROW PER FEATURE WITH AN IMAGE (Luxlight 8-PDP parity pass): some
+     official products have two of these stacked editorial sections in a
+     row (e.g. Supreme Control Oil Lightening System 2+, Supreme pH
+     Protective Shampoo, Supreme Acidic pH Treatment) — each `.photo-row` is
+     its own independent block so N features with images render as N real
+     stacked sections, with real vertical spacing between them, not a
+     forced 2-up card grid. */
+  .montibello-pdp-benefits__photo-row {
+    background-color: rgb(246, 246, 243);
+    padding-block: 40px;
+  }
+
+  .montibello-pdp-benefits__photo-row + .montibello-pdp-benefits__photo-row {
+    margin-top: 4px; /* hairline separation so two stacked rows still read as distinct sections */
+  }
+
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 1300px;
+    text-align: left;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 48px;
+      /* STRETCH, not center: the image should span the same height as the
+         text column (measured live — see the STRETCHED MEDIA HEIGHT doc
+         comment above), not float vertically centered at a shorter fixed
+         crop next to a taller text block. */
+      align-items: stretch;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__card {
+    display: contents;
+  }
+
+  /* IMAGE-RIGHT variant (Part 6/9 — alternating rhythm, then the explicit
+     handle map in the FINAL 20/20 pass): swaps the two grid children's
+     visual order without touching source order, so the DOM/reading order
+     (heading → copy, then image) stays sane for screen readers regardless
+     of which side the image renders on.
+
+     NOTE #1: `.grid > .icon` (direct-child combinator) would NOT match —
+     `.card` has `display: contents`, which changes the rendered BOX tree
+     (so its children visually behave like direct grid children) but does
+     NOT change the actual DOM tree the `>` combinator matches against.
+     Fixed (an earlier pass) to a descendant selector.
+
+     NOTE #2 (FINAL 20/20 pass — found live, same class of bug): after the
+     image/text-height-parity fix wrapped the `<img>` in `.photo-wrap` and
+     made the `<img>` itself `position: absolute` (so it stops contributing
+     to grid track sizing — see the STRETCHED MEDIA HEIGHT doc comment),
+     `.icon` ALSO stopped being a grid item at all — `.photo-wrap` is now
+     the actual grid item. `order` on `.icon` therefore did nothing
+     (confirmed live: `--image-right` class present, but image still
+     rendered at x:70 instead of the right column). Selector corrected to
+     target `.photo-wrap`, the element that's actually a grid item now. */
+  .montibello-pdp-benefits__photo-row--image-right .montibello-pdp-benefits__photo-wrap {
+    @media screen and (min-width: 750px) {
+      order: 2;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row--image-right .montibello-pdp-benefits__copy {
+    @media screen and (min-width: 750px) {
+      order: 1;
+    }
+  }
+
+  /* PHOTO WRAP (final micro-polish pass — ROOT CAUSE FIX): the previous
+     `height: 100%` directly on the <img> did NOT make the image match the
+     text column's height — it made the ROW match the IMAGE's own natural
+     aspect ratio instead, then stretched the (short) text column down to
+     fill that. Measured live on Lightener 9+: the source photo is a tall
+     1440×2016 portrait crop, so at its rendered column width the image's
+     intrinsic height was 834px — the grid's auto row-track sizing counted
+     that intrinsic height as this row's max-content contribution, so the
+     text column got stretched to match 834px too (visible as a short block
+     of copy floating in a much taller column — exactly the "image feels
+     longer than the text" complaint). A percentage height on a normal
+     in-flow image still contributes its OWN intrinsic size to grid track
+     sizing regardless of the stretch intent.
+
+     Fix: `.photo-wrap` is the actual grid item (contributes ~0 intrinsic
+     height, no in-flow content of its own) and is stretched to the row's
+     auto height — which is now driven ONLY by `.copy`'s real content
+     height, exactly the "image runs from where text begins to where it
+     ends" target. The `<img>` inside is taken out of flow (`position:
+     absolute; inset: 0`) so it never contributes to sizing, and is cropped
+     via `object-fit: cover` to fill whatever height `.copy` established. */
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__photo-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 650 / 462;
+
+    @media screen and (min-width: 750px) {
+      height: 100%;
+      aspect-ratio: auto;
+      /* Floor/ceiling so a very short text column (e.g. a 2-line feature)
+         still gets a real, elegant photo rather than a sliver, and a very
+         long one doesn't blow the image back up to portrait-scale. */
+      min-height: 320px;
+      max-height: 560px;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+
+    @media screen and (min-width: 750px) {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__copy {
+    text-align: left;
+  }
+
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__title {
+    font-size: 35px;
+    font-weight: 700;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row .montibello-pdp-benefits__description {
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  /* LUXLIGHT PHOTO ROW: same image-left/text-right 2-column shape as above,
+     but keeps Luxlight's own divider-row text treatment (left-aligned
+     heading + one <p> per line with a border under each) instead of the
+     default's paragraph style. Confirmed against the live official Supreme
+     Lightener 9+ page before building — "FALTA IMAGEN Y EL TEXTO VA AL
+     LADO DERECHO". `!important` on background-color: some other equal/
+     higher-specificity rule elsewhere was overriding a plain declaration
+     here to transparent (root cause not fully identified) — kept, matching
+     the established pragmatic-fix pattern used elsewhere in this codebase. */
+  .montibello-pdp-benefits__photo-row--luxlight {
+    background-color: rgb(246, 246, 243) !important;
+  }
+
+  .montibello-pdp-benefits__photo-row--luxlight .montibello-pdp-benefits__title {
+    text-align: left;
+  }
+
+  .montibello-pdp-benefits__photo-row--luxlight .montibello-pdp-benefits__description {
+    opacity: 1;
+  }
+
+  .montibello-pdp-benefits__photo-row--luxlight .montibello-pdp-benefits__description p {
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border, #e4dfd4);
+  }
+
+  .montibello-pdp-benefits__photo-row--luxlight .montibello-pdp-benefits__description p:last-child {
+    border-bottom: none;
+  }
+
+  /* UNDER PHOTO ROW (FINAL 20/20 MICRO-POLISH): same divider-row text
+     treatment as Luxlight's own variant above (left-aligned heading + one
+     <p> per result line with a border under each) — UNDER's editorial rows
+     previously had NO dividers at all (plain stacked paragraphs), while
+     the official UNDER pages show a clear line under every row. Uses a
+     visibly dark/black divider (not the pale `#e4dfd4` beige used
+     elsewhere) per this pass's explicit "black divider line" requirement —
+     confirmed against the official page's own visibly dark row rules.
+     Scoped to its own `--under` modifier class so Luxlight/HOP are
+     untouched. */
+  .montibello-pdp-benefits__photo-row--under .montibello-pdp-benefits__description {
+    opacity: 1;
+  }
+
+  .montibello-pdp-benefits__photo-row--under .montibello-pdp-benefits__description p {
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.85);
+  }
+
+  .montibello-pdp-benefits__photo-row--under .montibello-pdp-benefits__description p:last-child {
+    border-bottom: none;
+  }
+
+  /* HOP ULTRA REPAIR — forensic official layout (measured 1440 on
+     hair.montibello.com/producto/ultra-repair-shampoo): full-bleed
+     rgb(246,246,243) band that is CONTIGUOUS with the hero band above it
+     (25px block padding on both), 630px photo (900:640, 12px radius) +
+     40px gap + 630px copy column, heading 40/40 wrapping inside 470px,
+     result rows 16/19.7 with 20px below + 0.5px #767676 rule + 20px gap —
+     every row (the last included) carries its rule. Scoped to the modifier
+     so every other range/subfamily is untouched. */
+  .montibello-pdp-benefits--hop-ultra-repair {
+    font-family: 'TTCommons', 'Montserrat', sans-serif;
+    background-color: #f6f6f3 !important;
+    box-shadow: 0 0 0 100vmax #f6f6f3;
+    clip-path: inset(0 -100vmax);
+    padding-block: 25px !important;
+  }
+
+  .montibello-pdp-benefits--hop-ultra-repair * {
+    font-family: inherit;
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair {
+    padding-block: 0;
+    background-color: transparent !important;
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__grid {
+    max-width: 1300px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 630px 630px;
+      column-gap: 40px;
+      padding-inline: 0;
+      align-items: center;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__photo-wrap {
+    aspect-ratio: 900 / 640;
+    border-radius: 12px;
+
+    @media screen and (min-width: 750px) {
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      aspect-ratio: 900 / 640;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__copy {
+    gap: 0;
+  }
+
+  /* two stacked editorial rows (official: two 498px sections, 25px above/below
+     each image row and 50px under the last) */
+  @media screen and (min-width: 750px) {
+    .montibello-pdp-benefits__photo-row--hop-ultra-repair + .montibello-pdp-benefits__photo-row--hop-ultra-repair {
+      margin-top: 21px;
+      margin-bottom: 25px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .montibello-pdp-benefits--hop-ultra-repair {
+      padding-inline: 0 !important;
+      padding-block: 25px !important;
+    }
+
+    .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__grid {
+      padding-inline: 0;
+      gap: 20px;
+    }
+
+    .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__title {
+      max-width: none;
+      font-size: 35px;
+      line-height: 35px;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__title {
+    max-width: 470px;
+    margin: 0 0 20px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.03em;
+    color: #000;
+
+    @media screen and (max-width: 749px) {
+      max-width: none;
+      font-size: 35px;
+      line-height: 35px;
+    }
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__description {
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.7px;
+    color: #000;
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__description p {
+    margin: 0 0 20px;
+    padding: 0 0 20px;
+    border-bottom: 0.5px solid #767676;
+  }
+
+  .montibello-pdp-benefits__photo-row--hop-ultra-repair .montibello-pdp-benefits__description p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* UNDER — Carta de Color CTA, relocated INTO this row's copy block
+     (final punctual fix — see the `show_shade_cta` doc comment above).
+     Same solid-black button treatment as the former standalone
+     montibello-shade-browser section, just placed here instead so it reads
+     as part of the lifestyle block rather than a separate band.
+
+     WIDTH FIX (final minimal pass): `.copy` is a flex column
+     (`display: flex; flex-direction: column`) with the default
+     `align-items: stretch` — that stretches ANY child's cross-axis size to
+     fill the column's full width regardless of the child's OWN `display`
+     value, so `display: inline-flex` alone did not stop the button from
+     being stretched edge-to-edge (confirmed live: it spanned the entire
+     text column, reading as a wide bar instead of a compact button).
+     `align-self: flex-start` opts this one child out of that stretch so its
+     width is driven only by its own content + padding, and `width:
+     fit-content` is kept as a belt-and-suspenders in case `align-self` is
+     ever overridden by a future rule. */
+  .montibello-pdp-benefits__shade-cta {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    width: fit-content;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 14px 24px;
+    background-color: #111111;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+  }
+
+  .montibello-pdp-benefits__shade-cta:hover {
+    background-color: #000000;
+  }
+
+  .montibello-pdp-benefits__shade-cta-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: #ffffff;
+  }
+
+  /* SCROLL REVEAL (FINAL 20/20 pass, Part 14) — ROOT CAUSE FIX: an earlier
+     version of this reimplemented scroll-reveal from scratch with its own
+     class name and CSS, which conflicted with an ALREADY-EXISTING,
+     already-shared `[data-montibello-reveal]` convention used by
+     sections/montibello-feature-rows.liquid, montibello-image-banner.liquid
+     and montibello-stats-panel.liquid (JS: assets/montibello-scroll-
+     reveal.js). Because Shopify bundles every section TYPE's own
+     stylesheet-tag output theme-wide (not just on pages that render that
+     section), those other sections' unconditional `[data-montibello-
+     reveal] { opacity: 0; ... }` rule was ALSO present on this product
+     page and — being declared after this file's rules in the bundle — won
+     the cascade, while this file's own JS never added the `.is-visible`
+     class that rule actually waits for. Net effect, confirmed live via a
+     full-page screenshot: both Control Oil editorial sections rendered as
+     permanently blank whitespace.
+
+     Fixed by ADOPTING the existing shared convention exactly instead of
+     inventing a second one: same attribute, same `.is-visible` reveal
+     class, same values, and the same shared script include — see the
+     `<script>` tag below, identical to how the other 3 sections use it. No
+     new CSS/JS needed here at all. */
 {% endstylesheet %}
+
+<script src="{{ 'montibello-scroll-reveal.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
@@ -130,6 +855,18 @@
       "id": "heading",
       "label": "Título",
       "default": "Beneficios"
+    },
+    {
+      "type": "text",
+      "id": "shade_chart_url",
+      "label": "URL del PDF (Carta de Color, solo UNDER Permanent Colour)",
+      "info": "Reutiliza el mismo asset ya aprobado — no subir un PDF nuevo. Solo se muestra en el producto con datos de tonos (Permanent Colour); los activadores lo ignoran automáticamente."
+    },
+    {
+      "type": "text",
+      "id": "shade_chart_label",
+      "label": "Texto del botón Carta de Color",
+      "default": "Carta de Color"
     },
     {
       "type": "select",

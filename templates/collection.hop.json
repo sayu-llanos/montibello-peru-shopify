@@ -1,15 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_hop": {
       "type": "montibello-image-banner",
-      "blocks": {},
-      "block_order": [],
       "name": "Banner Montibello",
       "settings": {
+        "bundled_image": "montibello-hop-hero-full-range.jpg",
+        "image_alt": "Gama completa Montibello HOP",
         "layout": "full",
         "section_width": "full-width",
-        "bundled_image": "montibello-hop-hero-desktop.jpg",
-        "image_alt": "Campaña Montibello HOP",
         "toggle_overlay": false,
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -18,81 +25,140 @@
     "intro_hop": {
       "type": "section",
       "blocks": {
-        "intro_group": {
+        "intro_row": {
           "type": "group",
           "settings": {
-            "content_direction": "column",
-            "gap": 16,
-            "width": "custom",
-            "custom_width": 50,
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "start",
+            "gap": 32,
+            "width": "fill",
             "width_mobile": "fill",
             "height": "fit"
           },
           "blocks": {
-            "heading": {
-              "type": "text",
+            "heading_group": {
+              "type": "group",
               "settings": {
-                "text": "<h1>HOP</h1>",
-                "type_preset": "h1",
-                "max_width": "none"
-              }
+                "content_direction": "column",
+                "width": "custom",
+                "custom_width": 50,
+                "width_mobile": "fill",
+                "height": "fit"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h1>Hop</h1>",
+                    "max_width": "none",
+                    "type_preset": "h1"
+                  }
+                }
+              },
+              "block_order": [
+                "heading"
+              ]
             },
-            "text": {
-              "type": "text",
+            "text_group": {
+              "type": "group",
               "settings": {
-                "text": "<p>Rutinas profesionales de nutrición, control del frizz y mantenimiento formuladas con biociencia de algas. Elige tu gama.</p>",
-                "type_preset": "rte",
-                "max_width": "none"
-              }
+                "content_direction": "column",
+                "width": "custom",
+                "custom_width": 50,
+                "width_mobile": "fill",
+                "height": "fit"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>El cuidado capilar de alto rendimiento basado en la biociencia de las algas capaz de corregir los signos del bienestar del cuero cabelludo y el cabello: hidratación, nutrición, equilibrio, fuerza, protección del color y encrespamiento.</p>",
+                    "max_width": "none",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "text"
+              ]
             }
           },
           "block_order": [
-            "heading",
-            "text"
+            "heading_group",
+            "text_group"
           ]
         }
       },
       "block_order": [
-        "intro_group"
+        "intro_row"
       ],
       "name": "Sección",
       "settings": {
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-start": 25,
+        "padding-block-end": 0
       }
     },
+    "range_title_styles": {
+      "type": "montibello-range-title",
+      "settings": {}
+    },
     "wellbeing_hop": {
-      "type": "montibello-image-banner",
+      "type": "montibello-feature-rows",
       "blocks": {
         "heading": {
-          "type": "text",
+          "type": "montibello-feature-heading",
           "settings": {
-            "text": "<h2>Corrige los signos del bienestar capilar</h2>",
-            "type_preset": "h2",
-            "max_width": "normal",
-            "padding-block-end": 12
+            "text": "<h2>Bienestar, ciencia y naturaleza para impulsar el cuidado del cabello más allá de la belleza.</h2>"
           }
         },
-        "text": {
-          "type": "text",
+        "row_1": {
+          "type": "montibello-feature-row",
           "settings": {
-            "text": "<p>Impulsa el bienestar en el cabello con ingredientes cosméticos de alta eficacia.</p><p>Experiencia inmersiva de bienestar a través de la sensorialidad de texturas y fragancias.</p><p>Una gama ecorresponsable para el bienestar del cabello y del planeta.</p>",
-            "type_preset": "rte",
-            "max_width": "normal"
+            "lead_in": "Corrige los signos",
+            "text": "del bienestar capilar."
+          }
+        },
+        "row_2": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "Impulsa el bienestar en el cabello",
+            "text": "con ingredientes cosméticos de alta eficacia."
+          }
+        },
+        "row_3": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "Experiencia inmersiva",
+            "text": "de bienestar a través de la sensorialidad de texturas y fragancias."
+          }
+        },
+        "row_4": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "Una gama ecorresponsable",
+            "text": "para el bienestar del cabello y del planeta."
           }
         }
       },
-      "block_order": ["heading", "text"],
-      "name": "Banner Montibello",
+      "block_order": [
+        "heading",
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4"
+      ],
+      "name": "Filas con divisores",
       "settings": {
-        "layout": "split",
-        "media_position": "left",
-        "section_width": "full-width",
         "bundled_image": "montibello-hop-wellbeing-editorial.jpg",
         "image_alt": "Montibello HOP — bienestar capilar",
-        "toggle_overlay": false,
+        "media_position": "left",
+        "mobile_collapsible": true,
+        "toggle_label": "Ver datos",
+        "section_width": "full-width",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -103,29 +169,32 @@
         "heading": {
           "type": "text",
           "settings": {
-            "text": "<h2>LifeAlgae BioScience multiplica x4 el poder de los activos</h2>",
-            "type_preset": "h2",
+            "text": "<h2>LifeAlgae BioScience multiplica x4 el poder de los activos.</h2>",
             "max_width": "normal",
+            "type_preset": "h2",
             "padding-block-end": 12
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos. La clave: la hiperfermentación de las algas. Un proceso biotecnológico transformador único.</p>",
-            "type_preset": "rte",
-            "max_width": "normal"
+            "text": "<p>5 años de investigación para desarrollar LifeAlgae BioScience, la biociencia basada en el poder de las algas capaz de amplificar y potenciar el poder de los activos.</p><p>La clave: la hiperfermentación de las algas. Un proceso biotecnológico transformador único.</p>",
+            "max_width": "normal",
+            "type_preset": "rte"
           }
         }
       },
-      "block_order": ["heading", "text"],
+      "block_order": [
+        "heading",
+        "text"
+      ],
       "name": "Banner Montibello",
       "settings": {
+        "bundled_image": "montibello-hop-lifealgae-tube.webp",
+        "image_alt": "LifeAlgae BioScience — biociencia de algas Montibello HOP",
         "layout": "split",
         "media_position": "right",
         "section_width": "full-width",
-        "bundled_image": "montibello-hop-lifealgae-technology.jpg",
-        "image_alt": "LifeAlgae BioScience — biociencia de algas Montibello HOP",
         "toggle_overlay": false,
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -136,29 +205,30 @@
       "blocks": {
         "heading": {
           "type": "text",
+          "static": true,
           "settings": {
-            "text": "<h2>Resultados</h2>",
-            "type_preset": "h2",
-            "max_width": "normal"
+            "text": "<h2>Enriquecidas con ingredientes del skincare para actuar en los signos del bienestar capilar.</h2>",
+            "max_width": "normal",
+            "type_preset": "h2"
           }
         }
       },
-      "block_order": ["heading"],
+      "block_order": [],
       "name": "Panel de datos HOP",
       "settings": {
-        "bundled_image": "montibello-hop-results-editorial.jpg",
+        "bundled_image": "montibello-hop-results-jars.webp",
         "image_alt": "Montibello HOP — resultados verificados",
         "media_position": "left",
-        "toggle_label": "Ver datos",
+        "toggle_label": "Ver resultados",
         "stat_1_number": "+93%",
-        "stat_1_label": "más hidratación",
+        "stat_1_label": "más hidratación**",
         "stat_2_number": "+87%",
-        "stat_2_label": "más nutrición",
+        "stat_2_label": "más nutrición*",
         "stat_3_number": "x6",
-        "stat_3_label": "más fuerza",
+        "stat_3_label": "más fuerza*",
         "stat_4_number": "+8",
-        "stat_4_label": "semanas de color protegido",
-        "footnote": "",
+        "stat_4_label": "semanas de color protegido*",
+        "footnote": "*Test instrumental. **Test de consumidor.",
         "bundled_file": "none",
         "file_label": "",
         "section_width": "full-width",
@@ -167,33 +237,33 @@
       }
     },
     "subfamilies_hop": {
-      "type": "montibello-product-teaser",
+      "type": "montibello-family-grid",
       "blocks": {
         "ultra_repair": {
-          "type": "product-teaser-card",
+          "type": "montibello-family-card",
           "settings": {
-            "bundled_image": "montibello-hop-subfamily-ultra-repair.jpg",
+            "bundled_image": "montibello-hop-family-ultra-repair.jpg",
             "title": "Ultra Repair",
-            "text": "Reparación intensiva para cabellos dañados",
-            "link": "shopify://collections/hop-ultra-repair"
+            "link": "shopify://collections/hop-ultra-repair",
+            "link_label": "Ver productos"
           }
         },
         "colour_last": {
-          "type": "product-teaser-card",
+          "type": "montibello-family-card",
           "settings": {
-            "bundled_image": "montibello-hop-color-last-shampoo.png",
+            "bundled_image": "montibello-hop-family-colour-last.jpg",
             "title": "Colour Last",
-            "text": "Protección y prolongación del color",
-            "link": "shopify://collections/hop-colour-last"
+            "link": "shopify://collections/hop-colour-last",
+            "link_label": "Ver productos"
           }
         },
         "smooth_hydration": {
-          "type": "product-teaser-card",
+          "type": "montibello-family-card",
           "settings": {
-            "bundled_image": "montibello-hop-subfamily-smooth-hydration.jpg",
+            "bundled_image": "montibello-hop-family-smooth-hydration.jpg",
             "title": "Smooth Hydration",
-            "text": "Hidratación y control del frizz",
-            "link": "shopify://collections/hop-smooth-hydration"
+            "link": "shopify://collections/hop-smooth-hydration",
+            "link_label": "Ver productos"
           }
         }
       },
@@ -202,126 +272,131 @@
         "colour_last",
         "smooth_hydration"
       ],
-      "name": "Vitrina de productos",
+      "name": "Cuadrícula de gamas",
       "settings": {
-        "heading": "Elige tu gama HOP",
+        "heading": "Gamas Hop",
         "section_width": "full-width",
-        "background_color": "#F6F6F3",
+        "background_color": "#FFFFFF",
+        "padding-block-start": 74,
+        "padding-block-end": 56
+      }
+    },
+    "gallery_hop": {
+      "type": "montibello-editorial-gallery",
+      "blocks": {
+        "img_1": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-01.webp",
+            "image_alt": "Campaña Montibello HOP — join wellness"
+          }
+        },
+        "img_2": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-02.webp",
+            "image_alt": "Textura Montibello HOP"
+          }
+        },
+        "img_3": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-03.webp",
+            "image_alt": "Campaña Montibello HOP — join wellness"
+          }
+        },
+        "img_4": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-04.webp",
+            "image_alt": "Neceser Montibello HOP Ultra Repair"
+          }
+        },
+        "img_5": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-05.webp",
+            "image_alt": "Campaña Montibello HOP — join wellness"
+          }
+        },
+        "img_6": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-06.webp",
+            "image_alt": "Textura Montibello HOP"
+          }
+        },
+        "img_7": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-07.webp",
+            "image_alt": "Montibello HOP Ultra Repair — gama completa"
+          }
+        },
+        "img_8": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-08.webp",
+            "image_alt": "Campaña Montibello HOP — join wellness"
+          }
+        },
+        "img_9": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-hop-gallery-09.webp",
+            "image_alt": "Textura Montibello HOP"
+          }
+        }
+      },
+      "block_order": [
+        "img_1",
+        "img_2",
+        "img_3",
+        "img_4",
+        "img_5",
+        "img_6",
+        "img_7",
+        "img_8",
+        "img_9"
+      ],
+      "name": "Galería editorial",
+      "settings": {
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "cta_professional_hop": {
+      "type": "montibello-professional-cta",
+      "name": "CTA profesional",
+      "settings": {
+        "left_text": "¿Tienes un salón pero no eres cliente todavía?",
+        "left_button_label": "Contacta con un comercial",
+        "left_button_link": "/pages/contact",
+        "right_text": "Localiza tu salón o peluquería Montibello más cercana",
+        "right_button_label": "Encuentra",
+        "right_button_link": "/pages/contact",
+        "background_color": "#000000",
+        "section_width": "page-width",
         "padding-block-start": 56,
         "padding-block-end": 56
       }
     },
-    "cta_professional_hop": {
-      "type": "section",
-      "blocks": {
-        "group_row": {
-          "type": "group",
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "center",
-            "gap": 32
-          },
-          "blocks": {
-            "group_professional": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Contacta con un comercial",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "heading",
-                "button"
-              ]
-            },
-            "group_locator": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Encuentra",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "text",
-                "button"
-              ]
-            }
-          },
-          "block_order": [
-            "group_professional",
-            "group_locator"
-          ]
-        }
-      },
-      "block_order": [
-        "group_row"
-      ],
-      "name": "Sección",
-      "settings": {
-        "section_width": "page-width",
-        "background_color": "#000000",
-        "padding-block-start": 56,
-        "padding-block-end": 56
-      }
+    "hop_luxlight_media_frame_styles": {
+      "type": "montibello-hop-luxlight-media-frame",
+      "settings": {}
     }
   },
   "order": [
     "hero_hop",
+    "range_title_styles",
     "intro_hop",
+    "hop_luxlight_media_frame_styles",
     "wellbeing_hop",
     "technology_hop",
     "results_hop",
     "subfamilies_hop",
+    "gallery_hop",
     "cta_professional_hop"
   ]
 }

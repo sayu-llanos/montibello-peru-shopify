@@ -31,7 +31,9 @@
         </h3>
       {% endif %}
       {% if section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_link | default: '#' }}" class="montibello-magazine__cta">{{ section.settings.button_label }}</a>
+        {%- assign magazine_cta_link = section.settings.button_link | default: '#' -%}
+        {%- if magazine_cta_link contains '/pages/magazine' and pages['magazine'].handle != 'magazine' -%}{%- assign magazine_cta_link = '#hair-magazine' -%}{%- endif -%}
+        <a href="{{ magazine_cta_link }}" class="montibello-magazine__cta">{{ section.settings.button_label }}</a>
       {% endif %}
     </div>
 
@@ -65,20 +67,28 @@
 
       function step() {
         var card = rail.querySelector('.montibello-magazine-card');
-        return card ? card.getBoundingClientRect().width + 24 : rail.clientWidth * 0.8;
+        return card ? card.getBoundingClientRect().width + 15 : rail.clientWidth * 0.8;
       }
 
+      function maxScroll() {
+        return rail.scrollWidth - rail.clientWidth;
+      }
+
+      // Arrows page through the unique cards and wrap at either end, so a
+      // short rail never leaves the user with a dead control.
       prev.addEventListener('click', function () {
-        rail.scrollBy({ left: -step(), behavior: 'smooth' });
+        if (rail.scrollLeft <= 1) rail.scrollTo({ left: maxScroll(), behavior: 'smooth' });
+        else rail.scrollBy({ left: -step(), behavior: 'smooth' });
       });
       next.addEventListener('click', function () {
-        rail.scrollBy({ left: step(), behavior: 'smooth' });
+        if (rail.scrollLeft >= maxScroll() - 1) rail.scrollTo({ left: 0, behavior: 'smooth' });
+        else rail.scrollBy({ left: step(), behavior: 'smooth' });
       });
 
       function updateArrows() {
-        var maxScroll = rail.scrollWidth - rail.clientWidth;
-        prev.disabled = rail.scrollLeft <= 1;
-        next.disabled = rail.scrollLeft >= maxScroll - 1;
+        var overflow = maxScroll() > 1;
+        prev.hidden = !overflow;
+        next.hidden = !overflow;
       }
 
       rail.addEventListener('scroll', updateArrows, { passive: true });
@@ -104,7 +114,8 @@
     .montibello-magazine__inner {
       flex-direction: row;
       align-items: center;
-      gap: 60px;
+      gap: 40px;
+      padding-inline: 0;
     }
   }
 
@@ -117,8 +128,8 @@
 
   @media screen and (min-width: 990px) {
     .montibello-magazine__lead {
-      flex: 0 0 300px;
-      max-width: 300px;
+      flex: 0 0 295px;
+      max-width: 295px;
       margin: 0;
       text-align: left;
     }
@@ -197,7 +208,7 @@
   .montibello-magazine__rail {
     display: flex;
     flex-wrap: nowrap;
-    gap: 24px;
+    gap: 15px;
     max-width: 100%;
     min-width: 0;
     overflow-x: auto;
@@ -234,17 +245,16 @@
     background: rgba(0, 0, 0, 0.5);
   }
 
-  .montibello-magazine__arrow:disabled {
-    opacity: 0;
-    pointer-events: none;
+  .montibello-magazine__arrow[hidden] {
+    display: none !important;
   }
 
   .montibello-magazine__arrow--prev {
-    left: -4px;
+    left: 20px;
   }
 
   .montibello-magazine__arrow--next {
-    right: -4px;
+    right: 20px;
   }
 
   @media screen and (min-width: 990px) {

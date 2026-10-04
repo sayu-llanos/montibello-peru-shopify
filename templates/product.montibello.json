@@ -7,11 +7,11 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
+            "media_presentation": "carousel",
             "media_columns": "one",
             "image_gap": 4,
-            "large_first_image": true,
-            "slideshow_controls_style": "counter",
+            "large_first_image": false,
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
             "thumbnail_position": "left",
             "thumbnail_width": 64,
@@ -40,15 +40,6 @@
         "padding-block-end": 40
       }
     },
-    "montibello_product_details": {
-      "type": "montibello-product-details",
-      "name": "Montibello PDP — Información",
-      "settings": {
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 40
-      }
-    },
     "montibello_product_ingredients": {
       "type": "montibello-product-ingredients",
       "name": "Montibello PDP — Ingredientes",
@@ -64,7 +55,9 @@
       "type": "montibello-product-benefits",
       "name": "Montibello PDP — Beneficios",
       "settings": {
-        "heading": "Beneficios",
+        "heading": "",
+        "shade_chart_url": "https://cdn.shopify.com/s/files/1/0874/8479/3025/files/montibello-under-carta-de-color.pdf?v=1789594566",
+        "shade_chart_label": "Carta de Color",
         "section_width": "page-width",
         "padding-block-start": 48,
         "padding-block-end": 48
@@ -74,10 +67,13 @@
       "type": "montibello-shade-browser",
       "name": "Montibello PDP — Carta de Color",
       "settings": {
-        "heading": "Carta de Color",
+        "heading": "",
+        "file_url": "",
+        "file_label": "CARTA DE COLOR",
+        "show_grid": false,
         "section_width": "page-width",
         "background_color": "#F6F6F3",
-        "padding-block-start": 48,
+        "padding-block-start": 0,
         "padding-block-end": 48
       }
     },
@@ -103,93 +99,16 @@
       }
     },
     "section_contact_cta": {
-      "type": "section",
-      "blocks": {
-        "group_row": {
-          "type": "group",
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "center",
-            "gap": 32
-          },
-          "blocks": {
-            "group_professional": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Contacta con un comercial",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": ["heading", "button"]
-            },
-            "group_locator": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Encuentra",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": ["text", "button"]
-            }
-          },
-          "block_order": ["group_professional", "group_locator"]
-        }
-      },
-      "block_order": ["group_row"],
-      "name": "Sección",
+      "type": "montibello-professional-cta",
       "settings": {
-        "section_width": "page-width",
+        "left_text": "¿Tienes un salón pero no eres cliente todavía?",
+        "left_button_label": "Contacta con un comercial",
+        "left_button_link": "/pages/contact",
+        "right_text": "Localiza tu salón o peluquería Montibello más cercana",
+        "right_button_label": "Encuentra",
+        "right_button_link": "/pages/contact",
         "background_color": "#000000",
+        "section_width": "page-width",
         "padding-block-start": 56,
         "padding-block-end": 56
       }
@@ -197,7 +116,6 @@
   },
   "order": [
     "montibello_product_main",
-    "montibello_product_details",
     "montibello_product_benefits",
     "montibello_product_ingredients",
     "montibello_shade_browser",

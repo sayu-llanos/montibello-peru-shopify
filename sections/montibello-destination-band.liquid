@@ -67,6 +67,13 @@
 </div>
 
 {% stylesheet %}
+  /* official: 20px of beige above and below the 330px band */
+  .shopify-section:has(> .montibello-destination),
+  .shopify-section:has(.montibello-destination) {
+    padding-block: 20px;
+    background: rgb(246, 246, 243);
+  }
+
   .montibello-destination {
     position: relative;
     display: flex;
@@ -126,7 +133,79 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 40px;
-      padding: 36px 60px;
+      padding: 36px 80px 50px;
+    }
+
+    /* official band (1440): 330px tall, 12px radius, headline vertically
+       centred on the left, 252px support column (23/700 + black 252x40
+       button) on the right, both inset 80px */
+    .montibello-destination {
+      align-items: stretch;
+      border-radius: 12px;
+    }
+
+    .montibello-destination .montibello-destination__support {
+      width: 252px;
+      text-align: center;
+    }
+
+    .montibello-destination .montibello-destination__support-text {
+      margin: 0 0 12px;
+      font-size: 23px;
+      line-height: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .montibello-destination .montibello-destination__button {
+      display: block;
+      padding: 0;
+      background: #000;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 5px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    /* official mobile: ~380px band, 12px radius, title/support/button stacked bottom-left */
+    .montibello-destination {
+      min-height: 376px;
+      border-radius: 12px;
+    }
+
+    .montibello-destination__content {
+      justify-content: flex-end;
+      gap: 0;
+      padding: 30px;
+    }
+
+    .montibello-destination__heading {
+      max-width: 290px;
+      margin-bottom: 20px;
+      font-size: 35px;
+      line-height: 35px;
+    }
+
+    .montibello-destination .montibello-destination__support-text {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 21px;
+      font-weight: 700;
+    }
+
+    .montibello-destination .montibello-destination__button {
+      display: block;
+      width: 252px;
+      padding: 0;
+      background: #000;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 5px;
     }
   }
 

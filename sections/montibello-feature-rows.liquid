@@ -1,0 +1,555 @@
+{%- comment -%}
+  Editorial image-left / content-right section whose content is a heading
+  followed by a list of short text rows separated by thin dividers (matching
+  the official Under "Elevated Warmth" treatment — distinct rows, not a
+  merged paragraph, and no bullets). No native Horizon section produces this
+  divider-separated row list, so it's a small bespoke section, following the
+  same pattern already used for montibello-stats-panel.liquid.
+{%- endcomment -%}
+
+{% liquid
+  assign bundled_image = section.settings.bundled_image
+  assign custom_image = section.settings.custom_image
+  assign has_custom_image = false
+  if custom_image != blank
+    assign has_custom_image = true
+  endif
+  assign has_bundled_image = false
+  if bundled_image != blank and bundled_image != 'none'
+    assign has_bundled_image = true
+  endif
+
+  assign position_class = 'montibello-feature-rows--media-' | append: section.settings.media_position
+  assign toggle_id = 'montibello-feature-rows-toggle-' | append: section.id
+
+  assign bundled_width = 1278
+  assign bundled_height = 914
+  case bundled_image
+    when 'montibello-under-elevated-warmth-editorial.jpg'
+      assign bundled_width = 1278
+      assign bundled_height = 914
+    when 'montibello-hop-wellbeing-editorial.jpg'
+      assign bundled_width = 1702
+      assign bundled_height = 1940
+    when 'montibello-luxlight-eclat-grid.jpg'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-luxlight-eclat-duo.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-overnight-serum-editorial.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+  endcase
+
+  assign is_before_after = false
+  if section.settings.media_type == 'before_after'
+    assign is_before_after = true
+  endif
+  assign before_image = section.settings.bundled_image_before
+  assign after_image = section.settings.bundled_image_after
+%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-feature-rows {{ position_class }} spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="montibello-feature-rows__media">
+    {% if is_before_after and before_image != blank and after_image != blank %}
+      <div class="montibello-before-after" data-montibello-before-after>
+        <div class="montibello-before-after__layer montibello-before-after__layer--before">
+          <img src="{{ before_image | asset_url }}" alt="{{ section.settings.before_label | escape }}" loading="lazy" width="1252" height="898" class="montibello-before-after__image">
+        </div>
+        <div class="montibello-before-after__layer montibello-before-after__layer--after" data-before-after-clip>
+          <img src="{{ after_image | asset_url }}" alt="{{ section.settings.after_label | escape }}" loading="lazy" width="1252" height="898" class="montibello-before-after__image">
+        </div>
+        <div class="montibello-before-after__handle" data-before-after-handle aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" focusable="false"><path d="M15 6l-6 6 6 6M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="montibello-before-after__range" data-before-after-range aria-label="{{ 'Comparar antes y después' }}">
+      </div>
+    {% elsif has_custom_image %}
+      {{
+        custom_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(min-width: 750px) 50vw, 100vw',
+          widths: '750,1100,1500,2000',
+          alt: section.settings.image_alt | default: custom_image.alt,
+          class: 'montibello-feature-rows__image'
+      }}
+    {% elsif has_bundled_image %}
+      <img
+        src="{{ bundled_image | asset_url }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        loading="lazy"
+        class="montibello-feature-rows__image"
+        width="{{ bundled_width }}"
+        height="{{ bundled_height }}"
+      >
+    {% else %}
+      <div class="montibello-feature-rows__image montibello-feature-rows__image--placeholder">
+        {{ 'hero-apparel-3' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div
+    class="montibello-feature-rows__content{% if section.settings.mobile_collapsible %} montibello-feature-rows__content--collapsible{% endif %}"
+    data-montibello-reveal
+  >
+    {% if section.settings.mobile_collapsible %}
+      <input type="checkbox" id="{{ toggle_id }}" class="montibello-feature-rows__toggle-input">
+    {% endif %}
+
+    {% content_for 'blocks' %}
+
+    {% if section.settings.mobile_collapsible %}
+      <label class="montibello-feature-rows__toggle-label" for="{{ toggle_id }}">
+        {{ section.settings.toggle_label | default: 'Ver datos' }}
+        <span class="montibello-feature-rows__toggle-icon" aria-hidden="true"></span>
+      </label>
+    {% endif %}
+
+    {% if section.settings.footnote != blank %}
+      <p class="montibello-feature-rows__footnote">{{ section.settings.footnote }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-montibello-before-after]').forEach((el) => {
+      const clip = el.querySelector('[data-before-after-clip]');
+      const handle = el.querySelector('[data-before-after-handle]');
+      const range = el.querySelector('[data-before-after-range]');
+
+      function update(value) {
+        clip.style.clipPath = 'inset(0 0 0 ' + value + '%)';
+        handle.style.left = value + '%';
+      }
+
+      update(range.value);
+      range.addEventListener('input', () => update(range.value));
+    });
+  });
+{% endjavascript %}
+
+<script src="{{ 'montibello-scroll-reveal.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .montibello-feature-rows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-feature-rows--media-right {
+    @media screen and (min-width: 750px) {
+      & .montibello-feature-rows__media {
+        order: 2;
+      }
+
+      & .montibello-feature-rows__content {
+        order: 1;
+      }
+    }
+  }
+
+  /* Horizon's base .section--full-width > * rule forces every direct child
+     to grid-column: 1 / -1 (full span), which silently collapses this
+     section's own 2-column split into a stacked layout on desktop. Two
+     classes (0,2,0) beats the base rule's one class + universal (0,1,0). */
+  .montibello-feature-rows .montibello-feature-rows__media,
+  .montibello-feature-rows .montibello-feature-rows__content {
+    grid-column: auto;
+  }
+
+  .montibello-feature-rows__media {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-background-secondary, #ece7dc);
+    min-height: 42svh;
+
+    @media screen and (min-width: 750px) {
+      min-height: 480px;
+    }
+  }
+
+  .montibello-feature-rows__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    inset: 0;
+  }
+
+  .montibello-before-after {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    cursor: ew-resize;
+  }
+
+  .montibello-before-after__layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  .montibello-before-after__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .montibello-before-after__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+  }
+
+  .montibello-before-after__handle::before,
+  .montibello-before-after__handle::after {
+    content: '';
+    position: absolute;
+    top: -1000%;
+    bottom: -1000%;
+    width: 1px;
+    background: #fff;
+  }
+
+  .montibello-before-after__range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    appearance: none;
+  }
+
+  .montibello-feature-rows__footnote {
+    margin: 20px 0 0;
+    font-size: 14px;
+    line-height: 19.7px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: #2e2d2c;
+    opacity: 1;
+    order: 4;
+  }
+
+  .montibello-feature-rows__image--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 40%;
+      height: 40%;
+      opacity: 0.35;
+    }
+  }
+
+  .montibello-feature-rows__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2.5rem 1.5rem;
+
+    @media screen and (min-width: 750px) {
+      padding: 2.5rem 3.5rem;
+    }
+
+    :is(h1, h2, h3) {
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.5rem;
+    }
+  }
+
+  .montibello-feature-rows__toggle-input {
+    display: none;
+  }
+
+  .montibello-feature-rows__content--collapsible {
+    /* `content_for 'blocks'` wraps each block in its own `.shopify-block`
+       div, so the heading/row elements are grandchildren of `__content`,
+       not direct flex children — `order` has to be set on that wrapper via
+       :has(), not on the inner `__heading`/`__row` element itself. */
+    & > .shopify-block:has(.montibello-feature-rows__heading) {
+      order: 1;
+    }
+
+    & > .montibello-feature-rows__toggle-label {
+      order: 2;
+    }
+
+    & > .shopify-block:has(.montibello-feature-rows__row) {
+      order: 3;
+    }
+  }
+
+  .montibello-feature-rows__toggle-label {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    width: fit-content;
+
+    .montibello-feature-rows__content--collapsible & {
+      @media screen and (max-width: 749px) {
+        display: inline-flex;
+      }
+    }
+  }
+
+  .montibello-feature-rows__toggle-icon {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+
+  .montibello-feature-rows__toggle-input:checked ~ .montibello-feature-rows__toggle-label .montibello-feature-rows__toggle-icon {
+    transform: rotate(-135deg);
+  }
+
+  @media screen and (max-width: 749px) {
+    .montibello-feature-rows__content--collapsible .shopify-block:has(.montibello-feature-rows__row) {
+      display: none;
+    }
+
+    .montibello-feature-rows__content--collapsible .montibello-feature-rows__toggle-input:checked ~ .shopify-block:has(.montibello-feature-rows__row) {
+      display: block;
+    }
+
+    .montibello-feature-rows__content--collapsible .montibello-feature-rows__footnote {
+      display: none;
+    }
+
+    .montibello-feature-rows__content--collapsible .montibello-feature-rows__toggle-input:checked ~ .montibello-feature-rows__footnote {
+      display: block;
+    }
+  }
+
+  .montibello-feature-rows__row {
+    /* Each row block is rendered inside its own per-block wrapper by
+       Shopify's block machinery, so it is always the lone child there —
+       :first-of-type/:last-of-type can't distinguish "first row" from
+       "last row" here. A single border-top per row (rather than
+       top+bottom) still produces exactly one hairline between every pair
+       of adjacent rows, with no doubled line. */
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--color-border, #e4dfd4);
+    font-size: 1rem;
+    line-height: 1.5;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  [data-montibello-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  [data-montibello-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-montibello-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Filas con divisores",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "montibello-feature-heading" },
+    { "type": "montibello-feature-row" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "select",
+      "id": "bundled_image",
+      "label": "Imagen oficial incluida",
+      "options": [
+        { "value": "none", "label": "Ninguna" },
+        { "value": "montibello-under-elevated-warmth-editorial.jpg", "label": "Under — Elevated Warmth (editorial)" },
+        { "value": "montibello-hop-wellbeing-editorial.jpg", "label": "HOP — Editorial de bienestar" },
+        { "value": "montibello-luxlight-eclat-duo.webp", "label": "Luxlight + éclat — el dúo perfecto (editorial)" },
+        { "value": "montibello-hop-overnight-serum-editorial.webp", "label": "HOP Ultra Repair — Overnight Serum (editorial)" }
+      ],
+      "default": "montibello-under-elevated-warmth-editorial.jpg"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Imagen personalizada (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Texto alternativo de la imagen"
+    },
+    {
+      "type": "header",
+      "content": "Comparador antes/después (opcional)"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Tipo de contenido visual",
+      "options": [
+        { "value": "image", "label": "Imagen" },
+        { "value": "before_after", "label": "Comparador antes/después" }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "select",
+      "id": "bundled_image_before",
+      "label": "Imagen — antes",
+      "options": [
+        { "value": "none", "label": "Ninguna" },
+        { "value": "montibello-luxlight-before.jpg", "label": "Luxlight — antes" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "bundled_image_after",
+      "label": "Imagen — después",
+      "options": [
+        { "value": "none", "label": "Ninguna" },
+        { "value": "montibello-luxlight-eclat-after.jpg", "label": "Luxlight — después (tonalizado con éclat)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Texto alternativo — antes"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "Texto alternativo — después"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Posición de la imagen",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Móvil"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_collapsible",
+      "label": "Colapsar filas detrás de un interruptor en móvil",
+      "info": "Las filas quedan siempre visibles en escritorio. En móvil se ocultan detrás de un enlace, igual que el patrón ya usado en el panel de resultados.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "toggle_label",
+      "label": "Texto del interruptor móvil",
+      "default": "Ver datos"
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "Nota al pie (opcional)"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Filas con divisores"
+    }
+  ]
+}
+{% endschema %}

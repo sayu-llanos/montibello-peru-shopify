@@ -1,0 +1,140 @@
+{%- comment -%}
+  ONE product-card system for every Montibello product grid (home best
+  sellers, HOP / UNDER / Luxlight range grids, category grids). The three
+  card renderers keep their own markup but share these zone rules, so the
+  vertical structure is identical everywhere:
+
+    [image canvas] [eyebrow] [title zone] [description zone] [size pills]
+
+  - canvas: same ratio for every card, white, products shown whole
+    (object-fit: contain, bottom-aligned) and never stretched
+  - eyebrow 12/12 tracked caps; title 23/21 bold with a reserved two-line
+    zone; description 16/19.7 with a reserved two-line zone
+  - the card is a flex column and the pills have `margin-top: auto`, so
+    cards in one row stretch to the same height and every pill row sits on
+    the same baseline however long the title / description are
+  - a single size is one compact pill aligned left (never full width); two
+    sizes are two equal pills
+  Measured from hair.montibello.com (248x346 canvas, 12px eyebrow, 23/21/700
+  name, 16/19.7 excerpt, 29px pills).
+{%- endcomment -%}
+<style>
+/* theme blocks are wrapped in `.shopify-block`; make the wrapper stretch so
+   the card inside fills the grid row and its pills can sit on the row baseline */
+html body .shopify-block:has(> .montibello-product-range__card),
+html body .shopify-block:has(> .montibello-product-teaser-card),
+html body .shopify-block:has(> .montibello-category-grid__card) {
+  display: flex;
+  flex-direction: column;
+}
+
+html body .shopify-block > .montibello-product-range__card.montibello-product-range__card,
+html body .shopify-block > .montibello-product-teaser-card.montibello-product-teaser-card,
+html body .shopify-block > .montibello-category-grid__card.montibello-category-grid__card {
+  flex: 1 1 auto;
+}
+
+html body .montibello-product-teaser-card.montibello-product-teaser-card,
+html body .montibello-product-range__card.montibello-product-range__card,
+html body .montibello-category-grid__card.montibello-category-grid__card {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  color: #000;
+  gap: 0;
+}
+
+html body .montibello-product-teaser-card__media.montibello-product-teaser-card__media,
+html body .montibello-product-range__image-wrap.montibello-product-range__image-wrap,
+html body .montibello-category-grid__media.montibello-category-grid__media {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0;
+}
+
+html body .montibello-product-teaser-card__image.montibello-product-teaser-card__image,
+html body .montibello-product-range__image.montibello-product-range__image,
+html body .montibello-category-grid__image.montibello-category-grid__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+html body .montibello-product-teaser-card__eyebrow.montibello-product-teaser-card__eyebrow,
+html body .montibello-product-range__eyebrow.montibello-product-range__eyebrow,
+html body .montibello-category-grid__eyebrow.montibello-category-grid__eyebrow {
+  margin: 20px 0 0;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+html body .montibello-product-teaser-card__name.montibello-product-teaser-card__name,
+html body .montibello-product-range__name.montibello-product-range__name,
+html body .montibello-category-grid__name.montibello-category-grid__name {
+  margin: 10px 0 0;
+  min-height: 42px;
+  font-size: 23px;
+  line-height: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+html body .montibello-product-teaser-card__subtitle.montibello-product-teaser-card__subtitle,
+html body .montibello-product-range__type.montibello-product-range__type,
+html body .montibello-category-grid__subtitle.montibello-category-grid__subtitle {
+  margin: 10px 0 0;
+  min-height: 39.4px;
+  font-size: 16px;
+  line-height: 19.7px;
+  font-weight: 500;
+  opacity: 1;
+  color: #000;
+}
+
+html body .montibello-product-teaser-card__pills.montibello-product-teaser-card__pills,
+html body .montibello-product-range__pills.montibello-product-range__pills,
+html body .montibello-category-grid__pills.montibello-category-grid__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: auto 0 0;
+  padding-top: 12px;
+}
+
+html body .montibello-product-teaser-card__pill.montibello-product-teaser-card__pill,
+html body .montibello-product-range__pill.montibello-product-range__pill,
+html body .montibello-category-grid__pill.montibello-category-grid__pill {
+  flex: 0 1 calc(50% - 3px);
+  min-width: max-content;
+  box-sizing: border-box;
+  padding: 0 8px;
+  border: 0.5px solid #767676;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 13.6px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #000;
+}
+
+@media screen and (max-width: 749px) {
+html body .montibello-product-teaser-card__pill.montibello-product-teaser-card__pill,
+html body .montibello-product-range__pill.montibello-product-range__pill,
+html body .montibello-category-grid__pill.montibello-category-grid__pill {
+    flex: 0 1 calc(50% - 3px);
+    min-width: max-content;
+  }
+}
+</style>

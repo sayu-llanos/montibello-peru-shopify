@@ -1,0 +1,380 @@
+{%- comment -%}
+  Site-wide Hair Montibello visual parity (measured on hair.montibello.com at
+  1440px): footer grid/typography, off-white footer surface. Footer markup and
+  all Peru-specific footer copy/links stay exactly as authored in the footer
+  group; only geometry, type and colours are aligned with the official footer.
+{%- endcomment -%}
+<style>
+  @media screen and (max-width: 749px) {
+    [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) .group-block:not(.group-block *),
+    [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) .group-block .group-block {
+      text-align: center;
+      align-items: center;
+    }
+
+    [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) .group-block:not(.group-block *) {
+      border-radius: 12px;
+      padding: 40px 25px !important;
+      gap: 30px;
+    }
+  }
+  /* Home contact CTA tile (official: 1300px black tile, 12px radius, 23/700 title, 16/500 copy) */
+  [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) .group-block:not(.group-block *) {
+    max-width: 1300px;
+    margin-inline: auto;
+  }
+
+  [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) h2 {
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) p {
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+  }
+
+  [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) .button,
+  [id$='__section_contact_cta']:not(:has(.montibello-pro-cta)) a.button {
+    min-width: 176px;
+    min-height: 52px;
+    border-radius: 5px;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Official header nav (1440): 18px / 500 / +3% tracking, uppercase, ~31px between items */
+  @media screen and (min-width: 750px) {
+    #header-component .menu-list__link,
+    #header-component .menu-list__link .menu-list__link-title {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    #header-component .menu-list__link {
+      margin-inline: 2.5px;
+    }
+  }
+  @media screen and (min-width: 750px) {
+    footer .shopify-section-group-footer-group {
+      background-color: #fff;
+    }
+
+    footer .section-background {
+      background-color: #fff !important;
+    }
+
+    /* 5 x 209px columns, 80px apart, inset 30px from the viewport edges */
+    footer .footer-content {
+      display: grid;
+      grid-template-columns: repeat(5, 209px);
+      column-gap: 80px;
+      align-items: start;
+      width: calc(100% + 20px);
+      margin-inline: -10px;
+      padding: 50px 0 0 !important;
+      row-gap: 0;
+    }
+
+    footer .footer-content .group-block,
+    footer .footer-content .group-block-content {
+      width: 209px !important;
+    }
+
+    footer .footer-content .group-block-content {
+      gap: 10px;
+    }
+  }
+
+  footer h4 {
+    margin: 0;
+    font-size: 23px;
+    line-height: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #000;
+  }
+
+  footer p,
+  footer a,
+  footer button {
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: #000;
+    text-decoration: none;
+  }
+
+  footer rte-formatter {
+    display: block;
+    gap: 0 !important;
+  }
+
+  footer rte-formatter p {
+    margin: 0 !important;
+    min-height: 0;
+  }
+
+  footer rte-formatter p a {
+    display: inline-block;
+  }
+
+  footer .utilities {
+    margin-top: 40px;
+    padding: 20px 0 !important;
+    border-top: 0.5px solid #808080;
+    width: calc(100% + 20px);
+    margin-inline: -10px;
+  }
+
+  footer .footer-utilities__text,
+  footer .footer-utilities__text a,
+  footer .utilities button {
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    color: #000;
+    opacity: 1;
+    text-decoration: none;
+  }
+</style>
+
+<style>
+  /* official "nuevo" tag on Luxlight product cards */
+  .montibello-nuevo-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 0 10px;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: 0.02em;
+  }
+
+  .montibello-product-range__image-wrap,
+  .montibello-category-grid__media {
+    position: relative;
+  }
+</style>
+
+<style>
+  /* Official scroll entrance (UIkit uk-scrollspy): content rises 50px and fades in
+     over ~0.5s. Scroll-driven, no JS; ignored by browsers without view() timelines
+     and disabled for reduced-motion users. */
+  @keyframes montibello-rise {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      main :is(
+        .montibello-range-card,
+        .montibello-family-card,
+        .montibello-product-teaser-card,
+        .montibello-magazine-card,
+        .montibello-category-grid__card,
+        .montibello-product-range__card,
+        .montibello-community__heading,
+        .montibello-product-teaser__heading,
+        .montibello-editorial__statement,
+        .montibello-family-grid__heading,
+        .montibello-feature-rows__heading
+      ) {
+        animation: montibello-rise linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 30%;
+      }
+    }
+  }
+</style>
+
+<style>
+  /* SOFT REVEAL (polish layer) — editorial blocks on range, PDP, category,
+     Magazine, Beyond Hair and Education pages fade in with a very small
+     upward drift as they enter the viewport. Scroll-driven (no JS, no layout
+     shift: transform/opacity only), skipped for reduced-motion users and in
+     browsers without view() timelines (Safari/Firefox render the final state
+     immediately, so nothing can stay hidden). */
+  @keyframes montibello-soft-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes montibello-soft-fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      main :is(
+        .montibello-feature-rows__media,
+        .montibello-stats__media,
+        .montibello-stats__card,
+        .montibello-banner__media,
+        .montibello-banner__content,
+        .montibello-product-range__header,
+        .montibello-category-collection__header,
+        .montibello-category-collection__products-heading,
+        .montibello-pdp-benefits__photo-wrap,
+        .montibello-pdp-benefits__copy,
+        .montibello-magazine-page__title,
+        .montibello-magazine-page__chips,
+        .montibello-magazine-page__card,
+        .montibello-beyond-hair__manifesto-inner,
+        .montibello-beyond-hair__offerings-badge-cell,
+        .montibello-beyond-hair__pillar,
+        .montibello-education__intro,
+        .montibello-education__mode,
+        .montibello-education__cta
+      ) {
+        animation: montibello-soft-rise ease-out both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 35%;
+      }
+    }
+
+    /* rows revealed by the mobile "Más información" toggles fade in instead of snapping */
+    .montibello-feature-rows__toggle-input:checked ~ .shopify-block,
+    .montibello-feature-rows__toggle-input:checked ~ .montibello-feature-rows__footnote {
+      animation: montibello-soft-fade 0.3s ease both;
+    }
+  }
+</style>
+
+<style>
+  /* Official mobile menu (390): logo + close on one row, 18/700 uppercase rows
+     with hairlines and → markers, black CONTACTO button. */
+  .montibello-drawer-logo,
+  .montibello-drawer-contact {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .menu-drawer {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .montibello-drawer-logo {
+      position: absolute;
+      inset: 14px auto auto 15px;
+      z-index: 2;
+      display: block;
+    }
+
+    .menu-drawer__navigation {
+      margin-top: 62px;
+    }
+
+    .montibello-drawer-logo img {
+      display: block;
+      width: 151px;
+      height: 26px;
+    }
+
+    .menu-drawer .menu-drawer__close-button.menu-drawer__close-button {
+      position: absolute !important;
+      left: auto !important;
+      right: 6px !important;
+      top: 6px !important;
+    }
+
+    .menu-drawer .menu-drawer__menu {
+      gap: 0 !important;
+      row-gap: 0 !important;
+      padding-inline: 12px !important;
+    }
+
+    .menu-drawer .menu-drawer__menu > li {
+      margin: 0 !important;
+    }
+
+    .menu-drawer .menu-drawer__list-item--divider {
+      border-block-end: 1px solid #cfcfcf !important;
+      border-block-start: 0 !important;
+      padding-block: 0 !important;
+    }
+
+    .menu-drawer__menu-item,
+    .montibello-drawer-summary {
+      padding-block: 18px !important;
+      font-size: 18px !important;
+      line-height: 24px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: #000;
+    }
+
+    .montibello-drawer-details > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* "+" lines become a right arrow like the official rows */
+    .montibello-drawer-icon::before,
+    .montibello-drawer-icon::after {
+      display: none;
+    }
+
+    .montibello-drawer-icon {
+      width: 22px;
+      height: 12px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12' viewBox='0 0 22 12' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M0 6h20M15 1l5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat;
+      transition: transform 0.2s ease;
+    }
+
+    details[open] > summary > .montibello-drawer-icon {
+      transform: rotate(90deg);
+    }
+
+    .montibello-drawer-contact {
+      display: block;
+      margin: 30px 15px 20px;
+      border-radius: 5px;
+      background: #000;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 48px;
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+</style>

@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "landing": {
+      "type": "montibello-color-landing",
+      "blocks": {
+        "luxlight": {
+          "type": "range",
+          "settings": {
+            "bundled_image": "montibello-color-card-luxlight.webp",
+            "image_alt": "Montibello Luxlight — decoloración profesional",
+            "title": "luxlight",
+            "text": "Máximo poder de aclaración con el máximo cuidado del cabello. Diseñada para cubrir todas las necesidades de los servicios de aclaración.",
+            "link": "shopify://collections/luxlight"
+          }
+        },
+        "under": {
+          "type": "range",
+          "settings": {
+            "bundled_image": "montibello-color-card-under.webp",
+            "image_alt": "Montibello Under — coloración con cobertura de alta definición",
+            "title": "Under",
+            "text": "La coloración con cobertura de alta definición y tecnología híbrida que potencia la realidad y naturalidad de un color sin límites.",
+            "link": "shopify://collections/under"
+          }
+        }
+      },
+      "block_order": [
+        "luxlight",
+        "under"
+      ],
+      "settings": {
+        "title": "Color",
+        "section_width": "full-width",
+        "padding-block-start": 48,
+        "padding-block-end": 64
+      }
+    }
+  },
+  "order": [
+    "landing"
+  ]
+}

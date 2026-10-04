@@ -14,7 +14,7 @@
 >
   <span class="footer-utilities__text">
     &copy; {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url -}}
+    {%- if shop.name == 'Mi tienda' -%}{{ 'Montibello Perú' | link_to: routes.root_url -}}{%- else -%}{{ shop.name | link_to: routes.root_url -}}{%- endif -%}
     {%- if block_settings.show_powered_by -%}
       , {{ powered_by_link }}
     {%- endif -%}

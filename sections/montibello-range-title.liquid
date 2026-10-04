@@ -1,0 +1,176 @@
+{%- comment -%}
+  MANAGER FEEDBACK SPRINT (Perú vs España parity, annotated review PDF) —
+  fixes items A (range title alignment) and part of B (title size) for the
+  "range title" heading that opens every range page ("Hop", "Ultra Repair",
+  "Colour Last", "Smooth Hydration", "Under", "luxlight").
+
+  Contains no markup: scopes styling only, by section id, to the intro
+  section's own H1 on each of the 6 range pages. All six intro sections
+  share the exact same underlying structure — Horizon's native `section`
+  type with `section_width: page-width`, wrapping a `group` block whose
+  heading uses `type_preset: h1` — confirmed by inspecting all 6 templates
+  before writing this rule, so one shared selector list is correct instead
+  of six near-duplicate one-off overrides.
+
+  Values measured live against the actual official Spain reference today
+  (hair.montibello.com/gama/hop/, /gama/under/), not guessed:
+    - H1 font-size: 40px @ desktop (≥750px), 35px @ mobile
+    - H1 left edge is flush with the left edge of the range's first
+      contained editorial image (measured at 95px @ 1440px viewport, 20px
+      @ 390px), NOT with Horizon's page-width container gutter that the
+      native `section` type used here defaults to (measured 40px @ 1440px,
+      16px @ 390px on Peru) — hence the padding-inline-start compensation
+      below, computed as the exact measured difference (95-40=55px desktop,
+      20-16=4px mobile), not an arbitrary value.
+
+  Peru's current H1 sizes measured today: 56px @ desktop / 48px @ mobile on
+  every one of these 6 pages (all six use the identical native `section` +
+  `group` + `text` block pattern, so they'd inherited the same oversized
+  default) — confirms the manager's "TITULO MAS PEQUEÑO" note was accurate,
+  not a false read.
+{%- endcomment -%}
+
+{% stylesheet %}
+  :is(
+    [id$='__intro_hop'],
+    [id$='__intro_ultra_repair'],
+    [id$='__intro_colour_last'],
+    [id$='__intro_smooth_hydration'],
+    [id$='__hero_intro_under'],
+    [id$='__intro_luxlight']
+  ) h1 {
+    font-size: 35px !important;
+    line-height: 35px !important;
+    letter-spacing: -0.03em;
+    padding-inline-start: 0;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px !important;
+      line-height: 40px !important;
+      padding-inline-start: 0;
+    }
+  }
+
+  /* FULL-SITE PARITY (official /gama/hop/, 1440): the range title sits on the
+     same 1300px container edge as the editorial rows below (not Horizon's
+     40px page gutter), the intro copy starts at the second 650px column plus
+     its 20px inner padding, and the band shares the beige of the rows. */
+  @media screen and (min-width: 750px) {
+    :is(
+      [id$='__intro_hop'],
+      [id$='__intro_ultra_repair'],
+      [id$='__intro_colour_last'],
+      [id$='__intro_smooth_hydration'],
+      [id$='__hero_intro_under'],
+      [id$='__intro_luxlight']
+    ) {
+      background-color: rgb(246, 246, 243);
+
+      .custom-section-content {
+        width: 100%;
+        max-width: 1300px;
+        margin-inline: auto;
+      }
+
+      .custom-section-content > div {
+        width: 100%;
+      }
+
+      .custom-section-content .group-block {
+        width: 100%;
+      }
+
+      .group-block-content {
+        padding-inline: 0 !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        text-align: left;
+      }
+
+      .group-block-content .text-block {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+      }
+
+      .custom-section-content p {
+        font-size: 16px !important;
+        line-height: 19.7px !important;
+        font-weight: 500 !important;
+        color: #000;
+        max-width: 600px;
+      }
+
+      h1 {
+        color: #000;
+      }
+
+      a.button,
+      .button {
+        height: 36px;
+        padding: 0 20px;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+    }
+
+    /* /gama/hop/ lays the title and the intro copy side by side in two
+       650px columns (copy inset 20px); the family pages stack them. */
+    [id$='__intro_hop'] .group-block-content {
+      gap: 0 !important;
+    }
+
+    [id$='__intro_hop'] .group-block-content > .group-block {
+      width: 50% !important;
+      flex: 0 0 50%;
+    }
+
+    [id$='__intro_hop'] .group-block-content > .group-block:nth-child(2) {
+      padding-inline-start: 20px;
+    }
+
+    :is(
+      [id$='__intro_ultra_repair'],
+      [id$='__intro_colour_last'],
+      [id$='__intro_smooth_hydration'],
+      [id$='__hero_intro_under'],
+      [id$='__intro_luxlight']
+    ) .group-block-content {
+      gap: 10px !important;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    :is(
+      [id$='__intro_hop'],
+      [id$='__intro_ultra_repair'],
+      [id$='__intro_colour_last'],
+      [id$='__intro_smooth_hydration'],
+      [id$='__hero_intro_under'],
+      [id$='__intro_luxlight']
+    ) {
+      background-color: rgb(246, 246, 243);
+
+      p {
+        font-size: 16px !important;
+        line-height: 19.7px !important;
+        font-weight: 500 !important;
+        color: #000;
+      }
+
+      h1 {
+        color: #000;
+      }
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Título de gama (styles)",
+  "settings": [],
+  "presets": []
+}
+{% endschema %}

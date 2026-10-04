@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "education": {
+      "type": "montibello-education",
+      "settings": {
+        "eyebrow": "Aprendizaje híbrido 24/7 para profesionales apasionados.",
+        "title": "Descubre la educación presencial y online de Montibello, disponible para clientes y profesionales.",
+        "intro_text": "De la mano de expertos, sumérgete en nuestros programas de formación y eleva tus habilidades y tu técnica.\nEducación real – flexible y al alcance de tu mano – que te permitirá dominar técnicas y mantenerte a la vanguardia.",
+        "presencial_title": "Presencial",
+        "presencial_text": "En nuestros centros de formación o en ubicaciones externas, tendrás la oportunidad de participar en cursos prácticos personalizados dirigidos por nuestro equipo de educadores expertos. Sesiones hechas a medida que responden a tus necesidades y a las de tu equipo.",
+        "presencial_image_alt": "Sala de formación presencial Montibello",
+        "online_title": "Online",
+        "online_text": "Descubre nuestra plataforma de aprendizaje digital: contenido rápido y eficiente, accesible 24/7 al alcance de tu mano. Tu destino para descubrir las últimas tendencias y elevar tus habilidades.",
+        "online_image_alt": "Plataforma Montibello Pro Learning",
+        "online_button": "Comienza a aprender hoy",
+        "online_link": "https://prolearning.montibello.com/es/hair"
+      }
+    }
+  },
+  "order": [
+    "education"
+  ]
+}

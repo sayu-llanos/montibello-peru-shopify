@@ -19,10 +19,21 @@
 >
 
 {%- liquid
-  assign og_title = page_title | default: shop.name
+  # shop.name is still the Shopify placeholder ("Mi tienda"); the storefront brand is Montibello Perú
+  assign brand_name = 'Montibello Perú'
+  if shop.name == 'Mi tienda'
+    assign store_name = brand_name
+  else
+    assign store_name = shop.name
+  endif
+  assign home_title = 'Montibello Perú | Cosmética Profesional para el Cabello'
+  assign og_title = page_title | default: home_title
+  if page_title == shop.name
+    assign og_title = home_title
+  endif
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = page_description | default: shop.description | default: store_name
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -35,7 +46,7 @@
 
 <meta
   property="og:site_name"
-  content="{{ shop.name }}"
+  content="{{ store_name }}"
 >
 <meta
   property="og:url"
@@ -104,10 +115,10 @@
 >
 
 <title>
-  {{ page_title }}
+  {%- if page_title == blank or page_title == shop.name -%}{{ home_title }}{%- else -%}{{ page_title }}{%- endif -%}
   {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
   {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  {%- if page_title != blank and page_title != home_title and page_title != shop.name and page_title != store_name %} &ndash; {{ store_name }}{% endif -%}
 </title>
 
 <link

@@ -1,0 +1,244 @@
+{%- comment -%}
+  Montibello EDUCACIÓN content: single source of truth.
+  Rendered by sections/montibello-education.liquid (settings: section.settings)
+  and by sections/main-page.liquid when page.handle == 'educacion'
+  (settings omitted -> defaults below).
+  The international "Nuestras sedes presenciales" section is intentionally
+  NOT reproduced (no confirmed Peru training centers).
+{%- endcomment -%}
+{%- liquid
+  assign edu_eyebrow = settings.eyebrow | default: 'Aprendizaje híbrido 24/7 para profesionales apasionados.'
+  assign edu_title = settings.title | default: 'Descubre la educación presencial y online de Montibello, disponible para clientes y profesionales.'
+  assign edu_presencial_title = settings.presencial_title | default: 'Presencial'
+  assign edu_presencial_text = settings.presencial_text | default: 'En nuestros centros de formación o en ubicaciones externas, tendrás la oportunidad de participar en cursos prácticos personalizados dirigidos por nuestro equipo de educadores expertos. Sesiones hechas a medida que responden a tus necesidades y a las de tu equipo.'
+  assign edu_presencial_image_alt = settings.presencial_image_alt | default: 'Sala de formación presencial Montibello'
+  assign edu_online_title = settings.online_title | default: 'Online'
+  assign edu_online_text = settings.online_text | default: 'Descubre nuestra plataforma de aprendizaje digital: contenido rápido y eficiente, accesible 24/7 al alcance de tu mano. Tu destino para descubrir las últimas tendencias y elevar tus habilidades.'
+  assign edu_online_image_alt = settings.online_image_alt | default: 'Plataforma Montibello Pro Learning'
+  assign edu_online_button = settings.online_button | default: 'Comienza a aprender hoy'
+  assign edu_online_link = settings.online_link | default: 'https://prolearning.montibello.com/es/hair'
+-%}
+{%- capture edu_intro_text_default -%}
+De la mano de expertos, sumérgete en nuestros programas de formación y eleva tus habilidades y tu técnica.
+Educación real – flexible y al alcance de tu mano – que te permitirá dominar técnicas y mantenerte a la vanguardia.
+{%- endcapture -%}
+{%- assign edu_intro_text = settings.intro_text | default: edu_intro_text_default -%}
+
+<div class="montibello-education">
+  <div class="montibello-education__hero" style="--edu-hero-image: url('{{ 'montibello-education-hero.jpg' | asset_url }}');">
+    <div class="montibello-education__container">
+      <p class="montibello-education__eyebrow">{{ edu_eyebrow }}</p>
+    </div>
+  </div>
+
+  <div class="montibello-education__container montibello-education__body">
+    <div class="montibello-education__intro">
+      <h1 class="montibello-education__title">{{ edu_title }}</h1>
+      <div class="montibello-education__lead">{{ edu_intro_text }}</div>
+    </div>
+
+    <div class="montibello-education__modes">
+      <div class="montibello-education__mode">
+        <img
+          src="{{ 'montibello-education-presencial.jpg' | asset_url }}"
+          alt="{{ edu_presencial_image_alt | escape }}"
+          loading="lazy"
+          width="1250"
+          height="818"
+          class="montibello-education__image"
+        >
+        <h2 class="montibello-education__heading">{{ edu_presencial_title }}</h2>
+        <p class="montibello-education__text">{{ edu_presencial_text }}</p>
+      </div>
+
+      <div class="montibello-education__mode">
+        <img
+          src="{{ 'montibello-education-online.jpg' | asset_url }}"
+          alt="{{ edu_online_image_alt | escape }}"
+          loading="lazy"
+          width="1250"
+          height="818"
+          class="montibello-education__image"
+        >
+        <h2 class="montibello-education__heading">{{ edu_online_title }}</h2>
+        <p class="montibello-education__text">{{ edu_online_text }}</p>
+        <a
+          class="montibello-education__cta"
+          href="{{ edu_online_link }}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >{{ edu_online_button }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-education {
+    --edu-gutter: 15px;
+    color: #000;
+
+    @media screen and (min-width: 750px) {
+      --edu-gutter: 30px;
+    }
+  }
+
+  .montibello-education__container {
+    max-width: 1300px;
+    margin-inline: auto;
+    padding-inline: var(--edu-gutter);
+    box-sizing: content-box;
+  }
+
+  @media screen and (min-width: 1360px) {
+    .montibello-education__container { padding-inline: 0; }
+  }
+
+  .montibello-education__hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+    min-height: 754px;
+    padding-bottom: 60px;
+    background: var(--edu-hero-image) 74% 50% / cover no-repeat;
+
+    @media screen and (min-width: 750px) {
+      min-height: 735px;
+      padding-bottom: 40px;
+      background-position: 100% 0;
+    }
+  }
+
+  .montibello-education__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .montibello-education__hero .montibello-education__container {
+    position: relative;
+    width: 100%;
+  }
+
+  .montibello-education__eyebrow {
+    margin: 0;
+    max-width: 600px;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-education__body {
+    padding-block: 50px 80px;
+  }
+
+  .montibello-education__intro {
+    display: grid;
+    gap: 20px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 630px 1fr;
+      column-gap: 200px;
+      align-items: start;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    .montibello-education__intro { grid-template-columns: 1fr 1fr; column-gap: 40px; }
+  }
+
+  .montibello-education__title {
+    margin: 0;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-education__lead {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.23;
+    white-space: pre-line;
+  }
+
+  .montibello-education__modes {
+    display: grid;
+    gap: 40px;
+    margin-top: 40px;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .montibello-education__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1250 / 818;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .montibello-education__heading {
+    margin: 40px 0 0;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px;
+    }
+  }
+
+  .montibello-education__text {
+    margin: 20px 0 0;
+    max-width: 600px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.23;
+  }
+
+  .montibello-education__cta {
+    display: inline-block;
+    margin-top: 20px;
+    padding-inline: 20px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .montibello-education__cta:hover {
+    background: #000;
+  }
+
+  .montibello-education__cta:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 400px) {
+    .montibello-education__cta { font-size: 16px; }
+  }
+{% endstylesheet %}

@@ -16,17 +16,31 @@
       >
     {% endif %}
   </div>
-  {% if block.settings.title != blank %}
-    <div class="montibello-product-teaser-card__title">{{ block.settings.title }}</div>
-  {% endif %}
-  {% if block.settings.text != blank %}
-    <div class="montibello-product-teaser-card__text">{{ block.settings.text }}</div>
+  {% if block.settings.product_name != blank %}
+    <div class="montibello-product-teaser-card__eyebrow">{{ block.settings.title }}</div>
+    <h3 class="montibello-product-teaser-card__name">{{ block.settings.product_name }}</h3>
+    {% if block.settings.text != blank %}
+      <div class="montibello-product-teaser-card__subtitle">{{ block.settings.text }}</div>
+    {% endif %}
+    {%- if block.settings.link contains '/products/' -%}
+      {%- assign teaser_handle = block.settings.link | split: '/products/' | last -%}
+      {%- assign teaser_product = all_products[teaser_handle] -%}
+      {%- render 'montibello-card-pills', product: teaser_product, prefix: 'montibello-product-teaser-card' -%}
+    {%- endif -%}
+  {% else %}
+    {% if block.settings.title != blank %}
+      <div class="montibello-product-teaser-card__title">{{ block.settings.title }}</div>
+    {% endif %}
+    {% if block.settings.text != blank %}
+      <div class="montibello-product-teaser-card__text">{{ block.settings.text }}</div>
+    {% endif %}
   {% endif %}
 </a>
 
 {% stylesheet %}
   .montibello-product-teaser-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     flex: 0 0 283px;
     width: 283px;
     color: inherit;
@@ -67,6 +81,93 @@
     color: var(--color-foreground, #2E2D2C);
     opacity: 0.75;
   }
+
+  /* FULL-SITE PARITY (official home "Los más vendidos", 1440): 306x428 white
+     packshot canvases 25px apart; 12px tracked eyebrow, 23/21/700 name and a
+     16/19.7/500 subtitle. */
+  .montibello-product-teaser-card:has(.montibello-product-teaser-card__name) {
+    flex: 0 0 306px;
+    width: 306px;
+  }
+
+  .montibello-product-teaser-card:has(.montibello-product-teaser-card__name) .montibello-product-teaser-card__media {
+    aspect-ratio: 306 / 428;
+    border-radius: 5px;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  /* equal canvas for every packshot: whole product shown (never stretched),
+     centred on the shared official beige */
+  .montibello-product-teaser-card:has(.montibello-product-teaser-card__name) .montibello-product-teaser-card__image {
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  @media screen and (max-width: 749px) {
+    .montibello-product-teaser-card:has(.montibello-product-teaser-card__name) {
+      flex: 0 0 271px;
+      width: 271px;
+    }
+
+    .montibello-product-teaser-card:has(.montibello-product-teaser-card__name) .montibello-product-teaser-card__media {
+      aspect-ratio: 271 / 378;
+    }
+  }
+
+  .montibello-product-teaser-card__eyebrow {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .montibello-product-teaser-card__name {
+    margin: 10px 0 0;
+    /* reserved two-line title zone so a longer Peru name never moves the
+       zones below it */
+    min-height: 42px;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #000;
+  }
+
+  .montibello-product-teaser-card__subtitle {
+    margin-top: 10px;
+    /* reserved two-line description zone (official excerpt = 2 x 19.7px) */
+    min-height: 39.4px;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    color: #000;
+  }
+
+  .montibello-product-teaser-card__pills {
+    display: flex;
+    gap: 6px;
+    /* auto top margin pins every pill row to the same baseline at the card bottom */
+    margin-top: auto;
+    padding-top: 12px;
+  }
+
+  .montibello-product-teaser-card__pill {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 8px;
+    border: 0.5px solid #767676;
+    border-radius: 5px;
+    font-size: 13.6px;
+    line-height: 28px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #000;
+    background: #fff;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -84,6 +185,12 @@
       "id": "title",
       "label": "Nombre",
       "default": "Under"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Nombre del producto (estilo oficial)",
+      "info": "Si se define, el título pasa a ser la etiqueta superior."
     },
     {
       "type": "text",

@@ -1,0 +1,42 @@
+{%- comment -%}
+  A single divider-separated text row for montibello-feature-rows.liquid
+  (e.g. the Under "Elevated Warmth" 4-row list, or the HOP wellbeing list) —
+  plain text, no bullet. `lead_in` (optional) renders bold immediately
+  before `text`, matching the reference's "Corrige los signos **del
+  bienestar capilar**" bold-lead-in-plus-regular-tail row style.
+{%- endcomment -%}
+
+<div class="montibello-feature-rows__row" {{ block.shopify_attributes }}>
+  <p>
+    {%- if block.settings.lead_in != blank -%}
+      <strong>{{ block.settings.lead_in }}</strong>
+      {{ block.settings.text }}
+    {%- else -%}
+      {{ block.settings.text }}
+    {%- endif -%}
+    {%- if block.settings.tail_in != blank %} <strong>{{ block.settings.tail_in }}</strong>{%- endif -%}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Fila",
+  "settings": [
+    {
+      "type": "text",
+      "id": "lead_in",
+      "label": "Inicio en negrita (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "tail_in",
+      "label": "Final en negrita (opcional)"
+    }
+  ]
+}
+{% endschema %}

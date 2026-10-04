@@ -1,56 +1,173 @@
 {%- comment -%}
-  Single gallery image for the UNDER campaign carousel. Renders a bundled
-  Montibello asset (official campaign photography, downloaded locally) the
-  same way montibello-image-banner.liquid does, cropped to a consistent
-  portrait frame via object-fit so a landscape source and a portrait source
-  sit in the same rhythm — matching the official gallery's uniform portrait
-  crop without pre-cropping the source files themselves.
+  One slide in montibello-editorial-gallery.liquid. Portrait crop
+  (314:439 ≈ the reference's measured on-page ratio), edge-to-edge with its
+  neighbors (no border-radius, no gap — the real rendered reference page has
+  neither, confirmed via screenshot, not assumed). `object-fit: cover`
+  normalizes the one landscape source (gallery-07, a 1600x1068 product
+  bodegón) into the same portrait frame as the other 8 portrait sources,
+  matching how the reference itself visibly crops that same wider source
+  into its uniform card grid.
 {%- endcomment -%}
 
 {% liquid
-  assign bundled_width = 933
-  assign bundled_height = 1400
-  case block.settings.bundled_image
-    when 'montibello-under-gallery-01.jpg'
-      assign bundled_width = 1400
-      assign bundled_height = 933
-    when 'montibello-under-gallery-03.jpg'
+  assign bundled_image = block.settings.bundled_image
+  assign bundled_width = 1600
+  assign bundled_height = 2239
+  case bundled_image
+    when 'montibello-hop-gallery-04.webp'
+      assign bundled_height = 2241
+    when 'montibello-hop-gallery-07.webp'
+      assign bundled_height = 1068
+    when 'montibello-hop-ultra-repair-gallery-01.jpg'
+      assign bundled_width = 1708
+      assign bundled_height = 2560
+    when 'montibello-hop-ultra-repair-gallery-02.jpg'
       assign bundled_width = 600
       assign bundled_height = 839
-    when 'montibello-under-gallery-07.jpg'
-      assign bundled_width = 1400
-      assign bundled_height = 933
-    when 'montibello-under-gallery-08.jpg'
+    when 'montibello-hop-ultra-repair-gallery-03.jpg'
+      assign bundled_width = 1828
+      assign bundled_height = 2560
+    when 'montibello-hop-ultra-repair-gallery-04.jpg'
+      assign bundled_width = 1690
+      assign bundled_height = 2060
+    when 'montibello-hop-ultra-repair-gallery-05.jpg'
+      assign bundled_width = 1828
+      assign bundled_height = 2560
+    when 'montibello-hop-ultra-repair-gallery-06.jpg'
+      assign bundled_width = 1708
+      assign bundled_height = 2560
+    when 'montibello-hop-ultra-repair-gallery-07.jpg'
+      assign bundled_width = 1829
+      assign bundled_height = 2560
+    when 'montibello-luxlight-gallery-01.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-02.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-03.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-04.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-05.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-06.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-07.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-08.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-09.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-10.jpg'
+      assign bundled_width = 600
+      assign bundled_height = 839
+    when 'montibello-luxlight-gallery-11.jpg'
       assign bundled_width = 600
       assign bundled_height = 839
   endcase
 %}
 
-<div class="montibello-gallery-image" {{ block.shopify_attributes }}>
-  {% if block.settings.bundled_image != blank %}
+<div class="montibello-editorial-gallery__item" {{ block.shopify_attributes }}>
+  {% if block.settings.image != blank %}
+    {{
+      block.settings.image
+      | image_url: width: 1000
+      | image_tag: loading: 'lazy', widths: '400,600,800,1000', class: 'montibello-editorial-gallery__image'
+    }}
+  {% elsif bundled_image != blank %}
     <img
-      src="{{ block.settings.bundled_image | asset_url }}"
-      alt="{{ block.settings.alt | escape }}"
+      src="{{ bundled_image | asset_url }}"
+      alt="{{ block.settings.image_alt | escape }}"
       loading="lazy"
+      class="montibello-editorial-gallery__image"
       width="{{ bundled_width }}"
       height="{{ bundled_height }}"
-      class="montibello-gallery-image__img"
     >
   {% endif %}
 </div>
 
 {% stylesheet %}
-  .montibello-gallery-image {
-    aspect-ratio: 2 / 3;
-    overflow: hidden;
-    border-radius: 4px;
+  /* Width AND height are both set explicitly in vw (439/314 ≈ 1.398 —
+     the reference's measured portrait ratio) rather than using the CSS
+     `aspect-ratio` property. `aspect-ratio` on a flex-row item combined
+     with a `width` main-size produced inconsistent, non-deterministic
+     item widths in real-browser testing (verified via getBoundingClientRect
+     — every item's width came out matching a completely different,
+     unrequested value, always exactly reverse-derived from an
+     independently-resolved height instead of the requested width). Fully
+     explicit width+height sidesteps that resolution-order ambiguity. */
+  .montibello-editorial-gallery__item {
+    flex: 0 0 auto;
+    width: 44vw;
+    height: 61.5vw;
+
+    @media screen and (min-width: 750px) {
+      width: 33.333vw;
+      height: 46.6vw;
+    }
+
+    @media screen and (min-width: 990px) {
+      width: 314px;
+      height: 439px;
+    }
   }
 
-  .montibello-gallery-image__img {
+  /* FULL-SITE PARITY (official /gama/hop/, 1440): the strip lives inside the
+     1300px container as 314x439 tiles, 14px apart, 12px radius. */
+  @media screen and (min-width: 990px) {
+    .montibello-editorial-gallery__list:has(> .shopify-block:nth-child(2):last-child)
+    .montibello-editorial-gallery__item {
+      width: 314px;
+      height: 439px;
+    }
+
+    .montibello-editorial-gallery__item,
+    .montibello-editorial-gallery__item .montibello-editorial-gallery__image {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+  }
+
+  /* A gallery with only 1 or 2 slides (e.g. HOP Ultra Repair, where 6 of
+     the 7 official slides had to be excluded for showing Overnight Serum
+     packaging — a product Peru doesn't carry, verified image-by-image)
+     would otherwise sit at a small fraction of the row width, leaving an
+     obviously-unfinished-looking blank gap. When exactly 1 or 2 items are
+     present, they fill the row edge-to-edge instead — no JS, no per-page
+     setting, still the one reusable gallery component. `content_for
+     'blocks'` wraps each block in its own `.shopify-block` div, so
+     `.montibello-editorial-gallery__item` is a grandchild of the list,
+     not a direct child — the count check has to walk that wrapper, not
+     the item itself. */
+  .montibello-editorial-gallery__list:has(> .shopify-block:nth-child(2):last-child)
+  .montibello-editorial-gallery__item {
+    width: 50vw;
+    height: 69.9vw;
+  }
+
+  /* A single slide keeps its normal portrait tile size (no stretching —
+     `object-fit: cover` on a wide landscape box would crop a portrait
+     photo's subject badly) and is simply centered in the row instead of
+     sitting flush left with a large empty gap beside it. */
+  .montibello-editorial-gallery__list:has(> .shopify-block:first-child:last-child) {
+    justify-content: center;
+  }
+
+  .montibello-editorial-gallery__image {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    -webkit-user-drag: none;
+    user-select: none;
   }
 {% endstylesheet %}
 
@@ -59,13 +176,18 @@
   "name": "Imagen de galería",
   "settings": [
     {
-      "type": "text",
-      "id": "bundled_image",
-      "label": "Nombre de archivo en /assets"
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen personalizada (opcional)"
     },
     {
       "type": "text",
-      "id": "alt",
+      "id": "bundled_image",
+      "label": "Imagen incluida (nombre de archivo en assets/)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
       "label": "Texto alternativo"
     }
   ]

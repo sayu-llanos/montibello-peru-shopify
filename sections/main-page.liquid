@@ -1,5 +1,6 @@
-
-
+{%- if page.handle == 'educacion' -%}
+  {% render 'montibello-education-content' %}
+{%- else -%}
 {% liquid
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
@@ -26,6 +27,7 @@
     {% content_for 'blocks' %}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {

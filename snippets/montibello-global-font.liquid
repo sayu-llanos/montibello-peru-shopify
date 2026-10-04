@@ -1,0 +1,19 @@
+{%- comment -%}
+  Official Hair Montibello typeface (TT Commons) for the whole storefront.
+  Reuses the theme-scoped woff2 assets already shipped for the HOP PDPs and
+  points the theme's four font-family variables at it, so every section that
+  reads `--font-*--family` follows the official site's typography.
+{%- endcomment -%}
+<style>
+  @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 400; font-display: swap; src: url('{{ 'tt-commons-regular.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 500; font-display: swap; src: url('{{ 'tt-commons-medium.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 600; font-display: swap; src: url('{{ 'tt-commons-demibold.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'TTCommons'; font-style: normal; font-weight: 700; font-display: swap; src: url('{{ 'tt-commons-bold.woff2' | asset_url }}') format('woff2'); }
+
+  :root {
+    --font-body--family: 'TTCommons', 'Montserrat', sans-serif;
+    --font-subheading--family: 'TTCommons', 'Montserrat', sans-serif;
+    --font-heading--family: 'TTCommons', 'Montserrat', sans-serif;
+    --font-accent--family: 'TTCommons', 'Montserrat', sans-serif;
+  }
+</style>

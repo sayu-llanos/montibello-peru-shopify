@@ -21,27 +21,81 @@
   than a `where: 'fields....value'` filter, which is not a supported pattern
   for metaobject reference lists.
 
-  Every `for shade in shades` pass below is split into two chunks
-  (`limit: 50, offset: 0` and `limit: 50, offset: 50`) so all up to 57
-  confirmed shades are reachable even if a single unbounded loop over a
-  reference list were capped — this covers up to 100 shades, comfortably
-  above the current catalog.
+  IMPORTANT — Liquid reference-resolution cap (confirmed live via `shopify
+  theme console`): `product.metafields.montibello.shades.value` truncates
+  to the first 50 resolved metaobjects the instant a list.metaobject_reference
+  field is dereferenced — upstream of any `for`/`limit`/`offset` tag, so a
+  single field can never expose more than 50 objects to Liquid no matter how
+  the loop over it is written. `montibello.shades` therefore holds only the
+  first 50 canonical shades (indices 0-49); the remaining 7 live in a second
+  metafield, `montibello.shades_overflow` (<=50 items, so it resolves in
+  full). Both metafields reference the exact same 57 canonical
+  `montibello_under_shade` metaobjects authored originally; nothing was
+  duplicated or deleted. See
+  scripts/shopify/under-shades-overflow-split-apply.js for how the split was
+  produced (idempotent, re-derivable from the original 57-reference list at
+  any time).
+
+  Every pass below runs over BOTH fields in sequence (`shades_primary` then
+  `shades_overflow`) rather than merging them into one array first —
+  `| concat:` was tried and confirmed (via a live debug render) to silently
+  return a blank/unusable result when given two already-resolved
+  metaobject-reference arrays, so this dual-loop form is what's actually
+  proven working, not a theoretical shortcut.
+
+  GRID VISIBILITY (UNDER 4-PDP official parity pass, P0 #3): the official
+  permanent-colour PDP does NOT render an inline 57-circle swatch grid — it
+  shows only the "CARTA DE COLOR" download CTA (confirmed live). The grid
+  itself stays fully implemented here (not deleted) behind a new
+  `show_grid` setting, default true, so the browsable chart can still be
+  placed elsewhere later (e.g. a dedicated colour-chart page) without
+  rebuilding it.
+
+  CTA RELOCATION (UNDER final punctual fix): the download CTA that used to
+  render here was moved INTO sections/montibello-product-benefits.liquid's
+  own lifestyle photo-row, directly under its 4 result lines, so it reads
+  as part of that block instead of a separate section with its own
+  background. The product template instance now leaves both `file_url`
+  blank and `show_grid: false`, so this section has nothing left to show —
+  `has_visible_content` below keeps it from rendering an empty padded
+  band in that case. The grid-rendering code itself is untouched and still
+  works exactly as before if `show_grid`/`file_url` are ever set again on
+  this section (e.g. for a dedicated colour-chart page).
 {%- endcomment -%}
 
 {% liquid
-  assign shades = product.metafields.montibello.shades.value
+  assign shades_primary = product.metafields.montibello.shades.value
+  assign shades_overflow = product.metafields.montibello.shades_overflow.value
   assign has_shades = false
-  for shade in shades
+  for shade in shades_primary
     assign has_shades = true
     break
   endfor
+  unless has_shades
+    for shade in shades_overflow
+      assign has_shades = true
+      break
+    endfor
+  endunless
 
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
 %}
 
-{% if has_shades %}
+{% liquid
+  assign show_grid = true
+  if section.settings.show_grid == false
+    assign show_grid = false
+  endif
+
+  assign has_visible_content = false
+  if show_grid or section.settings.file_url != blank or section.settings.heading != blank
+    assign has_visible_content = true
+  endif
+%}
+
+{% if has_shades and has_visible_content %}
   <div
     class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   ></div>
@@ -53,64 +107,79 @@
       <h2 class="montibello-shade-browser__heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    {% comment %}
-      Discover distinct family names across both pagination chunks, without
-      using `.size` or `where` — just a string-marker accumulator over plain
-      dot-notation field access.
-    {% endcomment %}
-    {% assign seen_family_markers = '' %}
-    {% assign family_name_string = '' %}
-    {% for shade in shades limit: 50, offset: 0 %}
-      {% assign family = shade.shade_family.value | default: 'Otros' %}
-      {% assign marker = '|' | append: family | append: '|' %}
-      {% unless seen_family_markers contains marker %}
-        {% assign seen_family_markers = seen_family_markers | append: marker %}
-        {% assign family_name_string = family_name_string | append: family | append: '||' %}
-      {% endunless %}
-    {% endfor %}
-    {% for shade in shades limit: 50, offset: 50 %}
-      {% assign family = shade.shade_family.value | default: 'Otros' %}
-      {% assign marker = '|' | append: family | append: '|' %}
-      {% unless seen_family_markers contains marker %}
-        {% assign seen_family_markers = seen_family_markers | append: marker %}
-        {% assign family_name_string = family_name_string | append: family | append: '||' %}
-      {% endunless %}
-    {% endfor %}
-    {% assign family_name_list = family_name_string | split: '||' %}
+    {% if section.settings.file_url != blank %}
+      <div class="montibello-shade-browser__file-link-wrap">
+        <a class="montibello-shade-browser__file-link" href="{{ section.settings.file_url }}" target="_blank" rel="noopener">
+          <span class="montibello-shade-browser__file-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="18" height="18">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m4-5l5 5 5-5m-5 5V3"></path>
+            </svg>
+          </span>
+          {{ section.settings.file_label | default: 'Descargar Carta de Color' }}
+        </a>
+      </div>
+    {% endif %}
 
-    {% for family_name in family_name_list %}
-      {% assign family_has_active_shade = false %}
-      {% for shade in shades limit: 50, offset: 0 %}
-        {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
-        {% if shade_family == family_name and shade.active.value != false %}
-          {% assign family_has_active_shade = true %}
+    {% if show_grid %}
+      {% comment %}
+        Discover distinct family names, without using `.size` or `where` —
+        just a string-marker accumulator over plain dot-notation field
+        access, run across both fields so no shade is missed.
+      {% endcomment %}
+      {% assign seen_family_markers = '' %}
+      {% assign family_name_string = '' %}
+      {% for shade in shades_primary %}
+        {% assign family = shade.shade_family.value | default: 'Otros' %}
+        {% assign marker = '|' | append: family | append: '|' %}
+        {% unless seen_family_markers contains marker %}
+          {% assign seen_family_markers = seen_family_markers | append: marker %}
+          {% assign family_name_string = family_name_string | append: family | append: '||' %}
+        {% endunless %}
+      {% endfor %}
+      {% for shade in shades_overflow %}
+        {% assign family = shade.shade_family.value | default: 'Otros' %}
+        {% assign marker = '|' | append: family | append: '|' %}
+        {% unless seen_family_markers contains marker %}
+          {% assign seen_family_markers = seen_family_markers | append: marker %}
+          {% assign family_name_string = family_name_string | append: family | append: '||' %}
+        {% endunless %}
+      {% endfor %}
+      {% assign family_name_list = family_name_string | split: '||' %}
+
+      {% for family_name in family_name_list %}
+        {% assign family_has_active_shade = false %}
+        {% for shade in shades_primary %}
+          {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+          {% if shade_family == family_name and shade.active.value != false %}
+            {% assign family_has_active_shade = true %}
+          {% endif %}
+        {% endfor %}
+        {% for shade in shades_overflow %}
+          {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+          {% if shade_family == family_name and shade.active.value != false %}
+            {% assign family_has_active_shade = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if family_has_active_shade %}
+          <h3 class="montibello-shade-browser__family">{{ family_name }}</h3>
+          <div class="montibello-shade-browser__grid">
+            {% for shade in shades_primary %}
+              {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+              {% if shade_family == family_name and shade.active.value != false %}
+                {% render 'montibello-pdp-shade-chip', shade: shade %}
+              {% endif %}
+            {% endfor %}
+            {% for shade in shades_overflow %}
+              {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
+              {% if shade_family == family_name and shade.active.value != false %}
+                {% render 'montibello-pdp-shade-chip', shade: shade %}
+              {% endif %}
+            {% endfor %}
+          </div>
         {% endif %}
       {% endfor %}
-      {% for shade in shades limit: 50, offset: 50 %}
-        {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
-        {% if shade_family == family_name and shade.active.value != false %}
-          {% assign family_has_active_shade = true %}
-        {% endif %}
-      {% endfor %}
-
-      {% if family_has_active_shade %}
-        <h3 class="montibello-shade-browser__family">{{ family_name }}</h3>
-        <div class="montibello-shade-browser__grid">
-          {% for shade in shades limit: 50, offset: 0 %}
-            {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
-            {% if shade_family == family_name and shade.active.value != false %}
-              {% render 'montibello-pdp-shade-chip', shade: shade %}
-            {% endif %}
-          {% endfor %}
-          {% for shade in shades limit: 50, offset: 50 %}
-            {% assign shade_family = shade.shade_family.value | default: 'Otros' %}
-            {% if shade_family == family_name and shade.active.value != false %}
-              {% render 'montibello-pdp-shade-chip', shade: shade %}
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endfor %}
+    {% endif %}
   </div>
 {% endif %}
 
@@ -125,6 +194,50 @@
     @media screen and (min-width: 750px) {
       padding-inline: 30px;
     }
+  }
+
+  /* BLACK FILLED CTA (UNDER FINAL 20/20 MICRO-POLISH): was a plain
+     underlined text link, floating in a visually separate, differently-
+     shaded block well below the editorial rows — the official page shows
+     a solid black button sitting immediately under the last result row,
+     inside the same flow. Restyled as a real filled button (was: inline
+     text + `text-decoration: underline`); the section's own top padding
+     was also dropped to 0 in the template instance so this renders flush
+     against the editorial section above instead of a detached band. */
+  .montibello-shade-browser__file-link-wrap {
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-shade-browser__file-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding: 16px 28px;
+    background-color: #111111;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+  }
+
+  .montibello-shade-browser__file-link:hover {
+    background-color: #000000;
+  }
+
+  .montibello-shade-browser__file-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: #ffffff;
   }
 
   .montibello-shade-browser__family {
@@ -149,10 +262,20 @@
   .montibello-shade-browser__grid {
     display: grid;
     gap: 12px;
+    width: 100%;
     max-width: 1400px;
     margin-inline: auto;
     padding-inline: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    box-sizing: border-box;
+    /* `width: 100%` is load-bearing, not decorative: a grid container's
+       `width: auto` can resolve to its own `max-width` instead of the
+       viewport-derived containing-block width — confirmed live at 390px,
+       where this produced a computed width of exactly 1400px and
+       `auto-fill` laid out 14 columns, overflowing the page. `min(84px,
+       100%)` alone (a track-size floor) does not fix this: the bug is in
+       how many tracks `auto-fill` decides to create, not in any single
+       track's width. */
+    grid-template-columns: repeat(auto-fill, minmax(min(84px, 100%), 1fr));
 
     @media screen and (min-width: 750px) {
       padding-inline: 30px;
@@ -173,6 +296,16 @@
     border-radius: 50%;
     background: var(--color-background-secondary, #ece7dc);
     border: 1px solid var(--color-border, #e4dfd4);
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  /* This is a reference colour chart, not a variant picker — no click
+     selection exists — but a hover affordance still helps the swatch
+     grid read as an intentional, browsable UI rather than a flat list. */
+  .montibello-shade-browser__chip:hover .montibello-shade-browser__swatch {
+    transform: scale(1.12);
+    border-color: var(--color-foreground, #2e2d2c);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
   .montibello-shade-browser__code {
@@ -193,6 +326,26 @@
       "id": "heading",
       "label": "Título",
       "default": "Carta de Color"
+    },
+    {
+      "type": "text",
+      "id": "file_url",
+      "label": "URL del PDF (Carta de Color)",
+      "info": "Reutiliza el mismo asset ya aprobado en la página de colección UNDER — no subir un PDF nuevo.",
+      "default": "https://cdn.shopify.com/s/files/1/0874/8479/3025/files/montibello-under-carta-de-color.pdf?v=1789594566"
+    },
+    {
+      "type": "text",
+      "id": "file_label",
+      "label": "Texto del enlace",
+      "default": "Descargar Carta de Color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_grid",
+      "label": "Mostrar cuadrícula de tonos",
+      "info": "Desactivado en el PDP oficial — la página oficial solo muestra el botón de descarga, no la cuadrícula de círculos.",
+      "default": true
     },
     {
       "type": "color",

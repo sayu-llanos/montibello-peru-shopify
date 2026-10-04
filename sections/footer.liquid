@@ -128,35 +128,45 @@
      by default only below the same 750px breakpoint Horizon itself uses for
      mobile footer layout, and inert (does nothing) if JS fails to load. */
   @media screen and (max-width: 749px) {
-    .footer-content[data-montibello-accordion] > .group-block {
-      border-block-end: 1px solid var(--color-border);
+    .footer-content[data-montibello-accordion] {
+      gap: 0;
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block:first-child {
+      margin-bottom: 20px;
+    }
+
+    .footer-content[data-montibello-accordion] > .group-block:not(:first-child) {
+      border-block-end: 1px solid #cfcfcf;
       padding-block: 16px;
     }
 
-    .footer-content[data-montibello-accordion] > .group-block > .group-block-content {
+    .footer-content[data-montibello-accordion] > .group-block:not(:first-child) > .group-block-content {
       position: relative;
       cursor: pointer;
+      gap: 0;
     }
 
-    .footer-content[data-montibello-accordion] > .group-block > .group-block-content::after {
-      content: '+';
+    .footer-content[data-montibello-accordion] > .group-block:not(:first-child) > .group-block-content::after {
+      content: '\2192';
       position: absolute;
       top: 0;
       right: 0;
-      font-size: 20px;
+      font-size: 22px;
       line-height: 1;
       transition: transform 0.2s ease;
     }
 
-    .footer-content[data-montibello-accordion] > .group-block[data-open='true'] > .group-block-content::after {
-      content: '\2212';
+    .footer-content[data-montibello-accordion] > .group-block:not(:first-child)[data-open='true'] > .group-block-content::after {
+      transform: rotate(90deg);
+      transform-origin: 70% 50%;
     }
 
-    .footer-content[data-montibello-accordion] > .group-block > .group-block-content > :not(:first-child) {
+    .footer-content[data-montibello-accordion] > .group-block:not(:first-child) > .group-block-content > :not(:first-child) {
       display: none;
     }
 
-    .footer-content[data-montibello-accordion] > .group-block[data-open='true'] > .group-block-content > :not(:first-child) {
+    .footer-content[data-montibello-accordion] > .group-block:not(:first-child)[data-open='true'] > .group-block-content > :not(:first-child) {
       display: block;
       margin-top: 12px;
     }

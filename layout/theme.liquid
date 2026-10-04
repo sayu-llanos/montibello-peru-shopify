@@ -22,6 +22,9 @@
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
+    {%- render 'montibello-global-font' -%}
+    {%- render 'montibello-global-parity' -%}
+    {%- render 'montibello-product-card-system' -%}
     {%- render 'color-palette' -%}
 
     {% if request.design_mode %}
@@ -156,7 +159,28 @@
         data-product-transition="{{ settings.transition_to_main_product }}"
         data-template="{{ template }}"
       >
-        {{ content_for_layout }}
+        {%- comment -%}
+          /pages/educacion, /pages/color, /pages/beyond-hair: the Page
+          template selector in Admin only lists templates that exist as
+          page.<suffix>.json with a suffix already assigned on the Page
+          record, so route by handle instead — render the section directly
+          (defaults live in its schema) in place of the default page
+          template.
+        {%- endcomment -%}
+        {%- if request.page_type == 'page' and page.handle == 'educacion' -%}
+          {% section 'montibello-education' %}
+        {%- elsif request.page_type == 'page' and page.handle == 'color' -%}
+          {% section 'montibello-color-landing' %}
+          {% section 'montibello-professional-cta' %}
+        {%- elsif request.page_type == 'page' and page.handle == 'beyond-hair' -%}
+          {% section 'montibello-beyond-hair' %}
+          {% section 'montibello-destination-band' %}
+          {% section 'montibello-contact-tile' %}
+        {%- elsif request.page_type == 'page' and page.handle == 'magazine' -%}
+          {% section 'montibello-magazine-page' %}
+        {%- else -%}
+          {{ content_for_layout }}
+        {%- endif -%}
       </main>
 
       <footer>

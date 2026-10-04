@@ -1,0 +1,340 @@
+{%- comment -%}
+  UNDER editorial carousel. Tight-gap portrait cards (~4 visible on desktop,
+  one main card + a peek of the next on mobile), native scroll-snap for
+  touch/trackpad, prev/next buttons, mouse drag, and a slow auto-advance that
+  pauses on interaction and wraps back to the first card with a smooth scroll.
+  Scoped to the UNDER page; HOP/Luxlight keep montibello-editorial-gallery.
+{%- endcomment -%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-under-carousel spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+  data-montibello-under-carousel
+  data-autoplay-ms="{{ section.settings.autoplay_seconds | times: 1000 }}"
+>
+  <div class="montibello-under-carousel__track" data-track tabindex="0" role="region" aria-roledescription="carrusel" aria-label="{{ section.settings.aria_label | escape }}">
+    {%- for block in section.blocks -%}
+      <figure class="montibello-under-carousel__card" data-card {{ block.shopify_attributes }}>
+        <img
+          src="{{ block.settings.bundled_image | asset_url }}"
+          alt="{{ block.settings.alt | escape }}"
+          loading="lazy"
+          draggable="false"
+          width="933"
+          height="1400"
+          class="montibello-under-carousel__image"
+          style="object-position: {{ block.settings.object_position | default: 'center 20%' }};"
+        >
+      </figure>
+    {%- endfor -%}
+  </div>
+
+  <div class="montibello-under-carousel__controls">
+    <button type="button" class="montibello-under-carousel__btn" data-prev aria-label="Anterior">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" class="montibello-under-carousel__btn" data-next aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.currentScript.closest('[data-montibello-under-carousel]');
+      if (!root) return;
+      var track = root.querySelector('[data-track]');
+      var prev = root.querySelector('[data-prev]');
+      var next = root.querySelector('[data-next]');
+      var cards = track.querySelectorAll('[data-card]');
+      if (!cards.length) return;
+
+      function step() {
+        var a = cards[0].getBoundingClientRect();
+        var b = cards[1] ? cards[1].getBoundingClientRect() : null;
+        return b ? b.left - a.left : a.width;
+      }
+      function atEnd() { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; }
+      function go(dir) {
+        if (dir > 0 && atEnd()) track.scrollTo({ left: 0, behavior: 'smooth' });
+        else if (dir < 0 && track.scrollLeft <= 2) track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+        else track.scrollBy({ left: dir * step(), behavior: 'smooth' });
+      }
+      prev.addEventListener('click', function () { go(-1); pauseFor(8000); });
+      next.addEventListener('click', function () { go(1); pauseFor(8000); });
+
+      // Mouse drag (touch and trackpad use native scrolling). Snap is
+      // disabled while dragging so the pointer, not the snap, drives motion.
+      var down = false, startX = 0, startLeft = 0, moved = false;
+      track.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+      });
+      window.addEventListener('pointermove', function (e) {
+        if (!down) return;
+        var d = e.clientX - startX;
+        if (Math.abs(d) > 3 && !moved) { moved = true; track.classList.add('is-dragging'); }
+        if (moved) track.scrollLeft = startLeft - d;
+      });
+      window.addEventListener('pointerup', function () {
+        if (!down) return;
+        down = false;
+        track.classList.remove('is-dragging');
+        pauseFor(8000);
+      });
+
+      // Autoplay: one card per tick, wraps to the start smoothly.
+      var ms = parseInt(root.getAttribute('data-autoplay-ms'), 10) || 0;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var timer = null, hold = false, visible = false, resumeAt = 0;
+      function tick() {
+        if (hold || !visible || Date.now() < resumeAt) return;
+        go(1);
+      }
+      function pauseFor(t) { resumeAt = Date.now() + t; }
+      if (ms >= 2000 && !reduce) {
+        timer = setInterval(tick, ms);
+        root.addEventListener('mouseenter', function () { hold = true; });
+        root.addEventListener('mouseleave', function () { hold = false; pauseFor(2000); });
+        root.addEventListener('focusin', function () { hold = true; });
+        root.addEventListener('focusout', function () { hold = false; pauseFor(2000); });
+        track.addEventListener('touchstart', function () { pauseFor(8000); }, { passive: true });
+        track.addEventListener('wheel', function () { pauseFor(8000); }, { passive: true });
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.3 }).observe(root);
+        } else { visible = true; }
+      }
+
+      function updateButtons() {
+        prev.setAttribute('aria-disabled', track.scrollLeft <= 2 ? 'true' : 'false');
+      }
+      track.addEventListener('scroll', updateButtons, { passive: true });
+      updateButtons();
+    })();
+  </script>
+</div>
+
+{% stylesheet %}
+  .montibello-under-carousel {
+    --muc-gap: 10px;
+    --muc-gutter: 20px;
+    --muc-card: 78vw;
+    overflow: hidden;
+
+    @media screen and (min-width: 750px) {
+      --muc-gap: 12px;
+      --muc-gutter: 30px;
+      --muc-card: 42vw;
+    }
+
+    @media screen and (min-width: 990px) {
+      /* 4 cards fit inside the 1400px boxed content width; the 5th peeks
+         toward the viewport edge. */
+      --muc-card: calc((min(100vw, 1400px) - 2 * var(--muc-gutter) - 3 * var(--muc-gap)) / 4);
+    }
+  }
+
+  .montibello-under-carousel__track {
+    display: flex;
+    gap: var(--muc-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Align the first card with the boxed page content on wide screens. */
+    padding-inline: max(var(--muc-gutter), calc((100vw - 1400px) / 2 + var(--muc-gutter)));
+    scroll-padding-inline: max(var(--muc-gutter), calc((100vw - 1400px) / 2 + var(--muc-gutter)));
+    cursor: grab;
+  }
+
+  .montibello-under-carousel__track::-webkit-scrollbar { display: none; }
+  .montibello-under-carousel__track:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+  .montibello-under-carousel__track.is-dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .montibello-under-carousel__card {
+    flex: 0 0 var(--muc-card);
+    width: var(--muc-card);
+    aspect-ratio: 5 / 7;
+    margin: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    background: var(--color-background-secondary, #ece7dc);
+  }
+
+  .montibello-under-carousel__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .montibello-under-carousel__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+    padding-inline: max(var(--muc-gutter), calc((100vw - 1400px) / 2 + var(--muc-gutter)));
+  }
+
+  .montibello-under-carousel__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .montibello-under-carousel__btn:hover {
+    background: var(--color-foreground, #2E2D2C);
+    color: var(--color-background, #fff);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .montibello-under-carousel__track { scroll-behavior: auto; }
+  }
+
+  /* official mobile (390): 135x189 tiles, 15px gap and gutters, no arrows */
+  @media screen and (max-width: 749px) {
+    .montibello-under-carousel {
+      --muc-gap: 15px;
+      --muc-gutter: 15px;
+      background-color: rgb(246, 246, 243);
+      padding-block: 30px !important;
+    }
+
+    .montibello-under-carousel__track {
+      padding-inline: 15px;
+      scroll-padding-inline: 15px;
+    }
+
+    .montibello-under-carousel__card {
+      flex: 0 0 135px;
+      width: 135px;
+      height: 189px;
+      aspect-ratio: auto;
+      border-radius: 12px;
+    }
+
+    .montibello-under-carousel__controls {
+      display: none;
+    }
+  }
+
+  /* FULL-SITE PARITY (official /gama/under/, 1440): same contained strip as
+     the HOP range pages — 314x439 tiles, 14px apart, 12px radius, inside the
+     1300px container on the beige page tone, round arrows over the strip. */
+  @media screen and (min-width: 990px) {
+    .montibello-under-carousel {
+      position: relative;
+      background-color: rgb(246, 246, 243) !important;
+      padding-block: 40px !important;
+    }
+
+    .montibello-under-carousel__track {
+      width: 100%;
+      max-width: 1300px;
+      margin-inline: auto;
+      padding-inline: 0;
+      scroll-padding-inline: 0;
+      gap: 14px;
+    }
+
+    .montibello-under-carousel__card {
+      flex: 0 0 314px;
+      width: 314px;
+      height: 439px;
+      aspect-ratio: auto;
+      border-radius: 12px;
+    }
+
+    .montibello-under-carousel__controls {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0;
+      padding: 0 10px;
+      transform: translate(-50%, -50%);
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .montibello-under-carousel__btn {
+      width: 50px;
+      height: 50px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.32);
+      color: #fff;
+      pointer-events: auto;
+    }
+
+    .montibello-under-carousel__btn:hover {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Carrusel editorial Under",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Imagen",
+      "settings": [
+        { "type": "text", "id": "bundled_image", "label": "Imagen incluida (nombre de archivo en assets/)" },
+        { "type": "text", "id": "alt", "label": "Texto alternativo" },
+        { "type": "text", "id": "object_position", "label": "Posición del recorte", "default": "center 20%" }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Etiqueta accesible", "default": "Galería de campaña Montibello Under" },
+    {
+      "type": "range",
+      "id": "autoplay_seconds",
+      "label": "Avance automático (0 = desactivado)",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    { "type": "range", "id": "padding-block-start", "label": "Superior", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding-block-end", "label": "Inferior", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 56 }
+  ],
+  "presets": [
+    { "name": "Carrusel editorial Under" }
+  ]
+}
+{% endschema %}

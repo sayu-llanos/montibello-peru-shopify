@@ -1,0 +1,23 @@
+{%- comment -%}
+  Heading for montibello-feature-rows.liquid — plain heading markup, no
+  divider (the divider treatment belongs only to montibello-feature-row
+  blocks below it).
+{%- endcomment -%}
+
+<div class="montibello-feature-rows__heading" {{ block.shopify_attributes }}>
+  {{ block.settings.text }}
+</div>
+
+{% schema %}
+{
+  "name": "Encabezado",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<h2>Encabezado</h2>"
+    }
+  ]
+}
+{% endschema %}

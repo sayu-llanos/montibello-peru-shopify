@@ -1,0 +1,486 @@
+{%- comment -%}
+  Shared "official category page" layout for the Peru category collections
+  (Coloración alta cobertura, Decoloración, Tratamiento anti rotura, Champú,
+  Mascarilla, Acondicionador, Tratamiento de puntas — 7 real Shopify
+  collections, one reusable section/template, no per-collection duplicates).
+
+  Title + description come from the collection record (collection.title /
+  collection.description, HTML-stripped — several of these collections carry
+  raw international markup in their body_html, e.g. "uk-section-muted", which
+  would otherwise leak unstyled classes onto this page).
+
+  Product grid is `collection.products` directly — no curated block list and
+  no hardcoded product names, since collection membership here is managed by
+  the merchant in Admin, unlike the curated UNDER/HOP/LUXLIGHT range grids
+  elsewhere in the theme. Deliberately does NOT use Horizon's native
+  `_product-card` / price block: no Montibello product has a configured
+  price yet, so that path prints "S/. 0.00" on every card. This renders
+  image + title + functional_subtitle metafield only, linking to the PDP,
+  with its own scoped classnames (`montibello-category-grid__*`) so it
+  can't collide with the existing curated `montibello-product-range__*`
+  card system used elsewhere.
+
+  IMAGE NORMALIZATION: raw `product.featured_image` varies wildly in
+  baked-in whitespace — e.g. the Luxlight Supreme packshots are studio
+  renders on a huge white canvas with the bottle occupying as little as
+  ~25% of the frame, next to HOP bottles whose source photography already
+  fills ~85-97% of theirs. Same card frame + `object-fit: contain` then
+  reads as "some products are miniatures" even though every card box is
+  identical. Fix is per-product source image, not CSS: for any product
+  handle with a normalized `<handle>-card.webp` asset already in /assets
+  (a full set exists for every product in these 7 collections, generated
+  for the curated `blocks/product-grid-card.liquid` range grids — same
+  fixed-canvas, tight-cropped, consistent-scale packshot system, just
+  reused here instead of duplicated), that derived asset is used in place
+  of the raw featured image. `normalized_card_handles` is the explicit
+  allow-list of handles known to have that asset; a product added to one
+  of these collections later without a matching asset falls back to its
+  raw featured image rather than requesting a 404'ing file.
+{%- endcomment -%}
+
+{% liquid
+  assign normalized_card_handles = 'hop-colour-last-mask,hop-colour-last-rinse,hop-colour-last-shampoo,hop-smooth-hydration-mask,hop-smooth-hydration-rinse,hop-smooth-hydration-shampoo,hop-ultra-repair-mask,hop-ultra-repair-rinse,hop-ultra-repair-sealed-ends,hop-ultra-repair-shampoo,luxlight-supreme-acidic-ph-treatment,luxlight-supreme-clay-lightener-7plus,luxlight-supreme-control-oil-lightening-system,luxlight-supreme-lightener-9plus,luxlight-supreme-oil-developer-10vol,luxlight-supreme-oil-developer-20vol,luxlight-supreme-oil-developer-30vol,luxlight-supreme-ph-protective-shampoo,under-activator-15vol,under-activator-25vol,under-activator-35vol,under-permanent-colour' | split: ','
+%}
+
+<div
+  class="section section--{{ section.settings.section_width }} montibello-category-collection spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="montibello-category-collection__header">
+    <h1 class="montibello-category-collection__title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="montibello-category-collection__description">
+        {{ collection.description | strip_html | strip_newlines | truncatewords: 60 }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="montibello-category-collection__body">
+    <h2 class="montibello-category-collection__products-heading">
+      {{ section.settings.products_heading | default: 'Productos' }}
+    </h2>
+
+    {% if collection.products.size > 0 %}
+      <div class="montibello-category-grid">
+        {% for product in collection.products %}
+          <a
+            href="{{ product.url }}"
+            class="montibello-category-grid__card"
+            data-product-handle="{{ product.handle }}"
+          >
+            <div class="montibello-category-grid__media">
+              {%- if product.metafields.montibello.range.value == 'LUXLIGHT' -%}<span class="montibello-nuevo-badge">nuevo</span>{%- endif -%}
+              {% if normalized_card_handles contains product.handle %}
+                <img
+                  src="{{ product.handle | prepend: 'official-card-' | append: '.webp' | asset_url }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy"
+                  width="900"
+                  height="1250"
+                  class="montibello-category-grid__image"
+                >
+              {% elsif product.featured_image != blank %}
+                {{
+                  product.featured_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw',
+                    widths: '300,450,600,800',
+                    class: 'montibello-category-grid__image'
+                }}
+              {% else %}
+                <div class="montibello-category-grid__placeholder" aria-hidden="true"></div>
+              {% endif %}
+            </div>
+            {% liquid
+              assign card_range = product.metafields.montibello.range.value
+              if card_range == 'HOP'
+                assign card_eyebrow = product.metafields.montibello.subfamily.value | replace: 'Color Last', 'Colour Last'
+                assign card_name = product.title | remove_first: 'HOP '
+              else
+                assign card_eyebrow = card_range | downcase | capitalize
+                assign card_name = product.title
+              endif
+            %}
+            <p class="montibello-category-grid__eyebrow">{{ card_eyebrow }}</p>
+            <p class="montibello-category-grid__name">{{ card_name }}</p>
+            {% assign card_subtitle = product.metafields.montibello.functional_subtitle.value %}
+            {% if card_subtitle != blank %}
+              <p class="montibello-category-grid__subtitle">{{ card_subtitle }}</p>
+            {% endif %}
+            {% render 'montibello-card-pills', product: product, prefix: 'montibello-category-grid' %}
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="montibello-category-collection__empty">{{ section.settings.empty_note | default: 'Próximamente.' }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  /* official ordering: Under, Luxlight, Ultra Repair, Colour Last, Smooth Hydration */
+  .montibello-category-grid__card[data-product-handle='under-permanent-colour'] { order: 1; }
+  .montibello-category-grid__card[data-product-handle='under-activator-15vol'] { order: 2; }
+  .montibello-category-grid__card[data-product-handle='under-activator-25vol'] { order: 3; }
+  .montibello-category-grid__card[data-product-handle='under-activator-35vol'] { order: 4; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-lightener-9plus'] { order: 5; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-clay-lightener-7plus'] { order: 6; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-control-oil-lightening-system'] { order: 7; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-ph-protective-shampoo'] { order: 8; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-acidic-ph-treatment'] { order: 9; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-oil-developer-10vol'] { order: 10; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-oil-developer-20vol'] { order: 11; }
+  .montibello-category-grid__card[data-product-handle='luxlight-supreme-oil-developer-30vol'] { order: 12; }
+  .montibello-category-grid__card[data-product-handle='hop-ultra-repair-shampoo'] { order: 13; }
+  .montibello-category-grid__card[data-product-handle='hop-ultra-repair-rinse'] { order: 14; }
+  .montibello-category-grid__card[data-product-handle='hop-ultra-repair-mask'] { order: 15; }
+  .montibello-category-grid__card[data-product-handle='hop-ultra-repair-sealed-ends'] { order: 16; }
+  .montibello-category-grid__card[data-product-handle='hop-colour-last-shampoo'] { order: 17; }
+  .montibello-category-grid__card[data-product-handle='hop-colour-last-rinse'] { order: 18; }
+  .montibello-category-grid__card[data-product-handle='hop-colour-last-mask'] { order: 19; }
+  .montibello-category-grid__card[data-product-handle='hop-smooth-hydration-shampoo'] { order: 20; }
+  .montibello-category-grid__card[data-product-handle='hop-smooth-hydration-rinse'] { order: 21; }
+  .montibello-category-grid__card[data-product-handle='hop-smooth-hydration-mask'] { order: 22; }
+  .montibello-category-collection__header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding: 0 20px 2.5rem;
+    align-items: start;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(2rem, 6vw, 6rem);
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-category-collection__title {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 56px;
+    }
+  }
+
+  .montibello-category-collection__description {
+    margin: 0;
+    align-self: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    opacity: 0.75;
+  }
+
+  .montibello-category-collection__body {
+    max-width: 1400px;
+    margin-inline: auto;
+    padding: 2.5rem 20px 4rem;
+    background: var(--color-background-secondary, #f6f6f3);
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-category-collection__products-heading {
+    margin: 0 0 2rem;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 34px;
+    }
+  }
+
+  .montibello-category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem 1.5rem;
+    }
+  }
+
+  .montibello-category-grid__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .montibello-category-grid__media {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 8px;
+    /* Matches the normalized -card.webp packshots' own baked-in
+       background so there's no visible seam around the letterboxed
+       image; raw featured_image (fallback, uncommon in these
+       collections) still reads fine on it. */
+    background: #ece7dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .montibello-category-grid__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .montibello-category-grid__placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ece7dc;
+  }
+
+  .montibello-category-grid__name {
+    margin: 0.25rem 0 0;
+    font: var(--font-heading--style) var(--font-heading--weight) var(--font-size--sm) / 1.3 var(--font-heading--family);
+  }
+
+  .montibello-category-grid__subtitle {
+    margin: 0;
+    font-size: var(--font-size--xs);
+    opacity: 0.65;
+  }
+
+  .montibello-category-collection__empty {
+    text-align: center;
+    font-size: var(--font-size--xs);
+    opacity: 0.7;
+  }
+
+  /* FULL-SITE PARITY (official /color/<category>/ and /tratamiento/<category>/,
+     1440): title 40/40 on the 1300px container, copy in the second column
+     (inset 20px), a full-bleed beige "Productos" band and 248px white-canvas
+     cards 20px apart with eyebrow, 23/21/700 name, subtitle and size pills. */
+  .montibello-category-collection {
+    color: #000;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-category-collection {
+      padding-block: 0 !important;
+    }
+
+    .montibello-category-collection__header {
+      max-width: 1300px;
+      padding: 40px 0;
+      gap: 0;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .montibello-category-collection__title {
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    .montibello-category-collection__description {
+      align-self: start;
+      padding-inline-start: 20px;
+      font-size: 16px;
+      line-height: 19.7px;
+      opacity: 1;
+    }
+
+    .montibello-category-collection__body {
+      max-width: 1300px;
+      padding: 50px 0;
+      background: transparent;
+      box-shadow: 0 0 0 100vmax rgb(246, 246, 243);
+      clip-path: inset(0 -100vmax);
+      background-color: rgb(246, 246, 243);
+    }
+
+    .montibello-category-collection__products-heading {
+      margin: 0 0 20px;
+      font-size: 40px;
+      line-height: 40px;
+      letter-spacing: -0.03em;
+    }
+
+    .montibello-category-grid {
+      width: 1340px;
+      max-width: none;
+      margin-left: -20px;
+      grid-template-columns: repeat(auto-fill, 248px);
+      gap: 20px;
+      justify-content: start;
+    }
+  }
+
+  .montibello-category-grid__card {
+    gap: 0;
+  }
+
+  .montibello-category-grid__media {
+    aspect-ratio: 248 / 346;
+    border-radius: 0;
+    background: #fff;
+  }
+
+  .montibello-category-grid__image {
+    object-fit: cover;
+  }
+
+  .montibello-category-grid__eyebrow {
+    margin: 20px 0 0;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .montibello-category-grid__name {
+    margin: 10px 0 0;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .montibello-category-grid__subtitle {
+    margin: 10px 0 0;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    opacity: 1;
+  }
+
+  .montibello-category-grid__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 20px 0 0;
+  }
+
+  .montibello-category-grid__pill {
+    min-width: 121px;
+    padding: 0 12px;
+    border: 0.5px solid #767676;
+    border-radius: 5px;
+    font-size: 13.6px;
+    line-height: 28px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  /* tablet / small laptop: the 1340px bleed grid would overflow the page */
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    .montibello-category-collection__body {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding-inline: 20px;
+    }
+
+    .montibello-category-grid {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .montibello-category-collection__title,
+    .montibello-category-collection__products-heading {
+      font-size: 35px;
+      line-height: 35px;
+    }
+
+    .montibello-category-collection__description {
+      font-size: 16px;
+      line-height: 19.7px;
+      opacity: 1;
+    }
+
+    .montibello-category-collection__body {
+      padding: 30px 15px;
+      box-shadow: 0 0 0 100vmax rgb(246, 246, 243);
+      clip-path: inset(0 -100vmax);
+      background-color: rgb(246, 246, 243);
+    }
+
+    .montibello-category-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px 15px;
+    }
+
+    .montibello-category-grid__pill {
+      min-width: 0;
+      flex: 1 1 calc(50% - 3px);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Categoría Montibello",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "text",
+      "id": "products_heading",
+      "label": "Título de la grilla",
+      "default": "Productos"
+    },
+    {
+      "type": "text",
+      "id": "empty_note",
+      "label": "Texto si no hay productos",
+      "default": "Próximamente."
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Espaciado superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Espaciado inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    { "name": "Categoría Montibello" }
+  ]
+}
+{% endschema %}

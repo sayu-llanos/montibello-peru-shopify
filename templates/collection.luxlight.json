@@ -1,15 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_luxlight": {
       "type": "montibello-image-banner",
-      "blocks": {},
-      "block_order": [],
       "name": "Banner Montibello",
       "settings": {
+        "bundled_image": "montibello-luxlight-hero-desktop.jpg",
+        "bundled_image_mobile": "montibello-luxlight-hero-mobile.jpg",
+        "image_alt": "Montibello Luxlight — campaña",
         "layout": "full",
         "section_width": "full-width",
-        "bundled_image": "montibello-luxlight-hero-desktop.jpg",
-        "image_alt": "Campaña Montibello Luxlight",
         "toggle_overlay": false,
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -32,23 +40,35 @@
             "heading": {
               "type": "text",
               "settings": {
-                "text": "<h1>Luxlight</h1>",
-                "type_preset": "h1",
-                "max_width": "none"
+                "text": "<h1>luxlight</h1>",
+                "max_width": "none",
+                "type_preset": "h1"
               }
             },
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p>Sistema de decoloración de alto rendimiento con máximo cuidado y control del resultado en cada aclarado. Descubre la gama para rubios puros, brillantes y seguros a todos los niveles.</p>",
-                "type_preset": "rte",
-                "max_width": "none"
+                "text": "<p>Máximo poder de aclaración con el máximo cuidado del cabello. Diseñada para cubrir todas las necesidades de los servicios de aclaración.</p>",
+                "max_width": "none",
+                "type_preset": "rte"
+              }
+            },
+            "video_button": {
+              "type": "button",
+              "settings": {
+                "label": "Ver vídeo",
+                "link": "#montibello-video-modal",
+                "style_class": "button-custom",
+                "custom_button_background": "#000000",
+                "custom_button_text": "#FFFFFF",
+                "custom_button_border": "#000000"
               }
             }
           },
           "block_order": [
             "heading",
-            "text"
+            "text",
+            "video_button"
           ]
         }
       },
@@ -58,9 +78,22 @@
       "name": "Sección",
       "settings": {
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "background_color": "rgb(246, 246, 243)",
+        "padding-block-start": 25,
+        "padding-block-end": 0
+      }
+    },
+    "range_title_styles": {
+      "type": "montibello-range-title",
+      "settings": {}
+    },
+    "video_modal_luxlight": {
+      "type": "montibello-video-modal",
+      "name": "Modal de vídeo Montibello",
+      "settings": {
+        "video_url": "https://cdn.shopify.com/videos/c/vp/e4eef3e97bcb4666afd6b0332761bb05/e4eef3e97bcb4666afd6b0332761bb05.HD-1080p-7.2Mbps-95266399.mp4",
+        "poster_url": "https://cdn.shopify.com/s/files/1/0874/8479/3025/files/preview_images/e4eef3e97bcb4666afd6b0332761bb05.thumbnail.0000000000.jpg?v=1790134017",
+        "aria_label": "Vídeo Montibello Luxlight"
       }
     },
     "results_luxlight": {
@@ -68,19 +101,19 @@
       "blocks": {
         "heading": {
           "type": "text",
+          "static": true,
           "settings": {
             "text": "<h2>Máxima aclaración con el máximo cuidado capilar</h2>",
-            "type_preset": "h2",
-            "max_width": "normal"
+            "max_width": "normal",
+            "type_preset": "h2"
           }
         }
       },
-      "block_order": ["heading"],
       "name": "Panel de datos Luxlight",
       "settings": {
-        "bundled_image": "montibello-luxlight-results-editorial.webp",
-        "image_alt": "Montibello Luxlight — resultados de aclarado en todos los niveles",
-        "media_position": "right",
+        "bundled_image": "montibello-luxlight-results-photo.jpg",
+        "image_alt": "Montibello Luxlight — resultados de aclarado",
+        "media_position": "left",
         "toggle_label": "Ver datos",
         "stat_1_number": "x20",
         "stat_1_label": "veces más fuerte*",
@@ -89,8 +122,8 @@
         "stat_3_number": "x10",
         "stat_3_label": "veces más suave*",
         "stat_4_number": "",
-        "stat_4_label": "",
-        "footnote": "* Vs. servicio de decoloración convencional. ** Vs. sin tratamiento Bond3 Force System. Recupera la fuerza natural del cabello.**",
+        "stat_4_label": "Recupera la <strong>fuerza natural</strong> del cabello**",
+        "footnote": "* Vs servicio decoloración convencional.<br>** Vs sin tratamiento Bond3 Force System.",
         "bundled_file": "none",
         "file_label": "",
         "section_width": "full-width",
@@ -105,63 +138,107 @@
           "type": "text",
           "settings": {
             "text": "<h2>Potenciada por la tecnología Bond3 Force System + Metal Shield</h2>",
-            "type_preset": "h2",
             "max_width": "normal",
+            "type_preset": "h2",
             "padding-block-end": 12
           }
         },
-        "text": {
+        "text_1": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Bond3 Force System:</strong> un nuevo sistema de triple acción.</p><ul><li>Refuerza y restaura los enlaces debilitados y dañados para aportar mayor resistencia.</li><li>Crea enlaces adicionales en las cadenas de queratina y entre ellas.</li><li>Refuerza la estructura interna de la fibra.</li></ul><p><strong>Metal Shield:</strong> un escudo antimetales que crea un film para reparar y reforzar el cabello mientras lo protege frente a los efectos del exceso de metales acumulados, para un cabello fuerte y resistente.</p>",
-            "type_preset": "rte",
-            "max_width": "normal"
+            "text": "<p>Innovadora tecnología que actúa en las diferentes capas del cabello y permite aclarar y proteger en un solo paso.</p>",
+            "max_width": "normal",
+            "type_preset": "rte"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>BOND3 FORCE SYSTEM:</strong> un nuevo sistema de triple acción.</p><ul><li>Refuerza y restaura los enlaces debilitados y dañados para aportar mayor resistencia.</li><li>Crea enlaces adicionales en las cadenas de queratina y entre ellas.</li><li>Refuerza la estructura interna de la fibra.</li></ul>",
+            "max_width": "normal",
+            "type_preset": "rte"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Combinada con <strong>METAL SHIELD</strong>, un escudo antimetales que crea un film para reparar y reforzar el cabello mientras lo protege frente a los efectos del exceso de metales acumulados, para un cabello fuerte y resistente.</p>",
+            "max_width": "normal",
+            "type_preset": "rte"
           }
         }
       },
-      "block_order": ["heading", "text"],
+      "block_order": [
+        "heading",
+        "text_1",
+        "text_2",
+        "text_3"
+      ],
       "name": "Banner Montibello",
       "settings": {
-        "layout": "split",
-        "media_position": "left",
-        "section_width": "full-width",
-        "bundled_image": "montibello-luxlight-technology-editorial.webp",
+        "bundled_video": "https://cdn.shopify.com/videos/c/vp/01e2392d9dc242009dcd78fef18f96eb/01e2392d9dc242009dcd78fef18f96eb.HD-1080p-7.2Mbps-95266446.mp4",
+        "video_poster": "montibello-luxlight-video-tecnologia-poster.jpg",
         "image_alt": "Bond3 Force System + Metal Shield — tecnología Montibello Luxlight",
+        "layout": "split",
+        "media_position": "right",
+        "section_width": "full-width",
         "toggle_overlay": false,
         "padding-block-start": 0,
         "padding-block-end": 0
       }
     },
     "service_luxlight": {
-      "type": "montibello-image-banner",
+      "type": "montibello-feature-rows",
       "blocks": {
         "heading": {
-          "type": "text",
+          "type": "montibello-feature-heading",
           "settings": {
-            "text": "<h2>Diseñada para cubrir todas las necesidades de los servicios de aclaración</h2>",
-            "type_preset": "h2",
-            "max_width": "normal",
-            "padding-block-end": 12
+            "text": "<h2>Diseñada para cubrir todas las necesidades de los servicios de aclaración</h2>"
           }
         },
-        "text": {
-          "type": "text",
+        "row_1": {
+          "type": "montibello-feature-row",
           "settings": {
-            "text": "<p>Servicio premium 360º en el salón.</p><p>Gama completa con aclaración + tratamiento.</p><p>Rendimiento demostrado, resultados elevados.</p><p>Menú de servicios para antes, durante y después de la aclaración.</p>",
-            "type_preset": "rte",
-            "max_width": "normal"
+            "text": "Servicio premium 360° en el salón."
+          }
+        },
+        "row_2": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "text": "Gama completa con aclaración + tratamiento."
+          }
+        },
+        "row_3": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "text": "Rendimiento demostrado, resultados elevados."
+          }
+        },
+        "row_4": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "text": "Menú de servicios para antes, durante y después de la aclaración."
           }
         }
       },
-      "block_order": ["heading", "text"],
-      "name": "Banner Montibello",
+      "block_order": [
+        "heading",
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4"
+      ],
+      "name": "Filas con divisores",
       "settings": {
-        "layout": "split",
-        "media_position": "right",
+        "media_type": "before_after",
+        "bundled_image_before": "montibello-luxlight-before.jpg",
+        "bundled_image_after": "montibello-luxlight-eclat-after.jpg",
+        "before_label": "Antes",
+        "after_label": "Después",
+        "media_position": "left",
+        "mobile_collapsible": true,
+        "toggle_label": "Más información",
         "section_width": "full-width",
-        "bundled_image": "montibello-professional-salon-editorial.jpg",
-        "image_alt": "Servicio profesional de aclarado Montibello Luxlight en salón",
-        "toggle_overlay": false,
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -174,65 +251,73 @@
           "static": true,
           "settings": {
             "text": "<h2>Descubre la gama completa</h2>",
-            "type_preset": "h2",
+            "width": "100%",
             "alignment": "center",
-            "width": "100%"
+            "type_preset": "h2"
           }
         },
         "card_1": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067014337",
+            "product_handle": "luxlight-supreme-lightener-9plus",
+            "card_image": "official",
             "fallback_title": "Supreme Lightener 9+"
           }
         },
         "card_2": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067047105",
+            "product_handle": "luxlight-supreme-clay-lightener-7plus",
+            "card_image": "official",
             "fallback_title": "Supreme Clay Lightener 7+"
           }
         },
         "card_3": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067079873",
+            "product_handle": "luxlight-supreme-control-oil-lightening-system",
+            "card_image": "official",
             "fallback_title": "Supreme Control Oil Lightening System"
           }
         },
         "card_4": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067145409",
-            "fallback_title": "Supreme Oil Developer 10 vol"
+            "product_handle": "luxlight-supreme-ph-protective-shampoo",
+            "card_image": "official",
+            "fallback_title": "Supreme pH Protective Shampoo"
           }
         },
         "card_5": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067276481",
-            "fallback_title": "Supreme Oil Developer 20 vol"
+            "product_handle": "luxlight-supreme-acidic-ph-treatment",
+            "card_image": "official",
+            "fallback_title": "Supreme Acidic pH Treatment"
           }
         },
         "card_6": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067473089",
-            "fallback_title": "Supreme Oil Developer 30 vol"
+            "product_handle": "luxlight-supreme-oil-developer-10vol",
+            "card_image": "official",
+            "fallback_title": "Supreme Oil Developer 10 vol"
           }
         },
         "card_7": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067669697",
-            "fallback_title": "Supreme pH Protective Shampoo"
+            "product_handle": "luxlight-supreme-oil-developer-20vol",
+            "card_image": "official",
+            "fallback_title": "Supreme Oil Developer 20 vol"
           }
         },
         "card_8": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077067899073",
-            "fallback_title": "Supreme Acidic pH Treatment"
+            "product_handle": "luxlight-supreme-oil-developer-30vol",
+            "card_image": "official",
+            "fallback_title": "Supreme Oil Developer 30 vol"
           }
         }
       },
@@ -254,117 +339,191 @@
         "padding-block-end": 64
       }
     },
-    "cta_professional_luxlight": {
-      "type": "section",
+    "gallery_luxlight": {
+      "type": "montibello-editorial-gallery",
       "blocks": {
-        "group_row": {
-          "type": "group",
+        "img_1": {
+          "type": "montibello-gallery-image",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "center",
-            "gap": 32
-          },
-          "blocks": {
-            "group_professional": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Contacta con un comercial",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "heading",
-                "button"
-              ]
-            },
-            "group_locator": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Encuentra",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "text",
-                "button"
-              ]
-            }
-          },
-          "block_order": [
-            "group_professional",
-            "group_locator"
-          ]
+            "bundled_image": "montibello-luxlight-gallery-01.jpg",
+            "image_alt": "Campaña Montibello Luxlight"
+          }
+        },
+        "img_2": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-02.jpg",
+            "image_alt": "Montibello Luxlight — gama Supreme"
+          }
+        },
+        "img_3": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-03.jpg",
+            "image_alt": "Campaña Montibello Luxlight"
+          }
+        },
+        "img_4": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-04.jpg",
+            "image_alt": "Montibello Luxlight — Supreme Lightener 9+"
+          }
+        },
+        "img_5": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-05.jpg",
+            "image_alt": "Textura Montibello Luxlight"
+          }
+        },
+        "img_6": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-06.jpg",
+            "image_alt": "Montibello Luxlight — Supreme Clay Lightener 7+"
+          }
+        },
+        "img_7": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-07.jpg",
+            "image_alt": "Textura Montibello Luxlight"
+          }
+        },
+        "img_8": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-08.jpg",
+            "image_alt": "Aplicación Montibello Luxlight"
+          }
+        },
+        "img_9": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-09.jpg",
+            "image_alt": "Textura Montibello Luxlight"
+          }
+        },
+        "img_10": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-10.jpg",
+            "image_alt": "Montibello Luxlight — Supreme pH Protective Shampoo"
+          }
+        },
+        "img_11": {
+          "type": "montibello-gallery-image",
+          "settings": {
+            "bundled_image": "montibello-luxlight-gallery-11.jpg",
+            "image_alt": "Montibello Luxlight — Supreme Control Oil Lightening System"
+          }
         }
       },
       "block_order": [
-        "group_row"
+        "img_1",
+        "img_2",
+        "img_3",
+        "img_4",
+        "img_5",
+        "img_6",
+        "img_7",
+        "img_8",
+        "img_9",
+        "img_10",
+        "img_11"
       ],
-      "name": "Sección",
+      "name": "Galería editorial",
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "cta_professional_luxlight": {
+      "type": "montibello-professional-cta",
+      "name": "CTA profesional",
+      "settings": {
+        "left_text": "¿Tienes un salón pero no eres cliente todavía?",
+        "left_button_label": "Contacta con un comercial",
+        "left_button_link": "/pages/contact",
+        "right_text": "Localiza tu salón o peluquería Montibello más cercana",
+        "right_button_label": "Encuentra",
+        "right_button_link": "/pages/contact",
         "background_color": "#000000",
+        "section_width": "page-width",
         "padding-block-start": 56,
         "padding-block-end": 56
+      }
+    },
+    "hop_luxlight_media_frame_styles": {
+      "type": "montibello-hop-luxlight-media-frame",
+      "settings": {}
+    },
+    "eclat_luxlight": {
+      "type": "montibello-feature-rows",
+      "blocks": {
+        "heading": {
+          "type": "montibello-feature-heading",
+          "settings": {
+            "text": "<h2>luxlight + éclat: el dúo perfecto</h2>"
+          }
+        },
+        "row_1": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "Servicio premium 360º",
+            "text": "que comienza en el aclarado y finaliza en el tratamiento."
+          }
+        },
+        "row_2": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "La perfecta combinación",
+            "text": "de color y tratamiento."
+          }
+        },
+        "row_3": {
+          "type": "montibello-feature-row",
+          "settings": {
+            "lead_in": "Neutraliza o tonaliza",
+            "text": "y aporta más valor a tus servicios de aclarado."
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "row_1",
+        "row_2",
+        "row_3"
+      ],
+      "name": "Luxlight + éclat (editorial)",
+      "settings": {
+        "bundled_image": "montibello-luxlight-eclat-duo.webp",
+        "image_alt": "luxlight + éclat: el dúo perfecto",
+        "media_type": "image",
+        "media_position": "right",
+        "mobile_collapsible": true,
+        "toggle_label": "Más información",
+        "footnote": "*tonalizado con éclat 10-02",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
   "order": [
     "hero_luxlight",
+    "range_title_styles",
     "intro_luxlight",
+    "video_modal_luxlight",
+    "hop_luxlight_media_frame_styles",
     "results_luxlight",
     "technology_luxlight",
     "service_luxlight",
+    "eclat_luxlight",
     "product_range_luxlight",
+    "gallery_luxlight",
     "cta_professional_luxlight"
   ]
 }

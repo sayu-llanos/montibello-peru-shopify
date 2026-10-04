@@ -10,3 +10,6 @@ source-assets/
 # Local Playwright MCP state
 .playwright-mcp/
 local-assets/
+
+# Local visual audit files
+visual-audit/

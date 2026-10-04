@@ -1,0 +1,96 @@
+{%- comment -%}
+  Official "¿Necesitas asistencia o información?" tile (1300px black card,
+  12px radius, white CONTACTAR button) on a beige band. Used by pages that are
+  rendered through layout/theme.liquid instead of a JSON template (Beyond
+  Hair), so its defaults live in the schema.
+{%- endcomment -%}
+
+<div class="montibello-contact-tile">
+  <div class="montibello-contact-tile__card">
+    <div class="montibello-contact-tile__copy">
+      <h2 class="montibello-contact-tile__title">{{ section.settings.heading }}</h2>
+      <p class="montibello-contact-tile__text">{{ section.settings.text }}</p>
+    </div>
+    <a class="montibello-contact-tile__button" href="{{ section.settings.link | default: '/pages/contact' }}">{{ section.settings.button_label }}</a>
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-contact-tile {
+    padding: 25px 15px;
+    background: rgb(246, 246, 243);
+  }
+
+  .montibello-contact-tile__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    max-width: 1300px;
+    margin-inline: auto;
+    padding: 40px 15px;
+    border-radius: 12px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+  }
+
+  .montibello-contact-tile__title {
+    margin: 0 0 10px;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .montibello-contact-tile__text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+  }
+
+  .montibello-contact-tile__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 176px;
+    min-height: 50px;
+    padding-inline: 20px;
+    border-radius: 5px;
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-contact-tile {
+      padding-inline: 0;
+    }
+
+    .montibello-contact-tile__card {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 40px 50px;
+      text-align: left;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tarjeta de contacto",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "¿Necesitas asistencia o información?" },
+    { "type": "text", "id": "text", "label": "Texto", "default": "Nuestro equipo está aquí para ayudarte. Ponte en contacto con nosotros." },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Contactar" },
+    { "type": "url", "id": "link", "label": "Enlace" }
+  ],
+  "presets": [{ "name": "Tarjeta de contacto" }]
+}
+{% endschema %}

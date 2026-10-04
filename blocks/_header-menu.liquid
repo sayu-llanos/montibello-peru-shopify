@@ -9,6 +9,18 @@
 {% liquid
   assign block_settings = block.settings
   assign effective_submenu_color = block_settings.background_color | default: settings.page_background_color
+
+  # Montibello pixel-fidelity (see the desktop nav override below for the
+  # full rationale): the real "main-menu" linklist is Admin-only data and
+  # can't carry the confirmed Peru range destinations from theme code, so
+  # both the desktop nav and this mobile drawer render the same hardcoded
+  # Peru list instead of looping the linklist for top-level items.
+  assign montibello_nav_titles = 'COLOR,TRATAMIENTO,EDUCACIÓN,BEYOND HAIR,MAGAZINE' | split: ','
+  assign montibello_magazine_url = '#hair-magazine'
+  if pages['magazine'].handle == 'magazine'
+    assign montibello_magazine_url = 'pages/magazine'
+  endif
+  assign montibello_nav_urls = 'pages/color,collections/hop,pages/educacion,pages/beyond-hair,' | append: montibello_magazine_url | split: ','
 %}
 
 {% case variant %}
@@ -23,7 +35,9 @@
         linklist: block_settings.menu,
         data_header_drawer_type: 'mobile-drawer',
         block: block,
-        section: section
+        section: section,
+        extra_link_titles: montibello_nav_titles,
+        extra_link_urls: montibello_nav_urls
       %}
     </div>
 
@@ -48,7 +62,7 @@
             {% for link in block_settings.menu.links %}
               <li>
                 <a
-                  href="{{ link.url }}"
+                  href="{% render 'montibello-menu-url', url: link.url %}"
                   id="MenuItem-{{ link.handle }}"
                   class="menu-list__item"
                   {% if link.current %}
@@ -97,29 +111,46 @@
       same `<header-menu ref="headerMenu">` / overflow-list shell Horizon's
       own header JS requires, so hover, keyboard, and overflow behavior are
       unaffected. The mobile drawer menu (a separate `variant: 'mobile'`
-      capture) is left on the original linklist.
+      capture, above) renders the same `montibello_nav_titles`/
+      `montibello_nav_urls` pair as extra items via header-drawer.liquid's
+      `extra_link_titles`/`extra_link_urls` params, rather than being left
+      on the raw linklist.
     {% endcomment %}
-    {% liquid
-      assign montibello_nav_titles = 'COLOR,TRATAMIENTO,DECOLORACIÓN,EDUCACIÓN,BEYOND HAIR,MAGAZINE' | split: ','
-      assign montibello_nav_urls = 'collections/under,pages/hop,pages/luxlight,pages/nosotros,pages/nosotros,#hair-magazine' | split: ','
-    %}
     {% capture children %}
       {% for title in montibello_nav_titles %}
-        <li
-          class="menu-list__list-item"
-          on:blur="/deactivate"
-          on:pointerenter="/activate"
-          on:pointerleave="/deactivate"
-        >
-          <a
-            href="{{ routes.root_url }}{{ montibello_nav_urls[forloop.index0] }}"
-            data-skip-node-update="true"
-            class="menu-list__link"
-            ref="menuitem"
+        {% assign mega_key = title | downcase %}
+        {% if mega_key == 'color' or mega_key == 'tratamiento' %}
+          <li class="menu-list__list-item">
+            <a
+              href="{{ routes.root_url }}{{ montibello_nav_urls[forloop.index0] }}"
+              data-skip-node-update="true"
+              class="menu-list__link"
+              ref="menuitem"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="montibello-mega-{{ mega_key }}"
+              data-mega-trigger="{{ mega_key }}"
+            >
+              <span class="menu-list__link-title">{{- title -}}</span>
+            </a>
+          </li>
+        {% else %}
+          <li
+            class="menu-list__list-item"
+            on:blur="/deactivate"
+            on:pointerenter="/activate"
+            on:pointerleave="/deactivate"
           >
-            <span class="menu-list__link-title">{{- title -}}</span>
-          </a>
-        </li>
+            <a
+              href="{{ routes.root_url }}{{ montibello_nav_urls[forloop.index0] }}"
+              data-skip-node-update="true"
+              class="menu-list__link"
+              ref="menuitem"
+            >
+              <span class="menu-list__link-title">{{- title -}}</span>
+            </a>
+          </li>
+        {% endif %}
       {% endfor %}
       <li
         class="menu-list__list-item"
@@ -173,6 +204,10 @@
         fetchpriority="low"
       ></script>
     </header-menu>
+
+    {% render 'montibello-nav', mode: 'panel', key: 'color' %}
+    {% render 'montibello-nav', mode: 'panel', key: 'tratamiento' %}
+    <script src="{{ 'montibello-mega-menu.js' | asset_url }}" defer="defer"></script>
 {% endcase %}
 
 {% style %}

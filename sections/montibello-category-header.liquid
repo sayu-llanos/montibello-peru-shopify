@@ -1,0 +1,68 @@
+{%- comment -%}
+  Title + official description for the informational Peru color category pages
+  (Coloración alta cobertura, Decoloración, Tratamiento anti rotura).
+{%- endcomment -%}
+
+<div class="section section--{{ section.settings.section_width }} montibello-category-header spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="montibello-category-header__inner">
+    <h1 class="montibello-category-header__title">{{ section.settings.title }}</h1>
+    <p class="montibello-category-header__text">{{ section.settings.text }}</p>
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-category-header__inner {
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: 20px;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 30px;
+    }
+  }
+
+  .montibello-category-header__title {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+
+    @media screen and (min-width: 750px) {
+      font-size: 56px;
+    }
+  }
+
+  .montibello-category-header__text {
+    margin: 20px 0 0;
+    max-width: 720px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cabecera de categoría",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título" },
+    { "type": "textarea", "id": "text", "label": "Descripción" },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    { "type": "range", "id": "padding-block-start", "label": "Superior", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding-block-end", "label": "Inferior", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Cabecera de categoría" }]
+}
+{% endschema %}

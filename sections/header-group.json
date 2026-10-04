@@ -18,14 +18,14 @@
           "type": "link",
           "settings": {
             "label": "¿Eres profesional?",
-            "link": "/pages/nosotros"
+            "link": "/pages/contact"
           }
         },
         "link_contact": {
           "type": "link",
           "settings": {
             "label": "Contacto",
-            "link": "/pages/contacto"
+            "link": "/pages/contact"
           }
         }
       },
@@ -69,7 +69,7 @@
       },
       "settings": {
         "logo_position": "left",
-        "menu_position": "left",
+        "menu_position": "center",
         "menu_row": "top",
         "customer_account_menu": "",
         "show_search": true,

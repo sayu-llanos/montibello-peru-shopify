@@ -1,0 +1,227 @@
+{%- comment -%}
+  Contact page in the official Hair Montibello composition (/contacto/, 1440):
+  title + intro in the left 630px column, underline-style form in the right
+  column (reason select, phone, email, message, privacy consent) and a black
+  rounded "Enviar" button. Posts to Shopify's native contact form. Reasons are
+  the official professional / consumer / adverse-effect options; Spain's
+  order-incident option is omitted because Peru has no online ordering.
+{%- endcomment -%}
+<div class="section section--{{ section.settings.section_width }} montibello-contact spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="montibello-contact__inner">
+    <div class="montibello-contact__intro">
+      <h1 class="montibello-contact__title">{{ section.settings.heading }}</h1>
+      <p class="montibello-contact__text">{{ section.settings.text }}</p>
+    </div>
+
+    <div class="montibello-contact__form-wrap">
+      {%- form 'contact', class: 'montibello-contact__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="montibello-contact__success" role="status">{{ section.settings.success_message }}</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="montibello-contact__error" role="alert">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+
+        <label class="montibello-contact__field">
+          <span class="montibello-contact__label">Motivo de consulta*</span>
+          <select name="contact[motivo]" required>
+            <option value="" disabled selected>Elige la opción deseada</option>
+            <option value="Soy profesional y quiero información">Soy profesional y quiero información</option>
+            <option value="Soy consumidor y quiero información">Soy consumidor y quiero información</option>
+            <option value="Soy consumidor y quiero reportar un efecto adverso no deseado">Soy consumidor y quiero reportar un efecto adverso no deseado</option>
+          </select>
+        </label>
+
+        <div class="montibello-contact__row">
+          <label class="montibello-contact__field">
+            <span class="montibello-contact__label">Teléfono</span>
+            <input type="tel" name="contact[phone]" autocomplete="tel">
+          </label>
+          <label class="montibello-contact__field">
+            <span class="montibello-contact__label">Email*</span>
+            <input type="email" name="contact[email]" autocomplete="email" required>
+          </label>
+        </div>
+
+        <label class="montibello-contact__field">
+          <span class="montibello-contact__label">Comentario</span>
+          <textarea name="contact[body]" rows="3"></textarea>
+        </label>
+
+        <label class="montibello-contact__check">
+          <input type="checkbox" name="contact[consent]" value="Acepto la política de privacidad" required>
+          <span>He leído y aceptado la <a href="{{ routes.privacy_policy_url }}">política de privacidad</a>, me doy por informado de todo lo que en ella se dispone y consiento expresamente el tratamiento de mis datos con las finalidades descritas.</span>
+        </label>
+
+        <button type="submit" class="montibello-contact__submit">{{ section.settings.button_label }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .montibello-contact {
+    background-color: rgb(246, 246, 243);
+    color: #000;
+  }
+
+  .montibello-contact__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1300px;
+    margin-inline: auto;
+    padding-inline: 15px;
+  }
+
+  .montibello-contact__title {
+    margin: 0 0 20px;
+    font-size: 35px;
+    line-height: 35px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .montibello-contact__text {
+    margin: 0;
+    max-width: 300px;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+  }
+
+  .montibello-contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .montibello-contact__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+  }
+
+  .montibello-contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .montibello-contact__label {
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+  }
+
+  .montibello-contact__field :is(input, select, textarea) {
+    width: 100%;
+    min-height: 30px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    box-shadow: none;
+  }
+
+  .montibello-contact__field textarea {
+    resize: vertical;
+  }
+
+  .montibello-contact__check {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+  }
+
+  .montibello-contact__check input {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+  }
+
+  .montibello-contact__check a {
+    text-decoration: underline;
+    color: inherit;
+  }
+
+  .montibello-contact__submit {
+    align-self: flex-start;
+    height: 40px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .montibello-contact__success,
+  .montibello-contact__error {
+    margin: 0;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 700;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-contact__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 40px;
+      padding-inline: 0;
+    }
+
+    .montibello-contact__title {
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    .montibello-contact__row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 62px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contacto",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Contacta con nosotros" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "¿Podemos ayudarte? Rellena el formulario y te contactaremos en el menor tiempo posible" },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Enviar" },
+    { "type": "text", "id": "success_message", "label": "Mensaje de éxito", "default": "Gracias por escribirnos. Te contactaremos en el menor tiempo posible." },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    { "type": "range", "id": "padding-block-start", "label": "Superior", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding-block-end", "label": "Inferior", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 50 }
+  ],
+  "presets": [{ "name": "Contacto" }]
+}
+{% endschema %}
+

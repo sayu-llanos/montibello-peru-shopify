@@ -65,7 +65,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/collections/under\">Under</a></p><p><a href=\"/pages/hop\">HOP</a></p><p><a href=\"/pages/luxlight\">Luxlight</a></p><p>HOP Keratin (próximamente)</p>",
+                "text": "<p><a href=\"/collections/under\">Under</a></p><p><a href=\"/collections/hop\">HOP</a></p><p><a href=\"/collections/luxlight\">Luxlight</a></p>",
                 "type_preset": "rte"
               }
             }
@@ -95,7 +95,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/pages/contacto\">Contacto</a></p><p><a href=\"/pages/nosotros\">Sobre nosotros</a></p><p><a href=\"/pages/contacto\">Solicita asesoría profesional</a></p>",
+                "text": "<p><a href=\"/pages/contact\">Contacto</a></p><p><a href=\"/pages/contact\">Sobre nosotros</a></p><p><a href=\"/pages/contact\">Solicita asesoría profesional</a></p>",
                 "type_preset": "rte"
               }
             }

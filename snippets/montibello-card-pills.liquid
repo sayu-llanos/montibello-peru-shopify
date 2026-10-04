@@ -1,0 +1,35 @@
+{%- comment -%}
+  Size pills for every Montibello product card (home best-sellers, range
+  grids, category grids). One renderer so all grids share the same markup.
+
+  Params:
+    product - the product
+    prefix  - BEM block of the calling card, e.g. 'montibello-category-grid'
+              (emits `<prefix>__pills` / `<prefix>__pill`)
+
+  Sizes come from the product's variants. Products that ship as a single
+  un-titled variant (Shopify "Default Title") fall back to the Peru size
+  recorded in the assortment sheet, so no card is left without a size.
+{%- endcomment -%}
+{%- liquid
+  assign pill_sizes = ''
+  for variant in product.variants
+    if variant.title != 'Default Title' and variant.title != blank
+      assign pill_sizes = pill_sizes | append: variant.title | append: '||'
+    endif
+  endfor
+  if pill_sizes == ''
+    case product.handle
+      when 'hop-ultra-repair-sealed-ends'
+        assign pill_sizes = '75 ml||'
+    endcase
+  endif
+  assign pill_list = pill_sizes | split: '||'
+-%}
+<p class="{{ prefix }}__pills">
+  {%- for pill_size in pill_list -%}
+    {%- if pill_size != blank -%}
+      <span class="{{ prefix }}__pill">{{ pill_size }}</span>
+    {%- endif -%}
+  {%- endfor -%}
+</p>

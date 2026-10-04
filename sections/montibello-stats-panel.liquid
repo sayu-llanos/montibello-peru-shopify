@@ -21,9 +21,13 @@
   endif
 
   assign bundled_file = section.settings.bundled_file
+  assign file_url = section.settings.file_url
   assign has_file = false
-  if bundled_file != blank and bundled_file != 'none'
+  if file_url != blank
     assign has_file = true
+  elsif bundled_file != blank and bundled_file != 'none'
+    assign has_file = true
+    assign file_url = bundled_file | asset_url
   endif
 
   assign position_class = 'montibello-stats--media-' | append: section.settings.media_position
@@ -36,6 +40,21 @@
       assign bundled_width = 1445
       assign bundled_height = 1351
     when 'montibello-luxlight-results-editorial.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-ultra-repair-results.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-ultra-repair-overnight.jpg'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-colour-last-results.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-smooth-hydration-results.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-luxlight-results-photo.jpg'
       assign bundled_width = 900
       assign bundled_height = 640
   endcase
@@ -85,16 +104,16 @@
           {% assign label_key = 'stat_' | append: i | append: '_label' %}
           {% assign num_value = section.settings[num_key] %}
           {% assign label_value = section.settings[label_key] %}
-          {% if num_value != blank %}
+          {% if num_value != blank or label_value != blank %}
             <li class="montibello-stats__item">
-              <strong>{{ num_value }}</strong> {{ label_value }}
+              {% if num_value != blank %}<strong>{{ num_value }}</strong> {% endif %}{{ label_value }}
             </li>
           {% endif %}
         {% endfor %}
       </ul>
 
       {% if has_file %}
-        <a class="montibello-stats__file-link" href="{{ bundled_file | asset_url }}" download>
+        <a class="montibello-stats__file-link" href="{{ file_url }}" target="_blank" rel="noopener">
           <span class="montibello-stats__file-icon" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="18" height="18">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m4-5l5 5 5-5m-5 5V3"></path>
@@ -114,6 +133,13 @@
 <script src="{{ 'montibello-scroll-reveal.js' | asset_url }}" defer="defer"></script>
 
 {% stylesheet %}
+  @media screen and (max-width: 749px) {
+    /* collapsed on mobile (official): the Carta de Color download only shows once the data is opened */
+    .montibello-stats__toggle-input:not(:checked) ~ .montibello-stats__data .montibello-stats__file-link {
+      display: none;
+    }
+  }
+
   .montibello-stats {
     display: grid;
     grid-template-columns: 1fr;
@@ -138,6 +164,15 @@
         order: 1;
       }
     }
+  }
+
+  /* Horizon's base .section--full-width > * rule forces every direct child
+     to grid-column: 1 / -1 (full span), which silently collapses this
+     section's own 2-column split into a stacked layout on desktop. Two
+     classes (0,2,0) beats the base rule's one class + universal (0,1,0). */
+  .montibello-stats .montibello-stats__media,
+  .montibello-stats .montibello-stats__card {
+    grid-column: auto;
   }
 
   .montibello-stats__media {
@@ -289,6 +324,21 @@
       transition: none;
     }
   }
+
+  /* FULL-SITE PARITY: official "Carta de color" button — solid black, 5px
+     radius, white tracked uppercase label with the download glyph. */
+  .montibello-stats__file-link {
+    height: 36px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -312,7 +362,12 @@
         { "value": "none", "label": "Ninguna" },
         { "value": "montibello-under-stats-editorial.jpg", "label": "Under — Editorial (alta definición)" },
         { "value": "montibello-hop-results-editorial.jpg", "label": "HOP — Resultados (datos)" },
-        { "value": "montibello-luxlight-results-editorial.webp", "label": "Luxlight — Resultados (niveles de aclarado)" }
+        { "value": "montibello-luxlight-results-editorial.webp", "label": "Luxlight — Resultados (niveles de aclarado)" },
+        { "value": "montibello-hop-ultra-repair-results.webp", "label": "HOP Ultra Repair — Resultados (modelo)" },
+        { "value": "montibello-hop-ultra-repair-overnight.jpg", "label": "HOP Ultra Repair — Overnight Serum" },
+        { "value": "montibello-hop-colour-last-results.webp", "label": "HOP Colour Last — Resultados" },
+        { "value": "montibello-hop-smooth-hydration-results.webp", "label": "HOP Smooth Hydration — Resultados" },
+        { "value": "montibello-luxlight-results-photo.jpg", "label": "Luxlight — Resultados (campaña)" }
       ],
       "default": "montibello-under-stats-editorial.jpg"
     },
@@ -413,6 +468,12 @@
         { "value": "montibello-under-carta-color.pdf", "label": "Under — Carta de color" }
       ],
       "default": "montibello-under-carta-color.pdf"
+    },
+    {
+      "type": "text",
+      "id": "file_url",
+      "label": "URL del PDF (CDN de Shopify Files, opcional)",
+      "info": "Si se indica, sustituye al archivo incluido y abre esta URL en una pestaña nueva."
     },
     {
       "type": "text",

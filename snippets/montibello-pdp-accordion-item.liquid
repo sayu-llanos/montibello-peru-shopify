@@ -1,26 +1,71 @@
 {% doc %}
-  Renders one accessible accordion row (native `<details>/<summary>`, no JS,
-  no hidden-checkbox trick) for the Montibello PDP's PRODUCT INFORMATION
-  section. Keyboard-operable and exposes expanded/collapsed state natively
-  via the `details` element — no `display:none` control dependency. Closed
-  by default (no `open` attribute). Caller is responsible for checking the
-  underlying metafield is present before rendering — this snippet does not
-  hide itself.
+  Renders one accessible accordion row (native `<details>/<summary>`, no JS
+  needed for open/close state) for the Montibello PDP's information stack,
+  rendered inline as part of the right column in montibello-product-main.liquid
+  (see that file for why). Keyboard-operable and exposes expanded/collapsed
+  state natively via the `details` element. Closed by default (no `open`
+  attribute). Caller is responsible for checking the underlying metafield is
+  present before rendering — this snippet does not hide itself.
+
+  LUXLIGHT TRUE VISUAL PARITY PASS: added `icon_source`. When 'official' the
+  left icon and the right disclosure marker render via
+  `montibello-luxlight-icon` (the real Montibello icon assets, reproduced
+  from the official PDP's own SVG files — see that snippet's doc comment)
+  instead of this theme's generic `snippets/icon.liquid` line-icon set. Any
+  other value (including omitted) keeps the previous theme-icon behavior
+  untouched — this is what keeps HOP/UNDER, which pass no `icon_source`,
+  completely unaffected by this pass, per the explicit "ONLY THE 8 LUXLIGHT
+  PDPs" scope limit.
+
+  SMOOTH EXPANSION (Part 3 of the parity pass): native `<details>` has no
+  built-in open/close transition — it snaps instantly. A small amount of JS
+  (no framework, ~30 lines, scoped to `.montibello-pdp-accordion-item`
+  elements only) intercepts the toggle, measures the content's natural
+  height, and animates `max-height`/`opacity` over 280ms ease before
+  actually toggling the `open` attribute (so screen readers/keyboard users
+  still get correct native semantics throughout). `prefers-reduced-motion`
+  is respected by skipping straight to the native instant toggle.
 
   @param {string} label - the closed-state row label, e.g. "Cómo usar"
   @param {string} content - pre-rendered HTML/rich text content to reveal
+  @param {string} icon - icon name. For icon_source: 'official', one of
+    format/hair_type/technology/ingredients/how_to/interest_data (see
+    montibello-luxlight-icon.liquid). Otherwise an icon.liquid name.
+  @param {string} [icon_source] - 'official' or omitted (theme icons, default)
+  @param {string} [arrow] - official disclosure marker: 'chevron_right' (default) or 'arrow_long'
 {% enddoc %}
 
-<details class="montibello-pdp-accordion-item">
+<details class="montibello-pdp-accordion-item{% if icon_source == 'official' %} montibello-pdp-accordion-item--official{% endif %}" data-montibello-accordion>
   <summary class="montibello-pdp-accordion-item__label">
-    {{ label }}
-    <span class="montibello-pdp-accordion-item__icon" aria-hidden="true"></span>
+    <span class="montibello-pdp-accordion-item__icon-left" aria-hidden="true">
+      {% if icon_source == 'official' %}
+        {% render 'montibello-luxlight-icon', icon: icon %}
+      {% else %}
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {% render 'icon', icon: icon %}
+        </svg>
+      {% endif %}
+    </span>
+    <span class="montibello-pdp-accordion-item__text">{{ label }}</span>
+    <span class="montibello-pdp-accordion-item__icon" aria-hidden="true">
+      {% if icon_source == 'official' %}
+        {% assign arrow_icon = arrow | default: 'chevron_right' %}
+        {% render 'montibello-luxlight-icon', icon: arrow_icon %}
+      {% else %}
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {% render 'icon', icon: 'arrow' %}
+        </svg>
+      {% endif %}
+    </span>
   </summary>
-  <div class="montibello-pdp-accordion-item__content">{{ content }}</div>
+  <div class="montibello-pdp-accordion-item__content" data-montibello-accordion-content>{{ content }}</div>
 </details>
 
 {%- comment -%}
-  Styling for `.montibello-pdp-accordion-item*` lives in the CSS of whichever
-  section renders this snippet (`montibello-product-details.liquid`) —
-  the stylesheet tag is only valid in section/block files, not snippets.
+  Styling AND the smooth-expand JS for `.montibello-pdp-accordion-item*`
+  both live in montibello-product-main.liquid (the only current renderer of
+  this snippet) — `{% stylesheet %}`/`{% javascript %}` tags are only valid
+  in section/block files, not snippets, and Shopify dedupes a section's own
+  javascript/stylesheet output automatically regardless of how many times
+  the section (or a snippet it renders) appears on the page.
 {%- endcomment -%}

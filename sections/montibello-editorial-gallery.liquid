@@ -1,0 +1,251 @@
+{%- comment -%}
+  Reproduces the official HOP page's editorial image sequence between
+  "Gamas Hop" and the final professional CTA: campaign photos laid out
+  edge-to-edge (no gaps, no rounded corners — unlike every other card grid
+  in this theme), horizontally scrollable with prev/next arrow controls,
+  showing a partial next image on mobile to signal there's more to scroll.
+{%- endcomment -%}
+
+<div class="section section--{{ section.settings.section_width }} montibello-editorial-gallery spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="montibello-editorial-gallery__viewport">
+    <button type="button" class="montibello-editorial-gallery__arrow montibello-editorial-gallery__arrow--prev" aria-label="Anterior" data-montibello-gallery-prev>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <div class="montibello-editorial-gallery__list" data-montibello-gallery-list>
+      {% content_for 'blocks' %}
+    </div>
+
+    <button type="button" class="montibello-editorial-gallery__arrow montibello-editorial-gallery__arrow--next" aria-label="Siguiente" data-montibello-gallery-next>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var section = document.currentScript.closest('.montibello-editorial-gallery');
+      if (!section) return;
+      var list = section.querySelector('[data-montibello-gallery-list]');
+      var prev = section.querySelector('[data-montibello-gallery-prev]');
+      var next = section.querySelector('[data-montibello-gallery-next]');
+      if (!list || !prev || !next) return;
+
+      function step() {
+        var item = list.querySelector('.montibello-editorial-gallery__item');
+        return item ? item.getBoundingClientRect().width : list.clientWidth * 0.8;
+      }
+
+      // official slider wraps: prev on the first tile jumps to the end, next on the last to the start
+      prev.addEventListener('click', function () {
+        if (list.scrollLeft <= 1) list.scrollTo({ left: list.scrollWidth, behavior: 'smooth' });
+        else list.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', function () {
+        var maxScroll = list.scrollWidth - list.clientWidth;
+        if (list.scrollLeft >= maxScroll - 1) list.scrollTo({ left: 0, behavior: 'smooth' });
+        else list.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      function updateArrows() {
+        prev.disabled = false;
+        next.disabled = false;
+      }
+
+      list.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+
+      // Lightweight mouse-drag-to-scroll for desktop pointer devices —
+      // native overflow-x scrolling already handles touch/trackpad, this
+      // only adds click-and-drag for a plain mouse. No library, no
+      // momentum simulation beyond what the browser's own scroll gives.
+      var isDragging = false;
+      var dragStartX = 0;
+      var dragStartScroll = 0;
+      var didDrag = false;
+
+      list.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        isDragging = true;
+        didDrag = false;
+        dragStartX = e.clientX;
+        dragStartScroll = list.scrollLeft;
+        list.classList.add('is-dragging');
+      });
+
+      list.addEventListener('pointermove', function (e) {
+        if (!isDragging) return;
+        var delta = e.clientX - dragStartX;
+        if (Math.abs(delta) > 3) didDrag = true;
+        list.scrollLeft = dragStartScroll - delta;
+      });
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        list.classList.remove('is-dragging');
+      }
+      list.addEventListener('pointerup', endDrag);
+      list.addEventListener('pointerleave', endDrag);
+
+      // Suppress the accidental image-link/click that a drag gesture would
+      // otherwise trigger once released over a slide.
+      list.addEventListener('click', function (e) {
+        if (didDrag) {
+          e.preventDefault();
+          e.stopPropagation();
+          didDrag = false;
+        }
+      }, true);
+    })();
+  </script>
+</div>
+
+{% stylesheet %}
+  .montibello-editorial-gallery__viewport {
+    position: relative;
+  }
+
+  .montibello-editorial-gallery__list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .montibello-editorial-gallery__list.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+
+  .montibello-editorial-gallery__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .montibello-editorial-gallery__list > * {
+    scroll-snap-align: start;
+  }
+
+  .montibello-editorial-gallery__arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.32);
+    color: #FFFFFF;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .montibello-editorial-gallery__arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .montibello-editorial-gallery__arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .montibello-editorial-gallery__arrow--prev {
+    left: 20px;
+  }
+
+  .montibello-editorial-gallery__arrow--next {
+    right: 20px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-editorial-gallery__arrow {
+      display: flex;
+    }
+  }
+
+  /* official strip sits on the beige page tone with 40px above and below */
+  .montibello-editorial-gallery {
+    background-color: rgb(246, 246, 243) !important;
+    padding-block: 40px !important;
+  }
+
+  @media screen and (min-width: 990px) {
+    .montibello-editorial-gallery__viewport {
+      max-width: 1300px;
+      margin-inline: auto;
+    }
+
+    .montibello-editorial-gallery__list {
+      gap: 14px;
+    }
+
+    .montibello-editorial-gallery__arrow--prev {
+      left: 10px;
+    }
+
+    .montibello-editorial-gallery__arrow--next {
+      right: 10px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Galería editorial",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    { "type": "montibello-gallery-image" }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho de sección",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Galería editorial"
+    }
+  ]
+}
+{% endschema %}

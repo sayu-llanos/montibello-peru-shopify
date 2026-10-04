@@ -1,0 +1,27 @@
+{%- comment -%}
+  Peru EDUCACIÓN page section. Markup lives in snippets/montibello-education-content.liquid.
+{%- endcomment -%}
+
+{% render 'montibello-education-content', settings: section.settings %}
+
+{% schema %}
+{
+  "name": "Educación Montibello",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Frase del hero", "default": "Aprendizaje híbrido 24/7 para profesionales apasionados." },
+    { "type": "text", "id": "title", "label": "Título", "default": "Descubre la educación presencial y online de Montibello, disponible para clientes y profesionales." },
+    { "type": "textarea", "id": "intro_text", "label": "Introducción", "default": "De la mano de expertos, sumérgete en nuestros programas de formación y eleva tus habilidades y tu técnica.\nEducación real – flexible y al alcance de tu mano – que te permitirá dominar técnicas y mantenerte a la vanguardia." },
+    { "type": "text", "id": "presencial_title", "label": "Presencial — título", "default": "Presencial" },
+    { "type": "textarea", "id": "presencial_text", "label": "Presencial — texto", "default": "En nuestros centros de formación o en ubicaciones externas, tendrás la oportunidad de participar en cursos prácticos personalizados dirigidos por nuestro equipo de educadores expertos. Sesiones hechas a medida que responden a tus necesidades y a las de tu equipo." },
+    { "type": "text", "id": "presencial_image_alt", "label": "Presencial — texto alternativo", "default": "Sala de formación presencial Montibello" },
+    { "type": "text", "id": "online_title", "label": "Online — título", "default": "Online" },
+    { "type": "textarea", "id": "online_text", "label": "Online — texto", "default": "Descubre nuestra plataforma de aprendizaje digital: contenido rápido y eficiente, accesible 24/7 al alcance de tu mano. Tu destino para descubrir las últimas tendencias y elevar tus habilidades." },
+    { "type": "text", "id": "online_image_alt", "label": "Online — texto alternativo", "default": "Plataforma Montibello Pro Learning" },
+    { "type": "text", "id": "online_button", "label": "Online — texto del botón", "default": "Comienza a aprender hoy" },
+    { "type": "text", "id": "online_link", "label": "Online — enlace", "default": "https://prolearning.montibello.com/es/hair" }
+  ],
+  "presets": [{ "name": "Educación Montibello" }]
+}
+{% endschema %}

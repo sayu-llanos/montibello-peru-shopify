@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "beyond_hair": {
+      "type": "montibello-beyond-hair",
+      "settings": {}
+    }
+  },
+  "order": [
+    "beyond_hair"
+  ]
+}

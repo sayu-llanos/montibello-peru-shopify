@@ -1,0 +1,608 @@
+{%- comment -%}
+  HOP + LUXLIGHT + HOP subfamily (Ultra Repair / Colour Last / Smooth
+  Hydration) editorial media parity fix.
+
+  Contains no markup: scopes a shared frame treatment (rounded corners,
+  contained 650:462-ratio media, official-measured column gap) to the
+  editorial media/text sections of the HOP, LUXLIGHT and 3 HOP-subfamily
+  range pages, by section id. Does not touch UNDER (its own dedicated
+  montibello-under-layout.liquid already covers the same treatment there),
+  product-card grids, PDPs, hero, header, footer, or any other page — those
+  sections reuse the same component files (montibello-image-banner,
+  montibello-feature-rows, montibello-stats-panel) with their own
+  settings/IDs untouched.
+
+  MANAGER FEEDBACK SPRINT (Perú vs España annotated review) extended this
+  file's original selector list (HOP + Luxlight only) to also cover Ultra
+  Repair / Colour Last / Smooth Hydration, which had never received this
+  pass and were flagged for the exact same media-radius/spacing/heading-
+  size gaps — reconciled into this one file rather than creating 3 more
+  near-duplicate ones, per the task's "ONE source of truth" instruction.
+  Also added at this pass: heading-size normalization (item B) and
+  inter-row spacing (item D), both previously unaddressed in this file.
+
+  Values below were measured live in-browser against the official
+  reference (hair.montibello.com/gama/luxlight, /gama/hop, /gama/hop/hop-repair)
+  today, not guessed:
+    - editorial media: 650x462px @ 1440px viewport (aspect-ratio 650/462),
+      border-radius 12px, object-fit: cover
+    - 2-column container: max-width 1300px
+    - visual gap from media edge to the text column's own content: ~48px
+      (the official markup implements this as inner padding on the text
+      column rather than a grid gap, but the rendered visual gap is the
+      same either way, so it's applied here as column-gap for simplicity)
+    - editorial H2/H3 heading size: 40px @ desktop (≥750px), 35px @ mobile,
+      weight 700 — every heading on the official page (range title through
+      every editorial row) renders at this exact uniform size; Peru's
+      equivalent headings measured 48px, visibly larger, confirming the
+      manager's "TÍTULO MÁS PEQUEÑO" notes
+    - inter-row vertical gap: ~50px between one row's image and the next's
+      on the official page; Peru's HOP page measured as little as 15px
+      between its 2nd and 3rd editorial rows (image bottom to next image
+      top) — applied here as a floor via padding-block-start on every row
+      after the first
+    - editorial background: rgb(246, 246, 243) on the official page
+      (computed against <html>) vs Peru's plain white; applied here scoped
+      to just these editorial rows, not globally
+  Every affected section already uses `object-fit: cover` on its own
+  image markup, so cropping behavior is unchanged — only the frame's
+  size/radius changes, not what fills it.
+{%- endcomment -%}
+
+{% stylesheet %}
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) {
+    background-color: rgb(246, 246, 243);
+
+    /* Manager: "MÁS ESPACIO ENTRE BLOQUE DE IMAGEN + TEXTO" — official
+       measured ~50px between adjacent editorial rows; Peru's own rows
+       ranged from 185px down to 15px depending on content length. This
+       floors every one of these rows at a consistent, generous gap
+       regardless of how tall its neighbor's text happens to be. */
+    padding-block-start: 56px !important;
+    padding-block-end: 56px !important;
+  }
+
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) :is(h1, h2, h3) {
+    font-size: 35px !important;
+    font-weight: 700 !important;
+
+    @media screen and (min-width: 750px) {
+      font-size: 40px !important;
+    }
+  }
+
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) :is(
+    .montibello-stats,
+    .montibello-banner--split,
+    .montibello-feature-rows
+  ) {
+    max-width: 1300px;
+
+    @media screen and (min-width: 750px) {
+      column-gap: 48px;
+      /* Base component defaults to `align-items: stretch`, which forces
+         the media box to match the text column's natural height —
+         fine when official's own copy happens to be short, but our
+         longer copy blocks stretched the frame well past the measured
+         650x462 ratio. Centering lets the media box hold its own
+         aspect-ratio while the text column keeps its natural height. */
+      align-items: center;
+    }
+  }
+
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) :is(
+    .montibello-stats__media,
+    .montibello-banner__media,
+    .montibello-feature-rows__media
+  ) {
+    /* `width: 100%` is required alongside `aspect-ratio`: these media
+       boxes sit in an `align-items: stretch` grid row, so height is
+       already definite from the row; without a definite width too, the
+       browser derives width FROM that stretched height via the
+       aspect-ratio instead of from the 1fr grid track, which is what
+       produced wildly different, overflowing widths per section here. */
+    width: 100%;
+    aspect-ratio: 650 / 462;
+    /* `!important`: the base component sets `min-height: 480px` at this
+       same (0,2,0) specificity for the split-video case, which wins the
+       cascade tie by later source order and floors the frame's height
+       above the measured 424px ratio-derived value otherwise. */
+    min-height: 0 !important;
+    height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+
+    @media screen and (max-width: 749px) {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  /* Service 360 comparison slider: round the wrapper the same way; the
+     slider's own layers already fill it edge-to-edge via absolute
+     positioning, so clipping the wrapper is enough — no change to the
+     drag/compare behavior. */
+  [id$='__service_luxlight'] .montibello-before-after {
+    border-radius: inherit;
+    overflow: hidden;
+  }
+
+  /* Bond3 Force System video: same frame treatment covers both the
+     native <video>/poster markup and the click-to-play poster button
+     montibello-image-banner renders for bundled_video. */
+  [id$='__technology_luxlight'] .montibello-banner__media :is(video, .montibello-banner__video-poster) {
+    border-radius: inherit;
+  }
+
+  /* FULL-SITE PARITY (official /gama/hop/, measured at 1440): the editorial
+     rows live in a 1300px container with two 650px columns and NO outer
+     gutter; the 20px between media and copy is padding on the copy column
+     (media 650x462, first row 630x448). Peru kept its 30px page gutter plus
+     a 48px column gap, which squeezed the media to 596x424. Rows are 25px
+     apart top and bottom (50px between images). */
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) :is(.montibello-stats, .montibello-banner--split, .montibello-feature-rows) {
+    max-width: 1300px;
+    margin-inline: auto;
+
+    @media screen and (min-width: 750px) {
+      padding-inline: 0 !important;
+      column-gap: 0;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) {
+    padding-block-start: 25px !important;
+    padding-block-end: 25px !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+    ) :is(.montibello-stats__card, .montibello-feature-rows__content, .montibello-banner__content) {
+      padding-inline: 0 !important;
+      padding-block: 0 !important;
+      background: transparent;
+    }
+
+    :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+    ) :is(.montibello-stats__media, .montibello-feature-rows__media) ~ :is(.montibello-stats__card, .montibello-feature-rows__content),
+    :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+    ) .montibello-banner__media ~ .montibello-banner__content {
+      padding-inline-start: 20px !important;
+    }
+
+    /* family pages: the first editorial row's copy column is 550px wide */
+    :is(
+      [id$='__results_ultra_repair'],
+      [id$='__results_colour_last'],
+      [id$='__results_smooth_hydration']
+    ) :is(.montibello-stats__card, .montibello-stats__data, .montibello-stats .text-block) {
+      max-width: 550px;
+    }
+
+    [id$='__stats_carta_under'] :is(.montibello-stats__card, .montibello-stats__data, .montibello-stats .text-block) {
+      max-width: 550px !important;
+    }
+
+    [id$='__elevated_warmth_under'] .montibello-feature-rows__content {
+      max-width: 550px;
+    }
+
+    [id$='__elevated_warmth_under'] .montibello-feature-rows__heading {
+      max-width: 500px;
+    }
+
+    [id$='__glucamine_under'] .montibello-banner__content .text-block {
+      max-width: 560px !important;
+    }
+
+    /* copy beside the media is capped like the official 470px text-block */
+    [id$='__technology_hop'] .montibello-banner__content .text-block,
+    [id$='__technology_ultra_repair'] .montibello-banner__content .text-block,
+    [id$='__ferulic_colour_last'] .montibello-banner__content .text-block,
+    [id$='__hyaluronic_smooth_hydration'] .montibello-banner__content .text-block {
+      max-width: 470px;
+    }
+
+    /* media on the right: the copy column is flush with the container edge */
+    [id$='__technology_hop'] .montibello-banner__media ~ .montibello-banner__content,
+    [id$='__technology_ultra_repair'] .montibello-banner__media ~ .montibello-banner__content,
+    [id$='__ferulic_colour_last'] .montibello-banner__media ~ .montibello-banner__content,
+    [id$='__hyaluronic_smooth_hydration'] .montibello-banner__media ~ .montibello-banner__content,
+    [id$='__glucamine_under'] .montibello-banner__media ~ .montibello-banner__content {
+      padding-inline-start: 0 !important;
+    }
+
+    /* editorial rows: the copy column is the 650px half with a 50px inset on both
+       sides (official text starts 50px inside the column, 550px wide) */
+    :is(
+      [id$='__service_luxlight'],
+      [id$='__eclat_luxlight'],
+      [id$='__overnight_ultra_repair']
+    ) .montibello-feature-rows__media ~ .montibello-feature-rows__content {
+      padding-inline: 50px !important;
+      gap: 0 !important;
+    }
+
+    :is(
+      [id$='__eclat_luxlight'],
+      [id$='__overnight_ultra_repair']
+    ) .montibello-feature-rows__heading :is(h1, h2, h3) {
+      margin-bottom: 0;
+    }
+
+    [id$='__overnight_ultra_repair'] .montibello-feature-rows__heading {
+      max-width: 470px;
+    }
+
+    /* first editorial row is 630x448 inside its 650px column */
+    [id$='__wellbeing_hop'] .montibello-feature-rows__media {
+      width: 630px;
+      aspect-ratio: 630 / 448;
+    }
+  }
+
+  /* FULL-SITE PARITY — official typography (measured on /gama/hop/, 1440):
+     pure black copy, 40/40 headings at -3% tracking, 16/19.7/500 body with
+     23/21/700 (-2%) bold lead-ins, and rows separated by 0.5px #767676 rules
+     under each row (58px pitch). Peru had #2e2d2c, 400-weight 14-16px copy
+     and 1px beige rules above each row. */
+  :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+  ) {
+    color: #000;
+
+    :is(h1, h2, h3) {
+      text-wrap: wrap !important;
+      line-height: 40px !important;
+      letter-spacing: -0.03em;
+      color: #000;
+    }
+
+    :is(p, li) {
+      font-size: 16px !important;
+      line-height: 19.7px !important;
+      font-weight: 500 !important;
+      color: #000;
+      opacity: 1;
+    }
+
+    .montibello-banner__content rte-formatter p + p {
+      margin-top: 20px;
+    }
+
+    :is(.montibello-feature-rows__row, .montibello-stats__item) strong {
+      font-size: 23px;
+      line-height: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .montibello-banner__content strong {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+
+    :is(.montibello-feature-rows__row, .montibello-stats__item) {
+      padding: 20px 0 15px;
+      border-top: 0;
+      border-bottom: 0.5px solid #767676;
+    }
+
+    /* official list rows sit flush against each other (58px pitch) under a 20px-spaced heading */
+    :is(
+    [id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+    ) .montibello-feature-rows__content {
+      gap: 0;
+    }
+
+    .montibello-feature-rows__heading {
+      margin-bottom: 20px;
+    }
+
+    .montibello-stats__item:first-child {
+      border-top: 0;
+    }
+
+    /* stats copy: 50px inset on both sides of the 650px card (official 550px text column) */
+    @media screen and (min-width: 750px) {
+      .montibello-stats__card > :is(.montibello-stats__data, .text-block, .montibello-stats__heading) {
+        padding-inline: 30px 50px;
+      }
+    }
+
+    .montibello-stats__footnote {
+      opacity: 1;
+      font-size: 12px;
+    }
+  }
+
+  /* FULL-SITE PARITY — mobile (official /gama/hop/ at 390): 15px gutters, media
+     and copy share the same left edge, 35/35 headings, and the collapse toggle
+     reads as a 23px bold "Ver datos →" row. */
+  @media screen and (max-width: 749px) {
+    :is(
+[id$='__results_luxlight'],
+    [id$='__technology_luxlight'],
+    [id$='__service_luxlight'],
+    [id$='__eclat_luxlight'],
+    [id$='__wellbeing_hop'],
+    [id$='__technology_hop'],
+    [id$='__results_hop'],
+    [id$='__results_ultra_repair'],
+    [id$='__technology_ultra_repair'],
+    [id$='__overnight_ultra_repair'],
+    [id$='__results_colour_last'],
+    [id$='__ferulic_colour_last'],
+    [id$='__results_smooth_hydration'],
+    [id$='__hyaluronic_smooth_hydration'],
+    [id$='__stats_carta_under'],
+    [id$='__glucamine_under'],
+    [id$='__elevated_warmth_under']
+    ) {
+      padding-block-start: 15px !important;
+      padding-block-end: 15px !important;
+
+      :is(.montibello-stats, .montibello-banner--split, .montibello-feature-rows) {
+        max-width: none;
+        padding-inline: 15px !important;
+        row-gap: 20px;
+      }
+
+      :is(.montibello-stats__card, .montibello-feature-rows__content, .montibello-banner__content) {
+        padding: 0 !important;
+        background: transparent;
+      }
+
+      :is(h1, h2, h3) {
+        font-size: 35px !important;
+        line-height: 35px !important;
+      }
+
+      :is(.montibello-stats__media, .montibello-banner__media, .montibello-feature-rows__media) {
+        aspect-ratio: 900 / 640 !important;
+        border-radius: 12px !important;
+      }
+
+      :is(.montibello-feature-rows__toggle-label, .montibello-stats__toggle-label) {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 23px;
+        line-height: 21px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      :is(.montibello-feature-rows__toggle-icon, .montibello-stats__toggle-icon) {
+        display: none;
+      }
+
+      :is(.montibello-feature-rows__toggle-label, .montibello-stats__toggle-label)::after {
+        content: '\2192';
+        font-weight: 400;
+      }
+    }
+  }
+
+  /* mobile heroes of the Under / Ultra Repair / Colour Last / Smooth Hydration
+     pages are the wide campaign photo as a 390x146 strip on the official site
+     (not a tall portrait crop) */
+  @media screen and (max-width: 749px) {
+    :is(
+      [id$='__hero_under'],
+      [id$='__hero_ultra_repair'],
+      [id$='__hero_colour_last'],
+      [id$='__hero_smooth_hydration']
+    ) .montibello-banner--full .montibello-banner__media {
+      aspect-ratio: 2560 / 960 !important;
+      min-height: 0 !important;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    /* the footnote belongs to the collapsed data block, like on the official page */
+    .montibello-stats__toggle-input:not(:checked) ~ .montibello-stats__data .montibello-stats__footnote {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "HOP/Luxlight media",
+  "settings": [],
+  "presets": []
+}
+{% endschema %}

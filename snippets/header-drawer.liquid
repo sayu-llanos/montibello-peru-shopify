@@ -6,6 +6,14 @@
   @param {string} [data_header_drawer_type] - The type of header drawer to render
   @param {object} [block] - The block that can be used to provide settings
   @param {object} [section] - The section that can be used to provide settings
+  @param {object} [extra_link_titles] - Optional flat top-level link titles rendered
+    before `linklist.links`, paired positionally with `extra_link_urls`. Added for
+    Montibello: the real "main-menu" linklist is Admin-only data that can't carry
+    the confirmed Peru range destinations from theme code (see
+    blocks/_header-menu.liquid's desktop nav override), and this drawer is the
+    generic Horizon snippet shared by every menu instance, so the same Peru links
+    are injected here as plain extra items rather than forking the snippet.
+  @param {object} [extra_link_urls] - Paired with `extra_link_titles`, see above.
 
   @example
   {% render 'header-drawer', linklist: section.settings.menu, class: 'header-drawer--mobile' %}
@@ -91,6 +99,9 @@
           {{- 'icon-close-menu.svg' | inline_asset_content -}}
         </span>
       </button>
+      <a class="montibello-drawer-logo" href="{{ routes.root_url }}">
+        <img src="{{ 'montibello-logo.svg' | asset_url }}" width="151" height="26" alt="Montibello" loading="lazy">
+      </a>
       <nav
         class="menu-drawer__navigation"
         style="
@@ -103,6 +114,22 @@
           class="menu-drawer__menu has-submenu"
           role="list"
         >
+          {%- if extra_link_titles != blank -%}
+            {%- for extra_title in extra_link_titles -%}
+              {%- assign extra_key = extra_title | downcase -%}
+              {%- if extra_key == 'color' or extra_key == 'tratamiento' -%}
+                {% render 'montibello-nav', mode: 'drawer', key: extra_key %}
+              {%- else -%}
+                <li class="menu-drawer__list-item--flat{% if block_settings.drawer_dividers %} menu-drawer__list-item--divider{% endif %}">
+                  <a href="{{ routes.root_url }}{{ extra_link_urls[forloop.index0] }}" class="menu-drawer__menu-item link-body">
+                    <span class="menu-drawer__menu-item-text wrap-text">{{ extra_title }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- comment -%} Peru nav is the only navigation: don't append the generic linklist rows. {%- endcomment -%}
+            {%- assign linklist = blank -%}
+          {%- endif -%}
           {%- comment -%}
             Handle menus with fewer than 3 levels of links
           {%- endcomment -%}
@@ -162,7 +189,7 @@
                           >
                             <a
                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                              href="{{ childlink.url }}"
+                              href="{% render 'montibello-menu-url', url: childlink.url %}"
                               class="menu-drawer__menu-item menu-drawer__menu-item--child{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                               {% if childlink.current %}
                                 aria-current="page"
@@ -192,7 +219,7 @@
                   {%- endcomment -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
-                    href="{{ link.url }}"
+                    href="{% render 'montibello-menu-url', url: link.url %}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element"
                     {% if link.current %}
                       aria-current="page"
@@ -222,7 +249,7 @@
                         style="--menu-drawer-animation-index: {{ animation_index }};"
                       >
                         <a
-                          href="{{ childlink.url }}"
+                          href="{% render 'montibello-menu-url', url: childlink.url %}"
                           class="menu-drawer__menu-item menu-drawer__menu-item--child menu-drawer__animated-element{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                           {% if childlink.current %}
                             aria-current="page"
@@ -246,7 +273,7 @@
                   {%- endcomment -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
-                    href="{{ link.url }}"
+                    href="{% render 'montibello-menu-url', url: link.url %}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element"
                     {% if link.current %}
                       aria-current="page"
@@ -304,7 +331,7 @@
                             </span>
                           </button>
                           <a
-                            href="{{ link.url }}"
+                            href="{% render 'montibello-menu-url', url: link.url %}"
                             class="menu-drawer__title focus-inset"
                             {% if link.current %}
                               aria-current="page"
@@ -357,7 +384,7 @@
                                 {%- endcomment -%}
                                 <a
                                   id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                  href="{{ childlink.url }}"
+                                  href="{% render 'montibello-menu-url', url: childlink.url %}"
                                   class="menu-drawer__menu-item menu-drawer__menu-item--parent{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                                   {% if childlink.current %}
                                     aria-current="page"
@@ -424,7 +451,7 @@
                                           >
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                              href="{{ grandchildlink.url }}"
+                                              href="{% render 'montibello-menu-url', url: grandchildlink.url %}"
                                               class="menu-drawer__menu-item menu-drawer__menu-item--child{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
                                               {% if grandchildlink.current %}
                                                 aria-current="page"
@@ -456,7 +483,7 @@
                                   {%- endcomment -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                    href="{{ childlink.url }}"
+                                    href="{% render 'montibello-menu-url', url: childlink.url %}"
                                     class="menu-drawer__menu-item menu-drawer__menu-item--parent{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                                     {% if childlink.current %}
                                       aria-current="page"
@@ -489,7 +516,7 @@
                                       >
                                         <a
                                           id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                          href="{{ grandchildlink.url }}"
+                                          href="{% render 'montibello-menu-url', url: grandchildlink.url %}"
                                           class="menu-drawer__menu-item menu-drawer__menu-item--child{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
                                           {% if grandchildlink.current %}
                                             aria-current="page"
@@ -575,7 +602,7 @@
                   {%- endcomment -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
-                    href="{{ link.url }}"
+                    href="{% render 'montibello-menu-url', url: link.url %}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element"
                     {% if link.current %}
                       aria-current="page"
@@ -588,6 +615,7 @@
             {%- endfor -%}
           {% endif %}
         </ul>
+        <a class="montibello-drawer-contact" href="{{ routes.root_url }}pages/contact">Contacto</a>
       </nav>
       <div
         class="menu-drawer__utility-links menu-drawer__animated-element"

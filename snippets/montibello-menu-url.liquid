@@ -1,0 +1,10 @@
+{%- comment -%}
+  Resolves a navigation URL. The MAGAZINE menu item is stored as the Home
+  anchor `/#hair-magazine`; once the dedicated Magazine page exists it points
+  there instead, otherwise it keeps the anchor so the link never 404s.
+{%- endcomment -%}
+{%- if url contains 'hair-magazine' and pages['magazine'].handle == 'magazine' -%}
+  {{- routes.root_url | append: 'pages/magazine' | replace: '//', '/' -}}
+{%- else -%}
+  {{- url -}}
+{%- endif -%}

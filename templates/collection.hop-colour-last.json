@@ -1,13 +1,27 @@
 {
   "sections": {
-    "hero_intro_colour_last": {
+    "hero_colour_last": {
+      "type": "montibello-image-banner",
+      "blocks": {},
+      "block_order": [],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "full",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-colour-last-hero.jpg",
+        "image_alt": "Montibello HOP Colour Last — Shampoo, Rinse y Mask",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "intro_colour_last": {
       "type": "section",
       "blocks": {
         "intro_group": {
           "type": "group",
           "settings": {
             "content_direction": "column",
-            "gap": 16,
             "width": "custom",
             "custom_width": 50,
             "width_mobile": "fill",
@@ -25,27 +39,112 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p>Ayuda a sellar el color en el cabello por más tiempo y evita la pérdida del color, con Ácido Ferúlico y LifeAlgae Bioscience.</p>",
+                "text": "<p>Rutina hidratante y protectora que prolonga la vida del color en los cabellos coloreados. Enriquecida con Ácido ferúlico, un potente antioxidante de origen vegetal con alto poder hidratante que protege de los radicales libres y de la radiación solar y prolonga la duración del color y del brillo.</p>",
                 "type_preset": "rte",
                 "max_width": "none"
               }
             }
           },
-          "block_order": [
-            "heading",
-            "text"
-          ]
+          "block_order": ["heading", "text"]
         }
       },
-      "block_order": [
-        "intro_group"
-      ],
+      "block_order": ["intro_group"],
       "name": "Sección",
       "settings": {
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-start": 25,
+        "padding-block-end": 0
+      }
+    },
+    "range_title_styles": {
+      "type": "montibello-range-title",
+      "settings": {}
+    },
+    "results_colour_last": {
+      "type": "montibello-stats-panel",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "static": true,
+          "settings": {
+            "text": "<h2>Protección y cuidado para el cabello coloreado.</h2>",
+            "type_preset": "h2",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": [],
+      "name": "Panel de datos Colour Last",
+      "settings": {
+        "bundled_image": "montibello-hop-colour-last-results.webp",
+        "image_alt": "Montibello HOP Colour Last — protección del color",
+        "media_position": "left",
+        "toggle_label": "Ver datos",
+        "stat_1_number": "8 semanas",
+        "stat_1_label": "de color protegido",
+        "stat_2_number": "x6",
+        "stat_2_label": "cabello más resistente a rotura*",
+        "stat_3_number": "",
+        "stat_3_label": "Crea un escudo protector antioxidante y anti-polución para preservar el color",
+        "stat_4_number": "",
+        "stat_4_label": "Filtro UV",
+        "footnote": "*test instrumental",
+        "bundled_file": "none",
+        "file_label": "",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "ferulic_colour_last": {
+      "type": "montibello-image-banner",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>LifeAlgae Bioscience + Ácido Ferúlico</h2>",
+            "type_preset": "h2",
+            "max_width": "normal",
+            "padding-block-end": 12
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Combinación de algas que amplifica y potencia las moléculas activas, sus efectos se multiplican x4 permitiendo actuar sobre cuero cabelludo y cabello.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ácido Ferúlico: un potente antioxidante de origen vegetal con un alto poder hidratante que protege y prolonga el color y el brillo, y con una capacidad protectora que neutraliza los daños procedentes de la radiación solar.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Filtro UV: protege contra las agresiones provocadas por el sol y la polución.</p>",
+            "type_preset": "rte",
+            "max_width": "normal"
+          }
+        }
+      },
+      "block_order": ["heading", "text_1", "text_2", "text_3"],
+      "name": "Banner Montibello",
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "section_width": "full-width",
+        "bundled_image": "montibello-hop-colour-last-ferulic.webp",
+        "image_alt": "Ácido Ferúlico — Montibello HOP Colour Last",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_range_colour_last": {
@@ -64,22 +163,25 @@
         "card_1": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077066621121",
-            "fallback_title": "HOP Colour Last Shampoo"
+            "fallback_title": "HOP Colour Last Shampoo",
+            "product_handle": "hop-colour-last-shampoo",
+            "card_image": "hop-colour-last-shampoo-card.webp"
           }
         },
         "card_2": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077059346625",
-            "fallback_title": "HOP Colour Last Rinse"
+            "fallback_title": "HOP Colour Last Rinse",
+            "product_handle": "hop-colour-last-rinse",
+            "card_image": "hop-colour-last-rinse-card.webp"
           }
         },
         "card_3": {
           "type": "product-grid-card",
           "settings": {
-            "product": "gid://shopify/Product/11077066260673",
-            "fallback_title": "HOP Colour Last Mask"
+            "fallback_title": "HOP Colour Last Mask",
+            "product_handle": "hop-colour-last-mask",
+            "card_image": "hop-colour-last-mask-card.webp"
           }
         }
       },
@@ -97,111 +199,34 @@
       }
     },
     "cta_professional_colour_last": {
-      "type": "section",
-      "blocks": {
-        "group_row": {
-          "type": "group",
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "center",
-            "gap": 32
-          },
-          "blocks": {
-            "group_professional": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "heading": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>¿Tienes un salón pero no eres cliente todavía?</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Contacta con un comercial",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "heading",
-                "button"
-              ]
-            },
-            "group_locator": {
-              "type": "group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": true,
-                "vertical_alignment": "center",
-                "gap": 24,
-                "width": "fill"
-              },
-              "blocks": {
-                "text": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Localiza tu salón o peluquería Montibello más cercana</p>",
-                    "type_preset": "h5",
-                    "text_color": "#FFFFFF",
-                    "max_width": "normal"
-                  }
-                },
-                "button": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Encuentra",
-                    "link": "/pages/contacto",
-                    "style_class": "button-custom",
-                    "custom_button_background": "rgba(0,0,0,0)",
-                    "custom_button_text": "#FFFFFF",
-                    "custom_button_border": "#FFFFFF"
-                  }
-                }
-              },
-              "block_order": [
-                "text",
-                "button"
-              ]
-            }
-          },
-          "block_order": [
-            "group_professional",
-            "group_locator"
-          ]
-        }
-      },
-      "block_order": [
-        "group_row"
-      ],
-      "name": "Sección",
+      "type": "montibello-professional-cta",
+      "name": "CTA profesional",
       "settings": {
-        "section_width": "page-width",
+        "left_text": "¿Tienes un salón pero no eres cliente todavía?",
+        "left_button_label": "Contacta con un comercial",
+        "left_button_link": "/pages/contact",
+        "right_text": "Localiza tu salón o peluquería Montibello más cercana",
+        "right_button_label": "Encuentra",
+        "right_button_link": "/pages/contact",
         "background_color": "#000000",
+        "section_width": "page-width",
         "padding-block-start": 56,
         "padding-block-end": 56
       }
     }
+  ,
+    "subfamily_media_frame_styles": {
+      "type": "montibello-hop-luxlight-media-frame",
+      "settings": {}
+    }
   },
   "order": [
-    "hero_intro_colour_last",
+    "hero_colour_last",
+    "range_title_styles",
+    "subfamily_media_frame_styles",
+    "intro_colour_last",
+    "results_colour_last",
+    "ferulic_colour_last",
     "product_range_colour_last",
     "cta_professional_colour_last"
   ]

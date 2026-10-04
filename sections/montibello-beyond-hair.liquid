@@ -1,0 +1,646 @@
+{%- comment -%}
+  Peru BEYOND HAIR page — true copy/parity build of the official Montibello
+  brand-manifesto page (https://hair.montibello.com/beyond-hair/), measured
+  and transcribed live on 2026-09-28 at 1440px and 390px, not from memory.
+  Single dedicated section for a single dedicated page
+  (templates/page.beyond-hair.json), matching the montibello-education.liquid
+  pattern used elsewhere in this theme: one section, copy carried in schema
+  settings so it stays editable without touching markup.
+
+  Hero: the Vimeo embed is domain-locked, so the hero plays the same film from
+  Shopify Files (CDN): muted/looping/inline like the official background video,
+  with a PLAY VIDEO trigger that opens the full video with sound in a modal.
+
+  Official section order preserved: hero video → Manifesto → "Lo que
+  ofrecemos" (5 pillars on the official wavy-hair texture) → community/salon
+  locator → contact assistance CTA. Peru adaptations (per explicit task
+  instruction, nothing else rewritten):
+    - Education CTA points at the real Peru page (/pages/educacion), not the
+      Spain URL.
+    - Contact CTA points at the real Peru contact page (/pages/contact),
+      which is also the destination the professional CTA already uses
+      throughout this theme — left completely untouched by this task.
+    - The official localizer button ("Localizador de centros") is omitted:
+      Peru has no allied-store/salon locator destination yet, so the
+      community section keeps its official image + heading but drops the
+      dead CTA rather than link to the Spain-only locator or fake a
+      directory that doesn't exist (task section 10, option A).
+{%- endcomment -%}
+
+<div class="montibello-beyond-hair">
+
+  {%- comment -%} HERO — official: 2500:1406 background video (autoplay, muted, loop, inline, no controls) with a centred PLAY VIDEO pill that opens the full video. {%- endcomment -%}
+  <section class="montibello-beyond-hair__hero" aria-label="{{ section.settings.hero_heading | default: 'Beyond Hair' }}">
+    <div class="montibello-beyond-hair__hero-frame">
+      <video
+        class="montibello-beyond-hair__hero-video"
+        data-bh-video
+        data-src480="{{ section.settings.video_480 }}"
+        data-src720="{{ section.settings.video_720 }}"
+        data-src1080="{{ section.settings.video_1080 }}"
+        poster="{{ 'montibello-beyond-hair-video-poster.jpg' | asset_url }}"
+        width="2136"
+        height="1080"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+        tabindex="-1"
+      ></video>
+      <button type="button" class="montibello-beyond-hair__play" data-bh-open aria-haspopup="dialog">
+        <img src="{{ 'montibello-beyond-hair-play-icon.svg' | asset_url }}" width="10" height="11" alt="" loading="eager">
+        <span>{{ section.settings.play_label | default: 'Play video' }}</span>
+      </button>
+    </div>
+    <dialog class="montibello-beyond-hair__modal" data-bh-modal aria-label="{{ section.settings.hero_heading | default: 'Beyond Hair' }}">
+      <button type="button" class="montibello-beyond-hair__modal-close" data-bh-close aria-label="Cerrar">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><line fill="none" stroke="currentColor" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="currentColor" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg>
+      </button>
+      <video class="montibello-beyond-hair__modal-video" data-bh-modal-video controls playsinline preload="none" poster="{{ 'montibello-beyond-hair-video-poster.jpg' | asset_url }}"></video>
+    </dialog>
+  </section>
+
+  {%- comment -%} MANIFESTO — centered editorial copy, verbatim official Spanish text. {%- endcomment -%}
+  <section class="montibello-beyond-hair__manifesto">
+    <div class="montibello-beyond-hair__manifesto-inner">
+      <h2 class="montibello-beyond-hair__manifesto-heading">{{ section.settings.manifesto_heading | default: 'Manifesto' }}</h2>
+      <div class="montibello-beyond-hair__manifesto-body">
+        {% if section.settings.manifesto_p1 != blank %}<p>{{ section.settings.manifesto_p1 }}</p>{% endif %}
+        {% if section.settings.manifesto_p2 != blank %}<p>{{ section.settings.manifesto_p2 }}</p>{% endif %}
+        {% if section.settings.manifesto_p3 != blank %}<p>{{ section.settings.manifesto_p3 }}</p>{% endif %}
+      </div>
+      {% if section.settings.manifesto_closing != blank %}
+        <p class="montibello-beyond-hair__manifesto-closing">
+          {% assign closing_lines = section.settings.manifesto_closing | newline_to_br | split: '<br />' %}
+          {% for line in closing_lines %}{{ line | strip }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}
+        </p>
+      {% endif %}
+    </div>
+  </section>
+
+  {%- comment -%} LO QUE OFRECEMOS — 5 pillars over the official wavy-hair texture, badge + heading in the first grid cell like the official layout. {%- endcomment -%}
+  <section
+    class="montibello-beyond-hair__offerings"
+    style="background-image: url({{ 'montibello-beyond-hair-offerings-bg.jpg' | asset_url }});"
+  >
+    <div class="montibello-beyond-hair__offerings-grid">
+      <div class="montibello-beyond-hair__offerings-badge-cell">
+        <img
+          src="{{ 'montibello-beyond-hair-badge.svg' | asset_url }}"
+          class="montibello-beyond-hair__badge"
+          width="140"
+          height="140"
+          loading="lazy"
+          alt=""
+        >
+        <h2 class="montibello-beyond-hair__offerings-heading">{{ section.settings.offerings_heading | default: 'Lo que ofrecemos' }}</h2>
+      </div>
+
+      <div class="montibello-beyond-hair__pillar">
+        <h3><span class="montibello-beyond-hair__pillar-number">01</span>{{ section.settings.pillar_1_title }}</h3>
+        <div class="montibello-beyond-hair__pillar-copy">{{ section.settings.pillar_1_text }}</div>
+      </div>
+
+      <div class="montibello-beyond-hair__pillar">
+        <h3><span class="montibello-beyond-hair__pillar-number">02</span>{{ section.settings.pillar_2_title }}</h3>
+        <div class="montibello-beyond-hair__pillar-copy">{{ section.settings.pillar_2_text }}</div>
+      </div>
+
+      <div class="montibello-beyond-hair__pillar">
+        <h3><span class="montibello-beyond-hair__pillar-number">03</span>{{ section.settings.pillar_3_title }}</h3>
+        <div class="montibello-beyond-hair__pillar-copy">{{ section.settings.pillar_3_text }}</div>
+      </div>
+
+      <div class="montibello-beyond-hair__pillar">
+        <h3><span class="montibello-beyond-hair__pillar-number">04</span>{{ section.settings.pillar_4_title }}</h3>
+        <div class="montibello-beyond-hair__pillar-copy"><p>{{ section.settings.pillar_4_text_1 }}</p><p>{{ section.settings.pillar_4_text_2 }}</p></div>
+        {% if section.settings.pillar_4_link != blank %}
+          <a href="{{ section.settings.pillar_4_link }}" class="montibello-beyond-hair__pillar-cta">{{ section.settings.pillar_4_button | default: 'Ver educación' }}</a>
+        {% endif %}
+      </div>
+
+      <div class="montibello-beyond-hair__pillar">
+        <h3><span class="montibello-beyond-hair__pillar-number">05</span>{{ section.settings.pillar_5_title }}</h3>
+        <div class="montibello-beyond-hair__pillar-copy">{{ section.settings.pillar_5_text }}</div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  (function () {
+    const root = document.currentScript.closest('.montibello-beyond-hair');
+    if (!root) return;
+
+    /* touch / keyboard: tap or Enter toggles a pillar (desktop uses hover) */
+    root.querySelectorAll('.montibello-beyond-hair__pillar').forEach((pillar) => {
+      pillar.setAttribute('tabindex', '0');
+      pillar.addEventListener('click', (event) => {
+        if (event.target.closest('a')) return;
+        pillar.classList.toggle('is-open');
+      });
+      pillar.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          pillar.classList.toggle('is-open');
+        }
+      });
+    });
+
+    const hero = root.querySelector('[data-bh-video]');
+    const modal = root.querySelector('[data-bh-modal]');
+    const modalVideo = root.querySelector('[data-bh-modal-video]');
+    if (!hero) return;
+
+    const wide = window.matchMedia('(min-width: 750px)').matches;
+    const huge = window.matchMedia('(min-width: 1700px)').matches;
+    const heroSrc = !wide
+      ? hero.dataset.src480
+      : huge
+        ? hero.dataset.src1080
+        : hero.dataset.src720;
+    if (heroSrc) hero.src = heroSrc;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      hero.removeAttribute('autoplay');
+      hero.pause();
+    } else {
+      const play = hero.play();
+      if (play && play.catch) play.catch(() => {});
+    }
+
+    const openBtn = root.querySelector('[data-bh-open]');
+    const closeBtn = root.querySelector('[data-bh-close]');
+    if (!openBtn || !modal || !modalVideo) return;
+
+    openBtn.addEventListener('click', () => {
+      modalVideo.src = hero.dataset.src1080 || hero.dataset.src720 || heroSrc;
+      hero.pause();
+      if (typeof modal.showModal === 'function') modal.showModal();
+      else modal.setAttribute('open', '');
+      const play = modalVideo.play();
+      if (play && play.catch) play.catch(() => {});
+    });
+
+    const close = () => {
+      modalVideo.pause();
+      modalVideo.removeAttribute('src');
+      modalVideo.load();
+      if (modal.open && typeof modal.close === 'function') modal.close();
+      else modal.removeAttribute('open');
+      if (!reduce) {
+        const play = hero.play();
+        if (play && play.catch) play.catch(() => {});
+      }
+    };
+
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      close();
+    });
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+  })();
+  </script>
+</div>
+
+{% stylesheet %}
+  /* Measured on hair.montibello.com/beyond-hair/ (1440 / 390). */
+  .montibello-beyond-hair {
+    background: rgb(246, 246, 243);
+    color: #000;
+  }
+
+  /* HERO — 2500:1406 background video on beige, 29px (20 mobile) below */
+  .montibello-beyond-hair__hero {
+    padding-bottom: 20px;
+    background: rgb(246, 246, 243);
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__hero {
+      padding-bottom: 29px;
+    }
+  }
+
+  .montibello-beyond-hair__hero-frame {
+    position: relative;
+    width: 100%;
+    /* the supplied film is 2136x1080: its own ratio shows the whole frame
+       (official Vimeo is 16:9), never cropped or stretched */
+    aspect-ratio: 2136 / 1080;
+    overflow: hidden;
+    background: #d9d9d9;
+  }
+
+  .montibello-beyond-hair__hero-video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    pointer-events: none;
+  }
+
+  .montibello-beyond-hair__play {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 10px);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.59);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.9;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .montibello-beyond-hair__play:hover,
+  .montibello-beyond-hair__play:focus-visible {
+    opacity: 1;
+  }
+
+  .montibello-beyond-hair__play:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  .montibello-beyond-hair__modal {
+    width: min(92vw, calc(88vh * 16 / 9));
+    max-width: 1200px;
+    padding: 0;
+    border: 0;
+    background: #000;
+    overflow: visible;
+  }
+
+  .montibello-beyond-hair__modal::backdrop {
+    background: rgba(15, 12, 41, 0.6);
+  }
+
+  .montibello-beyond-hair__modal-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1920 / 1080;
+    background: #000;
+  }
+
+  .montibello-beyond-hair__modal-close {
+    position: absolute;
+    top: -36px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* MANIFESTO — 50px (30 mobile) block padding, 40/40 title, 750px column */
+  .montibello-beyond-hair__manifesto {
+    padding: 30px 15px;
+    background: rgb(246, 246, 243);
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__manifesto {
+      padding: 50px 15px;
+    }
+  }
+
+  .montibello-beyond-hair__manifesto-inner {
+    max-width: 750px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .montibello-beyond-hair__manifesto-heading {
+    margin: 0 0 20px;
+    font-size: 35px;
+    line-height: 35px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #000;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__manifesto-heading {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  .montibello-beyond-hair__manifesto-body p {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    color: #000;
+  }
+
+  .montibello-beyond-hair__manifesto-closing {
+    margin: 0;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  /* LO QUE OFRECEMOS — 5 outlined cards on the wavy-hair photo */
+  .montibello-beyond-hair__offerings {
+    padding: 30px 15px;
+    background-color: #2a1a12;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__offerings {
+      padding: 50px 15px;
+    }
+  }
+
+  .montibello-beyond-hair__offerings-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+    max-width: 1300px;
+    margin-inline: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .montibello-beyond-hair__offerings-grid > :nth-child(4) {
+      margin-top: 5px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__offerings-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 380px;
+      gap: 20px 15px;
+    }
+  }
+
+  .montibello-beyond-hair__offerings-badge-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 0 15px;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__offerings-badge-cell {
+      padding: 0;
+    }
+  }
+
+  .montibello-beyond-hair__badge {
+    display: block;
+    width: 201px;
+    height: 196px;
+  }
+
+  .montibello-beyond-hair__offerings-heading {
+    margin: 0;
+    font-size: 35px;
+    line-height: 35px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__offerings-heading {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  .montibello-beyond-hair__pillar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 25px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__pillar {
+      padding: 50px 25px 25px;
+      cursor: pointer;
+    }
+
+    .montibello-beyond-hair__pillar::after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      right: 30px;
+      width: 8px;
+      height: 8px;
+      background: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.49512 0.5V8.5' stroke='white' stroke-linecap='round'/%3E%3Cpath d='M8.5 4.49609L0.5 4.49609' stroke='white' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .montibello-beyond-hair__pillar:hover::after,
+    .montibello-beyond-hair__pillar:focus-within::after,
+    .montibello-beyond-hair__pillar.is-open::after {
+      background-image: url("data:image/svg+xml,%3Csvg width='9' height='8' viewBox='0 0 9 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.5 4L0.5 4' stroke='white' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+  }
+
+  .montibello-beyond-hair__pillar h3 {
+    margin: 0;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .montibello-beyond-hair__pillar-number {
+    display: block;
+    font-size: inherit;
+    font-weight: inherit;
+    opacity: 1;
+    margin: 0;
+  }
+
+  .montibello-beyond-hair__pillar-copy {
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__pillar-copy {
+      margin-top: auto;
+      opacity: 0;
+    }
+
+    .montibello-beyond-hair__pillar:hover .montibello-beyond-hair__pillar-copy,
+    .montibello-beyond-hair__pillar:focus-within .montibello-beyond-hair__pillar-copy,
+    .montibello-beyond-hair__pillar.is-open .montibello-beyond-hair__pillar-copy {
+      opacity: 1;
+    }
+  }
+
+  .montibello-beyond-hair__pillar-copy p {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .montibello-beyond-hair__pillar-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .montibello-beyond-hair__pillar-copy strong {
+    font-weight: 700;
+  }
+
+  .montibello-beyond-hair__pillar-cta {
+    align-self: flex-start;
+    margin-top: 20px;
+    padding: 0 20px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 38px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+  }
+
+  .montibello-beyond-hair__pillar-cta:hover,
+  .montibello-beyond-hair__pillar-cta:focus-visible {
+    background: #fff;
+    color: #000;
+  }
+
+  @media screen and (min-width: 750px) {
+    .montibello-beyond-hair__pillar-copy + .montibello-beyond-hair__pillar-cta {
+      margin-top: 20px;
+    }
+  }
+
+  /* official Beyond Hair locator band: full-bleed (no beige inset), 40px of beige above,
+     330px (416 mobile) tall with 12px radius — unlike the Home variant */
+  .shopify-section:has(.montibello-beyond-hair) + .shopify-section:has(.montibello-destination) {
+    padding: 40px 0 0;
+  }
+
+  .shopify-section:has(.montibello-beyond-hair) + .shopify-section .montibello-destination {
+    min-height: 330px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .shopify-section:has(.montibello-beyond-hair) + .shopify-section .montibello-destination {
+      min-height: 416px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .montibello-beyond-hair__pillar,
+    .montibello-beyond-hair__pillar::after,
+    .montibello-beyond-hair__pillar-copy,
+    .montibello-beyond-hair__play {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Beyond Hair",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "video_480", "label": "Vídeo hero 480p (móvil) — URL de Shopify Files", "default": "https://cdn.shopify.com/videos/c/vp/a23239cfa2c54063b95608b071217746/a23239cfa2c54063b95608b071217746.SD-480p-1.5Mbps-96260619.mp4" },
+    { "type": "text", "id": "video_720", "label": "Vídeo hero 720p (escritorio)", "default": "https://cdn.shopify.com/videos/c/vp/a23239cfa2c54063b95608b071217746/a23239cfa2c54063b95608b071217746.HD-720p-4.5Mbps-96260619.mp4" },
+    { "type": "text", "id": "video_1080", "label": "Vídeo hero 1080p (pantallas grandes y modal)", "default": "https://cdn.shopify.com/videos/c/vp/a23239cfa2c54063b95608b071217746/a23239cfa2c54063b95608b071217746.HD-1080p-7.2Mbps-96260619.mp4" },
+    { "type": "text", "id": "hero_heading", "label": "Título del hero", "default": "Beyond Hair." },
+    { "type": "text", "id": "play_label", "label": "Texto del botón de vídeo", "default": "Play video" },
+
+    { "type": "header", "content": "Manifesto" },
+    { "type": "text", "id": "manifesto_heading", "label": "Título", "default": "Manifesto" },
+    { "type": "textarea", "id": "manifesto_p1", "label": "Párrafo 1", "default": "Durante más de 50 años, no solo hemos creado belleza; la hemos definido, vivido y compartido." },
+    { "type": "textarea", "id": "manifesto_p2", "label": "Párrafo 2", "default": "Apoyamos a los salones como un verdadero aliado, ayudándolos a transformar el cabello y a dar forma a la belleza con cada gesto. Una belleza que va más allá de lo que se ve. Que inspira confianza, expresa identidad y transforma desde dentro." },
+    { "type": "textarea", "id": "manifesto_p3", "label": "Párrafo 3", "default": "Existimos para empoderar a los peluqueros. Para ofrecerles no solo herramientas, sino la inspiración para crear sin límites. Impulsados por la naturaleza y respaldados por la ciencia, damos el poder de crear y transformar." },
+    { "type": "textarea", "id": "manifesto_closing", "label": "Líneas finales (una por línea)", "default": "No solo somos cabello.\nSomos creatividad.\nSomos comunidad.\nSomos el futuro de una belleza sin límites.\nConstruir juntos. Crear juntos.\nMás allá del cabello. Más allá de la belleza." },
+
+    { "type": "header", "content": "Lo que ofrecemos" },
+    { "type": "text", "id": "offerings_heading", "label": "Título", "default": "Lo que ofrecemos" },
+
+    { "type": "text", "id": "pillar_1_title", "label": "01 — título", "default": "Innovación respaldada por la tecnología" },
+    { "type": "richtext", "id": "pillar_1_text", "label": "01 — texto", "default": "<p>Creamos experiencias transformadoras a través de una innovación continua de principio a fin que satisface todas las necesidades del peluquero. Respaldados por herramientas innovadoras de diagnóstico y aplicación que elevan la experiencia en el salón.</p>" },
+
+    { "type": "text", "id": "pillar_2_title", "label": "02 — título", "default": "Mejor belleza para todos" },
+    { "type": "richtext", "id": "pillar_2_text", "label": "02 — texto", "default": "<p>La <strong>sostenibilidad</strong> está integrada en nuestros productos y procesos para reducir la huella de carbono. <strong>Fórmulas 100 % veganas</strong>, potenciadas por la naturaleza y respaldadas por la ciencia, con ingredientes naturales clínicamente probados obtenidos por proveedores responsables y cercanos.</p>" },
+
+    { "type": "text", "id": "pillar_3_title", "label": "03 — título", "default": "Inspiración que nos lleva más allá" },
+    { "type": "richtext", "id": "pillar_3_text", "label": "03 — texto", "default": "<p>Impulsados por voces reconocidas en la industria, nuestro objetivo es crear sin límites y empoderar a los peluqueros para que exploren su oficio y den forma a la belleza en cada toque.</p>" },
+
+    { "type": "text", "id": "pillar_4_title", "label": "04 — título", "default": "Educación y soporte 24/7" },
+    { "type": "textarea", "id": "pillar_4_text_1", "label": "04 — texto 1", "default": "Impulsado por peluqueros y para peluqueros, nuestro aprendizaje híbrido está disponible para todos en cualquier momento." },
+    { "type": "textarea", "id": "pillar_4_text_2", "label": "04 — texto 2", "default": "Conocimiento que te permite estar a la vanguardia y gestionar tu negocio de manera más eficiente." },
+    { "type": "text", "id": "pillar_4_button", "label": "04 — texto del botón", "default": "Ver educación" },
+    { "type": "text", "id": "pillar_4_link", "label": "04 — enlace", "default": "/pages/educacion" },
+
+    { "type": "text", "id": "pillar_5_title", "label": "05 — título", "default": "Construyendo comunidad" },
+    { "type": "richtext", "id": "pillar_5_text", "label": "05 — texto", "default": "<p>Creemos que nada crece solo, por eso trabajamos juntos, con honestidad y respeto. Juntos, como peluqueros, nos conectamos, compartimos y redefinimos la industria.</p>" },
+
+    { "type": "header", "content": "Comunidad / salón" },
+    { "type": "text", "id": "community_heading", "label": "Título", "default": "Encuentra tu salón Montibello más cercano." },
+    { "type": "text", "id": "community_tagline", "label": "Etiqueta", "default": "Siempre a tu lado" },
+    { "type": "text", "id": "community_image_alt", "label": "Texto alternativo de la imagen", "default": "Salón profesional Montibello" },
+
+    { "type": "header", "content": "Contacto" },
+    { "type": "text", "id": "contact_heading", "label": "Título", "default": "¿Necesitas asistencia o información?" },
+    { "type": "textarea", "id": "contact_text", "label": "Texto", "default": "Nuestro equipo está aquí para ayudarte. Ponte en contacto con nosotros." },
+    { "type": "text", "id": "contact_button", "label": "Texto del botón", "default": "Contactar" },
+    { "type": "text", "id": "contact_link", "label": "Enlace", "default": "/pages/contact" }
+  ],
+  "presets": [{ "name": "Beyond Hair" }]
+}
+{% endschema %}

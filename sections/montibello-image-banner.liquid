@@ -22,6 +22,12 @@
     assign has_bundled_image = true
   endif
 
+  assign bundled_video = section.settings.bundled_video
+  assign has_bundled_video = false
+  if bundled_video != blank and bundled_video != 'none'
+    assign has_bundled_video = true
+  endif
+
   assign bundled_image_mobile = section.settings.bundled_image_mobile
   assign custom_image_mobile = section.settings.custom_image_mobile
   assign has_custom_image_mobile = false
@@ -36,6 +42,10 @@
 
   assign layout_class = 'montibello-banner--' | append: section.settings.layout
   assign position_class = 'montibello-banner--media-' | append: section.settings.media_position
+  assign media_style_class = ''
+  if section.settings.media_style == 'framed'
+    assign media_style_class = 'montibello-banner--framed'
+  endif
 
   # Native pixel dimensions of each bundled Montibello asset, used only to
   # satisfy the img width/height attributes (the visible box size is
@@ -70,6 +80,33 @@
     when 'montibello-luxlight-technology-editorial.webp'
       assign bundled_width = 900
       assign bundled_height = 640
+    when 'montibello-hop-hero-full-range.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 1183
+    when 'montibello-hop-lifealgae-tube.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-ultra-repair-hero.jpg'
+      assign bundled_width = 1600
+      assign bundled_height = 600
+    when 'montibello-hop-repair-collagen-vegano.jpg'
+      assign bundled_width = 2560
+      assign bundled_height = 1707
+    when 'montibello-hop-results-jars.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-colour-last-hero.jpg'
+      assign bundled_width = 1600
+      assign bundled_height = 600
+    when 'montibello-hop-colour-last-ferulic.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
+    when 'montibello-hop-smooth-hydration-hero.jpg'
+      assign bundled_width = 1600
+      assign bundled_height = 600
+    when 'montibello-hop-smooth-hydration-hyaluronic.webp'
+      assign bundled_width = 900
+      assign bundled_height = 640
   endcase
 
   if section.settings.background_color != blank
@@ -81,13 +118,34 @@
   class="
     section section--{{ section.settings.section_width }} montibello-banner spacing-style
     {{ layout_class }}
-    {% if section.settings.layout == 'split' %}{{ position_class }}{% endif %}
+    {% if section.settings.layout == 'split' %}{{ position_class }} {{ media_style_class }}{% endif %}
     {% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}
   "
   style="{% render 'spacing-style', settings: section.settings %}"
 >
   <div class="montibello-banner__media">
-    {% if has_custom_image %}
+    {% if has_bundled_video %}
+      <video
+        class="montibello-banner__video"
+        data-montibello-inline-video
+        autoplay
+        muted
+        loop
+        playsinline
+        {% if section.settings.video_poster != blank %}poster="{{ section.settings.video_poster | asset_url }}"{% endif %}
+      >
+        <source src="{{ bundled_video }}" type="video/mp4">
+      </video>
+      <button
+        type="button"
+        class="montibello-banner__mute-toggle"
+        data-montibello-inline-video-mute
+        aria-pressed="true"
+      >
+        <span data-label-muted>Dejar de silenciar</span>
+        <span data-label-unmuted hidden>Silenciar</span>
+      </button>
+    {% elsif has_custom_image %}
       <picture>
         {% if has_custom_image_mobile %}
           <source media="(max-width: 749px)" srcset="{{ custom_image_mobile | image_url: width: 1500 }}">
@@ -145,7 +203,51 @@
 
 <script src="{{ 'montibello-scroll-reveal.js' | asset_url }}" defer="defer"></script>
 
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-montibello-inline-video-mute]').forEach((button) => {
+      const wrapper = button.closest('.montibello-banner__media');
+      const video = wrapper ? wrapper.querySelector('[data-montibello-inline-video]') : null;
+      if (!video) return;
+      const labelMuted = button.querySelector('[data-label-muted]');
+      const labelUnmuted = button.querySelector('[data-label-unmuted]');
+      button.addEventListener('click', () => {
+        video.muted = !video.muted;
+        button.setAttribute('aria-pressed', String(video.muted));
+        labelMuted.hidden = !video.muted;
+        labelUnmuted.hidden = video.muted;
+      });
+    });
+  });
+{% endjavascript %}
+
 {% stylesheet %}
+  .montibello-banner__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    background: #000;
+  }
+
+  .montibello-banner__mute-toggle {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    padding: 0.6rem 1.25rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
   .montibello-banner {
     display: grid;
     gap: 0;
@@ -178,6 +280,40 @@
 
       & .montibello-banner__content {
         order: 1;
+      }
+    }
+  }
+
+  /* Horizon's base .section--full-width > * rule forces every direct child
+     to grid-column: 1 / -1 (full span), which silently collapses this
+     section's own 2-column split into a stacked layout on desktop even
+     though .montibello-banner--split defines two 1fr tracks. Two classes
+     (0,2,0) beats the base rule's one class + universal (0,1,0). */
+  .montibello-banner--split .montibello-banner__media,
+  .montibello-banner--split .montibello-banner__content {
+    grid-column: auto;
+  }
+
+  /* Framed split: near-square rounded image (native 1350x1080 artwork shown
+     in full, no crop) with vertically centered, width-controlled copy. */
+  .montibello-banner--framed {
+    @media screen and (min-width: 750px) {
+      align-items: center;
+      column-gap: 24px;
+      padding-block: 24px;
+    }
+
+    & .montibello-banner__media {
+      aspect-ratio: 1350 / 1080;
+      min-height: 0;
+      border-radius: 24px;
+    }
+
+    & .montibello-banner__content {
+      max-width: 560px;
+
+      @media screen and (min-width: 750px) {
+        padding: 2rem 3rem;
       }
     }
   }
@@ -394,10 +530,35 @@
         { "value": "montibello-professional-salon-editorial.jpg", "label": "Profesional — Editorial de salón" },
         { "value": "montibello-under-stats-editorial.jpg", "label": "Under — Editorial (alta definición)" },
         { "value": "montibello-hop-wellbeing-editorial.jpg", "label": "HOP — Editorial de bienestar" },
-        { "value": "montibello-hop-lifealgae-technology.jpg", "label": "HOP — LifeAlgae BioScience (tecnología)" },
-        { "value": "montibello-luxlight-technology-editorial.webp", "label": "Luxlight — Bond3 Force System + Metal Shield" }
+        { "value": "montibello-hop-lifealgae-technology.jpg", "label": "HOP — LifeAlgae BioScience (tecnología, obsoleta)" },
+        { "value": "montibello-luxlight-technology-editorial.webp", "label": "Luxlight — Bond3 Force System + Metal Shield" },
+        { "value": "montibello-hop-hero-full-range.jpg", "label": "HOP — Hero gama completa (oficial)" },
+        { "value": "montibello-hop-lifealgae-tube.webp", "label": "HOP — LifeAlgae BioScience (tubo, oficial)" },
+        { "value": "montibello-hop-results-jars.webp", "label": "HOP — Resultados (bodegón skincare, oficial)" },
+        { "value": "montibello-hop-ultra-repair-hero.jpg", "label": "HOP Ultra Repair — Hero (sin serum)" },
+        { "value": "montibello-hop-repair-collagen-vegano.jpg", "label": "HOP Ultra Repair — Colágeno Vegano" },
+        { "value": "montibello-hop-colour-last-hero.jpg", "label": "HOP Colour Last — Hero" },
+        { "value": "montibello-hop-colour-last-ferulic.webp", "label": "HOP Colour Last — Ácido Ferúlico" },
+        { "value": "montibello-hop-smooth-hydration-hero.jpg", "label": "HOP Smooth Hydration — Hero" },
+        { "value": "montibello-hop-smooth-hydration-hyaluronic.webp", "label": "HOP Smooth Hydration — Ác. Hialurónico" },
+        { "value": "montibello-luxlight-hero-desktop.jpg", "label": "Luxlight — Hero (campaña)" }
       ],
       "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Vídeo (opcional, sustituye a la imagen)"
+    },
+    {
+      "type": "text",
+      "id": "bundled_video",
+      "label": "URL del vídeo (CDN de Shopify)",
+      "info": "Vídeo autoreproducido, silenciado y en bucle. Si se indica, sustituye a la imagen de este bloque."
+    },
+    {
+      "type": "text",
+      "id": "video_poster",
+      "label": "Imagen de portada del vídeo (nombre de archivo en assets/)"
     },
     {
       "type": "image_picker",
@@ -416,7 +577,8 @@
       "info": "Se usa solo en pantallas angostas (menos de 750px). Si se deja en Ninguna, se reutiliza la imagen de escritorio.",
       "options": [
         { "value": "none", "label": "Ninguna (usar la imagen de escritorio)" },
-        { "value": "montibello-under-hero-mobile.jpg", "label": "Under — Elevated Warmth (recorte móvil)" }
+        { "value": "montibello-under-hero-mobile.jpg", "label": "Under — Elevated Warmth (recorte móvil)" },
+        { "value": "montibello-luxlight-hero-mobile.jpg", "label": "Luxlight — Hero (recorte móvil)" }
       ],
       "default": "none"
     },
@@ -454,6 +616,17 @@
         { "value": "right", "label": "Derecha" }
       ],
       "default": "left",
+      "visible_if": "{{ section.settings.layout == 'split' }}"
+    },
+    {
+      "type": "select",
+      "id": "media_style",
+      "label": "Estilo de la imagen",
+      "options": [
+        { "value": "default", "label": "Estándar" },
+        { "value": "framed", "label": "Enmarcada (casi cuadrada, esquinas redondeadas)" }
+      ],
+      "default": "default",
       "visible_if": "{{ section.settings.layout == 'split' }}"
     },
     {

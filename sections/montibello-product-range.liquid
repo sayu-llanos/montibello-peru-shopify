@@ -2,22 +2,25 @@
   "Descubre la gama completa" product grid — reused across UNDER, HOP
   subfamily pages, and LUXLIGHT (Phase 4G manager-review sprint).
 
-  Two independent rendering paths:
-  1. `collection.products` (Horizon's native `_product-card` block) — used
-     automatically once real products are added as members of the page's
-     bound collection AND are ACTIVE. Currently unused (0 members on any
-     Montibello collection today), kept for when the catalog goes live.
-  2. `product-grid-card` blocks — an explicit, curated list of real Shopify
-     products (via a `type: "product"` block setting), one block per
-     canonical PDP. This is the path actually rendering right now: it reads
-     real product data (image, title, montibello.functional_subtitle,
-     variant sizes) via the block's product reference, which resolves
-     regardless of product status — unlike `collection.products` or a
-     direct `/products/<handle>` visit, a referenced product's data (title,
-     image, metafields) is readable in Liquid even while DRAFT. The card's
-     link still points to the real PDP URL; visiting it will 404 while the
-     product stays DRAFT — a known, reported limitation, not a bug to route
-     around by changing product status.
+  Renders ONLY via `product-grid-card` blocks — an explicit, curated list of
+  real Shopify products (via a `type: "product"` block setting), one block
+  per canonical PDP. This reads real product data (image, title,
+  montibello.functional_subtitle, variant sizes) via the block's product
+  reference, which resolves regardless of product status.
+
+  Deliberately does NOT fall back to `collection.products` + Horizon's
+  native `_product-card` once a collection gets real ACTIVE members (it did
+  originally, and that path is still declared in the schema's `blocks` list
+  and preset for backward compatibility, but is no longer reachable from
+  this template — see below). That native path pulls in Horizon's default
+  `price` block, which prints "S/. 0.00" for every Montibello product since
+  none has a configured price yet, and its image crop/sizing is independent
+  of `product-grid-card`'s fixed contain/frame styling — so a collection
+  crossing from 0 to 1+ ACTIVE members silently produced a grid with a
+  visible zero price AND inconsistent card sizes mixed into the same row.
+  The curated path has neither problem and is the same "ONE consistent
+  visual card system" everywhere regardless of product status, so it's now
+  unconditional.
 
   The card blocks are rendered via `{% content_for 'blocks' %}`, not a
   manual `for block in section.blocks` loop reading `block.settings.*`
@@ -38,17 +41,10 @@
   addressed as if it were static, which is unsupported and part of why
   the grid area below it also never resolved correctly.
 
-  Falls back to a plain "no products configured yet" note only if neither
-  path has anything to show, so this section never renders an empty grid
-  shell.
+  Falls back to a plain "no products configured yet" note only if no
+  product-grid-card blocks are configured, so this section never renders an
+  empty grid shell.
 {%- endcomment -%}
-
-{% liquid
-  assign has_real_products = false
-  if collection != blank and collection.products.size > 0
-    assign has_real_products = true
-  endif
-%}
 
 <div
   class="section section--{{ section.settings.section_width }} montibello-product-range spacing-style"
@@ -58,36 +54,21 @@
     {% content_for 'block', type: 'text', id: 'heading' %}
   </div>
 
-  {% if has_real_products %}
+  {% liquid
+    assign grid_card_count = 0
+    for block in section.blocks
+      unless block.id == 'heading'
+        assign grid_card_count = grid_card_count | plus: 1
+      endunless
+    endfor
+  %}
+
+  {% if grid_card_count > 0 %}
     <div class="montibello-product-range__grid">
-      {% for product in collection.products limit: 8 %}
-        <div class="montibello-product-range__real-card">
-          {% content_for 'block',
-            type: '_product-card',
-            id: 'static-product-card',
-            closest.product: product,
-            product_view_context: 'collection'
-          %}
-        </div>
-      {% endfor %}
+      {% content_for 'blocks' %}
     </div>
   {% else %}
-    {% liquid
-      assign grid_card_count = 0
-      for block in section.blocks
-        unless block.id == 'heading'
-          assign grid_card_count = grid_card_count | plus: 1
-        endunless
-      endfor
-    %}
-
-    {% if grid_card_count > 0 %}
-      <div class="montibello-product-range__grid">
-        {% content_for 'blocks' %}
-      </div>
-    {% else %}
-      <p class="montibello-product-range__note">{{ section.settings.placeholder_note }}</p>
-    {% endif %}
+    <p class="montibello-product-range__note">{{ section.settings.placeholder_note }}</p>
   {% endif %}
 </div>
 
@@ -160,6 +141,141 @@
     opacity: 0.6;
     margin-top: 2rem;
   }
+
+  /* FULL-SITE PARITY (official /gama/hop/hop-repair/, 1440): left-aligned
+     40/40 heading on the 1300px container, 248px-wide cards 20px apart,
+     white 248x346 canvases, 12px tracked eyebrow, 23/21/700 name, 16/19.7
+     subtitle and 0.5px-outlined size pills. */
+  @media screen and (min-width: 750px) {
+    .montibello-product-range:has(.montibello-product-range__card--official) {
+      .montibello-product-range__header,
+      .montibello-product-range__grid {
+        width: 100%;
+        max-width: 1300px;
+        margin-inline: auto;
+      }
+
+      .montibello-product-range__header {
+        padding-inline: 0;
+      }
+
+      .montibello-product-range__header {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .montibello-product-range__header :is(h1, h2, h3) {
+        font-size: 40px;
+        line-height: 40px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: #000;
+        text-align: left;
+        margin: 0;
+      }
+
+      /* official cards run 20px past the heading's left edge (x=43 vs 63),
+         which is what lets five 248px cards sit on one row */
+      .montibello-product-range__grid {
+        max-width: 1340px;
+        grid-template-columns: repeat(auto-fill, 248px);
+        gap: 20px;
+        justify-content: start;
+      }
+    }
+  }
+
+  .montibello-product-range__card--official {
+    gap: 0;
+    color: #000;
+  }
+
+  .montibello-product-range:has(.montibello-product-range__card--official) {
+    background-color: rgb(246, 246, 243) !important;
+  }
+
+  .montibello-product-range__card--official .montibello-product-range__image-wrap {
+    aspect-ratio: 248 / 346;
+    background: #fff;
+  }
+
+  .montibello-product-range__card--official .montibello-product-range__image {
+    object-fit: cover;
+  }
+
+  .montibello-product-range__eyebrow {
+    margin: 20px 0 0;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .montibello-product-range__card--official .montibello-product-range__name {
+    margin: 10px 0 0;
+    font-size: 23px;
+    line-height: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .montibello-product-range__card--official .montibello-product-range__type {
+    margin: 10px 0 0;
+    font-size: 16px;
+    line-height: 19.7px;
+    font-weight: 500;
+    opacity: 1;
+  }
+
+  .montibello-product-range__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 33px 0 0;
+  }
+
+  .montibello-product-range__pill {
+    min-width: 121px;
+    padding: 0 12px;
+    border: 0.5px solid #767676;
+    border-radius: 5px;
+    font-size: 13.6px;
+    line-height: 28px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  /* mobile (official, 390): left-aligned 35/35 heading, two 15px-gutter columns */
+  @media screen and (max-width: 749px) {
+    .montibello-product-range:has(.montibello-product-range__card--official) {
+      .montibello-product-range__header {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .montibello-product-range__header :is(h1, h2, h3) {
+        font-size: 35px;
+        line-height: 35px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: #000;
+        text-align: left;
+        margin: 0;
+      }
+
+      .montibello-product-range__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 15px;
+      }
+    }
+
+    .montibello-product-range__pill {
+      min-width: 0;
+      flex: 1 1 calc(50% - 3px);
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -169,7 +285,6 @@
   "class": "section-wrapper",
   "blocks": [
     { "type": "text" },
-    { "type": "_product-card" },
     { "type": "product-grid-card" }
   ],
   "settings": [
@@ -222,26 +337,6 @@
             "alignment": "center",
             "width": "100%"
           }
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "static": true,
-          "settings": { "product_card_gap": 4 },
-          "blocks": {
-            "product_card_gallery": {
-              "type": "_product-card-gallery",
-              "settings": { "image_ratio": "adapt" }
-            },
-            "product_title": {
-              "type": "product-title",
-              "settings": { "type_preset": "rte", "padding-block-start": 4 }
-            },
-            "price": {
-              "type": "price",
-              "settings": { "type_preset": "h6" }
-            }
-          },
-          "block_order": ["product_card_gallery", "product_title", "price"]
         }
       },
       "block_order": ["heading"]
