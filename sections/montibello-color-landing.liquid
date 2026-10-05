@@ -51,7 +51,7 @@
       {%- else -%}
         {%- for card in block_defaults -%}
           {%- assign parts = card | split: '|' -%}
-          <a class="montibello-color-landing__card" href="{{ parts[4] }}">
+          <a class="montibello-color-landing__card" href="{{ parts[4] | replace: 'shopify://collections/', '/collections/' }}">
             <span class="montibello-color-landing__media">
               <img
                 src="{{ parts[2] | asset_url }}"

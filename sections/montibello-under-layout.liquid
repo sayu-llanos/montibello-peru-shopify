@@ -110,6 +110,19 @@
       aspect-ratio: 4 / 3;
     }
   }
+
+  /* Below the 1300px container the Under rows ran flush to the window edge
+     (text touching the left edge); inset them like the centred 1440 layout. */
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) {
+      box-sizing: border-box;
+      padding-inline: 30px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}

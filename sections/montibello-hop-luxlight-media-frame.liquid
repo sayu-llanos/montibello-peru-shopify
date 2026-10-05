@@ -395,8 +395,22 @@
 
     /* first editorial row is 630x448 inside its 650px column */
     [id$='__wellbeing_hop'] .montibello-feature-rows__media {
-      width: 630px;
+      width: min(630px, 100%);
       aspect-ratio: 630 / 448;
+    }
+  }
+
+  /* Below the 1300px container the editorial rows ran flush to the window
+     edge (and wellbeing's fixed 630px image crowded its text); inset them. */
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop'],
+      [id$='__subfamilies_hop']
+    ) {
+      box-sizing: border-box;
+      padding-inline: 30px;
     }
   }
 
