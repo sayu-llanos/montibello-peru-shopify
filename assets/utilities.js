@@ -790,7 +790,10 @@ export function setHeaderMenuStyle() {
     window.requestAnimationFrame(() => {
       const overflowList = headerComponent?.querySelector('overflow-list');
       const hasReachedMinimum = overflowList && overflowList.hasAttribute('minimum-reached');
-      headerComponent.dataset.menuStyle = isTouchDevice() || hasReachedMinimum ? 'drawer' : 'menu';
+      // Montibello: the official site swaps the inline nav for the hamburger
+      // below 1200px (its desktop breakpoint), not only when the nav overflows.
+      const belowDesktopNav = window.matchMedia('(max-width: 1199px)').matches;
+      headerComponent.dataset.menuStyle = isTouchDevice() || hasReachedMinimum || belowDesktopNav ? 'drawer' : 'menu';
     });
   }
 }

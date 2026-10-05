@@ -689,10 +689,26 @@
     padding-inline: 20px;
 
     @media screen and (min-width: 750px) {
-      grid-template-columns: 630px 630px;
-      column-gap: 40px;
-      padding-inline: 0;
+      /* fluid columns capped at the official 630px: 20px page margin and gap
+         below 960px, 30px margin from 960px, 40px gap from 1200px, flush
+         1300px container from 1360px (fixed 630+630 overflowed the window) */
+      grid-template-columns: repeat(2, minmax(0, 630px));
+      column-gap: 20px;
+      padding-inline: 20px;
       align-items: center;
+      justify-content: center;
+    }
+
+    @media screen and (min-width: 960px) {
+      padding-inline: 30px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      column-gap: 40px;
+    }
+
+    @media screen and (min-width: 1360px) {
+      padding-inline: 0;
     }
   }
 

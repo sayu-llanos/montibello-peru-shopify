@@ -153,10 +153,10 @@
               }
             },
             "social_links": {
-              "type": "text",
+              "type": "montibello-footer-social",
               "settings": {
-                "text": "<p>Muy pronto en nuestras redes sociales.</p>",
-                "type_preset": "rte"
+                "instagram_url": "https://www.instagram.com/montibelloperu?stkn=d29paDBtdDNlZ2xo",
+                "facebook_url": "https://www.facebook.com/share/1H5fjXdMZT/?mibextid=wwXIfr"
               }
             }
           },

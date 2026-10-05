@@ -1385,6 +1385,36 @@
       justify-content: flex-end;
     }
   }
+
+  /* Tablet: below 1200px the header switches to drawer mode (see
+     setHeaderMenuStyle in utilities.js) — same compact layout as mobile. */
+  #header-component[data-menu-style='drawer'] .header__columns {
+    --header-template-columns: auto 1fr 44px;
+    grid-template-areas: 'logo logo menu';
+    min-height: 56px;
+  }
+
+  #header-component[data-menu-style='drawer'] .header__columns .header-logo {
+    grid-area: logo;
+    justify-self: start;
+  }
+
+  #header-component[data-menu-style='drawer'] .header__columns :is(.search-action, .account-button, header-actions) {
+    display: none;
+  }
+
+  #header-component[data-menu-style='drawer'] .header__columns .header__icon--menu {
+    grid-area: menu;
+    justify-content: flex-end;
+  }
+
+  /* The 14px icon sits at the start of its 44px drawer track; align it to the
+     page gutter like the logo on the left (tablet only — mobile unchanged). */
+  @media screen and (min-width: 750px) {
+    #header-component[data-menu-style='drawer'] .header__columns .header__drawer {
+      justify-content: flex-end;
+    }
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}

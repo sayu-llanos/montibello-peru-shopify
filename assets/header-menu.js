@@ -33,6 +33,8 @@ class HeaderMenu extends Component {
     super.connectedCallback();
 
     onDocumentLoaded(this.#preloadImages);
+    // Montibello: apply the below-1200px drawer mode on first paint, not only after a resize.
+    setHeaderMenuStyle();
     window.addEventListener('resize', this.#resizeListener);
     this.addEventListener('keydown', this.#onKeydown);
     this.overflowMenu?.addEventListener('pointerleave', this.#overflowSubmenuListener);

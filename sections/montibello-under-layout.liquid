@@ -111,16 +111,203 @@
     }
   }
 
-  /* Below the 1300px container the Under rows ran flush to the window edge
-     (text touching the left edge); inset them like the centred 1440 layout. */
-  @media screen and (min-width: 750px) and (max-width: 1359px) {
+  /* RESPONSIVE GEOMETRY (official hair.montibello.com/gama/under/, UIkit
+     breakpoints @m=960 / @l=1200, measured at 1440/1280/1100/1024/900/768):
+     - page margin 30px from 960px, 20px below
+     - text column inset 50px each side from 1200px (550px text at 1440),
+       20px below; the old 20px card padding + 30/50px inner padding made the
+       Peru text 450px wide and 50px too far right
+     - rows are `align-items: stretch`: the image keeps the 650:462 ratio as a
+       minimum and grows with the text (official 357x534 at 768) and the text
+       is vertically centred in the same cell
+     - Glucamine / Elevated Warmth stack below 960px (text first for the
+       media-right row), the Carta de color row stays two-column to 640px. */
+  @media screen and (min-width: 750px) {
     :is(
       [id$='__stats_carta_under'],
       [id$='__glucamine_under'],
       [id$='__elevated_warmth_under']
     ) {
+      --under-pad: 20px;
+
       box-sizing: border-box;
+      padding-inline: 20px;
+    }
+  }
+
+  @media screen and (min-width: 960px) {
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) {
       padding-inline: 30px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) {
+      --under-pad: 50px;
+    }
+  }
+
+  @media screen and (min-width: 1360px) {
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) {
+      padding-inline: 0;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) :is(.montibello-stats, .montibello-banner--split, .montibello-feature-rows) {
+      align-items: stretch;
+    }
+
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) :is(.montibello-stats__media, .montibello-banner__media, .montibello-feature-rows__media) {
+      position: relative;
+      align-self: stretch;
+
+      :is(img, video) {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    :is(
+      [id$='__stats_carta_under'],
+      [id$='__glucamine_under'],
+      [id$='__elevated_warmth_under']
+    ) :is(.montibello-stats__card, .montibello-banner__content, .montibello-feature-rows__content) {
+      align-self: stretch;
+      justify-content: center;
+      margin-inline: 0;
+    }
+
+    /* The shared HOP/Luxlight sheet caps these at 550/560px, adds a 20px
+       sibling inset and extra inner padding, all with !important; the whole
+       column is the box now, inset by --under-pad. Selectors are deliberately
+       heavier (section class + component class) so they win over those. */
+    .shopify-section[id$='__stats_carta_under'] .montibello-stats .montibello-stats__media ~ .montibello-stats__card {
+      max-width: none !important;
+      padding-inline: 0 !important;
+    }
+
+    .shopify-section[id$='__stats_carta_under'] .montibello-stats .montibello-stats__card > :is(.text-block, .montibello-stats__data) {
+      max-width: none !important;
+      padding-inline: var(--under-pad) !important;
+    }
+
+    @media (max-width: 1359px) {
+      /* official leaves 40px between the heading and the first stat (Peru 16px) */
+      .shopify-section[id$='__stats_carta_under'] .montibello-stats .montibello-stats__data {
+        margin-top: 24px;
+      }
+    }
+
+    .shopify-section[id$='__glucamine_under'] .montibello-banner--split .montibello-banner__media ~ .montibello-banner__content {
+      max-width: none !important;
+      padding-inline: var(--under-pad) !important;
+    }
+
+    .shopify-section[id$='__glucamine_under'] .montibello-banner--split .montibello-banner__content .text-block {
+      max-width: none !important;
+    }
+
+    .shopify-section[id$='__elevated_warmth_under'] .montibello-feature-rows .montibello-feature-rows__media ~ .montibello-feature-rows__content {
+      max-width: none !important;
+      padding-inline: var(--under-pad) !important;
+    }
+
+    /* official headings use -3% tracking in all three rows (Peru only had it
+       on Elevated Warmth, so Glucamine wrapped to three lines) and the
+       Elevated Warmth heading box is 470px wide */
+    .shopify-section:is(
+        [id$='__stats_carta_under'],
+        [id$='__glucamine_under'],
+        [id$='__elevated_warmth_under']
+      ) :is(h1, h2, h3) {
+      letter-spacing: -0.03em;
+    }
+
+    .shopify-section[id$='__elevated_warmth_under'] .montibello-feature-rows .montibello-feature-rows__heading {
+      max-width: 470px;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    /* official rows are 50px apart (25px above + 25px below each); Peru's
+       banner row added 24px of its own padding on top of that */
+    .shopify-section:is(
+        [id$='__stats_carta_under'],
+        [id$='__glucamine_under'],
+        [id$='__elevated_warmth_under']
+      ) :is(.montibello-stats, .montibello-banner--split, .montibello-feature-rows) {
+      padding-block: 0 !important;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 959px) {
+    :is([id$='__glucamine_under'], [id$='__elevated_warmth_under'])
+      :is(.montibello-banner--split, .montibello-feature-rows) {
+      grid-template-columns: 1fr;
+      row-gap: 25px;
+    }
+
+    :is([id$='__glucamine_under'], [id$='__elevated_warmth_under'])
+      :is(.montibello-banner__content, .montibello-feature-rows__content) {
+      padding-block: 0;
+    }
+
+    /* official stacked rows sit 30px apart (Peru: ~75px from section + row padding) */
+    .shopify-section:is([id$='__glucamine_under'], [id$='__elevated_warmth_under']) {
+      padding-block: 15px !important;
+
+      :is(.montibello-banner--split, .montibello-feature-rows) {
+        padding-block: 0 !important;
+      }
+    }
+
+    [id$='__glucamine_under'] .montibello-banner__content :is(p, .text-block) {
+      max-width: none !important;
+    }
+
+    /* official headings step down to 35px below the 960px breakpoint */
+    .shopify-section:is(
+        [id$='__stats_carta_under'],
+        [id$='__glucamine_under'],
+        [id$='__elevated_warmth_under']
+      ) :is(h1, h2, h3) {
+      font-size: 35px !important;
+      line-height: 35px !important;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    [id$='__product_range_under'] .montibello-product-range__grid {
+      /* `!important`: the product-range component sets this grid inside a
+         higher-specificity nested rule. */
+      max-width: 1300px !important;
+      margin-inline: auto;
+      grid-template-columns: repeat(4, minmax(0, 248px)) !important;
+      justify-content: center !important;
     }
   }
 {% endstylesheet %}

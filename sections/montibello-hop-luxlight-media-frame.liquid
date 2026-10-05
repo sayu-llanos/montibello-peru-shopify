@@ -414,6 +414,152 @@
     }
   }
 
+  /* TABLET GEOMETRY (official hair.montibello.com/gama/hop/, UIkit @m=960 /
+     @l=1200, measured at 1280/1100/1024/900/768): page margin 20px below 960;
+     rows are `align-items: stretch` so the image keeps its ratio as a minimum
+     and grows with the copy (official 465x474 at 1024), copy vertically
+     centred; the wellbeing image sits 10px (20px from 1200) short of its
+     column; the results row's copy is inset 20px (50px from 1200) and the row
+     stacks below 960px. */
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop']
+    ) {
+      --hop-gap: 10px;
+      --hop-pad: 20px;
+    }
+
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop']
+    ) :is(.montibello-feature-rows, .montibello-banner--split, .montibello-stats) {
+      align-items: stretch;
+    }
+
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop']
+    ) :is(.montibello-feature-rows__media, .montibello-banner__media, .montibello-stats__media) {
+      position: relative;
+      align-self: stretch;
+      height: auto;
+
+      :is(img, video) {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop']
+    ) :is(.montibello-feature-rows__content, .montibello-banner__content, .montibello-stats__card) {
+      align-self: stretch;
+      justify-content: center;
+    }
+
+    /* official row pitch is 58px with 20px under the heading; Peru's flex gap
+       made it 75px (the copy then outgrew the image on tablets) */
+    .shopify-section[id$='__wellbeing_hop'] .montibello-feature-rows .montibello-feature-rows__content {
+      gap: 0 !important;
+    }
+
+    .shopify-section[id$='__wellbeing_hop'] .montibello-feature-rows .montibello-feature-rows__media {
+      width: calc(100% - var(--hop-gap));
+    }
+
+    .shopify-section[id$='__wellbeing_hop'] .montibello-feature-rows .montibello-feature-rows__media ~ .montibello-feature-rows__content {
+      padding-inline: var(--hop-gap) 0 !important;
+    }
+
+    .shopify-section[id$='__results_hop'] .montibello-stats .montibello-stats__media ~ .montibello-stats__card {
+      max-width: none !important;
+      padding-inline: 0 !important;
+    }
+
+    .shopify-section[id$='__results_hop'] .montibello-stats .montibello-stats__card > :is(.text-block, .montibello-stats__data) {
+      max-width: none !important;
+      padding-inline: var(--hop-pad) !important;
+    }
+
+    /* official leaves 40px between the heading and the first stat (Peru 16px) */
+    .shopify-section[id$='__results_hop'] .montibello-stats .montibello-stats__data {
+      margin-top: 24px;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 1359px) {
+    /* official rows are 50px apart (25px above + 25px below each) */
+    .shopify-section:is(
+        [id$='__wellbeing_hop'],
+        [id$='__technology_hop'],
+        [id$='__results_hop']
+      ) {
+      padding-block: 25px !important;
+
+      :is(.montibello-feature-rows, .montibello-banner--split, .montibello-stats) {
+        padding-block: 0 !important;
+      }
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 959px) {
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop']
+    ) {
+      padding-inline: 20px;
+    }
+
+    [id$='__results_hop'] .montibello-stats {
+      grid-template-columns: 1fr;
+      row-gap: 25px;
+    }
+
+    [id$='__results_hop'] .montibello-stats__card {
+      padding-block: 0;
+    }
+
+    /* official stacked rows sit 30px apart */
+    .shopify-section[id$='__results_hop'] {
+      padding-block: 15px !important;
+
+      .montibello-stats {
+        padding-block: 0 !important;
+      }
+    }
+
+    /* official headings step down to 35px below the 960px breakpoint */
+    .shopify-section:is(
+        [id$='__wellbeing_hop'],
+        [id$='__technology_hop'],
+        [id$='__results_hop']
+      ) :is(h1, h2, h3) {
+      font-size: 35px !important;
+      line-height: 35px !important;
+    }
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1359px) {
+    :is(
+      [id$='__wellbeing_hop'],
+      [id$='__technology_hop'],
+      [id$='__results_hop']
+    ) {
+      --hop-gap: 20px;
+      --hop-pad: 50px;
+    }
+  }
+
   /* FULL-SITE PARITY — official typography (measured on /gama/hop/, 1440):
      pure black copy, 40/40 headings at -3% tracking, 16/19.7/500 body with
      23/21/700 (-2%) bold lead-ins, and rows separated by 0.5px #767676 rules

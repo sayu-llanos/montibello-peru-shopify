@@ -1,0 +1,91 @@
+{%- comment -%}
+  Footer "Síguenos" links: Montibello Perú on Instagram and Facebook. A
+  dedicated block (not a rich-text paragraph) so the links can carry
+  target="_blank" + rel="noopener noreferrer" and inline SVG icons, which the
+  rich-text setting would strip.
+{%- endcomment -%}
+
+<ul class="montibello-footer-social" {{ block.shopify_attributes }}>
+  <li>
+    <a
+      class="montibello-footer-social__link"
+      href="{{ block.settings.instagram_url }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram de Montibello Perú (se abre en una pestaña nueva)"
+    >
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4.2"></circle>
+        <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle>
+      </svg>
+      <span>Instagram</span>
+    </a>
+  </li>
+  <li>
+    <a
+      class="montibello-footer-social__link"
+      href="{{ block.settings.facebook_url }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Facebook de Montibello Perú (se abre en una pestaña nueva)"
+    >
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M13.2 20.9V13h2.4l.4-2.8h-2.8V8.6c0-.8.3-1.4 1.5-1.4H16V4.7c-.3 0-1.1-.1-2-.1-2.2 0-3.6 1.3-3.6 3.7v2H8v2.8h2.4v7.8"></path>
+      </svg>
+      <span>Facebook</span>
+    </a>
+  </li>
+</ul>
+
+{% stylesheet %}
+  .montibello-footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .montibello-footer-social__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .montibello-footer-social__link:hover span {
+    text-decoration: underline;
+  }
+
+  .montibello-footer-social__link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Redes sociales Montibello",
+  "settings": [
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Redes sociales Montibello"
+    }
+  ]
+}
+{% endschema %}

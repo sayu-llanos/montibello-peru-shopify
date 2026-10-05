@@ -38,6 +38,12 @@
 {% stylesheet %}
   .montibello-pro-cta {
     color: #FFFFFF;
+
+    /* the stacked mobile row overshoots the viewport by <1px, which showed
+       up as a 1px horizontal scroll on every page carrying this band */
+    @media screen and (max-width: 749px) {
+      overflow-x: clip;
+    }
   }
 
   .montibello-pro-cta__row {

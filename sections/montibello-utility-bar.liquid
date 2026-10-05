@@ -28,6 +28,13 @@
     background: #000;
   }
 
+  /* the official toolbar is hidden below its 1200px desktop breakpoint */
+  @media screen and (max-width: 1199px) {
+    .montibello-utility-bar {
+      display: none;
+    }
+  }
+
   .montibello-utility-bar__inner {
     padding: 10px 30px;
   }
